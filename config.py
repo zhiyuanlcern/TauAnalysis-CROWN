@@ -16,8 +16,8 @@ from .producers import taus as taus
 from .producers import triggers as triggers
 from .quantities import nanoAOD as nanoAOD
 from .quantities import output as q
-from .triggersetup import add_diTauTriggerSetup
-from .variations import add_tauVariations
+from .tau_triggersetup import add_diTauTriggerSetup
+from .tau_variations import add_tauVariations
 from .jet_variations import add_jetVariations
 from .jec_data import add_jetCorrectionData
 from code_generation.configuration import Configuration
