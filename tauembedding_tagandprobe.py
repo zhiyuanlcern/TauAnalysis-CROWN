@@ -8,14 +8,13 @@ from .producers import electrons as electrons
 from .producers import pairquantities as pairquantities
 from .producers import pairselection as pairselection
 from .producers import embedding as emb
-from .producers import triggers as triggers
 from .producers import tagandprobe as tagandprobe
 from .quantities import nanoAOD as nanoAOD
 from .quantities import output as q
 from .quantities import tagandprobe_output as tp_q
 from code_generation.configuration import Configuration
-from code_generation.rules import AppendProducer, RemoveProducer
-from code_generation.modifiers import EraModifier, SampleModifier
+from code_generation.rules import AppendProducer
+from code_generation.modifiers import EraModifier
 
 
 def build_config(
