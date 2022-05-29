@@ -14,7 +14,7 @@ from .quantities import nanoAOD as nanoAOD
 from .quantities import output as q
 from .quantities import tagandprobe_output as tp_q
 from code_generation.configuration import Configuration
-from code_generation.rules import AppendProducer
+from code_generation.rules import AppendProducer, RemoveProducer
 from code_generation.modifiers import EraModifier, SampleModifier
 
 
@@ -28,8 +28,10 @@ def build_config(
     available_channels: List[str],
 ):
 
-    if sample != "data" and sample != "emb" and sample != "dy":
-        print("WARNING: TagandProbe measurement uses only data, dy and emb samples")
+    if sample != "data" and sample != "embedding" and sample != "dyjets":
+        print(
+            "WARNING: TagandProbe measurement uses only data, dyjets and embedding samples"
+        )
         exit()
     configuration = Configuration(
         era,
@@ -46,15 +48,8 @@ def build_config(
         {
             "min_muon_pt": 7.0,
             "max_muon_eta": 2.5,
-            "max_muon_dxy": 1.0,
-            "max_muon_dz": 1.0,
-            "muon_iso_cut": 1.0,
-            "min_ele_pt": 23.0,
+            "min_ele_pt": 7.0,
             "max_ele_eta": 2.5,
-            "max_ele_dxy": 0.045,
-            "max_ele_dz": 0.2,
-            "ele_id": nanoAOD.Electron_IDWP90,
-            "max_ele_iso": 0.3,
             "met_filters": [
                 "Flag_BadPFMuonFilter",
                 "Flag_METFilters",
@@ -63,22 +58,29 @@ def build_config(
         },
     )
     ###### Channel Specifics ######
-    # MM channel Muon selection
+    # MuMu channel Muon selection
     configuration.add_config_parameters(
         ["mm"],
         {
             "muon_index_in_pair": 0,
             "second_muon_index_in_pair": 1,
-            "muon_iso_cut": 1.0,
             "min_muon_pt": 7.0,
             "max_muon_eta": 2.5,
-            "max_muon_dxy": 1.0,
-            "max_muon_dz": 1.0,
-            "muon_id": "Muon_looseId",
             "pairselection_min_dR": 0.5,
         },
     )
-    # MM Channel Trigger setup
+    # ElEl channel Electron selection
+    configuration.add_config_parameters(
+        ["ee"],
+        {
+            "electron_index_in_pair": 0,
+            "second_electron_index_in_pair": 1,
+            "min_electron_pt": 7.0,
+            "max_electron_eta": 2.5,
+            "pairselection_min_dR": 0.5,
+        },
+    )
+    # MuMu Channel Trigger setup
     configuration.add_config_parameters(
         ["mm"],
         {
@@ -150,18 +152,46 @@ def build_config(
             ),
         },
     )
-
-    # EE channel Electron selection
+    # ElEl Channel Trigger setup
     configuration.add_config_parameters(
         ["ee"],
         {
-            "electron_index_in_pair": 0,
-            "second_electron_index_in_pair": 1,
-            "min_electron_pt": 23.0,
-            "max_electron_eta": 2.4,
-            "max_electron_dxy": 0.045,
-            "max_electron_dz": 0.2,
-            "electron_id": nanoAOD.Electron_IDWP90,
+            "singleelectron_trigger": EraModifier(
+                {
+                    "2018": [
+                        {
+                            "flagname_1": "trg_single_ele27_1",
+                            "flagname_2": "trg_single_ele27_2",
+                            "hlt_path": "HLT_Ele27_WPTight_Gsf",
+                            "ptcut": 28,
+                            "etacut": 2.1,
+                            "filterbit": 1,
+                            "trigger_particle_id": 11,
+                            "max_deltaR_triggermatch": 0.4,
+                        },
+                        {
+                            "flagname_1": "trg_single_ele32_1",
+                            "flagname_2": "trg_single_ele32_2",
+                            "hlt_path": "HLT_Ele32_WPTight_Gsf",
+                            "ptcut": 33,
+                            "etacut": 2.1,
+                            "filterbit": 1,
+                            "trigger_particle_id": 11,
+                            "max_deltaR_triggermatch": 0.4,
+                        },
+                        {
+                            "flagname_1": "trg_single_ele35_1",
+                            "flagname_2": "trg_single_ele35_2",
+                            "hlt_path": "HLT_Ele35_WPTight_Gsf",
+                            "ptcut": 36,
+                            "etacut": 2.1,
+                            "filterbit": 1,
+                            "trigger_particle_id": 11,
+                            "max_deltaR_triggermatch": 0.4,
+                        },
+                    ],
+                }
+            ),
         },
     )
 
@@ -169,47 +199,51 @@ def build_config(
         "global",
         [
             event.Lumi,
-            event.MetFilter,
+            # event.MetFilter,
             tagandprobe.BaseMuons,
-            electrons.BaseElectrons,
+            tagandprobe.BaseElectrons,
         ],
     )
     configuration.add_producers(
         "mm",
         [
-            muons.GoodMuons,
+            tagandprobe.GoodMuons,
             muons.VetoMuons,
             muons.VetoSecondMuon,
             muons.ExtraMuonsVeto,
             muons.NumberOfGoodMuons,
             electrons.ExtraElectronsVeto,
-            pairselection.MMPairSelection,
-            pairselection.GoodMMPairFilter,
+            pairselection.ZMuMuPairSelection,
+            pairselection.GoodMuMuPairFilter,
             pairselection.LVMu1,
             pairselection.LVMu2,
             pairselection.LVMu1Uncorrected,
             pairselection.LVMu2Uncorrected,
-            pairquantities.MMDiTauPairQuantities,
+            pairquantities.MuMuPairQuantities,
             tagandprobe.MuonIDs,
-            tagandprobe.MMSingleMuonTriggerFlags_1,
-            tagandprobe.MMSingleMuonTriggerFlags_2,
+            tagandprobe.MuMuSingleMuonTriggerFlags_1,
+            tagandprobe.MuMuSingleMuonTriggerFlags_2,
         ],
     )
 
-    # configuration.add_producers(
-    #     "ee",
-    #     [
-    #         # electrons.GoodElectrons,
-    #         electrons.VetoElectrons,
-    #         # electrons.VetoSecondElectron,
-    #         electrons.ExtraElectronsVeto,
-    #         pairselection.EEPairSelection,
-    #         pairselection.GoodEEPairFilter,
-    #         pairselection.LVEl1,
-    #         pairselection.LVEl2,
-    #         pairquantities.EEDiTauPairQuantities,
-    #     ],
-    # )
+    configuration.add_producers(
+        "ee",
+        [
+            tagandprobe.GoodElectrons,
+            electrons.VetoElectrons,
+            electrons.VetoSecondElectron,
+            electrons.ExtraElectronsVeto,
+            electrons.NumberOfGoodElectrons,
+            pairselection.ZElElPairSelection,
+            pairselection.GoodElElPairFilter,
+            pairselection.LVEl1,
+            pairselection.LVEl2,
+            pairquantities.ElElPairQuantities,
+            tagandprobe.ElectronIDs,
+            tagandprobe.ElElSingleElectronTriggerFlags_1,
+            tagandprobe.ElElSingleElectronTriggerFlags_2,
+        ],
+    )
 
     configuration.add_outputs(
         ["mm"],
@@ -241,8 +275,8 @@ def build_config(
             q.is_global_2,
             q.muon_veto_flag,
             q.electron_veto_flag,
-            tagandprobe.MMSingleMuonTriggerFlags_1.output_group,
-            tagandprobe.MMSingleMuonTriggerFlags_2.output_group,
+            tagandprobe.MuMuSingleMuonTriggerFlags_1.output_group,
+            tagandprobe.MuMuSingleMuonTriggerFlags_2.output_group,
         ],
     )
 
@@ -261,13 +295,26 @@ def build_config(
             q.m_vis,
             q.iso_1,
             q.iso_2,
+            q.dz_1,
+            q.dz_2,
+            q.dxy_1,
+            q.dxy_2,
             q.electron_veto_flag,
+            tp_q.id_wp90_1,
+            tp_q.id_wp90_2,
+            tp_q.id_wp80_1,
+            tp_q.id_wp80_2,
+            q.nelectrons,
+            tagandprobe.ElElSingleElectronTriggerFlags_1.output_group,
+            tagandprobe.ElElSingleElectronTriggerFlags_2.output_group,
         ],
     )
 
     configuration.add_modification_rule(
         "global",
-        AppendProducer(producers=emb.EmbeddingQuantities, samples=["emb", "emb_mc"]),
+        AppendProducer(
+            producers=emb.EmbeddingQuantities, samples=["embedding", "embedding_mc"]
+        ),
     )
 
     #########################
