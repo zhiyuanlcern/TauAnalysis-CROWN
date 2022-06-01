@@ -47,13 +47,13 @@ def add_jetVariations(configuration, available_sample_types, era):
                     "jet_jes_shift": 1,
                     "jet_jes_sources": JEC_sources,
                 },
-                ("mt","et","tt"): {"btag_sf_variation": "up_jes"},
+                ("mt", "et", "tt"): {"btag_sf_variation": "up_jes"},
             },
             producers={
                 "global": {
                     jets.JetEnergyCorrection,
                 },
-                ("mt","et","tt"): {scalefactors.btagging_SF},
+                ("mt", "et", "tt"): {scalefactors.btagging_SF},
             },
         ),
         samples=[
@@ -70,13 +70,13 @@ def add_jetVariations(configuration, available_sample_types, era):
                     "jet_jes_shift": -1,
                     "jet_jes_sources": JEC_sources,
                 },
-                ("mt","et","tt"): {"btag_sf_variation": "up_jes"},
+                ("mt", "et", "tt"): {"btag_sf_variation": "up_jes"},
             },
             producers={
                 "global": {
                     jets.JetEnergyCorrection,
                 },
-                ("mt","et","tt"): {scalefactors.btagging_SF},
+                ("mt", "et", "tt"): {scalefactors.btagging_SF},
             },
         ),
         samples=[
