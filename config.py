@@ -17,8 +17,9 @@ from .producers import triggers as triggers
 from .quantities import nanoAOD as nanoAOD
 from .quantities import output as q
 from .triggersetup import add_diTauTriggerSetup
-from .variations import add_tauVariations
+from .tau_variations import add_tauVariations
 from .jet_variations import add_jetVariations
+from .btag_variations import add_btagVariations
 from .jec_data import add_jetCorrectionData
 from code_generation.configuration import Configuration
 from code_generation.modifiers import EraModifier, SampleModifier
@@ -169,8 +170,15 @@ def build_config(
         {
             "min_jet_pt": 30,
             "max_jet_eta": 4.7,
-            "jet_id": 2,  # second bit is tight JetID
-            "jet_puid": 4,  # 0==fail, 4==pass(loose), 6==pass(loose,medium), 7==pass(loose,medium,tight) !check 2016 -> inverted ID
+            "jet_id": 2,  # default: 2==pass tight ID and fail tightLepVeto
+            "jet_puid": EraModifier(
+                {
+                    "2016preVFP": 1,  # 0==fail, 1==pass(loose), 3==pass(loose,medium), 7==pass(loose,medium,tight)
+                    "2016postVFP": 1,  # 0==fail, 1==pass(loose), 3==pass(loose,medium), 7==pass(loose,medium,tight)
+                    "2017": 4,  # 0==fail, 4==pass(loose), 6==pass(loose,medium), 7==pass(loose,medium,tight)
+                    "2018": 4,  # 0==fail, 4==pass(loose), 6==pass(loose,medium), 7==pass(loose,medium,tight)
+                }
+            ),
             "jet_puid_max_pt": 50,  # recommended to apply puID only for jets below 50 GeV
             "jet_reapplyJES": False,
             "jet_jes_sources": '{""}',
@@ -178,7 +186,8 @@ def build_config(
             "jet_jer_shift": '"nom"',  # or '"up"', '"down"'
             "jet_jec_file": EraModifier(
                 {
-                    "2016": '"data/jsonpog-integration/POG/JME/2016postVFP_UL/jet_jerc.json.gz"',
+                    "2016preVFP": '"data/jsonpog-integration/POG/JME/2016preVFP_UL/jet_jerc.json.gz"',
+                    "2016postVFP": '"data/jsonpog-integration/POG/JME/2016postVFP_UL/jet_jerc.json.gz"',
                     "2017": '"data/jsonpog-integration/POG/JME/2017_UL/jet_jerc.json.gz"',
                     "2018": '"data/jsonpog-integration/POG/JME/2018_UL/jet_jerc.json.gz"',
                 }
@@ -222,6 +231,22 @@ def build_config(
                     "2018": 0.2783,
                 }
             ),
+        },
+    )
+    # bjet scale factors
+    configuration.add_config_parameters(
+        scopes,
+        {
+            "btag_sf_file": EraModifier(
+                {
+                    "2016preVFP": "data/jsonpog-integration/POG/BTV/2016preVFP_UL/btagging.json.gz",
+                    "2016postVFP": "data/jsonpog-integration/POG/BTV/2016postVFP_UL/btagging.json.gz",
+                    "2017": "data/jsonpog-integration/POG/BTV/2017_UL/btagging.json.gz",
+                    "2018": "data/jsonpog-integration/POG/BTV/2018_UL/btagging.json.gz",
+                }
+            ),
+            "btag_sf_variation": "central",
+            "btag_corr_algo": "deepJet_shape",
         },
     )
     # leptonveto base selection:
@@ -469,11 +494,11 @@ def build_config(
         scopes,
         {
             "propagateLeptons": SampleModifier(
-                {"data": False, "emb": False},
+                {"data": False, "embedding": False},
                 default=True,
             ),
             "propagateJets": SampleModifier(
-                {"data": False, "emb": False},
+                {"data": False, "embedding": False},
                 default=True,
             ),
             "recoil_corrections_file": EraModifier(
@@ -549,6 +574,7 @@ def build_config(
             jets.BasicJetQuantities,
             jets.BJetCollection,
             jets.BasicBJetQuantities,
+            scalefactors.btagging_SF,
             met.MetCorrections,
             met.PFMetCorrections,
             pairquantities.DiTauPairMETQuantities,
@@ -707,6 +733,15 @@ def build_config(
         ),
     )
     configuration.add_modification_rule(
+        scopes,
+        RemoveProducer(
+            producers=[
+                scalefactors.btagging_SF,
+            ],
+            samples="data",
+        ),
+    )
+    configuration.add_modification_rule(
         ["et", "mt", "tt"],
         ReplaceProducer(
             producers=[taus.TauEnergyCorrection, taus.TauEnergyCorrection_data],
@@ -788,13 +823,13 @@ def build_config(
     configuration.add_modification_rule(
         "global",
         AppendProducer(
-            producers=emb.EmbeddingQuantities, samples=["embedding", "emb_mc"]
+            producers=emb.EmbeddingQuantities, samples=["embedding", "embedding_mc"]
         ),
     )
     configuration.add_modification_rule(
         "global",
         RemoveProducer(
-            producers=jets.JetEnergyCorrection, samples=["embedding", "emb_mc"]
+            producers=jets.JetEnergyCorrection, samples=["embedding", "embedding_mc"]
         ),
     )
     # scope specific
@@ -877,6 +912,7 @@ def build_config(
             q.bphi_2,
             q.btag_value_1,
             q.btag_value_2,
+            q.btag_weight,
             q.mass_1,
             q.mass_2,
             q.dxy_1,
@@ -1031,7 +1067,7 @@ def build_config(
             q.iso_wgt_mu_2,
         ],
     )
-    if "data" not in sample and "emb" not in sample:
+    if "data" not in sample and "embedding" not in sample:
         configuration.add_outputs(
             scopes,
             [
@@ -1160,7 +1196,7 @@ def build_config(
             samples=[
                 sample
                 for sample in available_sample_types
-                if sample not in ["data", "emb", "emb_mc"]
+                if sample not in ["data", "embedding", "embedding_mc"]
             ],
         )
     #########################
@@ -1319,6 +1355,11 @@ def build_config(
     # Jet energy resolution and jet energy scale
     #########################
     add_jetVariations(configuration, available_sample_types, era)
+
+    #########################
+    # btagging scale factor shape variation
+    #########################
+    add_btagVariations(configuration, available_sample_types)
 
     #########################
     # Jet energy correction for data
