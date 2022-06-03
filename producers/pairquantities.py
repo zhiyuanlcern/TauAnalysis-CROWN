@@ -2,6 +2,7 @@ from ..quantities import output as q
 from ..quantities import nanoAOD as nanoAOD
 from code_generation.producer import Producer, ProducerGroup, ExtendedVectorProducer
 
+
 ####################
 # Set of general producers for DiTauPair Quantities
 ####################
@@ -91,6 +92,20 @@ muon_dxy_2 = Producer(
     call="quantities::dxy({df}, {output}, 1, {input})",
     input=[q.dileptonpair, nanoAOD.Muon_dxy],
     output=[q.dxy_2],
+    scopes=["em", "mm"],
+)
+muon_is_global_1 = Producer(
+    name="muon_is_global_1",
+    call="quantities::muon::is_global({df}, {output}, 0, {input})",
+    input=[q.dileptonpair, nanoAOD.Muon_isGlobal],
+    output=[q.is_global_1],
+    scopes=["mt", "mm"],
+)
+muon_is_global_2 = Producer(
+    name="muon_is_global_2",
+    call="quantities::muon::is_global({df}, {output}, 1, {input})",
+    input=[q.dileptonpair, nanoAOD.Muon_isGlobal],
+    output=[q.is_global_2],
     scopes=["em", "mm"],
 )
 electron_dxy_1 = Producer(
@@ -354,6 +369,7 @@ UnrollMuLV1 = ProducerGroup(
         muon_dz_1,
         muon_q_1,
         muon_iso_1,
+        muon_is_global_1,
     ],
 )
 UnrollMuLV2 = ProducerGroup(
@@ -371,6 +387,7 @@ UnrollMuLV2 = ProducerGroup(
         muon_dz_2,
         muon_q_2,
         muon_iso_2,
+        muon_is_global_2,
     ],
 )
 UnrollElLV1 = ProducerGroup(
@@ -465,13 +482,21 @@ MTDiTauPairQuantities = ProducerGroup(
     scopes=["mt"],
     subproducers=[UnrollMuLV1, UnrollTauLV2, m_vis, pt_vis],
 )
-MMDiTauPairQuantities = ProducerGroup(
-    name="MMDiTauPairQuantities",
+MuMuPairQuantities = ProducerGroup(
+    name="MuMuPairQuantities",
     call=None,
     input=None,
     output=None,
     scopes=["mm"],
     subproducers=[UnrollMuLV1, UnrollMuLV2, m_vis, pt_vis],
+)
+ElElPairQuantities = ProducerGroup(
+    name="ElElPairQuantities",
+    call=None,
+    input=None,
+    output=None,
+    scopes=["ee"],
+    subproducers=[UnrollElLV1, UnrollElLV2, m_vis, pt_vis],
 )
 ETDiTauPairQuantities = ProducerGroup(
     name="ETDiTauPairQuantities",

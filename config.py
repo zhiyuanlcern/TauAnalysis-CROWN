@@ -16,7 +16,7 @@ from .producers import taus as taus
 from .producers import triggers as triggers
 from .quantities import nanoAOD as nanoAOD
 from .quantities import output as q
-from .triggersetup import add_diTauTriggerSetup
+from .tau_triggersetup import add_diTauTriggerSetup
 from .tau_variations import add_tauVariations
 from .jet_variations import add_jetVariations
 from .btag_variations import add_btagVariations
@@ -588,16 +588,16 @@ def build_config(
             muons.VetoSecondMuon,
             muons.ExtraMuonsVeto,
             muons.NumberOfGoodMuons,
-            pairselection.ZMMPairSelection,
-            pairselection.GoodMMPairFilter,
+            pairselection.ZMuMuPairSelection,
+            pairselection.GoodMuMuPairFilter,
             pairselection.LVMu1,
             pairselection.LVMu2,
             pairselection.LVMu1Uncorrected,
             pairselection.LVMu2Uncorrected,
-            pairquantities.MMDiTauPairQuantities,
-            genparticles.MMGenDiTauPairQuantities,
+            pairquantities.MuMuPairQuantities,
+            genparticles.MuMuGenPairQuantities,
             scalefactors.MuonIDIso_SF,
-            triggers.MMGenerateSingleMuonTriggerFlags,
+            triggers.MuMuGenerateSingleMuonTriggerFlags,
         ],
     )
     configuration.add_producers(
@@ -864,7 +864,7 @@ def build_config(
     configuration.add_modification_rule(
         "mm",
         RemoveProducer(
-            producers=[genparticles.MMGenDiTauPairQuantities],
+            producers=[genparticles.MuMuGenPairQuantities],
             samples=["data"],
         ),
     )
@@ -1060,7 +1060,7 @@ def build_config(
         "mm",
         [
             q.nmuons,
-            triggers.MMGenerateSingleMuonTriggerFlags.output_group,
+            triggers.MuMuGenerateSingleMuonTriggerFlags.output_group,
             q.id_wgt_mu_1,
             q.iso_wgt_mu_1,
             q.id_wgt_mu_2,
