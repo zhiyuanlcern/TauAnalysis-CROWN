@@ -738,7 +738,7 @@ def build_config(
             producers=[
                 scalefactors.btagging_SF,
             ],
-            samples="data",
+            samples=["data", "embedding", "embedding_mc"],
         ),
     )
     configuration.add_modification_rule(
