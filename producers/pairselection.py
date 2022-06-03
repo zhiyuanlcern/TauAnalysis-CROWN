@@ -43,8 +43,8 @@ GoodMTPairFilter = Filter(
     subproducers=[GoodMTPairFlag],
 )
 
-MMPairSelection = Producer(
-    name="MMPairSelection",
+MuMuPairSelection = Producer(
+    name="MuMuPairSelection",
     call="ditau_pairselection::mumu::PairSelection({df}, {input_vec}, {output}, {pairselection_min_dR})",
     input=[
         nanoAOD.Muon_pt,
@@ -56,8 +56,8 @@ MMPairSelection = Producer(
     output=[q.dileptonpair],
     scopes=["mm"],
 )
-ZMMPairSelection = Producer(
-    name="MMPairSelection",
+ZMuMuPairSelection = Producer(
+    name="ZMuMuPairSelection",
     call="ditau_pairselection::mumu::ZBosonPairSelection({df}, {input_vec}, {output}, {pairselection_min_dR})",
     input=[
         nanoAOD.Muon_pt,
@@ -69,21 +69,63 @@ ZMMPairSelection = Producer(
     output=[q.dileptonpair],
     scopes=["mm"],
 )
-
-GoodMMPairFlag = Producer(
-    name="GoodMMPairFlag",
+GoodMuMuPairFlag = Producer(
+    name="GoodMuMuPairFlag",
     call="ditau_pairselection::flagGoodPairs({df}, {output}, {input})",
     input=[q.dileptonpair],
     output=[],
     scopes=["mm"],
 )
 
-GoodMMPairFilter = Filter(
-    name="GoodMMPairFilter",
+GoodMuMuPairFilter = Filter(
+    name="GoodMuMuPairFilter",
     call='basefunctions::FilterFlagsAny({df}, "GoodMuMuPairs", {input})',
     input=[],
     scopes=["mm"],
-    subproducers=[GoodMMPairFlag],
+    subproducers=[GoodMuMuPairFlag],
+)
+
+ElElPairSelection = Producer(
+    name="ElElPairSelection",
+    call="ditau_pairselection::elel::PairSelection({df}, {input_vec}, {output}, {pairselection_min_dR})",
+    input=[
+        nanoAOD.Electron_pt,
+        nanoAOD.Electron_eta,
+        nanoAOD.Electron_phi,
+        nanoAOD.Electron_mass,
+        q.good_electrons_mask,
+    ],
+    output=[q.dileptonpair],
+    scopes=["ee"],
+)
+ZElElPairSelection = Producer(
+    name="ZElElPairSelection",
+    call="ditau_pairselection::elel::ZBosonPairSelection({df}, {input_vec}, {output}, {pairselection_min_dR})",
+    input=[
+        nanoAOD.Electron_pt,
+        nanoAOD.Electron_eta,
+        nanoAOD.Electron_phi,
+        nanoAOD.Electron_mass,
+        q.good_electrons_mask,
+    ],
+    output=[q.dileptonpair],
+    scopes=["ee"],
+)
+
+GoodElElPairFlag = Producer(
+    name="GoodElElPairFlag",
+    call="ditau_pairselection::flagGoodPairs({df}, {output}, {input})",
+    input=[q.dileptonpair],
+    output=[],
+    scopes=["ee"],
+)
+
+GoodElElPairFilter = Filter(
+    name="GoodElElPairFilter",
+    call='basefunctions::FilterFlagsAny({df}, "GoodElElPairs", {input})',
+    input=[],
+    scopes=["ee"],
+    subproducers=[GoodElElPairFlag],
 )
 
 ETPairSelection = Producer(

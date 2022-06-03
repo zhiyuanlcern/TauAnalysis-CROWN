@@ -18,6 +18,7 @@ def run(args):
         "rem_hbb",
         "embedding",
         "embedding_mc",
+        "singletop",
         "ttbar",
         "diboson",
         "dyjets",
