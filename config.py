@@ -19,6 +19,7 @@ from .quantities import output as q
 from .tau_triggersetup import add_diTauTriggerSetup
 from .tau_variations import add_tauVariations
 from .jet_variations import add_jetVariations
+from .tau_embedding_settings import setup_embedding
 from .jec_data import add_jetCorrectionData
 from code_generation.configuration import Configuration
 from code_generation.modifiers import EraModifier, SampleModifier
@@ -469,11 +470,11 @@ def build_config(
         scopes,
         {
             "propagateLeptons": SampleModifier(
-                {"data": False, "emb": False},
+                {"data": False, "embedding": False},
                 default=True,
             ),
             "propagateJets": SampleModifier(
-                {"data": False, "emb": False},
+                {"data": False, "embedding": False},
                 default=True,
             ),
             "recoil_corrections_file": EraModifier(
@@ -785,16 +786,11 @@ def build_config(
         "global",
         AppendProducer(producers=event.JSONFilter, samples=["data", "embedding"]),
     )
-    configuration.add_modification_rule(
-        "global",
-        AppendProducer(
-            producers=emb.EmbeddingQuantities, samples=["embedding", "emb_mc"]
-        ),
-    )
+
     configuration.add_modification_rule(
         "global",
         RemoveProducer(
-            producers=jets.JetEnergyCorrection, samples=["embedding", "emb_mc"]
+            producers=jets.JetEnergyCorrection, samples=["embedding", "embdding_mc"]
         ),
     )
     # scope specific
@@ -1031,7 +1027,7 @@ def build_config(
             q.iso_wgt_mu_2,
         ],
     )
-    if "data" not in sample and "emb" not in sample:
+    if "data" not in sample and "embedding" not in sample:
         configuration.add_outputs(
             scopes,
             [
@@ -1160,17 +1156,9 @@ def build_config(
             samples=[
                 sample
                 for sample in available_sample_types
-                if sample not in ["data", "emb", "emb_mc"]
+                if sample not in ["data", "embedding", "emb_mc"]
             ],
         )
-    #########################
-    # TauID scale factor shifts, channel dependent # Tau energy scale shifts, dm dependent
-    #########################
-    add_tauVariations(configuration)
-    #########################
-    # Import triggersetup   #
-    #########################
-    add_diTauTriggerSetup(configuration)
 
     #########################
     # MET Shifts
@@ -1314,6 +1302,19 @@ def build_config(
             if sample not in ["data", "embedding", "embedding_mc"]
         ],
     )
+
+    #########################
+    # TauID scale factor shifts, channel dependent # Tau energy scale shifts, dm dependent
+    #########################
+    add_tauVariations(configuration, sample)
+    #########################
+    # Import triggersetup   #
+    #########################
+    add_diTauTriggerSetup(configuration)
+    #########################
+    # Add additional producers and SFs related to embedded samples
+    #########################
+    setup_embedding(configuration, scopes)
 
     #########################
     # Jet energy resolution and jet energy scale

@@ -1,3 +1,4 @@
+from code_generation.configuration import Configuration
 from code_generation.systematics import SystematicShift
 from .producers import scalefactors as scalefactors
 from .producers import pairselection as pairselection
@@ -6,7 +7,9 @@ from .producers import electrons as electrons
 from .producers import taus as taus
 
 
-def add_tauVariations(configuration):
+def add_tauVariations(configuration: Configuration, sample: str):
+    if sample == "embedding" or sample == "embedding_mc" or sample == "data":
+        return configuration
     #########################
     # TauvsMuID scale factor shifts
     #########################
