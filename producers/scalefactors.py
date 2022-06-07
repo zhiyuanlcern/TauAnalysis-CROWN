@@ -337,6 +337,7 @@ TauEmbeddingElectronIsoSF_2_MC = Producer(
     input=[q.pt_2, q.eta_2],
     output=[q.iso_wgt_mu_2],
     scopes=["ee"],
+)
 #########################
 # b-tagging SF
 #########################

@@ -12,7 +12,8 @@ def setup_embedding(configuration: Configuration, scopes: List[str]):
     configuration.add_modification_rule(
         scopes,
         AppendProducer(
-            producers=embedding.EmbeddingQuantities, samples=["embedding", "emb_mc"]
+            producers=embedding.EmbeddingQuantities,
+            samples=["embedding", "embedding_mc"],
         ),
     )
 

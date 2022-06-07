@@ -889,16 +889,6 @@ def build_config(
         "global",
         RemoveProducer(
             producers=jets.JetEnergyCorrection, samples=["embedding", "embdding_mc"]
-    configuration.add_modification_rule(
-        "global",
-        AppendProducer(
-            producers=emb.EmbeddingQuantities, samples=["embedding", "embedding_mc"]
-        ),
-    )
-    configuration.add_modification_rule(
-        "global",
-        RemoveProducer(
-            producers=jets.JetEnergyCorrection, samples=["embedding", "embedding_mc"]
         ),
     )
     # scope specific
