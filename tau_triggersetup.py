@@ -1,7 +1,8 @@
+from code_generation.configuration import Configuration
 from code_generation.modifiers import EraModifier, SampleModifier
 
 
-def add_diTauTriggerSetup(configuration):
+def add_diTauTriggerSetup(configuration: Configuration):
     ## MT, MM scope trigger setup
     configuration.add_config_parameters(
         ["mt", "mm", "em"],

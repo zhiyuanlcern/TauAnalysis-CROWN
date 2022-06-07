@@ -1,4 +1,4 @@
-from code_generation.producer import Producer, ProducerGroup
+from code_generation.producer import Producer, ProducerGroup, ExtendedVectorProducer
 from ..quantities import output as q
 from ..quantities import nanoAOD as nanoAOD
 
@@ -181,4 +181,54 @@ TauEmbeddingMuonIsoSF_2 = Producer(
     input=[q.pt_2, q.eta_2],
     output=[q.iso_wgt_mu_2],
     scopes=["mm", "em"],
+)
+MTGenerateSingleMuonTriggerSF = ExtendedVectorProducer(
+    name="MTGenerateSingleMuonTriggerSF",
+    call='scalefactor::embedding::muon_sf({df}, {input}, {output}, "{embedding_muon_sf_file}", "emb", "{embedding_trigger_sf}")',
+    input=[q.pt_1, q.eta_1],
+    output="flagname",
+    scope=["mt"],
+    vec_config="singlemoun_trigger_sf",
+)
+
+# Electron ID/Iso/Trigger SFS
+
+TauEmbeddingElectronIDSF_1 = Producer(
+    name="TauEmbeddingElectronIDSF_1",
+    call='scalefactor::embedding::electron_sf({df}, {input}, {output}, "{embedding_electron_sf_file}", "emb", "{embedding_electron_id_sf}")',
+    input=[q.pt_1, q.eta_1],
+    output=[q.id_wgt_mu_1],
+    scopes=["et", "ee", "em"],
+)
+
+TauEmbeddingElectronIDSF_2 = Producer(
+    name="TauEmbeddingElectronIDSF_2",
+    call='scalefactor::embedding::electron_sf({df}, {input}, {output}, "{embedding_electron_sf_file}", "emb", "{embedding_electron_id_sf}")',
+    input=[q.pt_2, q.eta_2],
+    output=[q.id_wgt_mu_2],
+    scopes=["ee"],
+)
+
+TauEmbeddingElectronIsoSF_1 = Producer(
+    name="TauEmbeddingElectronIsoSF_1",
+    call='scalefactor::embedding::electron_sf({df}, {input}, {output}, "{embedding_electron_sf_file}", "emb", "{embedding_electron_iso_sf}")',
+    input=[q.pt_1, q.eta_1],
+    output=[q.iso_wgt_mu_1],
+    scopes=["et", "ee", "em"],
+)
+
+TauEmbeddingElectronIsoSF_2 = Producer(
+    name="TauEmbeddingElectronIsoSF_2",
+    call='scalefactor::embedding::electron_sf({df}, {input}, {output}, "{embedding_electron_sf_file}", "emb", "{embedding_electron_iso_sf}")',
+    input=[q.pt_2, q.eta_2],
+    output=[q.iso_wgt_mu_2],
+    scopes=["ee"],
+)
+ETGenerateSingleElectronTriggerSF = ExtendedVectorProducer(
+    name="ETGenerateSingleElectronTriggerSF",
+    call='scalefactor::embedding::electron_sf({df}, {input}, {output}, "{embedding_electron_sf_file}", "emb", "{embedding_trigger_sf}")',
+    input=[q.pt_1, q.eta_1],
+    output="flagname",
+    scope=["et"],
+    vec_config="singlelectron_trigger_sf",
 )
