@@ -1,8 +1,14 @@
+from __future__ import annotations  # needed for type annotations in > python 3.7
+
+from typing import List
+from code_generation.configuration import Configuration
 from code_generation.systematics import SystematicShift
 from .producers import jets as jets
 
 
-def add_jetVariations(configuration, available_sample_types, era):
+def add_jetVariations(
+    configuration: Configuration, available_sample_types: List[str], era: str
+):
     #########################
     # Jet energy resolution
     #########################
@@ -17,7 +23,7 @@ def add_jetVariations(configuration, available_sample_types, era):
         samples=[
             sample
             for sample in available_sample_types
-            if sample not in ["data", "emb", "emb_mc"]
+            if sample not in ["data", "embedding", "embedding_mc"]
         ],
     )
     configuration.add_shift(
@@ -31,7 +37,7 @@ def add_jetVariations(configuration, available_sample_types, era):
         samples=[
             sample
             for sample in available_sample_types
-            if sample not in ["data", "emb", "emb_mc"]
+            if sample not in ["data", "embedding", "embedding_mc"]
         ],
     )
     #########################
@@ -52,7 +58,7 @@ def add_jetVariations(configuration, available_sample_types, era):
         samples=[
             sample
             for sample in available_sample_types
-            if sample not in ["data", "emb", "emb_mc"]
+            if sample not in ["data", "embedding", "embedding_mc"]
         ],
     )
     configuration.add_shift(
@@ -69,7 +75,7 @@ def add_jetVariations(configuration, available_sample_types, era):
         samples=[
             sample
             for sample in available_sample_types
-            if sample not in ["data", "emb", "emb_mc"]
+            if sample not in ["data", "embedding", "embedding_mc"]
         ],
     )
     #########################
@@ -91,7 +97,7 @@ def add_jetVariations(configuration, available_sample_types, era):
             samples=[
                 sample
                 for sample in available_sample_types
-                if sample not in ["data", "emb", "emb_mc"]
+                if sample not in ["data", "embedding", "embedding_mc"]
             ],
         )
         configuration.add_shift(
@@ -108,7 +114,7 @@ def add_jetVariations(configuration, available_sample_types, era):
             samples=[
                 sample
                 for sample in available_sample_types
-                if sample not in ["data", "emb", "emb_mc"]
+                if sample not in ["data", "embedding", "embedding_mc"]
             ],
         )
     #########################
@@ -129,7 +135,7 @@ def add_jetVariations(configuration, available_sample_types, era):
     #     samples=[
     #         sample
     #         for sample in available_sample_types
-    #         if sample not in ["data", "emb", "emb_mc"]
+    #         if sample not in ["data", "embedding", "embedding_mc"]
     #     ],
     # )
     # configuration.add_shift(
@@ -146,7 +152,7 @@ def add_jetVariations(configuration, available_sample_types, era):
     #     samples=[
     #         sample
     #         for sample in available_sample_types
-    #         if sample not in ["data", "emb", "emb_mc"]
+    #         if sample not in ["data", "embedding", "embedding_mc"]
     #     ],
     # )
 
@@ -165,7 +171,7 @@ def add_jetVariations(configuration, available_sample_types, era):
     #     samples=[
     #         sample
     #         for sample in available_sample_types
-    #         if sample not in ["data", "emb", "emb_mc"]
+    #         if sample not in ["data", "embedding", "embedding_mc"]
     #     ],
     # )
     # configuration.add_shift(
@@ -182,7 +188,7 @@ def add_jetVariations(configuration, available_sample_types, era):
     #     samples=[
     #         sample
     #         for sample in available_sample_types
-    #         if sample not in ["data", "emb", "emb_mc"]
+    #         if sample not in ["data", "embedding", "embedding_mc"]
     #     ],
     # )
 
@@ -201,7 +207,7 @@ def add_jetVariations(configuration, available_sample_types, era):
     #     samples=[
     #         sample
     #         for sample in available_sample_types
-    #         if sample not in ["data", "emb", "emb_mc"]
+    #         if sample not in ["data", "embedding", "embedding_mc"]
     #     ],
     # )
     # configuration.add_shift(
@@ -218,7 +224,7 @@ def add_jetVariations(configuration, available_sample_types, era):
     #     samples=[
     #         sample
     #         for sample in available_sample_types
-    #         if sample not in ["data", "emb", "emb_mc"]
+    #         if sample not in ["data", "embedding", "embedding_mc"]
     #     ],
     # )
 
@@ -237,7 +243,7 @@ def add_jetVariations(configuration, available_sample_types, era):
     #     samples=[
     #         sample
     #         for sample in available_sample_types
-    #         if sample not in ["data", "emb", "emb_mc"]
+    #         if sample not in ["data", "embedding", "embedding_mc"]
     #     ],
     # )
     # configuration.add_shift(
@@ -254,7 +260,7 @@ def add_jetVariations(configuration, available_sample_types, era):
     #     samples=[
     #         sample
     #         for sample in available_sample_types
-    #         if sample not in ["data", "emb", "emb_mc"]
+    #         if sample not in ["data", "embedding", "embedding_mc"]
     #     ],
     # )
 
@@ -273,7 +279,7 @@ def add_jetVariations(configuration, available_sample_types, era):
     #     samples=[
     #         sample
     #         for sample in available_sample_types
-    #         if sample not in ["data", "emb", "emb_mc"]
+    #         if sample not in ["data", "embedding", "embedding_mc"]
     #     ],
     # )
     # configuration.add_shift(
@@ -290,7 +296,7 @@ def add_jetVariations(configuration, available_sample_types, era):
     #     samples=[
     #         sample
     #         for sample in available_sample_types
-    #         if sample not in ["data", "emb", "emb_mc"]
+    #         if sample not in ["data", "embedding", "embedding_mc"]
     #     ],
     # )
 
@@ -309,7 +315,7 @@ def add_jetVariations(configuration, available_sample_types, era):
     #     samples=[
     #         sample
     #         for sample in available_sample_types
-    #         if sample not in ["data", "emb", "emb_mc"]
+    #         if sample not in ["data", "embedding", "embedding_mc"]
     #     ],
     # )
     # configuration.add_shift(
@@ -326,7 +332,7 @@ def add_jetVariations(configuration, available_sample_types, era):
     #     samples=[
     #         sample
     #         for sample in available_sample_types
-    #         if sample not in ["data", "emb", "emb_mc"]
+    #         if sample not in ["data", "embedding", "embedding_mc"]
     #     ],
     # )
 
@@ -345,7 +351,7 @@ def add_jetVariations(configuration, available_sample_types, era):
     #     samples=[
     #         sample
     #         for sample in available_sample_types
-    #         if sample not in ["data", "emb", "emb_mc"]
+    #         if sample not in ["data", "embedding", "embedding_mc"]
     #     ],
     # )
     # configuration.add_shift(
@@ -362,7 +368,7 @@ def add_jetVariations(configuration, available_sample_types, era):
     #     samples=[
     #         sample
     #         for sample in available_sample_types
-    #         if sample not in ["data", "emb", "emb_mc"]
+    #         if sample not in ["data", "embedding", "embedding_mc"]
     #     ],
     # )
 
@@ -381,7 +387,7 @@ def add_jetVariations(configuration, available_sample_types, era):
     #     samples=[
     #         sample
     #         for sample in available_sample_types
-    #         if sample not in ["data", "emb", "emb_mc"]
+    #         if sample not in ["data", "embedding", "embedding_mc"]
     #     ],
     # )
     # configuration.add_shift(
@@ -398,7 +404,7 @@ def add_jetVariations(configuration, available_sample_types, era):
     #     samples=[
     #         sample
     #         for sample in available_sample_types
-    #         if sample not in ["data", "emb", "emb_mc"]
+    #         if sample not in ["data", "embedding", "embedding_mc"]
     #     ],
     # )
 
@@ -417,7 +423,7 @@ def add_jetVariations(configuration, available_sample_types, era):
     #     samples=[
     #         sample
     #         for sample in available_sample_types
-    #         if sample not in ["data", "emb", "emb_mc"]
+    #         if sample not in ["data", "embedding", "embedding_mc"]
     #     ],
     # )
     # configuration.add_shift(
@@ -434,7 +440,7 @@ def add_jetVariations(configuration, available_sample_types, era):
     #     samples=[
     #         sample
     #         for sample in available_sample_types
-    #         if sample not in ["data", "emb", "emb_mc"]
+    #         if sample not in ["data", "embedding", "embedding_mc"]
     #     ],
     # )
 
@@ -453,7 +459,7 @@ def add_jetVariations(configuration, available_sample_types, era):
     #     samples=[
     #         sample
     #         for sample in available_sample_types
-    #         if sample not in ["data", "emb", "emb_mc"]
+    #         if sample not in ["data", "embedding", "embedding_mc"]
     #     ],
     # )
     # configuration.add_shift(
@@ -470,7 +476,7 @@ def add_jetVariations(configuration, available_sample_types, era):
     #     samples=[
     #         sample
     #         for sample in available_sample_types
-    #         if sample not in ["data", "emb", "emb_mc"]
+    #         if sample not in ["data", "embedding", "embedding_mc"]
     #     ],
     # )
 
@@ -489,7 +495,7 @@ def add_jetVariations(configuration, available_sample_types, era):
     #     samples=[
     #         sample
     #         for sample in available_sample_types
-    #         if sample not in ["data", "emb", "emb_mc"]
+    #         if sample not in ["data", "embedding", "embedding_mc"]
     #     ],
     # )
     # configuration.add_shift(
@@ -506,7 +512,7 @@ def add_jetVariations(configuration, available_sample_types, era):
     #     samples=[
     #         sample
     #         for sample in available_sample_types
-    #         if sample not in ["data", "emb", "emb_mc"]
+    #         if sample not in ["data", "embedding", "embedding_mc"]
     #     ],
     # )
 
@@ -525,7 +531,7 @@ def add_jetVariations(configuration, available_sample_types, era):
     #     samples=[
     #         sample
     #         for sample in available_sample_types
-    #         if sample not in ["data", "emb", "emb_mc"]
+    #         if sample not in ["data", "embedding", "embedding_mc"]
     #     ],
     # )
     # configuration.add_shift(
@@ -542,7 +548,7 @@ def add_jetVariations(configuration, available_sample_types, era):
     #     samples=[
     #         sample
     #         for sample in available_sample_types
-    #         if sample not in ["data", "emb", "emb_mc"]
+    #         if sample not in ["data", "embedding", "embedding_mc"]
     #     ],
     # )
 
@@ -561,7 +567,7 @@ def add_jetVariations(configuration, available_sample_types, era):
     #     samples=[
     #         sample
     #         for sample in available_sample_types
-    #         if sample not in ["data", "emb", "emb_mc"]
+    #         if sample not in ["data", "embedding", "embedding_mc"]
     #     ],
     # )
     # configuration.add_shift(
@@ -578,7 +584,7 @@ def add_jetVariations(configuration, available_sample_types, era):
     #     samples=[
     #         sample
     #         for sample in available_sample_types
-    #         if sample not in ["data", "emb", "emb_mc"]
+    #         if sample not in ["data", "embedding", "embedding_mc"]
     #     ],
     # )
 
@@ -597,7 +603,7 @@ def add_jetVariations(configuration, available_sample_types, era):
     #     samples=[
     #         sample
     #         for sample in available_sample_types
-    #         if sample not in ["data", "emb", "emb_mc"]
+    #         if sample not in ["data", "embedding", "embedding_mc"]
     #     ],
     # )
     # configuration.add_shift(
@@ -614,7 +620,7 @@ def add_jetVariations(configuration, available_sample_types, era):
     #     samples=[
     #         sample
     #         for sample in available_sample_types
-    #         if sample not in ["data", "emb", "emb_mc"]
+    #         if sample not in ["data", "embedding", "embedding_mc"]
     #     ],
     # )
 
@@ -633,7 +639,7 @@ def add_jetVariations(configuration, available_sample_types, era):
     #     samples=[
     #         sample
     #         for sample in available_sample_types
-    #         if sample not in ["data", "emb", "emb_mc"]
+    #         if sample not in ["data", "embedding", "embedding_mc"]
     #     ],
     # )
     # configuration.add_shift(
@@ -650,7 +656,7 @@ def add_jetVariations(configuration, available_sample_types, era):
     #     samples=[
     #         sample
     #         for sample in available_sample_types
-    #         if sample not in ["data", "emb", "emb_mc"]
+    #         if sample not in ["data", "embedding", "embedding_mc"]
     #     ],
     # )
 
@@ -669,7 +675,7 @@ def add_jetVariations(configuration, available_sample_types, era):
     #     samples=[
     #         sample
     #         for sample in available_sample_types
-    #         if sample not in ["data", "emb", "emb_mc"]
+    #         if sample not in ["data", "embedding", "embedding_mc"]
     #     ],
     # )
     # configuration.add_shift(
@@ -686,7 +692,7 @@ def add_jetVariations(configuration, available_sample_types, era):
     #     samples=[
     #         sample
     #         for sample in available_sample_types
-    #         if sample not in ["data", "emb", "emb_mc"]
+    #         if sample not in ["data", "embedding", "embedding_mc"]
     #     ],
     # )
 
@@ -705,7 +711,7 @@ def add_jetVariations(configuration, available_sample_types, era):
     #     samples=[
     #         sample
     #         for sample in available_sample_types
-    #         if sample not in ["data", "emb", "emb_mc"]
+    #         if sample not in ["data", "embedding", "embedding_mc"]
     #     ],
     # )
     # configuration.add_shift(
@@ -722,7 +728,7 @@ def add_jetVariations(configuration, available_sample_types, era):
     #     samples=[
     #         sample
     #         for sample in available_sample_types
-    #         if sample not in ["data", "emb", "emb_mc"]
+    #         if sample not in ["data", "embedding", "embedding_mc"]
     #     ],
     # )
 
@@ -741,7 +747,7 @@ def add_jetVariations(configuration, available_sample_types, era):
     #     samples=[
     #         sample
     #         for sample in available_sample_types
-    #         if sample not in ["data", "emb", "emb_mc"]
+    #         if sample not in ["data", "embedding", "embedding_mc"]
     #     ],
     # )
     # configuration.add_shift(
@@ -758,7 +764,7 @@ def add_jetVariations(configuration, available_sample_types, era):
     #     samples=[
     #         sample
     #         for sample in available_sample_types
-    #         if sample not in ["data", "emb", "emb_mc"]
+    #         if sample not in ["data", "embedding", "embedding_mc"]
     #     ],
     # )
 
@@ -777,7 +783,7 @@ def add_jetVariations(configuration, available_sample_types, era):
     #     samples=[
     #         sample
     #         for sample in available_sample_types
-    #         if sample not in ["data", "emb", "emb_mc"]
+    #         if sample not in ["data", "embedding", "embedding_mc"]
     #     ],
     # )
     # configuration.add_shift(
@@ -794,7 +800,7 @@ def add_jetVariations(configuration, available_sample_types, era):
     #     samples=[
     #         sample
     #         for sample in available_sample_types
-    #         if sample not in ["data", "emb", "emb_mc"]
+    #         if sample not in ["data", "embedding", "embedding_mc"]
     #     ],
     # )
 
@@ -813,7 +819,7 @@ def add_jetVariations(configuration, available_sample_types, era):
     #     samples=[
     #         sample
     #         for sample in available_sample_types
-    #         if sample not in ["data", "emb", "emb_mc"]
+    #         if sample not in ["data", "embedding", "embedding_mc"]
     #     ],
     # )
     # configuration.add_shift(
@@ -830,7 +836,7 @@ def add_jetVariations(configuration, available_sample_types, era):
     #     samples=[
     #         sample
     #         for sample in available_sample_types
-    #         if sample not in ["data", "emb", "emb_mc"]
+    #         if sample not in ["data", "embedding", "embedding_mc"]
     #     ],
     # )
 
@@ -849,7 +855,7 @@ def add_jetVariations(configuration, available_sample_types, era):
     #     samples=[
     #         sample
     #         for sample in available_sample_types
-    #         if sample not in ["data", "emb", "emb_mc"]
+    #         if sample not in ["data", "embedding", "embedding_mc"]
     #     ],
     # )
     # configuration.add_shift(
@@ -866,7 +872,7 @@ def add_jetVariations(configuration, available_sample_types, era):
     #     samples=[
     #         sample
     #         for sample in available_sample_types
-    #         if sample not in ["data", "emb", "emb_mc"]
+    #         if sample not in ["data", "embedding", "embedding_mc"]
     #     ],
     # )
 
@@ -885,7 +891,7 @@ def add_jetVariations(configuration, available_sample_types, era):
     #     samples=[
     #         sample
     #         for sample in available_sample_types
-    #         if sample not in ["data", "emb", "emb_mc"]
+    #         if sample not in ["data", "embedding", "embedding_mc"]
     #     ],
     # )
     # configuration.add_shift(
@@ -902,7 +908,7 @@ def add_jetVariations(configuration, available_sample_types, era):
     #     samples=[
     #         sample
     #         for sample in available_sample_types
-    #         if sample not in ["data", "emb", "emb_mc"]
+    #         if sample not in ["data", "embedding", "embedding_mc"]
     #     ],
     # )
 
@@ -921,7 +927,7 @@ def add_jetVariations(configuration, available_sample_types, era):
     #     samples=[
     #         sample
     #         for sample in available_sample_types
-    #         if sample not in ["data", "emb", "emb_mc"]
+    #         if sample not in ["data", "embedding", "embedding_mc"]
     #     ],
     # )
     # configuration.add_shift(
@@ -938,7 +944,7 @@ def add_jetVariations(configuration, available_sample_types, era):
     #     samples=[
     #         sample
     #         for sample in available_sample_types
-    #         if sample not in ["data", "emb", "emb_mc"]
+    #         if sample not in ["data", "embedding", "embedding_mc"]
     #     ],
     # )
 
@@ -957,7 +963,7 @@ def add_jetVariations(configuration, available_sample_types, era):
     #     samples=[
     #         sample
     #         for sample in available_sample_types
-    #         if sample not in ["data", "emb", "emb_mc"]
+    #         if sample not in ["data", "embedding", "embedding_mc"]
     #     ],
     # )
     # configuration.add_shift(
@@ -974,7 +980,7 @@ def add_jetVariations(configuration, available_sample_types, era):
     #     samples=[
     #         sample
     #         for sample in available_sample_types
-    #         if sample not in ["data", "emb", "emb_mc"]
+    #         if sample not in ["data", "embedding", "embedding_mc"]
     #     ],
     # )
 
@@ -993,7 +999,7 @@ def add_jetVariations(configuration, available_sample_types, era):
     #     samples=[
     #         sample
     #         for sample in available_sample_types
-    #         if sample not in ["data", "emb", "emb_mc"]
+    #         if sample not in ["data", "embedding", "embedding_mc"]
     #     ],
     # )
     # configuration.add_shift(
@@ -1010,7 +1016,7 @@ def add_jetVariations(configuration, available_sample_types, era):
     #     samples=[
     #         sample
     #         for sample in available_sample_types
-    #         if sample not in ["data", "emb", "emb_mc"]
+    #         if sample not in ["data", "embedding", "embedding_mc"]
     #     ],
     # )
 
@@ -1029,7 +1035,7 @@ def add_jetVariations(configuration, available_sample_types, era):
     #     samples=[
     #         sample
     #         for sample in available_sample_types
-    #         if sample not in ["data", "emb", "emb_mc"]
+    #         if sample not in ["data", "embedding", "embedding_mc"]
     #     ],
     # )
     # configuration.add_shift(
@@ -1046,7 +1052,7 @@ def add_jetVariations(configuration, available_sample_types, era):
     #     samples=[
     #         sample
     #         for sample in available_sample_types
-    #         if sample not in ["data", "emb", "emb_mc"]
+    #         if sample not in ["data", "embedding", "embedding_mc"]
     #     ],
     # )
 
@@ -1065,7 +1071,7 @@ def add_jetVariations(configuration, available_sample_types, era):
     #     samples=[
     #         sample
     #         for sample in available_sample_types
-    #         if sample not in ["data", "emb", "emb_mc"]
+    #         if sample not in ["data", "embedding", "embedding_mc"]
     #     ],
     # )
     # configuration.add_shift(
@@ -1082,7 +1088,7 @@ def add_jetVariations(configuration, available_sample_types, era):
     #     samples=[
     #         sample
     #         for sample in available_sample_types
-    #         if sample not in ["data", "emb", "emb_mc"]
+    #         if sample not in ["data", "embedding", "embedding_mc"]
     #     ],
     # )
 
@@ -1104,7 +1110,7 @@ def add_jetVariations(configuration, available_sample_types, era):
         samples=[
             sample
             for sample in available_sample_types
-            if sample not in ["data", "emb", "emb_mc"]
+            if sample not in ["data", "embedding", "embedding_mc"]
         ],
     )
     configuration.add_shift(
@@ -1121,7 +1127,7 @@ def add_jetVariations(configuration, available_sample_types, era):
         samples=[
             sample
             for sample in available_sample_types
-            if sample not in ["data", "emb", "emb_mc"]
+            if sample not in ["data", "embedding", "embedding_mc"]
         ],
     )
 
@@ -1140,7 +1146,7 @@ def add_jetVariations(configuration, available_sample_types, era):
         samples=[
             sample
             for sample in available_sample_types
-            if sample not in ["data", "emb", "emb_mc"]
+            if sample not in ["data", "embedding", "embedding_mc"]
         ],
     )
     configuration.add_shift(
@@ -1157,7 +1163,7 @@ def add_jetVariations(configuration, available_sample_types, era):
         samples=[
             sample
             for sample in available_sample_types
-            if sample not in ["data", "emb", "emb_mc"]
+            if sample not in ["data", "embedding", "embedding_mc"]
         ],
     )
 
@@ -1176,7 +1182,7 @@ def add_jetVariations(configuration, available_sample_types, era):
         samples=[
             sample
             for sample in available_sample_types
-            if sample not in ["data", "emb", "emb_mc"]
+            if sample not in ["data", "embedding", "embedding_mc"]
         ],
     )
     configuration.add_shift(
@@ -1193,7 +1199,7 @@ def add_jetVariations(configuration, available_sample_types, era):
         samples=[
             sample
             for sample in available_sample_types
-            if sample not in ["data", "emb", "emb_mc"]
+            if sample not in ["data", "embedding", "embedding_mc"]
         ],
     )
 
@@ -1212,7 +1218,7 @@ def add_jetVariations(configuration, available_sample_types, era):
         samples=[
             sample
             for sample in available_sample_types
-            if sample not in ["data", "emb", "emb_mc"]
+            if sample not in ["data", "embedding", "embedding_mc"]
         ],
     )
     configuration.add_shift(
@@ -1229,7 +1235,7 @@ def add_jetVariations(configuration, available_sample_types, era):
         samples=[
             sample
             for sample in available_sample_types
-            if sample not in ["data", "emb", "emb_mc"]
+            if sample not in ["data", "embedding", "embedding_mc"]
         ],
     )
 
@@ -1248,7 +1254,7 @@ def add_jetVariations(configuration, available_sample_types, era):
         samples=[
             sample
             for sample in available_sample_types
-            if sample not in ["data", "emb", "emb_mc"]
+            if sample not in ["data", "embedding", "embedding_mc"]
         ],
     )
     configuration.add_shift(
@@ -1265,7 +1271,7 @@ def add_jetVariations(configuration, available_sample_types, era):
         samples=[
             sample
             for sample in available_sample_types
-            if sample not in ["data", "emb", "emb_mc"]
+            if sample not in ["data", "embedding", "embedding_mc"]
         ],
     )
 
@@ -1284,7 +1290,7 @@ def add_jetVariations(configuration, available_sample_types, era):
         samples=[
             sample
             for sample in available_sample_types
-            if sample not in ["data", "emb", "emb_mc"]
+            if sample not in ["data", "embedding", "embedding_mc"]
         ],
     )
     configuration.add_shift(
@@ -1301,7 +1307,7 @@ def add_jetVariations(configuration, available_sample_types, era):
         samples=[
             sample
             for sample in available_sample_types
-            if sample not in ["data", "emb", "emb_mc"]
+            if sample not in ["data", "embedding", "embedding_mc"]
         ],
     )
 
@@ -1320,7 +1326,7 @@ def add_jetVariations(configuration, available_sample_types, era):
         samples=[
             sample
             for sample in available_sample_types
-            if sample not in ["data", "emb", "emb_mc"]
+            if sample not in ["data", "embedding", "embedding_mc"]
         ],
     )
     configuration.add_shift(
@@ -1337,7 +1343,7 @@ def add_jetVariations(configuration, available_sample_types, era):
         samples=[
             sample
             for sample in available_sample_types
-            if sample not in ["data", "emb", "emb_mc"]
+            if sample not in ["data", "embedding", "embedding_mc"]
         ],
     )
 
@@ -1356,7 +1362,7 @@ def add_jetVariations(configuration, available_sample_types, era):
         samples=[
             sample
             for sample in available_sample_types
-            if sample not in ["data", "emb", "emb_mc"]
+            if sample not in ["data", "embedding", "embedding_mc"]
         ],
     )
     configuration.add_shift(
@@ -1373,7 +1379,7 @@ def add_jetVariations(configuration, available_sample_types, era):
         samples=[
             sample
             for sample in available_sample_types
-            if sample not in ["data", "emb", "emb_mc"]
+            if sample not in ["data", "embedding", "embedding_mc"]
         ],
     )
 
@@ -1392,7 +1398,7 @@ def add_jetVariations(configuration, available_sample_types, era):
         samples=[
             sample
             for sample in available_sample_types
-            if sample not in ["data", "emb", "emb_mc"]
+            if sample not in ["data", "embedding", "embedding_mc"]
         ],
     )
     configuration.add_shift(
@@ -1409,7 +1415,7 @@ def add_jetVariations(configuration, available_sample_types, era):
         samples=[
             sample
             for sample in available_sample_types
-            if sample not in ["data", "emb", "emb_mc"]
+            if sample not in ["data", "embedding", "embedding_mc"]
         ],
     )
 
@@ -1428,7 +1434,7 @@ def add_jetVariations(configuration, available_sample_types, era):
         samples=[
             sample
             for sample in available_sample_types
-            if sample not in ["data", "emb", "emb_mc"]
+            if sample not in ["data", "embedding", "embedding_mc"]
         ],
     )
     configuration.add_shift(
@@ -1445,7 +1451,7 @@ def add_jetVariations(configuration, available_sample_types, era):
         samples=[
             sample
             for sample in available_sample_types
-            if sample not in ["data", "emb", "emb_mc"]
+            if sample not in ["data", "embedding", "embedding_mc"]
         ],
     )
 
@@ -1464,7 +1470,7 @@ def add_jetVariations(configuration, available_sample_types, era):
         samples=[
             sample
             for sample in available_sample_types
-            if sample not in ["data", "emb", "emb_mc"]
+            if sample not in ["data", "embedding", "embedding_mc"]
         ],
     )
     configuration.add_shift(
@@ -1481,7 +1487,7 @@ def add_jetVariations(configuration, available_sample_types, era):
         samples=[
             sample
             for sample in available_sample_types
-            if sample not in ["data", "emb", "emb_mc"]
+            if sample not in ["data", "embedding", "embedding_mc"]
         ],
     )
 

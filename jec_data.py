@@ -1,8 +1,9 @@
+from code_generation.configuration import Configuration
 from code_generation.systematics import SystematicShift
 from .producers import jets as jets
 
 
-def add_jetCorrectionData(configuration, era):
+def add_jetCorrectionData(configuration: Configuration, era: str):
     #########################
     # Jet energy corrections for data
     #########################
