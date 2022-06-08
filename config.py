@@ -3,7 +3,6 @@ from __future__ import annotations  # needed for type annotations in > python 3.
 from typing import List
 
 from .producers import electrons as electrons
-from .producers import embedding as emb
 from .producers import event as event
 from .producers import genparticles as genparticles
 from .producers import jets as jets
@@ -19,6 +18,7 @@ from .quantities import output as q
 from .tau_triggersetup import add_diTauTriggerSetup
 from .tau_variations import add_tauVariations
 from .jet_variations import add_jetVariations
+from .tau_embedding_settings import setup_embedding
 from .btag_variations import add_btagVariations
 from .jec_data import add_jetCorrectionData
 from code_generation.configuration import Configuration
@@ -540,6 +540,70 @@ def build_config(
             "zptmass_arguments": "z_gen_mass,z_gen_pt",
         },
     )
+
+    # add muon scalefactors from embedding measurements
+    configuration.add_config_parameters(
+        ["mt", "mm", "em"],
+        {
+            "mc_muon_sf_file": "data/embedding/muon_2018UL.json.gz",
+            "mc_muon_id_sf": "ID_pt_eta_bins",
+            "mc_muon_iso_sf": "Iso_pt_eta_bins",
+        },
+    )
+    # add electron scalefactors from embedding measurements
+    configuration.add_config_parameters(
+        ["et", "ee", "em"],
+        {
+            "mc_electron_sf_file": "data/embedding/electron_2018UL.json.gz",
+            "mc_electron_id_sf": "ID90_pt_eta_bins",
+            "mc_electron_iso_sf": "Iso_pt_eta_bins",
+        },
+    )
+    # muon trigger SF settings from embedding measurements
+    configuration.add_config_parameters(
+        ["mt"],
+        {
+            "singlemuon_trigger_sf_mc": [
+                {
+                    "flagname": "trg_wgt_IsoMu24",
+                    "mc_trigger_sf": "Trg_IsoMu24_pt_eta_bins",
+                },
+                {
+                    "flagname": "trg_wgt_IsoMu27",
+                    "mc_trigger_sf": "Trg_IsoMu27_pt_eta_bins",
+                },
+                {
+                    "flagname": "trg_wgt_IsoMu24OrIsoMu27",
+                    "mc_trigger_sf": "Trg_IsoMu27_or_IsoMu24_pt_eta_bins",
+                },
+            ]
+        },
+    )
+    # electron trigger SF settings from embedding measurements
+    configuration.add_config_parameters(
+        ["et"],
+        {
+            "singlelectron_trigger_sf_mc": [
+                {
+                    "flagname": "trg_wgt_Ele27",
+                    "mc_trigger_sf": "Trg27_Iso_pt_eta_bins",
+                },
+                {
+                    "flagname": "trg_wgt_Ele32",
+                    "mc_trigger_sf": "Trg32_Iso_pt_eta_bins",
+                },
+                {
+                    "flagname": "trg_wgt_Ele35",
+                    "mc_trigger_sf": "Trg35_Iso_pt_eta_bins",
+                },
+                {
+                    "flagname": "trg_wgt_Ele27OrEle32OrEle35",
+                    "mc_trigger_sf": "Trg_Iso_pt_eta_bins",
+                },
+            ]
+        },
+    )
+
     configuration.add_producers(
         "global",
         [
@@ -596,7 +660,7 @@ def build_config(
             pairselection.LVMu2Uncorrected,
             pairquantities.MuMuPairQuantities,
             genparticles.MuMuGenPairQuantities,
-            scalefactors.MuonIDIso_SF,
+            # scalefactors.MuonIDIso_SF,
             triggers.MuMuGenerateSingleMuonTriggerFlags,
         ],
     )
@@ -620,7 +684,7 @@ def build_config(
             pairselection.LVTau2Uncorrected,
             pairquantities.MTDiTauPairQuantities,
             genparticles.MTGenDiTauPairQuantities,
-            scalefactors.MuonIDIso_SF,
+            #  scalefactors.MuonIDIso_SF,
             scalefactors.Tau_2_VsJetTauID_lt_SF,
             scalefactors.Tau_2_VsEleTauID_SF,
             scalefactors.Tau_2_VsMuTauID_SF,
@@ -703,7 +767,7 @@ def build_config(
             pairselection.LVMu2Uncorrected,
             pairquantities.EMDiTauPairQuantities,
             genparticles.EMGenDiTauPairQuantities,
-            scalefactors.MuonIDIso_SF,
+            # scalefactors.MuonIDIso_SF,
             scalefactors.EleID_SF,
             triggers.EMGenerateSingleElectronTriggerFlags,
             triggers.EMGenerateSingleMuonTriggerFlags,
@@ -820,16 +884,11 @@ def build_config(
         "global",
         AppendProducer(producers=event.JSONFilter, samples=["data", "embedding"]),
     )
-    configuration.add_modification_rule(
-        "global",
-        AppendProducer(
-            producers=emb.EmbeddingQuantities, samples=["embedding", "embedding_mc"]
-        ),
-    )
+
     configuration.add_modification_rule(
         "global",
         RemoveProducer(
-            producers=jets.JetEnergyCorrection, samples=["embedding", "embedding_mc"]
+            producers=jets.JetEnergyCorrection, samples=["embedding", "embdding_mc"]
         ),
     )
     # scope specific
@@ -866,6 +925,93 @@ def build_config(
         RemoveProducer(
             producers=[genparticles.MuMuGenPairQuantities],
             samples=["data"],
+        ),
+    )
+    # lepton scalefactors from our measurement
+    configuration.add_modification_rule(
+        ["mt"],
+        AppendProducer(
+            producers=[
+                scalefactors.TauEmbeddingMuonIDSF_1_MC,
+                scalefactors.TauEmbeddingMuonIsoSF_1_MC,
+            ],
+            samples=[
+                sample
+                for sample in available_sample_types
+                if sample not in ["data", "embedding", "embedding_mc"]
+            ],
+        ),
+    )
+    configuration.add_modification_rule(
+        ["et"],
+        AppendProducer(
+            producers=[
+                scalefactors.TauEmbeddingElectronIDSF_1_MC,
+                scalefactors.TauEmbeddingElectronIsoSF_1_MC,
+            ],
+            samples=[
+                sample
+                for sample in available_sample_types
+                if sample not in ["data", "embedding", "embedding_mc"]
+            ],
+        ),
+    )
+    configuration.add_modification_rule(
+        ["em"],
+        AppendProducer(
+            producers=[
+                scalefactors.TauEmbeddingElectronIDSF_1_MC,
+                scalefactors.TauEmbeddingElectronIsoSF_1_MC,
+                scalefactors.TauEmbeddingMuonIDSF_2_MC,
+                scalefactors.TauEmbeddingMuonIsoSF_2_MC,
+            ],
+            samples=[
+                sample
+                for sample in available_sample_types
+                if sample not in ["data", "embedding", "embedding_mc"]
+            ],
+        ),
+    )
+    configuration.add_modification_rule(
+        ["mm"],
+        AppendProducer(
+            producers=[
+                scalefactors.TauEmbeddingMuonIDSF_1_MC,
+                scalefactors.TauEmbeddingMuonIsoSF_1_MC,
+                scalefactors.TauEmbeddingMuonIDSF_2_MC,
+                scalefactors.TauEmbeddingMuonIsoSF_2_MC,
+            ],
+            samples=[
+                sample
+                for sample in available_sample_types
+                if sample not in ["data", "embedding", "embedding_mc"]
+            ],
+        ),
+    )
+    configuration.add_modification_rule(
+        ["mt"],
+        AppendProducer(
+            producers=[
+                scalefactors.MTGenerateSingleMuonTriggerSF_MC,
+            ],
+            samples=[
+                sample
+                for sample in available_sample_types
+                if sample not in ["data", "embedding", "embedding_mc"]
+            ],
+        ),
+    )
+    configuration.add_modification_rule(
+        ["et"],
+        AppendProducer(
+            producers=[
+                scalefactors.ETGenerateSingleElectronTriggerSF_MC,
+            ],
+            samples=[
+                sample
+                for sample in available_sample_types
+                if sample not in ["data", "embedding", "embedding_mc"]
+            ],
         ),
     )
 
@@ -1199,14 +1345,6 @@ def build_config(
                 if sample not in ["data", "embedding", "embedding_mc"]
             ],
         )
-    #########################
-    # TauID scale factor shifts, channel dependent # Tau energy scale shifts, dm dependent
-    #########################
-    add_tauVariations(configuration)
-    #########################
-    # Import triggersetup   #
-    #########################
-    add_diTauTriggerSetup(configuration)
 
     #########################
     # MET Shifts
@@ -1350,6 +1488,19 @@ def build_config(
             if sample not in ["data", "embedding", "embedding_mc"]
         ],
     )
+
+    #########################
+    # TauID scale factor shifts, channel dependent # Tau energy scale shifts, dm dependent
+    #########################
+    add_tauVariations(configuration, sample)
+    #########################
+    # Import triggersetup   #
+    #########################
+    add_diTauTriggerSetup(configuration)
+    #########################
+    # Add additional producers and SFs related to embedded samples
+    #########################
+    setup_embedding(configuration, scopes)
 
     #########################
     # Jet energy resolution and jet energy scale
