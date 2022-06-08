@@ -790,7 +790,11 @@ def build_config(
         ["tt"],
         RemoveProducer(
             producers=[
+                scalefactors.Tau_1_VsJetTauID_SF,
+                scalefactors.Tau_1_VsEleTauID_SF,
                 scalefactors.Tau_1_VsMuTauID_SF,
+                scalefactors.Tau_2_VsJetTauID_tt_SF,
+                scalefactors.Tau_2_VsEleTauID_SF,
                 scalefactors.Tau_2_VsMuTauID_SF,
             ],
             samples="data",
@@ -819,10 +823,7 @@ def build_config(
             samples="data",
         ),
     )
-    configuration.add_modification_rule(
-        ["mt", "mm"],
-        RemoveProducer(producers=scalefactors.MuonIDIso_SF, samples="data"),
-    )
+
     configuration.add_modification_rule(
         "global",
         RemoveProducer(
@@ -840,17 +841,12 @@ def build_config(
         ),
     )
     configuration.add_modification_rule(
-        ["et", "mt", "tt"],
-        RemoveProducer(
-            producers=[pairquantities.taujet_pt_2, genparticles.gen_taujet_pt_2],
-            samples="embedding",
-        ),
-    )
-    configuration.add_modification_rule(
         ["tt"],
         RemoveProducer(
-            producers=[pairquantities.taujet_pt_1, genparticles.gen_taujet_pt_1],
-            samples="embedding",
+            producers=[
+                pairquantities.tau_gen_match_1,
+            ],
+            samples="data",
         ),
     )
     configuration.add_modification_rule(
@@ -868,10 +864,10 @@ def build_config(
         scopes,
         AppendProducer(producers=event.TopPtReweighting, samples="ttbar"),
     )
-    # configuration.add_modification_rule(
-    #     scopes,
-    #     AppendProducer(producers=event.ZPtMassReweighting, samples="dy"),
-    # )
+    configuration.add_modification_rule(
+        scopes,
+        AppendProducer(producers=event.ZPtMassReweighting, samples="dy"),
+    )
     # changes needed for data
     # global scope
     configuration.add_modification_rule(
@@ -885,12 +881,6 @@ def build_config(
         AppendProducer(producers=event.JSONFilter, samples=["data", "embedding"]),
     )
 
-    configuration.add_modification_rule(
-        "global",
-        RemoveProducer(
-            producers=jets.JetEnergyCorrection, samples=["embedding", "embdding_mc"]
-        ),
-    )
     # scope specific
     configuration.add_modification_rule(
         "mt",

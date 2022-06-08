@@ -1,9 +1,12 @@
 from __future__ import annotations  # needed for type annotations in > python 3.7
 
 from typing import List
-from code_generation.rules import AppendProducer
+from code_generation.rules import AppendProducer, RemoveProducer
 from .producers import embedding as embedding
 from .producers import scalefactors as scalefactors
+from .producers import pairquantities as pairquantities
+from .producers import genparticles as genparticles
+from .producers import jets as jets
 from code_generation.configuration import Configuration
 
 
@@ -154,6 +157,27 @@ def setup_embedding(configuration: Configuration, scopes: List[str]):
                 embedding.ETGenerateSingleElectronTriggerSF,
             ],
             samples=["embedding"],
+        ),
+    )
+    # remove some gen producers
+    configuration.add_modification_rule(
+        ["et", "mt", "tt"],
+        RemoveProducer(
+            producers=[pairquantities.taujet_pt_2, genparticles.gen_taujet_pt_2],
+            samples=["embedding", "embedding_mc"],
+        ),
+    )
+    configuration.add_modification_rule(
+        ["tt"],
+        RemoveProducer(
+            producers=[pairquantities.taujet_pt_1, genparticles.gen_taujet_pt_1],
+            samples=["embedding", "embedding_mc"],
+        ),
+    )
+    configuration.add_modification_rule(
+        "global",
+        RemoveProducer(
+            producers=jets.JetEnergyCorrection, samples=["embedding", "embdding_mc"]
         ),
     )
 
