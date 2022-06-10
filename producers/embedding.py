@@ -188,7 +188,7 @@ MTGenerateSingleMuonTriggerSF = ExtendedVectorProducer(
     input=[q.pt_1, q.eta_1],
     output="flagname",
     scope=["mt"],
-    vec_config="singlemoun_trigger_sf",
+    vec_config="singlemuon_trigger_sf",
 )
 
 # Electron ID/Iso/Trigger SFS

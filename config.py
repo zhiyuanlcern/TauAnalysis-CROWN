@@ -565,15 +565,15 @@ def build_config(
         {
             "singlemuon_trigger_sf_mc": [
                 {
-                    "flagname": "trg_wgt_IsoMu24",
+                    "flagname": "trg_wgt_single_mu24",
                     "mc_trigger_sf": "Trg_IsoMu24_pt_eta_bins",
                 },
                 {
-                    "flagname": "trg_wgt_IsoMu27",
+                    "flagname": "trg_wgt_single_mu27",
                     "mc_trigger_sf": "Trg_IsoMu27_pt_eta_bins",
                 },
                 {
-                    "flagname": "trg_wgt_IsoMu24OrIsoMu27",
+                    "flagname": "trg_wgtsingle_mu24Ormu27",
                     "mc_trigger_sf": "Trg_IsoMu27_or_IsoMu24_pt_eta_bins",
                 },
             ]
@@ -585,19 +585,19 @@ def build_config(
         {
             "singlelectron_trigger_sf_mc": [
                 {
-                    "flagname": "trg_wgt_Ele27",
+                    "flagname": "trg_wgt_single_ele27",
                     "mc_trigger_sf": "Trg27_Iso_pt_eta_bins",
                 },
                 {
-                    "flagname": "trg_wgt_Ele32",
+                    "flagname": "trg_wgt_single_ele32",
                     "mc_trigger_sf": "Trg32_Iso_pt_eta_bins",
                 },
                 {
-                    "flagname": "trg_wgt_Ele35",
+                    "flagname": "trg_wgt_single_ele35",
                     "mc_trigger_sf": "Trg35_Iso_pt_eta_bins",
                 },
                 {
-                    "flagname": "trg_wgt_Ele27OrEle32OrEle35",
+                    "flagname": "trg_wgt_single_ele27orele32orele35",
                     "mc_trigger_sf": "Trg_Iso_pt_eta_bins",
                 },
             ]
@@ -716,7 +716,7 @@ def build_config(
             scalefactors.Tau_2_VsJetTauID_lt_SF,
             scalefactors.Tau_2_VsEleTauID_SF,
             scalefactors.Tau_2_VsMuTauID_SF,
-            scalefactors.EleID_SF,
+            # scalefactors.EleID_SF,
             triggers.ETGenerateSingleElectronTriggerFlags,
             triggers.ETGenerateCrossTriggerFlags,
             triggers.GenerateSingleTrailingTauTriggerFlags,
@@ -768,7 +768,7 @@ def build_config(
             pairquantities.EMDiTauPairQuantities,
             genparticles.EMGenDiTauPairQuantities,
             # scalefactors.MuonIDIso_SF,
-            scalefactors.EleID_SF,
+            # scalefactors.EleID_SF,
             triggers.EMGenerateSingleElectronTriggerFlags,
             triggers.EMGenerateSingleMuonTriggerFlags,
             triggers.EMGenerateCrossTriggerFlags,
@@ -1116,8 +1116,8 @@ def build_config(
             q.muon_veto_flag,
             q.dimuon_veto,
             q.electron_veto_flag,
-            q.id_wgt_mu_1,
-            q.iso_wgt_mu_1,
+            # q.id_wgt_mu_1,
+            # q.iso_wgt_mu_1,
         ],
     )
     configuration.add_outputs(
@@ -1141,8 +1141,8 @@ def build_config(
             q.muon_veto_flag,
             q.dimuon_veto,
             q.electron_veto_flag,
-            q.id_wgt_ele_wp90nonIso_1,
-            q.id_wgt_ele_wp80nonIso_1,
+            # q.id_wgt_ele_wp90nonIso_1,
+            # q.id_wgt_ele_wp80nonIso_1,
         ],
     )
     configuration.add_outputs(
@@ -1187,10 +1187,10 @@ def build_config(
             q.muon_veto_flag,
             q.dimuon_veto,
             q.electron_veto_flag,
-            q.id_wgt_ele_wp90nonIso_1,
-            q.id_wgt_ele_wp80nonIso_1,
-            q.id_wgt_mu_2,
-            q.iso_wgt_mu_2,
+            # q.id_wgt_ele_wp90nonIso_1,
+            # q.id_wgt_ele_wp80nonIso_1,
+            # q.id_wgt_mu_2,
+            # q.iso_wgt_mu_2,
         ],
     )
 
@@ -1199,10 +1199,10 @@ def build_config(
         [
             q.nmuons,
             triggers.MuMuGenerateSingleMuonTriggerFlags.output_group,
-            q.id_wgt_mu_1,
-            q.iso_wgt_mu_1,
-            q.id_wgt_mu_2,
-            q.iso_wgt_mu_2,
+            # q.id_wgt_mu_1,
+            # q.iso_wgt_mu_1,
+            # q.id_wgt_mu_2,
+            # q.iso_wgt_mu_2,
         ],
     )
     if "data" not in sample and "embedding" not in sample:

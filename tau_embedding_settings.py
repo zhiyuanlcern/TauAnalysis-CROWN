@@ -57,17 +57,17 @@ def setup_embedding(configuration: Configuration, scopes: List[str]):
     configuration.add_config_parameters(
         ["mt"],
         {
-            "singlemoun_trigger_sf": [
+            "singlemuon_trigger_sf": [
                 {
-                    "flagname": "trg_wgt_IsoMu24",
+                    "flagname": "trg_wgt_single_mu24",
                     "embedding_trigger_sf": "Trg_IsoMu24_pt_eta_bins",
                 },
                 {
-                    "flagname": "trg_wgt_IsoMu27",
+                    "flagname": "trg_wgt_single_mu27",
                     "embedding_trigger_sf": "Trg_IsoMu27_pt_eta_bins",
                 },
                 {
-                    "flagname": "trg_wgt_IsoMu24OrIsoMu27",
+                    "flagname": "trg_wgtsingle_mu24Ormu27",
                     "embedding_trigger_sf": "Trg_IsoMu27_or_IsoMu24_pt_eta_bins",
                 },
             ]
@@ -79,19 +79,19 @@ def setup_embedding(configuration: Configuration, scopes: List[str]):
         {
             "singlelectron_trigger_sf": [
                 {
-                    "flagname": "trg_wgt_Ele27",
+                    "flagname": "trg_wgt_single_ele27",
                     "embedding_trigger_sf": "Trg27_Iso_pt_eta_bins",
                 },
                 {
-                    "flagname": "trg_wgt_Ele32",
+                    "flagname": "trg_wgt_single_ele32",
                     "embedding_trigger_sf": "Trg32_Iso_pt_eta_bins",
                 },
                 {
-                    "flagname": "trg_wgt_Ele35",
+                    "flagname": "trg_wgt_single_ele35",
                     "embedding_trigger_sf": "Trg35_Iso_pt_eta_bins",
                 },
                 {
-                    "flagname": "trg_wgt_Ele27OrEle32OrEle35",
+                    "flagname": "trg_wgt_single_ele27orele32orele35",
                     "embedding_trigger_sf": "Trg_Iso_pt_eta_bins",
                 },
             ]
