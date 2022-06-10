@@ -827,10 +827,17 @@ def build_config(
     configuration.add_modification_rule(
         "global",
         RemoveProducer(
-            producers=[event.PUweights, event.npartons],
+            producers=[event.npartons],
             samples=[
                 sample for sample in available_sample_types if sample not in ["dyjets"]
             ],
+        ),
+    )
+    configuration.add_modification_rule(
+        "global",
+        RemoveProducer(
+            producers=[event.PUweights],
+            samples=["data", "embedding", "embedding_mc"],
         ),
     )
     configuration.add_modification_rule(
