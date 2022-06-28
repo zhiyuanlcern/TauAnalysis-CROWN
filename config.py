@@ -646,6 +646,7 @@ def build_config(
             met.MetCorrections,
             met.PFMetCorrections,
             pairquantities.DiTauPairMETQuantities,
+            genparticles.GenMatching,
         ],
     )
     configuration.add_producers(
@@ -858,6 +859,15 @@ def build_config(
         RemoveProducer(
             producers=[
                 pairquantities.tau_gen_match_1,
+            ],
+            samples="data",
+        ),
+    )
+    configuration.add_modification_rule(
+        scopes,
+        RemoveProducer(
+            producers=[
+                genparticles.GenMatching,
             ],
             samples="data",
         ),
@@ -1104,6 +1114,8 @@ def build_config(
             q.pt_ttjj,
             q.mt_tot,
             q.genbosonmass,
+            q.gen_match_1,
+            q.gen_match_2,
         ],
     )
     configuration.add_outputs(
@@ -1123,7 +1135,7 @@ def build_config(
             q.taujet_pt_2,
             # q.gen_taujet_pt_2,
             q.decaymode_2,
-            q.gen_match_2,
+            q.tau_gen_match_2,
             q.muon_veto_flag,
             q.dimuon_veto,
             q.electron_veto_flag,
@@ -1148,7 +1160,7 @@ def build_config(
             q.taujet_pt_2,
             # q.gen_taujet_pt_2,
             q.decaymode_2,
-            q.gen_match_2,
+            q.tau_gen_match_2,
             q.muon_veto_flag,
             q.dimuon_veto,
             q.electron_veto_flag,
@@ -1180,8 +1192,8 @@ def build_config(
             # q.gen_taujet_pt_2,
             q.decaymode_1,
             q.decaymode_2,
-            q.gen_match_1,
-            q.gen_match_2,
+            q.tau_gen_match_1,
+            q.tau_gen_match_2,
             # q.muon_veto_flag,
             # q.dimuon_veto,
             # q.electron_veto_flag,
