@@ -175,6 +175,7 @@ def build_config(
             triggers.MuMuGenerateDoubleMuonTriggerFlags,
             tagandprobe.MuonID_Medium_1,
             tagandprobe.MuonID_Medium_2
+            genparticles.GenMatching,
         ],
     )
 
@@ -219,6 +220,8 @@ def build_config(
             q.gen_m_vis,
             q.is_global_1,
             q.is_global_2,
+            q.gen_match_1,
+            q.gen_match_2,
             qt.id_medium_1,
             qt.id_medium_2,
             triggers.MuMuGenerateDoubleMuonTriggerFlags.output_group,
@@ -256,6 +259,15 @@ def build_config(
                 genparticles.MuMuGenPairQuantities,
             ],
             samples=["data", "embedding"],
+        ),
+    )
+    configuration.add_modification_rule(
+        "mm",
+        RemoveProducer(
+            producers=[
+                genparticles.GenMatching,
+            ],
+            samples=["data"],
         ),
     )
 
