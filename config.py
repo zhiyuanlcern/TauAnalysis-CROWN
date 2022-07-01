@@ -577,7 +577,7 @@ def build_config(
                     "mc_trigger_sf": "Trg_IsoMu27_pt_eta_bins",
                 },
                 {
-                    "flagname": "trg_wgtsingle_mu24Ormu27",
+                    "flagname": "trg_wgtsingle_mu24ormu27",
                     "mc_trigger_sf": "Trg_IsoMu27_or_IsoMu24_pt_eta_bins",
                 },
             ]
@@ -834,7 +834,7 @@ def build_config(
         RemoveProducer(
             producers=[event.npartons],
             samples=[
-                sample for sample in available_sample_types if sample not in ["dyjets"]
+                sample for sample in available_sample_types if sample not in ["dyjets", "wjets", "electroweak_boson"]
             ],
         ),
     )
@@ -1031,6 +1031,7 @@ def build_config(
     configuration.add_outputs(
         scopes,
         [
+            nanoAOD.genWeight,
             q.is_data,
             q.is_embedding,
             q.is_ttbar,
