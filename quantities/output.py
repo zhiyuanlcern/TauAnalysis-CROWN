@@ -85,6 +85,7 @@ mt_2 = Quantity("mt_2")
 pt_tt = Quantity("pt_tt")
 pt_ttjj = Quantity("pt_ttjj")
 mt_tot = Quantity("mt_tot")
+deltaR_ditaupair = Quantity("deltaR_ditaupair")
 
 njets = Quantity("njets")
 nbtag = Quantity("nbtag")

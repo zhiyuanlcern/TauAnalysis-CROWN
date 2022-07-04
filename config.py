@@ -834,7 +834,9 @@ def build_config(
         RemoveProducer(
             producers=[event.npartons],
             samples=[
-                sample for sample in available_sample_types if sample not in ["dyjets", "wjets", "electroweak_boson"]
+                sample
+                for sample in available_sample_types
+                if sample not in ["dyjets", "wjets", "electroweak_boson"]
             ],
         ),
     )
@@ -1061,6 +1063,7 @@ def build_config(
             q.jtag_value_2,
             q.mjj,
             q.m_vis,
+            q.deltaR_ditaupair,
             q.pt_vis,
             q.nbtag,
             q.bpt_1,
