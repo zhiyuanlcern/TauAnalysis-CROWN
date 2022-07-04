@@ -1031,7 +1031,6 @@ def build_config(
     configuration.add_outputs(
         scopes,
         [
-            nanoAOD.genWeight,
             q.is_data,
             q.is_embedding,
             q.is_ttbar,
@@ -1119,6 +1118,12 @@ def build_config(
             q.gen_match_2,
         ],
     )
+    # add genWeight for everything but data
+    if sample != "data":
+        configuration.add_outputs(
+            scopes,
+            nanoAOD.genWeight,
+        )
     configuration.add_outputs(
         "mt",
         [
