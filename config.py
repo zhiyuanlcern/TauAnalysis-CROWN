@@ -577,7 +577,7 @@ def build_config(
                     "mc_trigger_sf": "Trg_IsoMu27_pt_eta_bins",
                 },
                 {
-                    "flagname": "trg_wgtsingle_mu24ormu27",
+                    "flagname": "trg_wgt_single_mu24ormu27",
                     "mc_trigger_sf": "Trg_IsoMu27_or_IsoMu24_pt_eta_bins",
                 },
             ]
