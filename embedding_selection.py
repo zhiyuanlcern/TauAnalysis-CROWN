@@ -44,11 +44,19 @@ def build_config(
         {
             "PU_reweighting_file": EraModifier(
                 {
-                    "2016": "data/pileup/Data_Pileup_2016_271036-284044_13TeVMoriond17_23Sep2016ReReco_69p2mbMinBiasXS.root",
-                    "2017": "data/pileup/Data_Pileup_2017_294927-306462_13TeVSummer17_PromptReco_69p2mbMinBiasXS.root",
-                    "2018": "data/pileup/Data_Pileup_2018_314472-325175_13TeV_17SeptEarlyReReco2018ABC_PromptEraD_Collisions18.root",
+                    "2016": "",
+                    "2017": "data/jsonpog-integration/POG/LUM/2017_UL/puWeights.json.gz",
+                    "2018": "data/jsonpog-integration/POG/LUM/2018_UL/puWeights.json.gz",
                 }
             ),
+            "PU_reweighting_era": EraModifier(
+                {
+                    "2016": "",
+                    "2017": "Collisions17_UltraLegacy_goldenJSON",
+                    "2018": "Collisions18_UltraLegacy_goldenJSON",
+                }
+            ),
+            "PU_reweighting_variation": "nominal",
             "golden_json_file": EraModifier(
                 {
                     "2016": "data/golden_json/Cert_271036-284044_13TeV_Legacy2016_Collisions16_JSON.txt",
@@ -56,7 +64,6 @@ def build_config(
                     "2018": "data/golden_json/Cert_314472-325175_13TeV_Legacy2018_Collisions18_JSON.txt",
                 }
             ),
-            "PU_reweighting_hist": "pileup",
         },
     )
     # muon base selection:
@@ -174,7 +181,8 @@ def build_config(
             genparticles.MuMuGenPairQuantities,
             triggers.MuMuGenerateDoubleMuonTriggerFlags,
             tagandprobe.MuonID_Medium_1,
-            tagandprobe.MuonID_Medium_2
+            tagandprobe.MuonID_Medium_2,
+            genparticles.GenMatching,
         ],
     )
 
@@ -219,11 +227,11 @@ def build_config(
             q.gen_m_vis,
             q.is_global_1,
             q.is_global_2,
+            q.gen_match_1,
+            q.gen_match_2,
             qt.id_medium_1,
             qt.id_medium_2,
             triggers.MuMuGenerateDoubleMuonTriggerFlags.output_group,
-            nanoAOD.HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL_DZ,
-            nanoAOD.HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL_DZ_Mass8,
         ],
     )
 
@@ -239,8 +247,7 @@ def build_config(
         AppendProducer(
             producers=[event.JSONFilter],
             samples=["data,embedding"],
-
-        )
+        ),
     )
     configuration.add_modification_rule(
         "global",
@@ -256,6 +263,15 @@ def build_config(
                 genparticles.MuMuGenPairQuantities,
             ],
             samples=["data", "embedding"],
+        ),
+    )
+    configuration.add_modification_rule(
+        "mm",
+        RemoveProducer(
+            producers=[
+                genparticles.GenMatching,
+            ],
+            samples=["data"],
         ),
     )
 

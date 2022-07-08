@@ -70,6 +70,13 @@ m_vis = Producer(
     output=[q.m_vis],
     scopes=["mt", "et", "tt", "em", "ee", "mm"],
 )
+deltaR_ditaupair = Producer(
+    name="deltaR_ditaupair",
+    call="quantities::deltaR({df}, {output}, {input})",
+    input=[q.p4_1, q.p4_2],
+    output=[q.deltaR_ditaupair],
+    scopes=["mt", "et", "tt", "em", "ee", "mm"],
+)
 pt_vis = Producer(
     name="pt_vis",
     call="quantities::pt_vis({df}, {output}, {input_vec})",
@@ -273,7 +280,7 @@ tau_gen_match_1 = Producer(
     name="gen_match_1",
     call="quantities::tau::genmatch({df}, {output}, 0, {input})",
     input=[q.dileptonpair, nanoAOD.Tau_genMatch],
-    output=[q.gen_match_1],
+    output=[q.tau_gen_match_1],
     scopes=["tt"],
 )
 taujet_pt_1 = Producer(
@@ -319,7 +326,7 @@ tau_gen_match_2 = Producer(
     name="taugen_match_2",
     call="quantities::tau::genmatch({df}, {output}, 1, {input})",
     input=[q.dileptonpair, nanoAOD.Tau_genMatch],
-    output=[q.gen_match_2],
+    output=[q.tau_gen_match_2],
     scopes=["mt", "et", "tt"],
 )
 taujet_pt_2 = Producer(
@@ -480,7 +487,7 @@ MTDiTauPairQuantities = ProducerGroup(
     input=None,
     output=None,
     scopes=["mt"],
-    subproducers=[UnrollMuLV1, UnrollTauLV2, m_vis, pt_vis],
+    subproducers=[UnrollMuLV1, UnrollTauLV2, m_vis, pt_vis, deltaR_ditaupair],
 )
 MuMuPairQuantities = ProducerGroup(
     name="MuMuPairQuantities",
@@ -488,7 +495,7 @@ MuMuPairQuantities = ProducerGroup(
     input=None,
     output=None,
     scopes=["mm"],
-    subproducers=[UnrollMuLV1, UnrollMuLV2, m_vis, pt_vis],
+    subproducers=[UnrollMuLV1, UnrollMuLV2, m_vis, pt_vis, deltaR_ditaupair],
 )
 ElElPairQuantities = ProducerGroup(
     name="ElElPairQuantities",
@@ -496,7 +503,7 @@ ElElPairQuantities = ProducerGroup(
     input=None,
     output=None,
     scopes=["ee"],
-    subproducers=[UnrollElLV1, UnrollElLV2, m_vis, pt_vis],
+    subproducers=[UnrollElLV1, UnrollElLV2, m_vis, pt_vis, deltaR_ditaupair],
 )
 ETDiTauPairQuantities = ProducerGroup(
     name="ETDiTauPairQuantities",
@@ -504,7 +511,7 @@ ETDiTauPairQuantities = ProducerGroup(
     input=None,
     output=None,
     scopes=["et"],
-    subproducers=[UnrollElLV1, UnrollTauLV2, m_vis, pt_vis],
+    subproducers=[UnrollElLV1, UnrollTauLV2, m_vis, pt_vis, deltaR_ditaupair],
 )
 TTDiTauPairQuantities = ProducerGroup(
     name="TTDiTauPairQuantities",
@@ -512,7 +519,7 @@ TTDiTauPairQuantities = ProducerGroup(
     input=None,
     output=None,
     scopes=["tt"],
-    subproducers=[UnrollTauLV1, UnrollTauLV2, m_vis, pt_vis],
+    subproducers=[UnrollTauLV1, UnrollTauLV2, m_vis, pt_vis, deltaR_ditaupair],
 )
 EMDiTauPairQuantities = ProducerGroup(
     name="EMDiTauPairQuantities",
@@ -520,7 +527,7 @@ EMDiTauPairQuantities = ProducerGroup(
     input=None,
     output=None,
     scopes=["em"],
-    subproducers=[UnrollElLV1, UnrollMuLV2, m_vis, pt_vis],
+    subproducers=[UnrollElLV1, UnrollMuLV2, m_vis, pt_vis, deltaR_ditaupair],
 )
 ## advanced event quantities (can be caluculated when ditau pair and met and all jets are determined)
 ## leptons: q.p4_1, q.p4_2

@@ -51,16 +51,21 @@ def build_config(
     configuration.add_config_parameters(
         "global",
         {
-            "RunLumiEventFilter_Quantities": ["event", "luminosityBlock"],
-            "RunLumiEventFilter_Quantity_Types": ["ULong64_t", "UInt_t"],
-            "RunLumiEventFilter_Selections": ["3", "318"],
             "PU_reweighting_file": EraModifier(
                 {
-                    "2016": "data/pileup/Data_Pileup_2016_271036-284044_13TeVMoriond17_23Sep2016ReReco_69p2mbMinBiasXS.root",
-                    "2017": "data/pileup/Data_Pileup_2017_294927-306462_13TeVSummer17_PromptReco_69p2mbMinBiasXS.root",
-                    "2018": "data/pileup/Data_Pileup_2018_314472-325175_13TeV_17SeptEarlyReReco2018ABC_PromptEraD_Collisions18.root",
+                    "2016": "",
+                    "2017": "data/jsonpog-integration/POG/LUM/2017_UL/puWeights.json.gz",
+                    "2018": "data/jsonpog-integration/POG/LUM/2018_UL/puWeights.json.gz",
                 }
             ),
+            "PU_reweighting_era": EraModifier(
+                {
+                    "2016": "",
+                    "2017": "Collisions17_UltraLegacy_goldenJSON",
+                    "2018": "Collisions18_UltraLegacy_goldenJSON",
+                }
+            ),
+            "PU_reweighting_variation": "nominal",
             "golden_json_file": EraModifier(
                 {
                     "2016": "data/golden_json/Cert_271036-284044_13TeV_Legacy2016_Collisions16_JSON.txt",
@@ -68,7 +73,6 @@ def build_config(
                     "2018": "data/golden_json/Cert_314472-325175_13TeV_Legacy2018_Collisions18_JSON.txt",
                 }
             ),
-            "PU_reweighting_hist": "pileup",
             "met_filters": EraModifier(
                 {
                     "2016": [
@@ -565,15 +569,15 @@ def build_config(
         {
             "singlemuon_trigger_sf_mc": [
                 {
-                    "flagname": "trg_wgt_IsoMu24",
+                    "flagname": "trg_wgt_single_mu24",
                     "mc_trigger_sf": "Trg_IsoMu24_pt_eta_bins",
                 },
                 {
-                    "flagname": "trg_wgt_IsoMu27",
+                    "flagname": "trg_wgt_single_mu27",
                     "mc_trigger_sf": "Trg_IsoMu27_pt_eta_bins",
                 },
                 {
-                    "flagname": "trg_wgt_IsoMu24OrIsoMu27",
+                    "flagname": "trg_wgt_single_mu24ormu27",
                     "mc_trigger_sf": "Trg_IsoMu27_or_IsoMu24_pt_eta_bins",
                 },
             ]
@@ -585,19 +589,19 @@ def build_config(
         {
             "singlelectron_trigger_sf_mc": [
                 {
-                    "flagname": "trg_wgt_Ele27",
+                    "flagname": "trg_wgt_single_ele27",
                     "mc_trigger_sf": "Trg27_Iso_pt_eta_bins",
                 },
                 {
-                    "flagname": "trg_wgt_Ele32",
+                    "flagname": "trg_wgt_single_ele32",
                     "mc_trigger_sf": "Trg32_Iso_pt_eta_bins",
                 },
                 {
-                    "flagname": "trg_wgt_Ele35",
+                    "flagname": "trg_wgt_single_ele35",
                     "mc_trigger_sf": "Trg35_Iso_pt_eta_bins",
                 },
                 {
-                    "flagname": "trg_wgt_Ele27OrEle32OrEle35",
+                    "flagname": "trg_wgt_single_ele27orele32orele35",
                     "mc_trigger_sf": "Trg_Iso_pt_eta_bins",
                 },
             ]
@@ -642,6 +646,7 @@ def build_config(
             met.MetCorrections,
             met.PFMetCorrections,
             pairquantities.DiTauPairMETQuantities,
+            genparticles.GenMatching,
         ],
     )
     configuration.add_producers(
@@ -716,7 +721,7 @@ def build_config(
             scalefactors.Tau_2_VsJetTauID_lt_SF,
             scalefactors.Tau_2_VsEleTauID_SF,
             scalefactors.Tau_2_VsMuTauID_SF,
-            scalefactors.EleID_SF,
+            # scalefactors.EleID_SF,
             triggers.ETGenerateSingleElectronTriggerFlags,
             triggers.ETGenerateCrossTriggerFlags,
             triggers.GenerateSingleTrailingTauTriggerFlags,
@@ -768,7 +773,7 @@ def build_config(
             pairquantities.EMDiTauPairQuantities,
             genparticles.EMGenDiTauPairQuantities,
             # scalefactors.MuonIDIso_SF,
-            scalefactors.EleID_SF,
+            # scalefactors.EleID_SF,
             triggers.EMGenerateSingleElectronTriggerFlags,
             triggers.EMGenerateSingleMuonTriggerFlags,
             triggers.EMGenerateCrossTriggerFlags,
@@ -790,7 +795,11 @@ def build_config(
         ["tt"],
         RemoveProducer(
             producers=[
+                scalefactors.Tau_1_VsJetTauID_SF,
+                scalefactors.Tau_1_VsEleTauID_SF,
                 scalefactors.Tau_1_VsMuTauID_SF,
+                scalefactors.Tau_2_VsJetTauID_tt_SF,
+                scalefactors.Tau_2_VsEleTauID_SF,
                 scalefactors.Tau_2_VsMuTauID_SF,
             ],
             samples="data",
@@ -819,14 +828,22 @@ def build_config(
             samples="data",
         ),
     )
+
     configuration.add_modification_rule(
-        ["mt", "mm"],
-        RemoveProducer(producers=scalefactors.MuonIDIso_SF, samples="data"),
+        "global",
+        RemoveProducer(
+            producers=[event.npartons],
+            samples=[
+                sample
+                for sample in available_sample_types
+                if sample not in ["dyjets", "wjets", "electroweak_boson"]
+            ],
+        ),
     )
     configuration.add_modification_rule(
         "global",
         RemoveProducer(
-            producers=[event.PUweights, event.npartons],
+            producers=[event.PUweights],
             samples=["data", "embedding", "embedding_mc"],
         ),
     )
@@ -840,17 +857,21 @@ def build_config(
         ),
     )
     configuration.add_modification_rule(
-        ["et", "mt", "tt"],
+        ["tt"],
         RemoveProducer(
-            producers=[pairquantities.taujet_pt_2, genparticles.gen_taujet_pt_2],
-            samples="embedding",
+            producers=[
+                pairquantities.tau_gen_match_1,
+            ],
+            samples="data",
         ),
     )
     configuration.add_modification_rule(
-        ["tt"],
+        scopes,
         RemoveProducer(
-            producers=[pairquantities.taujet_pt_1, genparticles.gen_taujet_pt_1],
-            samples="embedding",
+            producers=[
+                genparticles.GenMatching,
+            ],
+            samples="data",
         ),
     )
     configuration.add_modification_rule(
@@ -868,10 +889,10 @@ def build_config(
         scopes,
         AppendProducer(producers=event.TopPtReweighting, samples="ttbar"),
     )
-    # configuration.add_modification_rule(
-    #     scopes,
-    #     AppendProducer(producers=event.ZPtMassReweighting, samples="dy"),
-    # )
+    configuration.add_modification_rule(
+        scopes,
+        AppendProducer(producers=event.ZPtMassReweighting, samples="dy"),
+    )
     # changes needed for data
     # global scope
     configuration.add_modification_rule(
@@ -885,12 +906,6 @@ def build_config(
         AppendProducer(producers=event.JSONFilter, samples=["data", "embedding"]),
     )
 
-    configuration.add_modification_rule(
-        "global",
-        RemoveProducer(
-            producers=jets.JetEnergyCorrection, samples=["embedding", "embdding_mc"]
-        ),
-    )
     # scope specific
     configuration.add_modification_rule(
         "mt",
@@ -1048,6 +1063,7 @@ def build_config(
             q.jtag_value_2,
             q.mjj,
             q.m_vis,
+            q.deltaR_ditaupair,
             q.pt_vis,
             q.nbtag,
             q.bpt_1,
@@ -1101,8 +1117,16 @@ def build_config(
             q.pt_ttjj,
             q.mt_tot,
             q.genbosonmass,
+            q.gen_match_1,
+            q.gen_match_2,
         ],
     )
+    # add genWeight for everything but data
+    if sample != "data":
+        configuration.add_outputs(
+            scopes,
+            nanoAOD.genWeight,
+        )
     configuration.add_outputs(
         "mt",
         [
@@ -1120,12 +1144,12 @@ def build_config(
             q.taujet_pt_2,
             # q.gen_taujet_pt_2,
             q.decaymode_2,
-            q.gen_match_2,
+            q.tau_gen_match_2,
             q.muon_veto_flag,
             q.dimuon_veto,
             q.electron_veto_flag,
-            q.id_wgt_mu_1,
-            q.iso_wgt_mu_1,
+            # q.id_wgt_mu_1,
+            # q.iso_wgt_mu_1,
         ],
     )
     configuration.add_outputs(
@@ -1145,12 +1169,12 @@ def build_config(
             q.taujet_pt_2,
             # q.gen_taujet_pt_2,
             q.decaymode_2,
-            q.gen_match_2,
+            q.tau_gen_match_2,
             q.muon_veto_flag,
             q.dimuon_veto,
             q.electron_veto_flag,
-            q.id_wgt_ele_wp90nonIso_1,
-            q.id_wgt_ele_wp80nonIso_1,
+            # q.id_wgt_ele_wp90nonIso_1,
+            # q.id_wgt_ele_wp80nonIso_1,
         ],
     )
     configuration.add_outputs(
@@ -1177,8 +1201,8 @@ def build_config(
             # q.gen_taujet_pt_2,
             q.decaymode_1,
             q.decaymode_2,
-            q.gen_match_1,
-            q.gen_match_2,
+            q.tau_gen_match_1,
+            q.tau_gen_match_2,
             # q.muon_veto_flag,
             # q.dimuon_veto,
             # q.electron_veto_flag,
@@ -1195,10 +1219,10 @@ def build_config(
             q.muon_veto_flag,
             q.dimuon_veto,
             q.electron_veto_flag,
-            q.id_wgt_ele_wp90nonIso_1,
-            q.id_wgt_ele_wp80nonIso_1,
-            q.id_wgt_mu_2,
-            q.iso_wgt_mu_2,
+            # q.id_wgt_ele_wp90nonIso_1,
+            # q.id_wgt_ele_wp80nonIso_1,
+            # q.id_wgt_mu_2,
+            # q.iso_wgt_mu_2,
         ],
     )
 
@@ -1207,10 +1231,10 @@ def build_config(
         [
             q.nmuons,
             triggers.MuMuGenerateSingleMuonTriggerFlags.output_group,
-            q.id_wgt_mu_1,
-            q.iso_wgt_mu_1,
-            q.id_wgt_mu_2,
-            q.iso_wgt_mu_2,
+            # q.id_wgt_mu_1,
+            # q.iso_wgt_mu_1,
+            # q.id_wgt_mu_2,
+            # q.iso_wgt_mu_2,
         ],
     )
     if "data" not in sample and "embedding" not in sample:
@@ -1480,6 +1504,48 @@ def build_config(
             },
             producers={
                 ("et", "mt", "tt", "em", "ee", "mm"): met.ApplyRecoilCorrections
+            },
+        ),
+        samples=[
+            sample
+            for sample in available_sample_types
+            if sample not in ["data", "embedding", "embedding_mc"]
+        ],
+    )
+    #########################
+    # Pileup Shifts
+    #########################
+    configuration.add_shift(
+        SystematicShift(
+            name="PileUpUp",
+            scopes=["global"],
+            shift_config={
+                ("global"): {"PU_reweighting_variation": "up"},
+            },
+            producers={
+                "global": [
+                    event.PUweights,
+                ],
+            },
+        ),
+        samples=[
+            sample
+            for sample in available_sample_types
+            if sample not in ["data", "embedding", "embedding_mc"]
+        ],
+    )
+
+    configuration.add_shift(
+        SystematicShift(
+            name="PileUpDown",
+            scopes=["global"],
+            shift_config={
+                ("global"): {"PU_reweighting_variation": "down"},
+            },
+            producers={
+                "global": [
+                    event.PUweights,
+                ],
             },
         ),
         samples=[

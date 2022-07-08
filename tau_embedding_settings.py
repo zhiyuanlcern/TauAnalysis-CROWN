@@ -1,9 +1,12 @@
 from __future__ import annotations  # needed for type annotations in > python 3.7
 
 from typing import List
-from code_generation.rules import AppendProducer
+from code_generation.rules import AppendProducer, RemoveProducer
 from .producers import embedding as embedding
 from .producers import scalefactors as scalefactors
+from .producers import pairquantities as pairquantities
+from .producers import genparticles as genparticles
+from .producers import jets as jets
 from code_generation.configuration import Configuration
 
 
@@ -54,17 +57,17 @@ def setup_embedding(configuration: Configuration, scopes: List[str]):
     configuration.add_config_parameters(
         ["mt"],
         {
-            "singlemoun_trigger_sf": [
+            "singlemuon_trigger_sf": [
                 {
-                    "flagname": "trg_wgt_IsoMu24",
+                    "flagname": "trg_wgt_single_mu24",
                     "embedding_trigger_sf": "Trg_IsoMu24_pt_eta_bins",
                 },
                 {
-                    "flagname": "trg_wgt_IsoMu27",
+                    "flagname": "trg_wgt_single_mu27",
                     "embedding_trigger_sf": "Trg_IsoMu27_pt_eta_bins",
                 },
                 {
-                    "flagname": "trg_wgt_IsoMu24OrIsoMu27",
+                    "flagname": "trg_wgtsingle_mu24Ormu27",
                     "embedding_trigger_sf": "Trg_IsoMu27_or_IsoMu24_pt_eta_bins",
                 },
             ]
@@ -76,19 +79,19 @@ def setup_embedding(configuration: Configuration, scopes: List[str]):
         {
             "singlelectron_trigger_sf": [
                 {
-                    "flagname": "trg_wgt_Ele27",
+                    "flagname": "trg_wgt_single_ele27",
                     "embedding_trigger_sf": "Trg27_Iso_pt_eta_bins",
                 },
                 {
-                    "flagname": "trg_wgt_Ele32",
+                    "flagname": "trg_wgt_single_ele32",
                     "embedding_trigger_sf": "Trg32_Iso_pt_eta_bins",
                 },
                 {
-                    "flagname": "trg_wgt_Ele35",
+                    "flagname": "trg_wgt_single_ele35",
                     "embedding_trigger_sf": "Trg35_Iso_pt_eta_bins",
                 },
                 {
-                    "flagname": "trg_wgt_Ele27OrEle32OrEle35",
+                    "flagname": "trg_wgt_single_ele27orele32orele35",
                     "embedding_trigger_sf": "Trg_Iso_pt_eta_bins",
                 },
             ]
@@ -154,6 +157,27 @@ def setup_embedding(configuration: Configuration, scopes: List[str]):
                 embedding.ETGenerateSingleElectronTriggerSF,
             ],
             samples=["embedding"],
+        ),
+    )
+    # remove some gen producers
+    configuration.add_modification_rule(
+        ["et", "mt", "tt"],
+        RemoveProducer(
+            producers=[pairquantities.taujet_pt_2, genparticles.gen_taujet_pt_2],
+            samples=["embedding", "embedding_mc"],
+        ),
+    )
+    configuration.add_modification_rule(
+        ["tt"],
+        RemoveProducer(
+            producers=[pairquantities.taujet_pt_1, genparticles.gen_taujet_pt_1],
+            samples=["embedding", "embedding_mc"],
+        ),
+    )
+    configuration.add_modification_rule(
+        "global",
+        RemoveProducer(
+            producers=jets.JetEnergyCorrection, samples=["embedding", "embdding_mc"]
         ),
     )
 
