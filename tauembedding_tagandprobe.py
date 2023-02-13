@@ -549,7 +549,7 @@ def build_config(
         [
             event.Lumi,
             # event.MetFilter,
-            tagandprobe.RenameElectronPt,
+            electrons.RenameElectronPt,
             tagandprobe.BaseMuons,
             tagandprobe.BaseElectrons,
             tagandprobe.BasePhotons,
