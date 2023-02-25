@@ -143,6 +143,21 @@ GoodJets = ProducerGroup(
     scopes=["global"],
     subproducers=[JetPtCut, JetEtaCut, JetIDCut, JetPUIDCut],
 )
+PreBJetEtaCut = Producer(
+    name="PreBJetEtaCut",
+    call="physicsobject::CutEta({df}, {input}, {output}, {max_bjet_eta})",
+    input=[nanoAOD.Jet_eta],
+    output=[],
+    scopes=["global"],
+)
+
+PreBJetPtCut = Producer(
+    name="PreBJetPtCut",
+    call="physicsobject::CutPt({df}, {input}, {output}, {min_bjet_pt})",
+    input=[q.Jet_pt_corrected],
+    output=[],
+    scopes=["global"],
+)
 GoodBJets = ProducerGroup(
     name="GoodBJets",
     call="physicsobject::CombineMasks({df}, {output}, {input})",
@@ -150,6 +165,14 @@ GoodBJets = ProducerGroup(
     output=[q.good_bjets_mask],
     scopes=["global"],
     subproducers=[BJetPtCut, BJetEtaCut, BTagCut],
+)
+GoodPreBJets = ProducerGroup(
+    name="GoodPreBJets",
+    call="physicsobject::CombineMasks({df}, {output}, {input})",
+    input=[q.jet_id_mask, q.jet_puid_mask],
+    output=[q.good_prebjet_mask],
+    scopes=["global"],
+    subproducers=[PreBJetPtCut, PreBJetEtaCut],
 )
 
 ####################
@@ -201,7 +224,22 @@ BJetCollection = ProducerGroup(
     scopes=["mt", "et", "tt", "em", "mm", "ee"],
     subproducers=[GoodBJetsWithVeto],
 )
+GoodPreBJetsWithVeto = Producer(
+    name="GoodPreBJetsWithVeto",
+    call="physicsobject::CombineMasks({df}, {output}, {input})",
+    input=[q.good_prebjet_mask, q.jet_overlap_veto_mask],
+    output=[],
+    scopes=["mt", "et", "tt", "em", "mm", "ee"],
+)
 
+PreBJetCollection = ProducerGroup(
+    name="PreBJetCollection",
+    call="jet::OrderJetsByPt({df}, {output}, {input})",
+    input=[q.Jet_pt_corrected],
+    output=[q.good_prebjet_collection],
+    scopes=["mt", "et", "tt", "em", "mm", "ee"],
+    subproducers=[GoodPreBJetsWithVeto],
+)
 ##########################
 # Basic Jet Quantities
 # njets, pt, eta, phi, b-tag value
@@ -238,6 +276,13 @@ NumberOfJets = Producer(
     call="quantities::jet::NumberOfJets({df}, {output}, {input})",
     input=[q.good_jet_collection],
     output=[q.njets],
+    scopes=["mt", "et", "tt", "em", "mm", "ee"],
+)
+NumberOfPreBJets = Producer(
+    name="NumberOfPreBJets",
+    call="quantities::jet::NumberOfJets({df}, {output}, {input})",
+    input=[q.good_prebjet_collection],
+    output=[q.nprebjets],
     scopes=["mt", "et", "tt", "em", "mm", "ee"],
 )
 jpt_1 = Producer(
@@ -313,6 +358,7 @@ BasicJetQuantities = ProducerGroup(
         LVJet1,
         LVJet2,
         NumberOfJets,
+        NumberOfPreBJets,
         jpt_1,
         jeta_1,
         jphi_1,
