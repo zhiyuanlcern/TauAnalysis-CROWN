@@ -384,8 +384,8 @@ def build_config(
             "min_tau_pt": 35.0,
             "max_tau_eta": 2.3,
             "max_tau_dz": 0.2,
-            "vsjet_tau_id_bit": 4,
-            "vsele_tau_id_bit": 4,
+            "vsjet_tau_id_bit": 1,
+            "vsele_tau_id_bit": 2,
             "vsmu_tau_id_bit": 1,
         },
     )
