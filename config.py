@@ -610,7 +610,7 @@ def build_config(
     )
     # muon trigger SF settings from embedding measurements
     configuration.add_config_parameters(
-        ["mt"],
+        ["mt", "mm"],
         {
             "singlemuon_trigger_sf_mc": [
                 {
