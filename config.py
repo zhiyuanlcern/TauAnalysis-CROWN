@@ -1861,9 +1861,6 @@ def build_config(
             if sample not in ["data", "embedding", "embedding_mc"]
         ],
     )
-    import pdb
-
-    pdb.set_trace()
     #########################
     # TauID scale factor shifts, channel dependent # Tau energy scale shifts, dm dependent
     #########################
