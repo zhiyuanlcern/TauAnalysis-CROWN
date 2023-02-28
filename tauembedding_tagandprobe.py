@@ -299,6 +299,8 @@ def build_config(
                             "max_deltaR_triggermatch": 0.4,
                         },
                     ],
+                    # ToDo: The muon POG recommends a value of DeltaR < 0.1 for trigger matching in 2016
+                    # Do we want to adopt this as well?
                     "2016preVFP": [
                         {
                             "flagname_1": "trg_IsoMu22_1",
@@ -321,6 +323,8 @@ def build_config(
                             "max_deltaR_triggermatch": 0.4,
                         },
                         {
+                            # HLT_Iso(Tk)Mu22_eta2p1 added in the menu in Run2016-ver2
+                            # Need to process a single file per job
                             "flagname_1": "trg_IsoMu22_eta2p1_1",
                             "flagname_2": "trg_IsoMu22_eta2p1_2",
                             "hlt_path": "HLT_IsoMu22_eta2p1",
@@ -435,6 +439,12 @@ def build_config(
                             "max_deltaR_triggermatch": 0.4,
                         },
                         {
+                            # Trigger not enabled over the full year.
+                            # Should have been enabled starting in Run2017D
+                            # Already included in the menu starting from the last three runs
+                            # contained in Run2017C which leads to problems when processing multiple files
+                            # The solution for now is to run Run2017C with a single input file
+                            # per job
                             "flagname_1": "trg_single_ele32_1",
                             "flagname_2": "trg_single_ele32_2",
                             "hlt_path": "HLT_Ele32_WPTight_Gsf",
