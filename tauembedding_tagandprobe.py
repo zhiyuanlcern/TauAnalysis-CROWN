@@ -102,7 +102,7 @@ def build_config(
                             "etacut": 2.5,
                             "filterbit": 3,
                             "trigger_particle_id": 13,
-                            "max_deltaR_triggermatch": 0.4,
+                            "max_deltaR_triggermatch": 0.1,
                         },
                         {
                             "flagname_1": "trg_IsoMu27_1",
@@ -112,7 +112,7 @@ def build_config(
                             "etacut": 2.5,
                             "filterbit": 3,
                             "trigger_particle_id": 13,
-                            "max_deltaR_triggermatch": 0.4,
+                            "max_deltaR_triggermatch": 0.1,
                         },
                         {
                             "flagname_1": "trg_Mu17TrkMu8_DZ_Mu17_1",
@@ -122,7 +122,7 @@ def build_config(
                             "etacut": 2.5,
                             "filterbit": 4,
                             "trigger_particle_id": 13,
-                            "max_deltaR_triggermatch": 0.4,
+                            "max_deltaR_triggermatch": 0.1,
                         },
                         {
                             "flagname_1": "trg_Mu17TrkMu8_DZ_Mu8_1",
@@ -132,7 +132,7 @@ def build_config(
                             "etacut": 2.5,
                             "filterbit": 4,
                             "trigger_particle_id": 13,
-                            "max_deltaR_triggermatch": 0.4,
+                            "max_deltaR_triggermatch": 0.1,
                         },
                         {
                             "flagname_1": "trg_Mu17TrkMu8_DZMass8_Mu17_1",
@@ -142,7 +142,7 @@ def build_config(
                             "etacut": 2.5,
                             "filterbit": 4,
                             "trigger_particle_id": 13,
-                            "max_deltaR_triggermatch": 0.4,
+                            "max_deltaR_triggermatch": 0.1,
                         },
                         {
                             "flagname_1": "trg_Mu17TrkMu8_DZMass8_Mu8_1",
@@ -152,7 +152,7 @@ def build_config(
                             "etacut": 2.5,
                             "filterbit": 4,
                             "trigger_particle_id": 13,
-                            "max_deltaR_triggermatch": 0.4,
+                            "max_deltaR_triggermatch": 0.1,
                         },
                     ],
                     "2017": [
@@ -164,7 +164,7 @@ def build_config(
                             "etacut": 2.5,
                             "filterbit": 3,
                             "trigger_particle_id": 13,
-                            "max_deltaR_triggermatch": 0.4,
+                            "max_deltaR_triggermatch": 0.1,
                         },
                         {
                             "flagname_1": "trg_IsoMu27_1",
@@ -174,7 +174,7 @@ def build_config(
                             "etacut": 2.5,
                             "filterbit": 3,
                             "trigger_particle_id": 13,
-                            "max_deltaR_triggermatch": 0.4,
+                            "max_deltaR_triggermatch": 0.1,
                         },
                         {
                             "flagname_1": "trg_Mu17TrkMu8_DZ_Mu17_1",
@@ -184,7 +184,7 @@ def build_config(
                             "etacut": 2.5,
                             "filterbit": 4,
                             "trigger_particle_id": 13,
-                            "max_deltaR_triggermatch": 0.4,
+                            "max_deltaR_triggermatch": 0.1,
                         },
                         {
                             "flagname_1": "trg_Mu17TrkMu8_DZ_Mu8_1",
@@ -194,7 +194,7 @@ def build_config(
                             "etacut": 2.5,
                             "filterbit": 4,
                             "trigger_particle_id": 13,
-                            "max_deltaR_triggermatch": 0.4,
+                            "max_deltaR_triggermatch": 0.1,
                         },
                         {
                             "flagname_1": "trg_Mu17TrkMu8_DZMass8_Mu17_1",
@@ -204,7 +204,7 @@ def build_config(
                             "etacut": 2.5,
                             "filterbit": 4,
                             "trigger_particle_id": 13,
-                            "max_deltaR_triggermatch": 0.4,
+                            "max_deltaR_triggermatch": 0.1,
                         },
                         {
                             "flagname_1": "trg_Mu17TrkMu8_DZMass8_Mu8_1",
@@ -214,7 +214,7 @@ def build_config(
                             "etacut": 2.5,
                             "filterbit": 4,
                             "trigger_particle_id": 13,
-                            "max_deltaR_triggermatch": 0.4,
+                            "max_deltaR_triggermatch": 0.1,
                         },
                     ],
                     "2016postVFP": [
@@ -226,7 +226,7 @@ def build_config(
                             "etacut": 2.5,
                             "filterbit": 3,
                             "trigger_particle_id": 13,
-                            "max_deltaR_triggermatch": 0.4,
+                            "max_deltaR_triggermatch": 0.1,
                         },
                         {
                             "flagname_1": "trg_IsoTkMu22_1",
@@ -236,7 +236,7 @@ def build_config(
                             "etacut": 2.5,
                             "filterbit": 3,
                             "trigger_particle_id": 13,
-                            "max_deltaR_triggermatch": 0.4,
+                            "max_deltaR_triggermatch": 0.1,
                         },
                         {
                             "flagname_1": "trg_IsoMu22_eta2p1_1",
@@ -246,7 +246,7 @@ def build_config(
                             "etacut": 2.5,
                             "filterbit": 3,
                             "trigger_particle_id": 13,
-                            "max_deltaR_triggermatch": 0.4,
+                            "max_deltaR_triggermatch": 0.1,
                         },
                         {
                             "flagname_1": "trg_IsoTkMu22_eta2p1_1",
@@ -256,7 +256,7 @@ def build_config(
                             "etacut": 2.5,
                             "filterbit": 3,
                             "trigger_particle_id": 13,
-                            "max_deltaR_triggermatch": 0.4,
+                            "max_deltaR_triggermatch": 0.1,
                         },
                         {
                             "flagname_1": "trg_Mu17TrkMu8_DZ_Mu17_1",
@@ -266,7 +266,7 @@ def build_config(
                             "etacut": 2.5,
                             "filterbit": -1,
                             "trigger_particle_id": 13,
-                            "max_deltaR_triggermatch": 0.4,
+                            "max_deltaR_triggermatch": 0.1,
                         },
                         {
                             "flagname_1": "trg_Mu17TrkMu8_DZ_Mu8_1",
@@ -276,7 +276,7 @@ def build_config(
                             "etacut": 2.5,
                             "filterbit": -1,
                             "trigger_particle_id": 13,
-                            "max_deltaR_triggermatch": 0.4,
+                            "max_deltaR_triggermatch": 0.1,
                         },
                         {
                             "flagname_1": "trg_Mu17TrkMu8_DZMass8_Mu17_1",
@@ -286,7 +286,7 @@ def build_config(
                             "etacut": 2.5,
                             "filterbit": -1,
                             "trigger_particle_id": 13,
-                            "max_deltaR_triggermatch": 0.4,
+                            "max_deltaR_triggermatch": 0.1,
                         },
                         {
                             "flagname_1": "trg_Mu17TrkMu8_DZMass8_Mu8_1",
@@ -296,11 +296,9 @@ def build_config(
                             "etacut": 2.5,
                             "filterbit": -1,
                             "trigger_particle_id": 13,
-                            "max_deltaR_triggermatch": 0.4,
+                            "max_deltaR_triggermatch": 0.1,
                         },
                     ],
-                    # ToDo: The muon POG recommends a value of DeltaR < 0.1 for trigger matching in 2016
-                    # Do we want to adopt this as well?
                     "2016preVFP": [
                         {
                             "flagname_1": "trg_IsoMu22_1",
@@ -310,7 +308,7 @@ def build_config(
                             "etacut": 2.5,
                             "filterbit": 3,
                             "trigger_particle_id": 13,
-                            "max_deltaR_triggermatch": 0.4,
+                            "max_deltaR_triggermatch": 0.1,
                         },
                         {
                             "flagname_1": "trg_IsoTkMu22_1",
@@ -320,7 +318,7 @@ def build_config(
                             "etacut": 2.5,
                             "filterbit": 3,
                             "trigger_particle_id": 13,
-                            "max_deltaR_triggermatch": 0.4,
+                            "max_deltaR_triggermatch": 0.1,
                         },
                         {
                             # HLT_Iso(Tk)Mu22_eta2p1 added in the menu in Run2016-ver2
@@ -332,7 +330,7 @@ def build_config(
                             "etacut": 2.5,
                             "filterbit": 3,
                             "trigger_particle_id": 13,
-                            "max_deltaR_triggermatch": 0.4,
+                            "max_deltaR_triggermatch": 0.1,
                         },
                         {
                             "flagname_1": "trg_IsoTkMu22_eta2p1_1",
@@ -342,7 +340,7 @@ def build_config(
                             "etacut": 2.5,
                             "filterbit": 3,
                             "trigger_particle_id": 13,
-                            "max_deltaR_triggermatch": 0.4,
+                            "max_deltaR_triggermatch": 0.1,
                         },
                         {
                             "flagname_1": "trg_Mu17TrkMu8_DZ_Mu17_1",
@@ -352,7 +350,7 @@ def build_config(
                             "etacut": 2.5,
                             "filterbit": -1,
                             "trigger_particle_id": 13,
-                            "max_deltaR_triggermatch": 0.4,
+                            "max_deltaR_triggermatch": 0.1,
                         },
                         {
                             "flagname_1": "trg_Mu17TrkMu8_DZ_Mu8_1",
@@ -362,7 +360,7 @@ def build_config(
                             "etacut": 2.5,
                             "filterbit": -1,
                             "trigger_particle_id": 13,
-                            "max_deltaR_triggermatch": 0.4,
+                            "max_deltaR_triggermatch": 0.1,
                         },
                         {
                             "flagname_1": "trg_Mu17TrkMu8_DZMass8_Mu17_1",
@@ -372,7 +370,7 @@ def build_config(
                             "etacut": 2.5,
                             "filterbit": -1,
                             "trigger_particle_id": 13,
-                            "max_deltaR_triggermatch": 0.4,
+                            "max_deltaR_triggermatch": 0.1,
                         },
                         {
                             "flagname_1": "trg_Mu17TrkMu8_DZMass8_Mu8_1",
@@ -382,7 +380,7 @@ def build_config(
                             "etacut": 2.5,
                             "filterbit": -1,
                             "trigger_particle_id": 13,
-                            "max_deltaR_triggermatch": 0.4,
+                            "max_deltaR_triggermatch": 0.1,
                         },
                     ],
                 }
