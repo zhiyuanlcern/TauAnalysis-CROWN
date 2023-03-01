@@ -113,7 +113,7 @@ MuMuSingleMuonTriggerFlags_1 = ExtendedVectorProducer(
     ],
     output="flagname_1",
     scope=["mm"],
-    vec_config="singlemoun_trigger",
+    vec_config="singlemuon_trigger",
 )
 MuMuSingleMuonTriggerFlags_2 = ExtendedVectorProducer(
     name="MuMuGenerateSingleMuonTriggerFlags_2",
@@ -128,7 +128,7 @@ MuMuSingleMuonTriggerFlags_2 = ExtendedVectorProducer(
     ],
     output="flagname_2",
     scope=["mm"],
-    vec_config="singlemoun_trigger",
+    vec_config="singlemuon_trigger",
 )
 MuMuDoubleMuonTriggerFlags_1 = ExtendedVectorProducer(
     name="MuMuDoubleMuonTriggerFlags_1",

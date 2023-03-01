@@ -91,7 +91,7 @@ def build_config(
     configuration.add_config_parameters(
         ["mm"],
         {
-            "singlemoun_trigger": EraModifier(
+            "singlemuon_trigger": EraModifier(
                 {
                     "2018": [
                         {
