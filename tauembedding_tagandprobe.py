@@ -219,6 +219,26 @@ def build_config(
                     ],
                     "2016postVFP": [
                         {
+                            "flagname_1": "trg_IsoMu24_1",
+                            "flagname_2": "trg_IsoMu24_2",
+                            "hlt_path": "HLT_IsoMu24",
+                            "ptcut": 20,
+                            "etacut": 2.5,
+                            "filterbit": 3,
+                            "trigger_particle_id": 13,
+                            "max_deltaR_triggermatch": 0.1,
+                        },
+                        {
+                            "flagname_1": "trg_IsoTkMu24_1",
+                            "flagname_2": "trg_IsoTkMu24_2",
+                            "hlt_path": "HLT_IsoTkMu24",
+                            "ptcut": 20,
+                            "etacut": 2.5,
+                            "filterbit": 3,
+                            "trigger_particle_id": 13,
+                            "max_deltaR_triggermatch": 0.1,
+                        },
+                        {
                             "flagname_1": "trg_IsoMu22_1",
                             "flagname_2": "trg_IsoMu22_2",
                             "hlt_path": "HLT_IsoMu22",
@@ -300,6 +320,26 @@ def build_config(
                         },
                     ],
                     "2016preVFP": [
+                        {
+                            "flagname_1": "trg_IsoMu24_1",
+                            "flagname_2": "trg_IsoMu24_2",
+                            "hlt_path": "HLT_IsoMu24",
+                            "ptcut": 20,
+                            "etacut": 2.5,
+                            "filterbit": 3,
+                            "trigger_particle_id": 13,
+                            "max_deltaR_triggermatch": 0.1,
+                        },
+                        {
+                            "flagname_1": "trg_IsoTkMu24_1",
+                            "flagname_2": "trg_IsoTkMu24_2",
+                            "hlt_path": "HLT_IsoTkMu24",
+                            "ptcut": 20,
+                            "etacut": 2.5,
+                            "filterbit": 3,
+                            "trigger_particle_id": 13,
+                            "max_deltaR_triggermatch": 0.1,
+                        },
                         {
                             "flagname_1": "trg_IsoMu22_1",
                             "flagname_2": "trg_IsoMu22_2",
