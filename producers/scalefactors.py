@@ -257,7 +257,7 @@ MTGenerateSingleMuonTriggerSF_MC = ExtendedVectorProducer(
     call='scalefactor::embedding::muon_sf({df}, {input}, {output}, "{mc_muon_sf_file}", "mc", "{mc_trigger_sf}", {mc_muon_trg_extrapolation})',
     input=[q.pt_1, q.eta_1],
     output="flagname",
-    scope=["mt"],
+    scope=["mt", "mm"],
     vec_config="singlemuon_trigger_sf_mc",
 )
 

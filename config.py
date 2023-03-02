@@ -1093,6 +1093,7 @@ def build_config(
                 scalefactors.TauEmbeddingMuonIsoSF_1_MC,
                 scalefactors.TauEmbeddingMuonIDSF_2_MC,
                 scalefactors.TauEmbeddingMuonIsoSF_2_MC,
+                scalefactors.MTGenerateSingleMuonTriggerSF_MC,
             ],
             samples=[
                 sample
