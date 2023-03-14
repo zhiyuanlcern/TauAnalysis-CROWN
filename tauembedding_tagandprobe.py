@@ -58,6 +58,14 @@ def build_config(
                 "Flag_METFilters",
                 "Flag_muonBadTrackFilter",
             ],
+            "golden_json_file": EraModifier(
+                {
+                    "2016preVFP": "data/golden_json/Cert_271036-284044_13TeV_Legacy2016_Collisions16_JSON.txt",
+                    "2016postVFP": "data/golden_json/Cert_271036-284044_13TeV_Legacy2016_Collisions16_JSON.txt",
+                    "2017": "data/golden_json/Cert_294927-306462_13TeV_UL2017_Collisions17_GoldenJSON.txt",
+                    "2018": "data/golden_json/Cert_314472-325175_13TeV_Legacy2018_Collisions18_JSON.txt",
+                }
+            ),
         },
     )
     ###############################
@@ -749,6 +757,10 @@ def build_config(
         AppendProducer(
             producers=emb.EmbeddingQuantities, samples=["embedding", "embedding_mc"]
         ),
+    )
+    configuration.add_modification_rule(
+        "global",
+        AppendProducer(producers=event.JSONFilter, samples=["data", "embedding"]),
     )
 
     #########################
