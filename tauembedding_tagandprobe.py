@@ -111,6 +111,7 @@ def build_config(
                             "filterbit": 3,
                             "trigger_particle_id": 13,
                             "max_deltaR_triggermatch": 0.1,
+                            "triggerobject_ptcut": 24.0,
                         },
                         {
                             "flagname_1": "trg_IsoMu27_1",
@@ -121,6 +122,7 @@ def build_config(
                             "filterbit": 3,
                             "trigger_particle_id": 13,
                             "max_deltaR_triggermatch": 0.1,
+                            "triggerobject_ptcut": 27.0,
                         },
                         {
                             "flagname_1": "trg_Mu17TrkMu8_DZ_Mu17_1",
@@ -131,6 +133,7 @@ def build_config(
                             "filterbit": 4,
                             "trigger_particle_id": 13,
                             "max_deltaR_triggermatch": 0.1,
+                            "triggerobject_ptcut": 17.0,
                         },
                         {
                             "flagname_1": "trg_Mu17TrkMu8_DZ_Mu8_1",
@@ -141,6 +144,7 @@ def build_config(
                             "filterbit": 4,
                             "trigger_particle_id": 13,
                             "max_deltaR_triggermatch": 0.1,
+                            "triggerobject_ptcut": 8.0,
                         },
                         {
                             "flagname_1": "trg_Mu17TrkMu8_DZMass8_Mu17_1",
@@ -151,6 +155,7 @@ def build_config(
                             "filterbit": 4,
                             "trigger_particle_id": 13,
                             "max_deltaR_triggermatch": 0.1,
+                            "triggerobject_ptcut": 17.0,
                         },
                         {
                             "flagname_1": "trg_Mu17TrkMu8_DZMass8_Mu8_1",
@@ -161,6 +166,7 @@ def build_config(
                             "filterbit": 4,
                             "trigger_particle_id": 13,
                             "max_deltaR_triggermatch": 0.1,
+                            "triggerobject_ptcut": 8.0,
                         },
                     ],
                     "2017": [
@@ -173,6 +179,7 @@ def build_config(
                             "filterbit": 3,
                             "trigger_particle_id": 13,
                             "max_deltaR_triggermatch": 0.1,
+                            "triggerobject_ptcut": 24.0,
                         },
                         {
                             "flagname_1": "trg_IsoMu27_1",
@@ -183,6 +190,7 @@ def build_config(
                             "filterbit": 3,
                             "trigger_particle_id": 13,
                             "max_deltaR_triggermatch": 0.1,
+                            "triggerobject_ptcut": 27.0,
                         },
                         {
                             "flagname_1": "trg_Mu17TrkMu8_DZ_Mu17_1",
@@ -193,6 +201,7 @@ def build_config(
                             "filterbit": 4,
                             "trigger_particle_id": 13,
                             "max_deltaR_triggermatch": 0.1,
+                            "triggerobject_ptcut": 17.0,
                         },
                         {
                             "flagname_1": "trg_Mu17TrkMu8_DZ_Mu8_1",
@@ -203,6 +212,7 @@ def build_config(
                             "filterbit": 4,
                             "trigger_particle_id": 13,
                             "max_deltaR_triggermatch": 0.1,
+                            "triggerobject_ptcut": 8.0,
                         },
                         {
                             "flagname_1": "trg_Mu17TrkMu8_DZMass8_Mu17_1",
@@ -213,6 +223,7 @@ def build_config(
                             "filterbit": 4,
                             "trigger_particle_id": 13,
                             "max_deltaR_triggermatch": 0.1,
+                            "triggerobject_ptcut": 17.0,
                         },
                         {
                             "flagname_1": "trg_Mu17TrkMu8_DZMass8_Mu8_1",
@@ -223,6 +234,7 @@ def build_config(
                             "filterbit": 4,
                             "trigger_particle_id": 13,
                             "max_deltaR_triggermatch": 0.1,
+                            "triggerobject_ptcut": 8.0,
                         },
                     ],
                     "2016postVFP": [
@@ -235,6 +247,7 @@ def build_config(
                             "filterbit": 3,
                             "trigger_particle_id": 13,
                             "max_deltaR_triggermatch": 0.1,
+                            "triggerobject_ptcut": 24.0,
                         },
                         {
                             "flagname_1": "trg_IsoTkMu24_1",
@@ -245,6 +258,7 @@ def build_config(
                             "filterbit": 3,
                             "trigger_particle_id": 13,
                             "max_deltaR_triggermatch": 0.1,
+                            "triggerobject_ptcut": 24.0,
                         },
                         {
                             "flagname_1": "trg_IsoMu22_1",
@@ -255,6 +269,7 @@ def build_config(
                             "filterbit": 3,
                             "trigger_particle_id": 13,
                             "max_deltaR_triggermatch": 0.1,
+                            "triggerobject_ptcut": 22.0,
                         },
                         {
                             "flagname_1": "trg_IsoTkMu22_1",
@@ -265,6 +280,7 @@ def build_config(
                             "filterbit": 3,
                             "trigger_particle_id": 13,
                             "max_deltaR_triggermatch": 0.1,
+                            "triggerobject_ptcut": 22.0,
                         },
                         {
                             "flagname_1": "trg_IsoMu22_eta2p1_1",
@@ -275,6 +291,7 @@ def build_config(
                             "filterbit": 3,
                             "trigger_particle_id": 13,
                             "max_deltaR_triggermatch": 0.1,
+                            "triggerobject_ptcut": 22.0,
                         },
                         {
                             "flagname_1": "trg_IsoTkMu22_eta2p1_1",
@@ -285,6 +302,7 @@ def build_config(
                             "filterbit": 3,
                             "trigger_particle_id": 13,
                             "max_deltaR_triggermatch": 0.1,
+                            "triggerobject_ptcut": 22.0,
                         },
                         {
                             "flagname_1": "trg_Mu17TrkMu8_DZ_Mu17_1",
@@ -295,6 +313,7 @@ def build_config(
                             "filterbit": -1,
                             "trigger_particle_id": 13,
                             "max_deltaR_triggermatch": 0.1,
+                            "triggerobject_ptcut": 17.0,
                         },
                         {
                             "flagname_1": "trg_Mu17TrkMu8_DZ_Mu8_1",
@@ -305,6 +324,7 @@ def build_config(
                             "filterbit": -1,
                             "trigger_particle_id": 13,
                             "max_deltaR_triggermatch": 0.1,
+                            "triggerobject_ptcut": 8.0,
                         },
                         {
                             "flagname_1": "trg_Mu17TrkMu8_DZMass8_Mu17_1",
@@ -315,6 +335,7 @@ def build_config(
                             "filterbit": -1,
                             "trigger_particle_id": 13,
                             "max_deltaR_triggermatch": 0.1,
+                            "triggerobject_ptcut": 17.0,
                         },
                         {
                             "flagname_1": "trg_Mu17TrkMu8_DZMass8_Mu8_1",
@@ -325,6 +346,7 @@ def build_config(
                             "filterbit": -1,
                             "trigger_particle_id": 13,
                             "max_deltaR_triggermatch": 0.1,
+                            "triggerobject_ptcut": 8.0,
                         },
                     ],
                     "2016preVFP": [
@@ -337,6 +359,7 @@ def build_config(
                             "filterbit": 3,
                             "trigger_particle_id": 13,
                             "max_deltaR_triggermatch": 0.1,
+                            "triggerobject_ptcut": 24.0,
                         },
                         {
                             "flagname_1": "trg_IsoTkMu24_1",
@@ -347,6 +370,7 @@ def build_config(
                             "filterbit": 3,
                             "trigger_particle_id": 13,
                             "max_deltaR_triggermatch": 0.1,
+                            "triggerobject_ptcut": 24.0,
                         },
                         {
                             "flagname_1": "trg_IsoMu22_1",
@@ -357,6 +381,7 @@ def build_config(
                             "filterbit": 3,
                             "trigger_particle_id": 13,
                             "max_deltaR_triggermatch": 0.1,
+                            "triggerobject_ptcut": 22.0,
                         },
                         {
                             "flagname_1": "trg_IsoTkMu22_1",
@@ -367,9 +392,10 @@ def build_config(
                             "filterbit": 3,
                             "trigger_particle_id": 13,
                             "max_deltaR_triggermatch": 0.1,
+                            "triggerobject_ptcut": 22.0,
                         },
                         {
-                            # HLT_Iso(Tk)Mu22_eta2p1 added in the menu in Run2016-ver2
+                            # HLT_Iso(Tk)Mu22_eta2p1 added in the menu in Run2016B-ver2
                             # Need to process a single file per job
                             "flagname_1": "trg_IsoMu22_eta2p1_1",
                             "flagname_2": "trg_IsoMu22_eta2p1_2",
@@ -379,6 +405,7 @@ def build_config(
                             "filterbit": 3,
                             "trigger_particle_id": 13,
                             "max_deltaR_triggermatch": 0.1,
+                            "triggerobject_ptcut": 22.0,
                         },
                         {
                             "flagname_1": "trg_IsoTkMu22_eta2p1_1",
@@ -389,6 +416,7 @@ def build_config(
                             "filterbit": 3,
                             "trigger_particle_id": 13,
                             "max_deltaR_triggermatch": 0.1,
+                            "triggerobject_ptcut": 22.0,
                         },
                         {
                             "flagname_1": "trg_Mu17TrkMu8_DZ_Mu17_1",
@@ -399,6 +427,7 @@ def build_config(
                             "filterbit": -1,
                             "trigger_particle_id": 13,
                             "max_deltaR_triggermatch": 0.1,
+                            "triggerobject_ptcut": 17.0,
                         },
                         {
                             "flagname_1": "trg_Mu17TrkMu8_DZ_Mu8_1",
@@ -409,6 +438,7 @@ def build_config(
                             "filterbit": -1,
                             "trigger_particle_id": 13,
                             "max_deltaR_triggermatch": 0.1,
+                            "triggerobject_ptcut": 8.0,
                         },
                         {
                             "flagname_1": "trg_Mu17TrkMu8_DZMass8_Mu17_1",
@@ -419,6 +449,7 @@ def build_config(
                             "filterbit": -1,
                             "trigger_particle_id": 13,
                             "max_deltaR_triggermatch": 0.1,
+                            "triggerobject_ptcut": 17.0,
                         },
                         {
                             "flagname_1": "trg_Mu17TrkMu8_DZMass8_Mu8_1",
@@ -429,6 +460,7 @@ def build_config(
                             "filterbit": -1,
                             "trigger_particle_id": 13,
                             "max_deltaR_triggermatch": 0.1,
+                            "triggerobject_ptcut": 8.0,
                         },
                     ],
                 }
@@ -451,6 +483,7 @@ def build_config(
                             "filterbit": 1,
                             "trigger_particle_id": 11,
                             "max_deltaR_triggermatch": 0.4,
+                            "triggerobject_ptcut": 27.0,
                         },
                         {
                             "flagname_1": "trg_single_ele32_1",
@@ -461,6 +494,7 @@ def build_config(
                             "filterbit": 1,
                             "trigger_particle_id": 11,
                             "max_deltaR_triggermatch": 0.4,
+                            "triggerobject_ptcut": 32.0,
                         },
                         {
                             "flagname_1": "trg_single_ele35_1",
@@ -471,6 +505,7 @@ def build_config(
                             "filterbit": 1,
                             "trigger_particle_id": 11,
                             "max_deltaR_triggermatch": 0.4,
+                            "triggerobject_ptcut": 35.0,
                         },
                     ],
                     "2017": [
@@ -483,6 +518,7 @@ def build_config(
                             "filterbit": 1,
                             "trigger_particle_id": 11,
                             "max_deltaR_triggermatch": 0.4,
+                            "triggerobject_ptcut": 27.0,
                         },
                         {
                             # Trigger not enabled over the full year.
@@ -499,6 +535,7 @@ def build_config(
                             "filterbit": 1,
                             "trigger_particle_id": 11,
                             "max_deltaR_triggermatch": 0.4,
+                            "triggerobject_ptcut": 32.0,
                         },
                         {
                             "flagname_1": "trg_single_ele32_fb_1",
@@ -509,6 +546,7 @@ def build_config(
                             "filterbit": 10,
                             "trigger_particle_id": 11,
                             "max_deltaR_triggermatch": 0.4,
+                            "triggerobject_ptcut": 32.0,
                         },
                         {
                             "flagname_1": "trg_single_ele35_1",
@@ -519,6 +557,7 @@ def build_config(
                             "filterbit": 1,
                             "trigger_particle_id": 11,
                             "max_deltaR_triggermatch": 0.4,
+                            "triggerobject_ptcut": 35.0,
                         },
                     ],
                     "2016postVFP": [
@@ -531,6 +570,7 @@ def build_config(
                             "filterbit": 1,
                             "trigger_particle_id": 11,
                             "max_deltaR_triggermatch": 0.4,
+                            "triggerobject_ptcut": 25.0,
                         },
                         {
                             "flagname_1": "trg_single_ele27_1",
@@ -541,6 +581,7 @@ def build_config(
                             "filterbit": 1,
                             "trigger_particle_id": 11,
                             "max_deltaR_triggermatch": 0.4,
+                            "triggerobject_ptcut": 27.0,
                         },
                     ],
                     "2016preVFP": [
@@ -553,6 +594,7 @@ def build_config(
                             "filterbit": 1,
                             "trigger_particle_id": 11,
                             "max_deltaR_triggermatch": 0.4,
+                            "triggerobject_ptcut": 25.0,
                         },
                         {
                             "flagname_1": "trg_single_ele27_1",
@@ -563,6 +605,7 @@ def build_config(
                             "filterbit": 1,
                             "trigger_particle_id": 11,
                             "max_deltaR_triggermatch": 0.4,
+                            "triggerobject_ptcut": 27.0,
                         },
                     ],
                 }
