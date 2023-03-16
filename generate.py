@@ -4,7 +4,6 @@ from code_generation.code_generation import CodeGenerator
 
 
 def run(args):
-
     analysis_name = "tau"
 
     available_samples = [
@@ -60,7 +59,7 @@ def run(args):
         configuration=config,
         executable_name=f"{configname}_{sample_group}_{era}",
         analysis_name=analysis_name,
-        config_name = configname,
+        config_name=configname,
         output_folder=args.output,
         threads=args.threads,
     )

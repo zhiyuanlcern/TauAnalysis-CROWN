@@ -4,8 +4,8 @@ from code_generation.code_generation import CodeGenerator
 from code_generation.friend_trees import FriendTreeConfiguration
 import inspect
 
-def run(args):
 
+def run(args):
     analysis_name = "tau"
 
     available_samples = [
@@ -41,11 +41,14 @@ def run(args):
     )
     # check if the config is of type FriendTreeConfiguration
     imported_members = [x[0] for x in inspect.getmembers(config, inspect.isclass)]
-    if "FriendTreeConfiguration" in imported_members and "Configuration" in imported_members:
+    if (
+        "FriendTreeConfiguration" in imported_members
+        and "Configuration" in imported_members
+    ):
         raise ValueError(
             f"Configuration {configname} contains both a Configuration and a FriendTreeConfiguration."
         )
-    elif "FriendTreeConfiguration" not in  imported_members:
+    elif "FriendTreeConfiguration" not in imported_members:
         raise ValueError(
             f"Configuration {configname} is not a FriendTreeConfiguration."
         )
@@ -79,7 +82,7 @@ def run(args):
             configuration=code_generation_config,
             executable_name=f"{configname}_{sample_group}_{era}_{scope}",
             analysis_name=analysis_name,
-            config_name = configname,
+            config_name=configname,
             output_folder=args.output,
             threads=args.threads,
         )
