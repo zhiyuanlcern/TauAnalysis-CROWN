@@ -1165,8 +1165,8 @@ def setup_embedding(configuration: Configuration, scopes: List[str]):
             {
                 "ele_energyscale_barrel": EraModifier(
                     {
-                        "2016": ele_energyscale_2016preVFP["barrel"]["nominal"],
-                        "2016": ele_energyscale_2016postVFP["barrel"]["nominal"],
+                        "2016preVFP": ele_energyscale_2016preVFP["barrel"]["nominal"],
+                        "2016postVFP": ele_energyscale_2016postVFP["barrel"]["nominal"],
                         "2017": ele_energyscale_2017["barrel"]["nominal"],
                         "2018": ele_energyscale_2018["barrel"]["nominal"],
                     }
