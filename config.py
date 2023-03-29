@@ -544,8 +544,19 @@ def build_config(
                 }
             ),
             "applyRecoilCorrections": SampleModifier(
-                {"wjets": True}, default=False
-            ),  # ToDo: Shouldn't this be also applied to dy and higgs events?
+                {
+                    "wjets": True,
+                    "dyjets": True,
+                    "electroweak_boson": True,
+                    "ggh_htautau": True,
+                    "vbf_htautau": True,
+                    "rem_htautau": True,
+                    "ggh_hww": True,
+                    "vbf_hww": True,
+                    "rem_VH": True,
+                },
+                default=False
+            ),
             "apply_recoil_resolution_systematic": False,
             "apply_recoil_response_systematic": False,
             "recoil_systematic_shift_up": False,
