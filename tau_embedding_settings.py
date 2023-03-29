@@ -847,17 +847,17 @@ def setup_embedding(configuration: Configuration, scopes: List[str]):
                 samples=["embedding"],
             )
     else:
-        tauES_2016preVFP = {
+        tauES_2016preVFP = {  # ToDo: Measure these values for 2016preVFP and add them to the configuration
             "up": 1.0 - 0.0,
             "nominal": 1.0,
             "down": 1.0 + 0.0,
         }
-        tauES_2016postVFP = {
+        tauES_2016postVFP = {  # ToDo: Measure these values for 2016postVFP and add them to the configuration
             "up": 1.0 - 0.0,
             "nominal": 1.0,
             "down": 1.0 + 0.0,
         }
-        tauES_2017 = {
+        tauES_2017 = {  # ToDo: Measure these values for 2017 and add them to the configuration
             "up": 1.0 - 0.0,
             "nominal": 1.0,
             "down": 1.0 + 0.0,
