@@ -55,14 +55,16 @@ def build_config(
             "muF": 1.0,
             "PU_reweighting_file": EraModifier(
                 {
-                    "2016": "",
+                    "2016preVFP": "data/jsonpog-integration/POG/LUM/2016preVFP_UL/puWeights.json.gz",
+                    "2016postVFP": "data/jsonpog-integration/POG/LUM/2016postVFP_UL/puWeights.json.gz",
                     "2017": "data/jsonpog-integration/POG/LUM/2017_UL/puWeights.json.gz",
                     "2018": "data/jsonpog-integration/POG/LUM/2018_UL/puWeights.json.gz",
                 }
             ),
             "PU_reweighting_era": EraModifier(
                 {
-                    "2016": "",
+                    "2016preVFP": "Collisions16_UltraLegacy_goldenJSON",
+                    "2016postVFP": "Collisions16_UltraLegacy_goldenJSON",
                     "2017": "Collisions17_UltraLegacy_goldenJSON",
                     "2018": "Collisions18_UltraLegacy_goldenJSON",
                 }
@@ -70,21 +72,32 @@ def build_config(
             "PU_reweighting_variation": "nominal",
             "golden_json_file": EraModifier(
                 {
-                    "2016": "data/golden_json/Cert_271036-284044_13TeV_Legacy2016_Collisions16_JSON.txt",
+                    "2016preVFP": "data/golden_json/Cert_271036-284044_13TeV_Legacy2016_Collisions16_JSON.txt",
+                    "2016postVFP": "data/golden_json/Cert_271036-284044_13TeV_Legacy2016_Collisions16_JSON.txt",
                     "2017": "data/golden_json/Cert_294927-306462_13TeV_UL2017_Collisions17_GoldenJSON.txt",
                     "2018": "data/golden_json/Cert_314472-325175_13TeV_Legacy2018_Collisions18_JSON.txt",
                 }
             ),
             "met_filters": EraModifier(
                 {
-                    "2016": [
+                    "2016preVFP": [
                         "Flag_goodVertices",
                         "Flag_globalSuperTightHalo2016Filter",
                         "Flag_HBHENoiseFilter",
                         "Flag_HBHENoiseIsoFilter",
                         "Flag_EcalDeadCellTriggerPrimitiveFilter",
                         "Flag_BadPFMuonFilter",
-                        # "Flag_BadPFMuonDzFilter", # only since nanoAODv9 available
+                        "Flag_BadPFMuonDzFilter",  # only since nanoAODv9 available
+                        "Flag_eeBadScFilter",
+                    ],
+                    "2016postVFP": [
+                        "Flag_goodVertices",
+                        "Flag_globalSuperTightHalo2016Filter",
+                        "Flag_HBHENoiseFilter",
+                        "Flag_HBHENoiseIsoFilter",
+                        "Flag_EcalDeadCellTriggerPrimitiveFilter",
+                        "Flag_BadPFMuonFilter",
+                        "Flag_BadPFMuonDzFilter",  # only since nanoAODv9 available
                         "Flag_eeBadScFilter",
                     ],
                     "2017": [
@@ -94,7 +107,7 @@ def build_config(
                         "Flag_HBHENoiseIsoFilter",
                         "Flag_EcalDeadCellTriggerPrimitiveFilter",
                         "Flag_BadPFMuonFilter",
-                        # "Flag_BadPFMuonDzFilter", # only since nanoAODv9 available
+                        "Flag_BadPFMuonDzFilter",  # only since nanoAODv9 available
                         "Flag_eeBadScFilter",
                         "Flag_ecalBadCalibFilter",
                     ],
@@ -105,7 +118,7 @@ def build_config(
                         "Flag_HBHENoiseIsoFilter",
                         "Flag_EcalDeadCellTriggerPrimitiveFilter",
                         "Flag_BadPFMuonFilter",
-                        # "Flag_BadPFMuonDzFilter", # only since nanoAODv9 available
+                        "Flag_BadPFMuonDzFilter",  # only since nanoAODv9 available
                         "Flag_eeBadScFilter",
                         "Flag_ecalBadCalibFilter",
                     ],
@@ -119,7 +132,8 @@ def build_config(
             "tau_dms": "0,1,10,11",
             "tau_sf_file": EraModifier(
                 {
-                    "2016": "data/jsonpog-integration/POG/TAU/2016postVFP_UL/tau.json.gz",
+                    "2016preVFP": "data/jsonpog-integration/POG/TAU/2016preVFP_UL/tau.json.gz",
+                    "2016postVFP": "data/jsonpog-integration/POG/TAU/2016postVFP_UL/tau.json.gz",
                     "2017": "data/jsonpog-integration/POG/TAU/2017_UL/tau.json.gz",
                     "2018": "data/jsonpog-integration/POG/TAU/2018_UL/tau.json.gz",
                 }
@@ -216,14 +230,16 @@ def build_config(
             "min_bjet_pt": 20,
             "max_bjet_eta": EraModifier(
                 {
-                    "2016": 2.4,
+                    "2016preVFP": 2.5,
+                    "2016postVFP": 2.5,
                     "2017": 2.5,
                     "2018": 2.5,
                 }
             ),
             "btag_cut": EraModifier(  # medium
                 {
-                    "2016": 0.3093,
+                    "2016": 0.2598,  # taken from https://twiki.cern.ch/twiki/bin/view/CMS/BtagRecommendation106XUL16preVFP
+                    "2016": 0.2489,  # taken from https://twiki.cern.ch/twiki/bin/view/CMS/BtagRecommendation106XUL16postVFP
                     "2017": 0.3040,
                     "2018": 0.2783,
                 }
@@ -403,7 +419,8 @@ def build_config(
         {
             "muon_sf_file": EraModifier(
                 {
-                    "2016": "data/jsonpog-integration/POG/MUO/2016postVFP_UL/muon_Z.json.gz",
+                    "2016preVFP": "data/jsonpog-integration/POG/MUO/2016preVFP_UL/muon_Z.json.gz",
+                    "2016postVFP": "data/jsonpog-integration/POG/MUO/2016postVFP_UL/muon_Z.json.gz",
                     "2017": "data/jsonpog-integration/POG/MUO/2017_UL/muon_Z.json.gz",
                     "2018": "data/jsonpog-integration/POG/MUO/2018_UL/muon_Z.json.gz",
                 }
@@ -412,7 +429,8 @@ def build_config(
             "muon_iso_sf_name": "NUM_TightRelIso_DEN_MediumID",
             "muon_sf_year_id": EraModifier(
                 {
-                    "2016": "2016postVFP_UL",
+                    "2016preVFP": "2016preVFP_UL",
+                    "2016postVFP": "2016postVFP_UL",
                     "2017": "2017_UL",
                     "2018": "2018_UL",
                 }
@@ -511,19 +529,34 @@ def build_config(
             ),
             "recoil_corrections_file": EraModifier(
                 {
-                    "2016": "data/recoil_corrections/Type1_PuppiMET_2016.root",
+                    "2016preVFP": "data/recoil_corrections/Type1_PuppiMET_2016.root",  # These are likely from Legacy data sets, therefore no difference in pre and postVFP
+                    "2016postVFP": "data/recoil_corrections/Type1_PuppiMET_2016.root",  # These are likely from Legacy data sets, therefore no difference in pre and postVFP
                     "2017": "data/recoil_corrections/Type1_PuppiMET_2017.root",
                     "2018": "data/recoil_corrections/Type1_PuppiMET_2018.root",
                 }
             ),
             "recoil_systematics_file": EraModifier(
                 {
-                    "2016": "data/recoil_corrections/PuppiMETSys_2016.root",
+                    "2016preVFP": "data/recoil_corrections/PuppiMETSys_2016.root",  # These are likely from Legacy data sets, therefore no difference in pre and postVFP
+                    "2016postVFP": "data/recoil_corrections/PuppiMETSys_2016.root",  # These are likely from Legacy data sets, therefore no difference in pre and postVFP
                     "2017": "data/recoil_corrections/PuppiMETSys_2017.root",
                     "2018": "data/recoil_corrections/PuppiMETSys_2018.root",
                 }
             ),
-            "applyRecoilCorrections": SampleModifier({"wjets": True}, default=False),
+            "applyRecoilCorrections": SampleModifier(
+                {
+                    "wjets": True,
+                    "dyjets": True,
+                    "electroweak_boson": True,
+                    "ggh_htautau": True,
+                    "vbf_htautau": True,
+                    "rem_htautau": True,
+                    "ggh_hww": True,
+                    "vbf_hww": True,
+                    "rem_VH": True,
+                },
+                default=False
+            ),
             "apply_recoil_resolution_systematic": False,
             "apply_recoil_response_systematic": False,
             "recoil_systematic_shift_up": False,
@@ -539,7 +572,8 @@ def build_config(
             "ggH_generator": "powheg",
             "zptmass_file": EraModifier(
                 {
-                    "2016": "data/zpt/htt_scalefactors_legacy_2016.root",
+                    "2016preVFP": "data/zpt/htt_scalefactors_legacy_2016.root",  # ToDO: Measured in legacy, therefore the same for pre- and postVFP for now
+                    "2016postVFP": "data/zpt/htt_scalefactors_legacy_2016.root",  # ToDO: Measured in legacy, therefore the same for pre- and postVFP for now
                     "2017": "data/zpt/htt_scalefactors_legacy_2017.root",
                     "2018": "data/zpt/htt_scalefactors_legacy_2018.root",
                 }
@@ -553,7 +587,14 @@ def build_config(
     configuration.add_config_parameters(
         ["mt", "mm", "em"],
         {
-            "mc_muon_sf_file": "data/embedding/muon_2018UL.json.gz",
+            "mc_muon_sf_file": EraModifier(
+                {
+                    "2016preVFP": "data/embedding/muon_2016preVFPUL.json.gz",
+                    "2016postVFP": "data/embedding/muon_2016postVFPUL.json.gz",
+                    "2017": "data/embedding/muon_2017UL.json.gz",
+                    "2018": "data/embedding/muon_2018UL.json.gz",
+                }
+            ),
             "mc_muon_id_sf": "ID_pt_eta_bins",
             "mc_muon_iso_sf": "Iso_pt_eta_bins",
             "mc_muon_id_extrapolation": 1.0,  # for nominal case
@@ -564,7 +605,14 @@ def build_config(
     configuration.add_config_parameters(
         ["et", "ee", "em"],
         {
-            "mc_electron_sf_file": "data/embedding/electron_2018UL.json.gz",
+            "mc_electron_sf_file": EraModifier(
+                {
+                    "2016preVFP": "data/embedding/electron_2016preVFPUL.json.gz",
+                    "2016postVFP": "data/embedding/electron_2016postVFPUL.json.gz",
+                    "2017": "data/embedding/electron_2017UL.json.gz",
+                    "2018": "data/embedding/electron_2018UL.json.gz",
+                }
+            ),
             "mc_electron_id_sf": "ID90_pt_eta_bins",
             "mc_electron_iso_sf": "Iso_pt_eta_bins",
             "mc_electron_id_extrapolation": 1.0,  # for nominal case
@@ -573,7 +621,7 @@ def build_config(
     )
     # muon trigger SF settings from embedding measurements
     configuration.add_config_parameters(
-        ["mt"],
+        ["mt", "mm"],
         {
             "singlemuon_trigger_sf_mc": [
                 {
@@ -1057,6 +1105,7 @@ def build_config(
                 scalefactors.TauEmbeddingMuonIsoSF_1_MC,
                 scalefactors.TauEmbeddingMuonIDSF_2_MC,
                 scalefactors.TauEmbeddingMuonIsoSF_2_MC,
+                scalefactors.MTGenerateSingleMuonTriggerSF_MC,
             ],
             samples=[
                 sample
@@ -1577,7 +1626,12 @@ def build_config(
         samples=[
             sample
             for sample in available_sample_types
-            if sample not in ["data", "embedding", "embedding_mc"]
+            if sample
+            not in [
+                "data",
+                "embedding",
+                "embedding_mc",
+            ]  # ToDo: Is this really necessary for all samples?
         ],
     )
     configuration.add_shift(
@@ -1828,7 +1882,6 @@ def build_config(
             if sample not in ["data", "embedding", "embedding_mc"]
         ],
     )
-
     #########################
     # TauID scale factor shifts, channel dependent # Tau energy scale shifts, dm dependent
     #########################

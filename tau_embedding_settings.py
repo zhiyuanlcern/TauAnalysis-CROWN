@@ -106,7 +106,14 @@ def setup_embedding(configuration: Configuration, scopes: List[str]):
     configuration.add_config_parameters(
         scopes,
         {
-            "embedding_selection_sf_file": "data/embedding/muon_2018UL.json.gz",
+            "embedding_selection_sf_file": EraModifier(
+                {
+                    "2016preVFP": "data/embedding/muon_2016preVFPUL.json.gz",
+                    "2016postVFP": "data/embedding/muon_2016postVFPUL.json.gz",
+                    "2017": "data/embedding/muon_2017UL.json.gz",
+                    "2018": "data/embedding/muon_2018UL.json.gz",
+                }
+            ),
             "embedding_selection_trigger_sf": "m_sel_trg_kit_ratio",
             "embedding_selection_id_sf": "EmbID_pt_eta_bins",
         },
@@ -121,7 +128,14 @@ def setup_embedding(configuration: Configuration, scopes: List[str]):
     configuration.add_config_parameters(
         ["mt", "mm", "em"],
         {
-            "embedding_muon_sf_file": "data/embedding/muon_2018UL.json.gz",
+            "embedding_muon_sf_file": EraModifier(
+                {
+                    "2016preVFP": "data/embedding/muon_2016preVFPUL.json.gz",
+                    "2016postVFP": "data/embedding/muon_2016postVFPUL.json.gz",
+                    "2017": "data/embedding/muon_2017UL.json.gz",
+                    "2018": "data/embedding/muon_2018UL.json.gz",
+                }
+            ),
             "embedding_muon_id_sf": "ID_pt_eta_bins",
             "embedding_muon_iso_sf": "Iso_pt_eta_bins",
         },
@@ -130,7 +144,14 @@ def setup_embedding(configuration: Configuration, scopes: List[str]):
     configuration.add_config_parameters(
         ["et", "ee", "em"],
         {
-            "embedding_electron_sf_file": "data/embedding/electron_2018UL.json.gz",
+            "embedding_electron_sf_file": EraModifier(
+                {
+                    "2016preVFP": "data/embedding/electron_2016preVFPUL.json.gz",
+                    "2016postVFP": "data/embedding/electron_2016postVFPUL.json.gz",
+                    "2017": "data/embedding/electron_2017UL.json.gz",
+                    "2018": "data/embedding/electron_2018UL.json.gz",
+                }
+            ),
             "embedding_electron_id_sf": "ID90_pt_eta_bins",
             "embedding_electron_iso_sf": "Iso_pt_eta_bins",
         },
@@ -371,10 +392,51 @@ def setup_embedding(configuration: Configuration, scopes: List[str]):
                             "max_deltaR_triggermatch": 0.4,
                         },
                     ],
-                    "2016": [
+                    "2016postVFP": [
                         {
                             "flagname": "trg_double_tau35_mediumiso",
                             "hlt_path": "HLT_DoubleMediumIsoPFTau35_Trk1_eta2p1_Reg",
+                            "p1_ptcut": 40,
+                            "p2_ptcut": 40,
+                            "p1_etacut": 2.1,
+                            "p2_etacut": 2.1,
+                            "p1_filterbit": 6,
+                            "p1_trigger_particle_id": 15,
+                            "p2_filterbit": 6,
+                            "p2_trigger_particle_id": 15,
+                            "max_deltaR_triggermatch": 0.4,
+                        },
+                        {
+                            "flagname": "trg_double_tau35_mediumcombiso",
+                            "hlt_path": "HLT_DoubleMediumCombinedIsoPFTau35_Trk1_eta2p1_Reg",
+                            "p1_ptcut": 40,
+                            "p2_ptcut": 40,
+                            "p1_etacut": 2.1,
+                            "p2_etacut": 2.1,
+                            "p1_filterbit": 6,
+                            "p1_trigger_particle_id": 15,
+                            "p2_filterbit": 6,
+                            "p2_trigger_particle_id": 15,
+                            "max_deltaR_triggermatch": 0.4,
+                        },
+                    ],
+                    "2016preVFP": [
+                        {
+                            "flagname": "trg_double_tau35_mediumiso",
+                            "hlt_path": "HLT_DoubleMediumIsoPFTau35_Trk1_eta2p1_Reg",
+                            "p1_ptcut": 40,
+                            "p2_ptcut": 40,
+                            "p1_etacut": 2.1,
+                            "p2_etacut": 2.1,
+                            "p1_filterbit": 6,
+                            "p1_trigger_particle_id": 15,
+                            "p2_filterbit": 6,
+                            "p2_trigger_particle_id": 15,
+                            "max_deltaR_triggermatch": 0.4,
+                        },
+                        {
+                            "flagname": "trg_double_tau35_mediumcombiso",
+                            "hlt_path": "HLT_DoubleMediumCombinedIsoPFTau35_Trk1_eta2p1_Reg",
                             "p1_ptcut": 40,
                             "p2_ptcut": 40,
                             "p1_etacut": 2.1,
@@ -415,7 +477,7 @@ def setup_embedding(configuration: Configuration, scopes: List[str]):
                             "flagname": "trg_cross_mu20tau27",
                             "hlt_path": "HLT_IsoMu20_eta2p1_LooseChargedIsoPFTau27_eta2p1_CrossL1",
                             "p1_ptcut": 21,
-                            "p1_etacut": 2.5,
+                            "p1_etacut": 2.1,
                             "p1_filterbit": 3,
                             "p1_trigger_particle_id": 13,
                             "p2_ptcut": 32,
@@ -425,15 +487,30 @@ def setup_embedding(configuration: Configuration, scopes: List[str]):
                             "max_deltaR_triggermatch": 0.4,
                         }
                     ],
-                    "2016": [
+                    "2016preVFP": [
                         {
                             "flagname": "trg_cross_mu19tau20",
                             "hlt_path": "HLT_IsoMu19_eta2p1_LooseIsoPFTau20_SingleL1",
                             "p1_ptcut": 20,
-                            "p1_etacut": 2.5,
+                            "p1_etacut": 2.1,
                             "p1_filterbit": 3,
                             "p1_trigger_particle_id": 13,
-                            "p2_ptcut": 22,
+                            "p2_ptcut": 25,
+                            "p2_etacut": 2.1,
+                            "p2_filterbit": 4,
+                            "p2_trigger_particle_id": 15,
+                            "max_deltaR_triggermatch": 0.4,
+                        }
+                    ],
+                    "2016postVFP": [
+                        {
+                            "flagname": "trg_cross_mu19tau20",
+                            "hlt_path": "HLT_IsoMu19_eta2p1_LooseIsoPFTau20_SingleL1",
+                            "p1_ptcut": 20,
+                            "p1_etacut": 2.1,
+                            "p1_filterbit": 3,
+                            "p1_trigger_particle_id": 13,
+                            "p2_ptcut": 25,
                             "p2_etacut": 2.1,
                             "p2_filterbit": 4,
                             "p2_trigger_particle_id": 15,
@@ -525,7 +602,14 @@ def setup_embedding(configuration: Configuration, scopes: List[str]):
     configuration.add_config_parameters(
         ["mt", "et"],
         {
-            "tau_emb_sf_file": "data/embedding/tau_2018UL.json.gz",
+            "tau_emb_sf_file": EraModifier(
+                {
+                    "2016preVFP": "data/embedding/tau_2016preVFPUL.json.gz",
+                    "2016postVFP": "data/embedding/tau_2016postVFPUL.json.gz",
+                    "2017": "data/embedding/tau_2017UL.json.gz",
+                    "2018": "data/embedding/tau_2018UL.json.gz",
+                }
+            ),
             "tau_emb_sf_vsjet_tau20to25": "nom",
             "tau_emb_sf_vsjet_tau25to30": "nom",
             "tau_emb_sf_vsjet_tau30to35": "nom",
@@ -559,7 +643,14 @@ def setup_embedding(configuration: Configuration, scopes: List[str]):
     configuration.add_config_parameters(
         ["tt"],
         {
-            "tau_emb_sf_file": "data/embedding/tau_2018UL.json.gz",
+            "tau_emb_sf_file": EraModifier(
+                {
+                    "2016preVFP": "data/embedding/tau_2016preVFPUL.json.gz",
+                    "2016postVFP": "data/embedding/tau_2016postVFPUL.json.gz",
+                    "2017": "data/embedding/tau_2017UL.json.gz",
+                    "2018": "data/embedding/tau_2018UL.json.gz",
+                }
+            ),
             "tau_emb_sf_vsjet_tauDM0": "nom",
             "tau_emb_sf_vsjet_tauDM1": "nom",
             "tau_emb_sf_vsjet_tauDM10": "nom",
@@ -831,6 +922,21 @@ def setup_embedding(configuration: Configuration, scopes: List[str]):
                 samples=["embedding"],
             )
     else:
+        tauES_2016preVFP = {  # ToDo: Measure these values for 2016preVFP and add them to the configuration
+            "up": 1.0 - 0.0,
+            "nominal": 1.0,
+            "down": 1.0 + 0.0,
+        }
+        tauES_2016postVFP = {  # ToDo: Measure these values for 2016postVFP and add them to the configuration
+            "up": 1.0 - 0.0,
+            "nominal": 1.0,
+            "down": 1.0 + 0.0,
+        }
+        tauES_2017 = {  # ToDo: Measure these values for 2017 and add them to the configuration
+            "up": 1.0 - 0.0,
+            "nominal": 1.0,
+            "down": 1.0 + 0.0,
+        }
         tauES_2018 = {
             "up": 0.9865 - 0.0039,
             "nominal": 0.9865,
@@ -839,10 +945,38 @@ def setup_embedding(configuration: Configuration, scopes: List[str]):
         configuration.add_config_parameters(
             ["mt", "et"],
             {
-                "tau_ES_shift_DM0": EraModifier({"2018": tauES_2018["nominal"]}),
-                "tau_ES_shift_DM1": EraModifier({"2018": tauES_2018["nominal"]}),
-                "tau_ES_shift_DM10": EraModifier({"2018": tauES_2018["nominal"]}),
-                "tau_ES_shift_DM11": EraModifier({"2018": tauES_2018["nominal"]}),
+                "tau_ES_shift_DM0": EraModifier(
+                    {
+                        "2016preVFP": tauES_2016preVFP["nominal"],
+                        "2016postVFP": tauES_2016postVFP["nominal"],
+                        "2017": tauES_2017["nominal"],
+                        "2018": tauES_2018["nominal"],
+                    }
+                ),
+                "tau_ES_shift_DM1": EraModifier(
+                    {
+                        "2016preVFP": tauES_2016preVFP["nominal"],
+                        "2016postVFP": tauES_2016postVFP["nominal"],
+                        "2017": tauES_2017["nominal"],
+                        "2018": tauES_2018["nominal"],
+                    }
+                ),
+                "tau_ES_shift_DM10": EraModifier(
+                    {
+                        "2016preVFP": tauES_2016preVFP["nominal"],
+                        "2016postVFP": tauES_2016postVFP["nominal"],
+                        "2017": tauES_2017["nominal"],
+                        "2018": tauES_2018["nominal"],
+                    }
+                ),
+                "tau_ES_shift_DM11": EraModifier(
+                    {
+                        "2016preVFP": tauES_2016preVFP["nominal"],
+                        "2016postVFP": tauES_2016postVFP["nominal"],
+                        "2017": tauES_2017["nominal"],
+                        "2018": tauES_2018["nominal"],
+                    }
+                ),
             },
         )
         configuration.add_modification_rule(
@@ -861,7 +995,14 @@ def setup_embedding(configuration: Configuration, scopes: List[str]):
                 name="tauEs1prong0pizeroUp",
                 shift_config={
                     ("mt", "et"): {
-                        "tau_ES_shift_DM0": EraModifier({"2018": tauES_2018["up"]})
+                        "tau_ES_shift_DM0": EraModifier(
+                            {
+                                "2016preVFP": tauES_2016preVFP["up"],
+                                "2016postVFP": tauES_2016postVFP["up"],
+                                "2017": tauES_2017["up"],
+                                "2018": tauES_2018["up"],
+                            }
+                        )
                     }
                 },
                 producers={("mt", "et"): taus.TauPtCorrection_byValue},
@@ -873,7 +1014,14 @@ def setup_embedding(configuration: Configuration, scopes: List[str]):
                 name="tauEs1prong0pizeroDown",
                 shift_config={
                     ("mt", "et"): {
-                        "tau_ES_shift_DM0": EraModifier({"2018": tauES_2018["down"]})
+                        "tau_ES_shift_DM0": EraModifier(
+                            {
+                                "2016preVFP": tauES_2016preVFP["down"],
+                                "2016postVFP": tauES_2016postVFP["down"],
+                                "2017": tauES_2017["down"],
+                                "2018": tauES_2018["down"],
+                            }
+                        )
                     }
                 },
                 producers={("mt", "et"): taus.TauPtCorrection_byValue},
@@ -885,7 +1033,14 @@ def setup_embedding(configuration: Configuration, scopes: List[str]):
                 name="tauEs1prong1pizeroUp",
                 shift_config={
                     ("mt", "et"): {
-                        "tau_ES_shift_DM1": EraModifier({"2018": tauES_2018["up"]})
+                        "tau_ES_shift_DM1": EraModifier(
+                            {
+                                "2016preVFP": tauES_2016preVFP["up"],
+                                "2016postVFP": tauES_2016postVFP["up"],
+                                "2017": tauES_2017["up"],
+                                "2018": tauES_2018["up"],
+                            }
+                        )
                     }
                 },
                 producers={("mt", "et"): taus.TauPtCorrection_byValue},
@@ -897,7 +1052,14 @@ def setup_embedding(configuration: Configuration, scopes: List[str]):
                 name="tauEs1prong1pizeroDown",
                 shift_config={
                     ("mt", "et"): {
-                        "tau_ES_shift_DM1": EraModifier({"2018": tauES_2018["down"]})
+                        "tau_ES_shift_DM1": EraModifier(
+                            {
+                                "2016preVFP": tauES_2016preVFP["down"],
+                                "2016postVFP": tauES_2016postVFP["down"],
+                                "2017": tauES_2017["down"],
+                                "2018": tauES_2018["down"],
+                            }
+                        )
                     }
                 },
                 producers={("mt", "et"): taus.TauPtCorrection_byValue},
@@ -909,7 +1071,14 @@ def setup_embedding(configuration: Configuration, scopes: List[str]):
                 name="tauEs3prong0pizeroUp",
                 shift_config={
                     ("mt", "et"): {
-                        "tau_ES_shift_DM10": EraModifier({"2018": tauES_2018["up"]})
+                        "tau_ES_shift_DM10": EraModifier(
+                            {
+                                "2016preVFP": tauES_2016preVFP["up"],
+                                "2016postVFP": tauES_2016postVFP["up"],
+                                "2017": tauES_2017["up"],
+                                "2018": tauES_2018["up"],
+                            }
+                        )
                     }
                 },
                 producers={("mt", "et"): taus.TauPtCorrection_byValue},
@@ -921,7 +1090,14 @@ def setup_embedding(configuration: Configuration, scopes: List[str]):
                 name="tauEs3prong0pizeroDown",
                 shift_config={
                     ("mt", "et"): {
-                        "tau_ES_shift_DM10": EraModifier({"2018": tauES_2018["down"]})
+                        "tau_ES_shift_DM10": EraModifier(
+                            {
+                                "2016preVFP": tauES_2016preVFP["down"],
+                                "2016postVFP": tauES_2016postVFP["down"],
+                                "2017": tauES_2017["down"],
+                                "2018": tauES_2018["down"],
+                            }
+                        )
                     }
                 },
                 producers={("mt", "et"): taus.TauPtCorrection_byValue},
@@ -933,7 +1109,14 @@ def setup_embedding(configuration: Configuration, scopes: List[str]):
                 name="tauEs3prong1pizeroUp",
                 shift_config={
                     ("mt", "et"): {
-                        "tau_ES_shift_DM11": EraModifier({"2018": tauES_2018["up"]})
+                        "tau_ES_shift_DM11": EraModifier(
+                            {
+                                "2016preVFP": tauES_2016preVFP["up"],
+                                "2016postVFP": tauES_2016postVFP["up"],
+                                "2017": tauES_2017["up"],
+                                "2018": tauES_2018["up"],
+                            }
+                        )
                     }
                 },
                 producers={("mt", "et"): taus.TauPtCorrection_byValue},
@@ -945,7 +1128,14 @@ def setup_embedding(configuration: Configuration, scopes: List[str]):
                 name="tauEs3prong1pizeroDown",
                 shift_config={
                     ("mt", "et"): {
-                        "tau_ES_shift_DM11": EraModifier({"2018": tauES_2018["down"]})
+                        "tau_ES_shift_DM11": EraModifier(
+                            {
+                                "2016preVFP": tauES_2016preVFP["down"],
+                                "2016postVFP": tauES_2016postVFP["down"],
+                                "2017": tauES_2017["down"],
+                                "2018": tauES_2018["down"],
+                            }
+                        )
                     }
                 },
                 producers={("mt", "et"): taus.TauPtCorrection_byValue},
@@ -997,6 +1187,42 @@ def setup_embedding(configuration: Configuration, scopes: List[str]):
                 samples=["embedding"],
             )
     else:
+        ele_energyscale_2016preVFP = {  # ToDo: Set to sensible value
+            "barrel": {
+                "up": 1.0 + 0.0,
+                "nominal": 1.0,
+                "down": 1.0 - 0.0,
+            },
+            "endcap": {
+                "up": 1.0 + 0.0,
+                "nominal": 1.0,
+                "down": 1.0 - 0.0,
+            },
+        }
+        ele_energyscale_2016postVFP = {  # ToDo: Set to sensible value
+            "barrel": {
+                "up": 1.0 + 0.0,
+                "nominal": 1.0,
+                "down": 1.0 - 0.0,
+            },
+            "endcap": {
+                "up": 1.0 + 0.0,
+                "nominal": 1.0,
+                "down": 1.0 - 0.0,
+            },
+        }
+        ele_energyscale_2017 = {  # ToDo: Set to sensible value
+            "barrel": {
+                "up": 1.0 + 0.0,
+                "nominal": 1.0,
+                "down": 1.0 - 0.0,
+            },
+            "endcap": {
+                "up": 1.0 + 0.0,
+                "nominal": 1.0,
+                "down": 1.0 - 0.0,
+            },
+        }
         ele_energyscale_2018 = {
             "barrel": {
                 "up": 0.9958 + 0.005,
@@ -1013,10 +1239,20 @@ def setup_embedding(configuration: Configuration, scopes: List[str]):
             "global",
             {
                 "ele_energyscale_barrel": EraModifier(
-                    {"2018": ele_energyscale_2018["barrel"]["nominal"]}
+                    {
+                        "2016preVFP": ele_energyscale_2016preVFP["barrel"]["nominal"],
+                        "2016postVFP": ele_energyscale_2016postVFP["barrel"]["nominal"],
+                        "2017": ele_energyscale_2017["barrel"]["nominal"],
+                        "2018": ele_energyscale_2018["barrel"]["nominal"],
+                    }
                 ),
                 "ele_energyscale_endcap": EraModifier(
-                    {"2018": ele_energyscale_2018["endcap"]["nominal"]}
+                    {
+                        "2016preVFP": ele_energyscale_2016preVFP["endcap"]["nominal"],
+                        "2016postVFP": ele_energyscale_2016postVFP["endcap"]["nominal"],
+                        "2017": ele_energyscale_2017["endcap"]["nominal"],
+                        "2018": ele_energyscale_2018["endcap"]["nominal"],
+                    }
                 ),
             },
         )
@@ -1036,7 +1272,16 @@ def setup_embedding(configuration: Configuration, scopes: List[str]):
                 shift_config={
                     ("global"): {
                         "ele_energyscale_barrel": EraModifier(
-                            {"2018": ele_energyscale_2018["barrel"]["up"]}
+                            {
+                                "2016preVFP": ele_energyscale_2016preVFP["barrel"][
+                                    "up"
+                                ],
+                                "2016postVFP": ele_energyscale_2016postVFP["barrel"][
+                                    "up"
+                                ],
+                                "2017": ele_energyscale_2017["barrel"]["up"],
+                                "2018": ele_energyscale_2018["barrel"]["up"],
+                            }
                         )
                     }
                 },
@@ -1050,7 +1295,16 @@ def setup_embedding(configuration: Configuration, scopes: List[str]):
                 shift_config={
                     ("global"): {
                         "ele_energyscale_barrel": EraModifier(
-                            {"2018": ele_energyscale_2018["barrel"]["down"]}
+                            {
+                                "2016preVFP": ele_energyscale_2016preVFP["barrel"][
+                                    "down"
+                                ],
+                                "2016postVFP": ele_energyscale_2016postVFP["barrel"][
+                                    "down"
+                                ],
+                                "2017": ele_energyscale_2017["barrel"]["down"],
+                                "2018": ele_energyscale_2018["barrel"]["down"],
+                            }
                         )
                     }
                 },
@@ -1064,7 +1318,16 @@ def setup_embedding(configuration: Configuration, scopes: List[str]):
                 shift_config={
                     ("global"): {
                         "ele_energyscale_endcap": EraModifier(
-                            {"2018": ele_energyscale_2018["endcap"]["up"]}
+                            {
+                                "2016preVFP": ele_energyscale_2016preVFP["endcap"][
+                                    "up"
+                                ],
+                                "2016postVFP": ele_energyscale_2016postVFP["endcap"][
+                                    "up"
+                                ],
+                                "2017": ele_energyscale_2017["endcap"]["up"],
+                                "2018": ele_energyscale_2018["endcap"]["up"],
+                            }
                         )
                     }
                 },
@@ -1078,7 +1341,16 @@ def setup_embedding(configuration: Configuration, scopes: List[str]):
                 shift_config={
                     ("global"): {
                         "ele_energyscale_endcap": EraModifier(
-                            {"2018": ele_energyscale_2018["endcap"]["down"]}
+                            {
+                                "2016preVFP": ele_energyscale_2016preVFP["endcap"][
+                                    "down"
+                                ],
+                                "2016postVFP": ele_energyscale_2016postVFP["endcap"][
+                                    "down"
+                                ],
+                                "2017": ele_energyscale_2017["endcap"]["down"],
+                                "2018": ele_energyscale_2018["endcap"]["down"],
+                            }
                         )
                     }
                 },
