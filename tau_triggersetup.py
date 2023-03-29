@@ -103,7 +103,7 @@ def add_diTauTriggerSetup(configuration: Configuration):
                             "flagname": "trg_cross_mu20tau27_hps",
                             "hlt_path": "HLT_IsoMu20_eta2p1_LooseChargedIsoPFTauHPS27_eta2p1_CrossL1",
                             "p1_ptcut": 21,
-                            "p1_etacut": 2.5,  # ToDo: Shouldn't this be 2.1 as well?
+                            "p1_etacut": 2.1,
                             "p1_filterbit": 3,
                             "p1_trigger_particle_id": 13,
                             "p2_ptcut": 32,
@@ -117,7 +117,7 @@ def add_diTauTriggerSetup(configuration: Configuration):
                             "flagname": "trg_cross_mu20tau27",
                             "hlt_path": "HLT_IsoMu20_eta2p1_LooseChargedIsoPFTau27_eta2p1_CrossL1",
                             "p1_ptcut": 21,
-                            "p1_etacut": 2.5,
+                            "p1_etacut": 2.1,
                             "p1_filterbit": 3,
                             "p1_trigger_particle_id": 13,
                             "p2_ptcut": 32,
