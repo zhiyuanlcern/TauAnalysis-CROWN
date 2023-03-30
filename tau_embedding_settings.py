@@ -932,13 +932,11 @@ def setup_embedding(configuration: Configuration, scopes: List[str]):
             "nominal": 1.0,
             "down": 1.0 + 0.0,
         }
-        tauES_2017 = (
-            {  # ToDo: Measure these values for 2017 and add them to the configuration
-                "up": 1.0 - 0.0,
-                "nominal": 1.0,
-                "down": 1.0 + 0.0,
-            }
-        )
+        tauES_2017 = {  # ToDo: Measure these values for 2017 and add them to the configuration
+            "up": 1.0 - 0.0,
+            "nominal": 1.0,
+            "down": 1.0 + 0.0,
+        }
         tauES_2018 = {
             "up": 0.9865 - 0.0039,
             "nominal": 0.9865,
