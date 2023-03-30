@@ -555,7 +555,7 @@ def build_config(
                     "vbf_hww": True,
                     "rem_VH": True,
                 },
-                default=False
+                default=False,
             ),
             "apply_recoil_resolution_systematic": False,
             "apply_recoil_response_systematic": False,
