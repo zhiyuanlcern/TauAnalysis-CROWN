@@ -37,14 +37,14 @@ def build_config(
                 {
                     "2016": "",
                     "2017": "",
-                    "2018": "data/fake_factors/2018/fake_factors_et.json.gz",
+                    "2018": "data/fake_factors/nmssm/2018/fake_factors_et.json.gz",
                 }
             ),
             "ff_corr_file": EraModifier(
                 {
                     "2016": "",
                     "2017": "",
-                    "2018": "data/fake_factors/2018/FF_corrections_et.json.gz",
+                    "2018": "data/fake_factors/nmssm/2018/FF_corrections_et.json.gz",
                 }
             ),
         },
@@ -57,14 +57,14 @@ def build_config(
                 {
                     "2016": "",
                     "2017": "",
-                    "2018": "data/fake_factors/2018/fake_factors_mt.json.gz",
+                    "2018": "data/fake_factors/nmssm/2018/fake_factors_mt.json.gz",
                 }
             ),
             "ff_corr_file": EraModifier(
                 {
                     "2016": "",
                     "2017": "",
-                    "2018": "data/fake_factors/2018/FF_corrections_mt.json.gz",
+                    "2018": "data/fake_factors/2018/nmssm/FF_corrections_mt.json.gz",
                 }
             ),
         },
