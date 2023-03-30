@@ -543,7 +543,14 @@ MTDiTauPairQuantities = ProducerGroup(
     input=None,
     output=None,
     scopes=["mt"],
-    subproducers=[UnrollMuLV1, UnrollTauLV2, tau_decaymode_1_notau, m_vis, pt_vis, deltaR_ditaupair],
+    subproducers=[
+        UnrollMuLV1,
+        UnrollTauLV2,
+        tau_decaymode_1_notau,
+        m_vis,
+        pt_vis,
+        deltaR_ditaupair,
+    ],
 )
 MuMuPairQuantities = ProducerGroup(
     name="MuMuPairQuantities",
@@ -551,7 +558,15 @@ MuMuPairQuantities = ProducerGroup(
     input=None,
     output=None,
     scopes=["mm"],
-    subproducers=[UnrollMuLV1, UnrollMuLV2, tau_decaymode_1_notau, tau_decaymode_2_notau, m_vis, pt_vis, deltaR_ditaupair],
+    subproducers=[
+        UnrollMuLV1,
+        UnrollMuLV2,
+        tau_decaymode_1_notau,
+        tau_decaymode_2_notau,
+        m_vis,
+        pt_vis,
+        deltaR_ditaupair,
+    ],
 )
 ElElPairQuantities = ProducerGroup(
     name="ElElPairQuantities",
@@ -559,7 +574,15 @@ ElElPairQuantities = ProducerGroup(
     input=None,
     output=None,
     scopes=["ee"],
-    subproducers=[UnrollElLV1, UnrollElLV2, tau_decaymode_1_notau, tau_decaymode_2_notau, m_vis, pt_vis, deltaR_ditaupair],
+    subproducers=[
+        UnrollElLV1,
+        UnrollElLV2,
+        tau_decaymode_1_notau,
+        tau_decaymode_2_notau,
+        m_vis,
+        pt_vis,
+        deltaR_ditaupair,
+    ],
 )
 ETDiTauPairQuantities = ProducerGroup(
     name="ETDiTauPairQuantities",
@@ -567,7 +590,14 @@ ETDiTauPairQuantities = ProducerGroup(
     input=None,
     output=None,
     scopes=["et"],
-    subproducers=[UnrollElLV1, UnrollTauLV2, tau_decaymode_1_notau, m_vis, pt_vis, deltaR_ditaupair],
+    subproducers=[
+        UnrollElLV1,
+        UnrollTauLV2,
+        tau_decaymode_1_notau,
+        m_vis,
+        pt_vis,
+        deltaR_ditaupair,
+    ],
 )
 TTDiTauPairQuantities = ProducerGroup(
     name="TTDiTauPairQuantities",
@@ -583,7 +613,15 @@ EMDiTauPairQuantities = ProducerGroup(
     input=None,
     output=None,
     scopes=["em"],
-    subproducers=[UnrollElLV1, UnrollMuLV2, tau_decaymode_1_notau, tau_decaymode_2_notau, m_vis, pt_vis, deltaR_ditaupair],
+    subproducers=[
+        UnrollElLV1,
+        UnrollMuLV2,
+        tau_decaymode_1_notau,
+        tau_decaymode_2_notau,
+        m_vis,
+        pt_vis,
+        deltaR_ditaupair,
+    ],
 )
 
 ## advanced event quantities (can be caluculated when ditau pair and met and all jets are determined)

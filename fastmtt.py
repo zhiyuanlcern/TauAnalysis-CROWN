@@ -27,12 +27,9 @@ def build_config(
         quantities_map,
     )
 
-
     configuration.add_producers(
         ["mt", "et", "tt", "em"],
-        [
-            pairquantities.FastMTTQuantities
-        ],
+        [pairquantities.FastMTTQuantities],
     )
 
     configuration.add_outputs(
