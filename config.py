@@ -410,7 +410,7 @@ def build_config(
             "muon_index_in_pair": 0,
             "min_muon_pt": 23.0,
             "max_muon_eta": 2.1,
-            "muon_iso_cut": 0.15,
+            "muon_iso_cut": 0.3,
         },
     )
     # Muon scale factors configuration
@@ -469,7 +469,7 @@ def build_config(
             "electron_index_in_pair": 0,
             "min_electron_pt": 25.0,
             "max_electron_eta": 2.1,
-            "electron_iso_cut": 0.3,
+            "electron_iso_cut": 0.5,
         },
     )
     # EE scope electron selection
