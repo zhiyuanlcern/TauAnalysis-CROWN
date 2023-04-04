@@ -29,3 +29,31 @@ FakeFactors_nmssm_lt = Producer(
     output=[q.fake_factor],
     scopes=["mt", "et"],
 )
+
+RawFakeFactors_sm_lt = Producer(
+    name="RawFakeFactors_sm_lt",
+    call='fakefactors::raw_fakefactor_sm_lt({df}, {output}, {input}, "{ff_variation}", "{ff_file}")',
+    input=[
+        q.pt_2,
+        q.njets,
+        q.mt_1,
+        q.deltaR_ditaupair,
+    ],
+    output=[q.raw_fake_factor],
+    scopes=["mt", "et"],
+)
+FakeFactors_sm_lt = Producer(
+    name="FakeFactors_sm_lt",
+    call='fakefactors::fakefactor_sm_lt({df}, {output}, {input}, "{ff_variation}", "{ff_file}", "{ff_corr_file}")',
+    input=[
+        q.pt_2,
+        q.njets,
+        q.mt_1,
+        q.pt_1,
+        q.iso_1,
+        q.m_vis,
+        q.deltaR_ditaupair,
+    ],
+    output=[q.fake_factor],
+    scopes=["mt", "et"],
+)
