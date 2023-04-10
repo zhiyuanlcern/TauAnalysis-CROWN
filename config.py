@@ -238,10 +238,12 @@ def build_config(
             ),
             "btag_cut": EraModifier(  # medium
                 {
+
                     "2016": 0.2598,  # taken from https://twiki.cern.ch/twiki/bin/view/CMS/BtagRecommendation106XUL16preVFP
                     "2016": 0.2489,  # taken from https://twiki.cern.ch/twiki/bin/view/CMS/BtagRecommendation106XUL16postVFP
                     "2017": 0.3040,
                     "2018": 0.2783,
+
                 }
             ),
         },
@@ -382,12 +384,12 @@ def build_config(
     configuration.add_config_parameters(
         ["et", "mt"],
         {
-            "min_tau_pt": 20.0,
+            "min_tau_pt": 30.0, # use AN definition
             "max_tau_eta": 2.3,
             "max_tau_dz": 0.2,
-            "vsjet_tau_id_bit": 1,
-            "vsele_tau_id_bit": 1,
-            "vsmu_tau_id_bit": 1,
+            "vsjet_tau_id_bit": 1,#"VVVLoose": 1,"VVLoose": 2,"VLoose": 3,"Loose": 4,"Medium": 5,"Tight": 6,
+            "vsele_tau_id_bit": 2,# "VVLoose": 2,"VLoose": 3,"Loose": 4,"Medium": 5,"Tight": 6,
+            "vsmu_tau_id_bit": 4, #"VLoose": 1,"Loose": 2,"Medium": 3,"Tight": 4,
         },
     )
     # TT tau selection:
@@ -397,8 +399,8 @@ def build_config(
             "min_tau_pt": 35.0,
             "max_tau_eta": 2.3,
             "max_tau_dz": 0.2,
-            "vsjet_tau_id_bit": 4,
-            "vsele_tau_id_bit": 4,
+            "vsjet_tau_id_bit": 1,
+            "vsele_tau_id_bit": 2,
             "vsmu_tau_id_bit": 1,
         },
     )
@@ -687,6 +689,7 @@ def build_config(
             jets.JetEnergyCorrection,
             jets.GoodJets,
             jets.GoodBJets,
+            jets.GoodPreBJets,
             event.DiLeptonVeto,
             met.MetBasics,
         ],
@@ -706,6 +709,7 @@ def build_config(
             jets.JetCollection,
             jets.BasicJetQuantities,
             jets.BJetCollection,
+            jets.PreBJetCollection,
             jets.BasicBJetQuantities,
             scalefactors.btagging_SF,
             met.MetCorrections,
@@ -1182,6 +1186,7 @@ def build_config(
             q.phi_1,
             q.phi_2,
             q.njets,
+            q.nprebjets,
             q.jpt_1,
             q.jpt_2,
             q.jeta_1,
