@@ -39,7 +39,7 @@ RawFakeFactors_sm_lt = Producer(
         q.mt_1,
         q.deltaR_ditaupair,
     ],
-    output=[q.raw_fake_factor],
+    output=[q.raw_fake_factor, q.raw_qcd_fake_factor, q.raw_wjets_fake_factor, q.raw_ttbar_fake_factor],
     scopes=["mt", "et"],
 )
 FakeFactors_sm_lt = Producer(
@@ -54,6 +54,20 @@ FakeFactors_sm_lt = Producer(
         q.m_vis,
         q.deltaR_ditaupair,
     ],
-    output=[q.fake_factor],
+    output=[q.fake_factor, q.qcd_fake_factor, q.wjets_fake_factor, q.ttbar_fake_factor],
+    scopes=["mt", "et"],
+)
+FakeFactors_sm_lt_nodR = Producer(
+    name="FakeFactors_sm_lt_nodR",
+    call='fakefactors::fakefactor_sm_lt_no_deltaR({df}, {output}, {input}, "{ff_variation}", "{ff_file}", "{ff_corr_file}")',
+    input=[
+        q.pt_2,
+        q.njets,
+        q.mt_1,
+        q.pt_1,
+        q.iso_1,
+        q.m_vis,
+    ],
+    output=[q.fake_factor, q.qcd_fake_factor, q.wjets_fake_factor, q.ttbar_fake_factor],
     scopes=["mt", "et"],
 )

@@ -75,6 +75,7 @@ def build_config(
         [
             fakefactors.RawFakeFactors_sm_lt,
             fakefactors.FakeFactors_sm_lt,
+	    # fakefactors.FakeFactors_sm_lt_nodR,
         ],
     )
 
@@ -82,7 +83,13 @@ def build_config(
         ["mt", "et"],
         [
             q.raw_fake_factor,
+            q.raw_qcd_fake_factor,
+            q.raw_wjets_fake_factor,
+            q.raw_ttbar_fake_factor,
             q.fake_factor,
+            q.ttbar_fake_factor,
+            q.wjets_fake_factor,
+            q.qcd_fake_factor,
         ],
     )
 
