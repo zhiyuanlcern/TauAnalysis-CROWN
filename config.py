@@ -87,7 +87,7 @@ def build_config(
                         "Flag_HBHENoiseIsoFilter",
                         "Flag_EcalDeadCellTriggerPrimitiveFilter",
                         "Flag_BadPFMuonFilter",
-                        "Flag_BadPFMuonDzFilter",  # only since nanoAODv9 available
+                        #"Flag_BadPFMuonDzFilter",  # only since nanoAODv9 available
                         "Flag_eeBadScFilter",
                     ],
                     "2016postVFP": [
@@ -97,7 +97,7 @@ def build_config(
                         "Flag_HBHENoiseIsoFilter",
                         "Flag_EcalDeadCellTriggerPrimitiveFilter",
                         "Flag_BadPFMuonFilter",
-                        "Flag_BadPFMuonDzFilter",  # only since nanoAODv9 available
+                        #"Flag_BadPFMuonDzFilter",  # only since nanoAODv9 available
                         "Flag_eeBadScFilter",
                     ],
                     "2017": [
@@ -107,7 +107,7 @@ def build_config(
                         "Flag_HBHENoiseIsoFilter",
                         "Flag_EcalDeadCellTriggerPrimitiveFilter",
                         "Flag_BadPFMuonFilter",
-                        "Flag_BadPFMuonDzFilter",  # only since nanoAODv9 available
+                        #"Flag_BadPFMuonDzFilter",  # only since nanoAODv9 available
                         "Flag_eeBadScFilter",
                         "Flag_ecalBadCalibFilter",
                     ],
@@ -118,7 +118,7 @@ def build_config(
                         "Flag_HBHENoiseIsoFilter",
                         "Flag_EcalDeadCellTriggerPrimitiveFilter",
                         "Flag_BadPFMuonFilter",
-                        "Flag_BadPFMuonDzFilter",  # only since nanoAODv9 available
+                        #"Flag_BadPFMuonDzFilter",  # only since nanoAODv9 available
                         "Flag_eeBadScFilter",
                         "Flag_ecalBadCalibFilter",
                     ],
@@ -682,7 +682,7 @@ def build_config(
             event.npartons,
             event.MetFilter,
             event.PUweights,
-            event.LHE_Scale_weight,
+            # event.LHE_Scale_weight,
             muons.BaseMuons,
             electrons.RenameElectronPt,
             electrons.BaseElectrons,
@@ -777,7 +777,7 @@ def build_config(
             pairselection.LVMu1Uncorrected,
             pairselection.LVTau2Uncorrected,
             pairquantities.MTDiTauPairQuantities,
-            # pairquantities.FastMTTQuantities,
+            pairquantities.FastMTTQuantities,
             genparticles.MTGenDiTauPairQuantities,
             #  scalefactors.MuonIDIso_SF,
             scalefactors.Tau_2_VsJetTauID_lt_SF,
@@ -940,13 +940,13 @@ def build_config(
         ),
     )
     # for whatever reason, the diboson samples do not have these weights in the ntuple....
-    configuration.add_modification_rule(
-        "global",
-        RemoveProducer(
-            producers=[event.LHE_Scale_weight],
-            samples=["data", "embedding", "embedding_mc", "diboson"],
-        ),
-    )
+    # configuration.add_modification_rule(
+    #     "global",
+    #     RemoveProducer(
+    #         producers=[event.LHE_Scale_weight],
+    #         samples=["data", "embedding", "embedding_mc", "diboson"],
+    #     ),
+    # )
     configuration.add_modification_rule(
         ["et", "mt", "tt"],
         RemoveProducer(
@@ -1178,7 +1178,7 @@ def build_config(
             q.npartons,
             nanoAOD.event,
             q.puweight,
-            q.lhe_scale_weight,
+            # q.lhe_scale_weight,
             q.pt_1,
             q.pt_2,
             q.eta_1,
@@ -1197,10 +1197,10 @@ def build_config(
             q.jtag_value_2,
             q.mjj,
             q.m_vis,
-            # q.m_fastmtt,
-            # q.pt_fastmtt,
-            # q.eta_fastmtt,
-            # q.phi_fastmtt,
+            q.m_fastmtt,
+            q.pt_fastmtt,
+            q.eta_fastmtt,
+            q.phi_fastmtt,
             q.deltaR_ditaupair,
             q.pt_vis,
             q.nbtag,
@@ -1409,31 +1409,31 @@ def build_config(
     # up is muR=2.0, muF=2.0
     # down is muR=0.5, muF=0.5
     #########################
-    if "ggh" in sample or "qqh" in sample:
-        configuration.add_shift(
-            SystematicShift(
-                "LHEScaleWeightUp",
-                shift_config={
-                    "global": {
-                        "muR": 2.0,
-                        "muF": 2.0,
-                    }
-                },
-                producers={"global": [event.LHE_Scale_weight]},
-            )
-        )
-        configuration.add_shift(
-            SystematicShift(
-                "LHEScaleWeightDown",
-                shift_config={
-                    "global": {
-                        "muR": 0.5,
-                        "muF": 0.5,
-                    }
-                },
-                producers={"global": [event.LHE_Scale_weight]},
-            )
-        )
+    # if "ggh" in sample or "qqh" in sample:
+    #     configuration.add_shift(
+    #         SystematicShift(
+    #             "LHEScaleWeightUp",
+    #             shift_config={
+    #                 "global": {
+    #                     "muR": 2.0,
+    #                     "muF": 2.0,
+    #                 }
+    #             },
+    #             producers={"global": [event.LHE_Scale_weight]},
+    #         )
+    #     )
+    #     configuration.add_shift(
+    #         SystematicShift(
+    #             "LHEScaleWeightDown",
+    #             shift_config={
+    #                 "global": {
+    #                     "muR": 0.5,
+    #                     "muF": 0.5,
+    #                 }
+    #             },
+    #             producers={"global": [event.LHE_Scale_weight]},
+    #         )
+    #     )
 
     #########################
     # Lepton to tau fakes energy scalefactor shifts  #
