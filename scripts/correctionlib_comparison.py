@@ -147,7 +147,7 @@ class Corrections:
                 self.process_keys = ("emb",)
             self.fill_vector_wise(key="emb")
 
-    def check_equal_binning(self, other: Any) -> bool:
+    def is_equal_binning(self, other: Any) -> bool:
         if isinstance(other, Corrections):
             equal_edges = all(self.edges == other.edges)
             equal_keys = all(
@@ -160,13 +160,19 @@ class Corrections:
 
 
 def plot_corrections(
-    json_a: dict, json_b: dict, tag_a: str, tag_b: str, directory: str
+    json_a: dict,
+    json_b: dict,
+    tag_a: str,
+    tag_b: str,
+    directory: str,
 ) -> None:
     for num, correction_jsons in enumerate(
         zip(json_a["corrections"], json_b["corrections"])
     ):
         correction_objects = [Corrections(item["data"]) for item in correction_jsons]
-        assert correction_objects[0].check_equal_binning(correction_objects[1])
+        if not correction_objects[0].is_equal_binning(correction_objects[1]):
+            print(f"Skipping {correction_jsons[0]["name"]} due to different binning between {tag_a} and {tag_b}")
+            continue
         for num2, key in enumerate(correction_objects[0].collection_keys):
             fig, axes = plt.subplots(
                 2,
