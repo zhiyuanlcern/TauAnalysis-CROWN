@@ -19,6 +19,54 @@ measure_elefakeES = False
 
 
 def setup_embedding(configuration: Configuration, scopes: List[str]):
+
+    configuration.add_config_parameters(
+        "global",
+        {
+            "met_filters": EraModifier(
+                {
+                    "2016preVFP": [
+                        "Flag_goodVertices",
+                        "Flag_globalSuperTightHalo2016Filter",
+                        "Flag_HBHENoiseFilter",
+                        "Flag_HBHENoiseIsoFilter",
+                        "Flag_EcalDeadCellTriggerPrimitiveFilter",
+                        "Flag_BadPFMuonFilter",
+                        "Flag_eeBadScFilter",
+                    ],
+                    "2016postVFP": [
+                        "Flag_goodVertices",
+                        "Flag_globalSuperTightHalo2016Filter",
+                        "Flag_HBHENoiseFilter",
+                        "Flag_HBHENoiseIsoFilter",
+                        "Flag_EcalDeadCellTriggerPrimitiveFilter",
+                        "Flag_BadPFMuonFilter",
+                        "Flag_eeBadScFilter",
+                    ],
+                    "2017": [
+                        "Flag_goodVertices",
+                        "Flag_globalSuperTightHalo2016Filter",
+                        "Flag_HBHENoiseFilter",
+                        "Flag_HBHENoiseIsoFilter",
+                        "Flag_EcalDeadCellTriggerPrimitiveFilter",
+                        "Flag_BadPFMuonFilter",
+                        "Flag_eeBadScFilter",
+                        "Flag_ecalBadCalibFilter",
+                    ],
+                    "2018": [
+                        "Flag_goodVertices",
+                        "Flag_globalSuperTightHalo2016Filter",
+                        "Flag_HBHENoiseFilter",
+                        "Flag_HBHENoiseIsoFilter",
+                        "Flag_EcalDeadCellTriggerPrimitiveFilter",
+                        "Flag_BadPFMuonFilter",
+                        "Flag_eeBadScFilter",
+                        "Flag_ecalBadCalibFilter",
+                    ],
+                }
+            ),
+        },
+    )
     configuration.add_modification_rule(
         scopes,
         AppendProducer(
@@ -207,6 +255,24 @@ def setup_embedding(configuration: Configuration, scopes: List[str]):
             ]
         },
     )
+    # ditau trigger SF settings for embedding
+    configuration.add_config_parameters(
+        ["tt"],
+        {
+            "emb_ditau_trigger_wp": "Medium",
+            "emb_ditau_trigger_type": "ditau",
+            "emb_ditau_trigger_corrtype": "sf",
+            "emb_ditau_trigger_syst": "nom",
+            "emb_ditau_trigger_file": EraModifier(
+                {
+                    "2016preVFP": "",
+                    "2016postVFP": "",
+                    "2017": "",
+                    "2018": "data/embedding/tau_trigger2018_UL.json.gz",
+                }
+            ),
+        },
+    )
     configuration.add_modification_rule(
         ["mt"],
         AppendProducer(
@@ -225,6 +291,16 @@ def setup_embedding(configuration: Configuration, scopes: List[str]):
                 embedding.TauEmbeddingElectronIDSF_1,
                 embedding.TauEmbeddingElectronIsoSF_1,
                 embedding.ETGenerateSingleElectronTriggerSF,
+            ],
+            samples=["embedding"],
+        ),
+    )
+    configuration.add_modification_rule(
+        ["tt"],
+        AppendProducer(
+            producers=[
+                embedding.TTGenerateDoubleTauTriggerSF_1,
+                embedding.TTGenerateDoubleTauTriggerSF_2,
             ],
             samples=["embedding"],
         ),
