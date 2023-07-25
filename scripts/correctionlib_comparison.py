@@ -10,7 +10,7 @@ import matplotlib.pyplot as plt
 import mplhep as hep
 import numpy as np
 
-matplotlib.use('Agg')
+matplotlib.use("Agg")
 hep.style.use("CMS")
 
 parser = argparse.ArgumentParser(description="Plotting comparison of two correction libs")
@@ -171,7 +171,7 @@ def plot_corrections(
     ):
         correction_objects = [Corrections(item["data"]) for item in correction_jsons]
         if not correction_objects[0].is_equal_binning(correction_objects[1]):
-            print(f"Skipping {correction_jsons[0]["name"]} due to different binning between {tag_a} and {tag_b}")
+            print(f"Skipping {correction_jsons[0]['name']} due to different binning between {tag_a} and {tag_b}")
             continue
         for num2, key in enumerate(correction_objects[0].collection_keys):
             fig, axes = plt.subplots(
