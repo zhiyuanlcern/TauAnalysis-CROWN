@@ -14,11 +14,17 @@ import numpy as np
 matplotlib.use("Agg")
 hep.style.use("CMS")
 
-parser = argparse.ArgumentParser(description="Plotting comparison of two correction libs")
-parser.add_argument("--input_a", type=str, help="json.gz correctionlib file A")
-parser.add_argument("--input_b", type=str, help="json.gz correctionlib file B")
-parser.add_argument("--tag_a", type=str, help="Name (str) A", default="A")
-parser.add_argument("--tag_b", type=str, help="Name (str) B", default="B")
+parser = argparse.ArgumentParser(description="Script for visually comparing two correctionlibs by their individual corrections")
+parser.add_argument("--input-a", type=str, help="path to a json.gz correctionlib file")
+parser.add_argument("--input-b", type=str, help="path to a json.gz correctionlib file that is used for comparison")
+parser.add_argument("--tag-a", type=str, help="Name that will be plotted in the legend in form of '$sf_{<tag-a>}$'", default="A")
+parser.add_argument("--tag-b", type=str, help="Name that will be plotted in the legend in form of '$sf_{<tag-b>}$'", default="B")
+parser.add_argument(
+    "--correction-name",
+    type=str,
+    help="Name of a correction that will only be plotted. Other corrections are skipped when specified",
+    default="",
+)
 parser.add_argument("--output", type=str, help="Output directory", default="comparison_plots")
 args = parser.parse_args()
 
@@ -79,6 +85,10 @@ def correction_key_to_latex(key: Tuple) -> str:
 
 def correction_key_to_path(key: Tuple) -> str:
     return "_".join([f"_{name}_{interval[0]}_{interval[1]}" for name, interval in key])
+
+
+def correction_key_to_prompt(key: Tuple) -> str:
+    return ", ".join([f"{name}=[{interval[0]}, {interval[1]}]" for name, interval in key])
 
 
 def is_expandable(values1: np.ndarray, values2: np.ndarray) -> bool:
@@ -287,6 +297,7 @@ def plot_corrections(
     tag_a: str,
     tag_b: str,
     directory: str,
+    name: str = "all",
 ) -> None:
     correction_count = count()
     for raw_corrections in combinations([*json_a["corrections"], *json_b["corrections"]], 2):
@@ -294,6 +305,9 @@ def plot_corrections(
             continue
         else:
             nth_correction = next(correction_count)
+
+        if name and raw_corrections[0]["name"] != name:
+            continue
 
         corrections: List[Correction] = [Correction(item) for item in raw_corrections]
         if not corrections[0].is_equal_binning(corrections[1]):
@@ -389,7 +403,15 @@ def plot_corrections(
                     ),
                 )
             plt.close("all")
-            print(f"{nth_correction + 1}/{len(json_a['corrections'])} ({nth_window + 1}/{len(corrections_unrolled_keys)})")
+
+            print(
+                " | ".join(
+                    [
+                        f"Correction {nth_correction + 1}/{len(json_a['corrections'])}: {corrections_name}",
+                        f"Window {nth_window + 1}/{len(corrections_unrolled_keys)}: {correction_key_to_prompt(correction_window)}",
+                    ]
+                )
+            )
 
 
 if __name__ == "__main__":
@@ -397,5 +419,4 @@ if __name__ == "__main__":
         json_a, name_json_a = json.load(f), args.tag_a
     with gzip.open(args.input_b, "rb") as f:
         json_b, name_json_b = json.load(f), args.tag_b
-    plot_corrections(json_a, json_b, tag_a=name_json_a, tag_b=name_json_b, directory=args.output)
-
+    plot_corrections(json_a, json_b, tag_a=name_json_a, tag_b=name_json_b, directory=args.output, name=args.correction_name)
