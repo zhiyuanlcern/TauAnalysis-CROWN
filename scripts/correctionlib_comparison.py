@@ -287,6 +287,8 @@ class Correction:
                     expanding_object.histogram_edges[key] = fine_binning
                 else:
                     print(f"{key} binning is not expandable")
+            self.unroll_along(self.unroll_axis)
+            other.unroll_along(other.unroll_axis)
         else:
             raise TypeError
 
