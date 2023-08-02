@@ -78,11 +78,12 @@ def is_equal_binning(first_obj: "CorrectionHelper", second_obj: "CorrectionHelpe
 class CorrectionHelper(object):
     def __init__(self, correction: correctionlib.Correction, raw_correction_data: dict) -> None:
         self._correction = correction
-        self._raw_correction_data = raw_correction_data
+        self._raw_correction_data = raw_correction_data["data"]
         self._histogram_edges: Union[dict, None] = None
 
-        self._inputs = [it.name for it in self.inputs if it.name != "type"]
-        self.types = [""] if "type" not in {it.name for it in self.inputs} else ["mc", "emb"]
+        self._inputs = [it["name"] for it in raw_correction_data["inputs"] if it["name"] != "type"]
+        self.types = [""] if "type" not in {it["name"] for it in raw_correction_data["inputs"]} else ["mc", "emb"]
+        self.ylabel = to_latex(raw_correction_data["output"]["name"])
 
     def __getattribute__(self, name: str, *args: Any, **kwargs: Any) -> Any:
         try:
@@ -117,10 +118,6 @@ class CorrectionHelper(object):
         else:
             raise TypeError
 
-    @property
-    def ylabel(self) -> str:
-        return to_latex(self.output.name)
-
     def unroll(self, axis: int = 0) -> None:
         self.edges = self.histogram_edges[self._inputs[axis]]
         self.xlabel = f"{to_latex(self._inputs[axis])}{' (GeV)' if 'eta' not in self._inputs[axis] else ''}"
@@ -142,7 +139,7 @@ def get_corrections(filename: str) -> Dict[str, CorrectionHelper]:
     return {
         item["name"]: CorrectionHelper(
             corrections[item["name"]],
-            item["data"],
+            item,
         )
         for item in raw_corrections
     }
@@ -165,7 +162,7 @@ def plot_corrections(
         else:
             nth_correction = next(correction_count)
             correction_a, correction_b = corrections_a[correction_key_a], corrections_b[correction_key_b]
-            name = correction_a.name
+            name = correction_key_a
             processes = correction_a.types
 
         adjusted_binning = False
