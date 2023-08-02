@@ -2,10 +2,10 @@ import argparse
 import gzip
 import json
 import os
-from collections import defaultdict
 from itertools import combinations, count, product
 from typing import Any, Dict, Generator, List, Tuple, Union
 
+import correctionlib
 import matplotlib
 import matplotlib.pyplot as plt
 import mplhep as hep
@@ -29,42 +29,13 @@ parser.add_argument("--output", type=str, help="Output directory", default="comp
 args = parser.parse_args()
 
 
-class NestedDefaultDict(defaultdict):
-    def __init__(self, *args: Any, **kwargs: Any) -> None:
-        super(NestedDefaultDict, self).__init__(NestedDefaultDict, *args, **kwargs)
-
-    def __repr__(self) -> str:
-        return repr(dict(self))
-
-
 def windowed(
-    iterable: Union[List[Any], Tuple[Any]],
+    iterable: Union[List[Any], Tuple[Any], np.ndarray],
     n: int,
 ) -> Generator[Tuple[Any, ...], None, None]:
     assert n > 0
-    for idx in range(0, len(iterable) - n + 1):
-        yield tuple(iterable[idx: idx + n])
-
-
-def recursive_search(
-    json_object: Union[list, dict],
-    search_term: str,
-) -> bool:
-    if isinstance(json_object, dict):
-        for key, value in json_object.items():
-            if key == search_term or value == search_term:
-                return True
-            if isinstance(value, (dict, list)):
-                if recursive_search(value, search_term):
-                    return True
-    elif isinstance(json_object, list):
-        for item in json_object:
-            if item == search_term:
-                return True
-            if isinstance(item, (dict, list)):
-                if recursive_search(item, search_term):
-                    return True
-    return False
+    for i in range(0, len(iterable) - n + 1):
+        yield tuple(iterable[i: i + n])
 
 
 def to_latex(string: str) -> str:
@@ -79,275 +50,159 @@ def to_latex(string: str) -> str:
     return conversion[string] if string in conversion else string
 
 
-def correction_key_to_latex(key: Tuple) -> str:
-    return ", ".join([f"{to_latex(name)}$\\in$[{interval[0]}, {interval[1]}]{'' if 'eta' in name else ' GeV'}" for name, interval in key])
+class KeyTo:
+    @staticmethod
+    def latex(key: Tuple) -> str:
+        return ", ".join([f"{to_latex(name)}$\\in$[{interval[0]}, {interval[1]}]{'' if 'eta' in name else ' GeV'}" for name, interval in key])
+
+    @staticmethod
+    def path(key: Tuple) -> str:
+        return "_".join([f"_{name}_{interval[0]}_{interval[1]}" for name, interval in key])
+
+    @staticmethod
+    def prompt(key: Tuple) -> str:
+        return ", ".join([f"{name}=[{interval[0]}, {interval[1]}]" for name, interval in key])
 
 
-def correction_key_to_path(key: Tuple) -> str:
-    return "_".join([f"_{name}_{interval[0]}_{interval[1]}" for name, interval in key])
-
-
-def correction_key_to_prompt(key: Tuple) -> str:
-    return ", ".join([f"{name}=[{interval[0]}, {interval[1]}]" for name, interval in key])
-
-
-def is_expandable(values1: np.ndarray, values2: np.ndarray) -> bool:
-    coarse, fine = sorted([values1, values2], key=lambda x: x.shape[0])
-    return all(it in fine for it in coarse)
-
-
-def expand(
-    data: np.ndarray,
-    edges1: np.ndarray,
-    edges2: np.ndarray,
-    insertion_along_axis: int = 1,
-) -> np.ndarray:
-    selection: List[Union[slice, int]] = [slice(None, None, None)] * len(data.shape)
-
-    coarse_edges, fine_edges = sorted([edges1, edges2], key=len)
-    is_expandable = all(it in fine_edges for it in coarse_edges)
-
-    fine_edges_iter = windowed(fine_edges, 2)
-    coarse_edges_iter = enumerate(windowed(coarse_edges, 2))
-
-    fine_edge = next(fine_edges_iter)
-    coarse_edge_idx, coarse_edge = next(coarse_edges_iter)
-
-    insertion_idx_collection, insersions_data_collection = [], []
-
-    if is_expandable:
-        while True:
-            try:
-                # skip if edges are equal
-                if fine_edge == coarse_edge:
-                    fine_edge = next(fine_edges_iter)
-                    coarse_edge_idx, coarse_edge = next(coarse_edges_iter)
-                # insertion happens here until fine_edge[1] == coarse_edge[1]
-                elif fine_edge[0] == coarse_edge[0] or fine_edge[1] < coarse_edge[1]:
-                    fine_edge = next(fine_edges_iter)
-                    insertion_idx_collection.append(coarse_edge_idx)
-                    selection[insertion_along_axis] = coarse_edge_idx
-                    insersions_data_collection.append(np.ones_like(data[tuple(selection)]))
-                # go to next coarse edge
-                elif fine_edge[1] == coarse_edge[1]:
-                    fine_edge = next(fine_edges_iter)
-                    coarse_edge_idx, coarse_edge = next(coarse_edges_iter)
-                # probably not needed
-                else:
-                    break
-            except StopIteration:
-                break
-        return np.insert(
-            data,
-            insertion_idx_collection,
-            np.stack(insersions_data_collection, axis=insertion_along_axis),
-            axis=insertion_along_axis,
-        )
+def is_equal_binning(first_obj: "CorrectionHelper", second_obj: "CorrectionHelper") -> bool:
+    if isinstance(first_obj, CorrectionHelper) and isinstance(second_obj, CorrectionHelper):
+        assert first_obj._inputs == second_obj._inputs
+        for item in first_obj._inputs:
+            if not np.all(first_obj.histogram_edges[item] == second_obj.histogram_edges[item]):
+                return False
+        return True
     else:
-        return data
+        raise TypeError
 
 
-class Correction:
-    def __init__(
-        self,
-        correction: dict,
-        ylabel: str = "sf",
-        unroll_axis: int = 0,
-    ) -> None:
-        self.ylabel = ylabel
-        self.unroll_axis = unroll_axis
-        self.raw_data = correction["data"]
-        self.name = correction["name"]
-        self.inputs = [it["name"] for it in correction["inputs"] if it["name"] != "type"]
+class CorrectionHelper(object):
+    def __init__(self, correction: correctionlib.Correction, raw_correction_data: dict) -> None:
+        self._correction = correction
+        self._raw_correction_data = raw_correction_data["data"]
+        self._histogram_edges: Union[dict, None] = None
 
-        self.process_keys = ["emb"]
-        self._fill_vector_wise = True
-        if recursive_search(self.raw_data, "mc"):
-            self._fill_vector_wise = False
-            self.process_keys += ["mc"]
+        self._inputs = [it["name"] for it in raw_correction_data["inputs"] if it["name"] != "type"]
+        self.types = [""] if "type" not in {it["name"] for it in raw_correction_data["inputs"]} else ["mc", "emb"]
+        self.ylabel = to_latex(raw_correction_data["output"]["name"])
 
-        self._histogram_edges: Union[None, Dict[str, np.ndarray]] = None
-        self._histogram_edges_windowed: Union[None, Dict[str, np.ndarray]] = None
-
-        self.data = self._fill()
-        self.unroll_along(unroll_axis)
-
-    def _fill(self) -> Dict[str, np.ndarray]:
-        data = {k: np.zeros(tuple(it.shape[0] for it in self.histogram_edges_windowed.values())) for k in self.process_keys}
-
-        if not self._fill_vector_wise:
-            if len(self.inputs) == 2:
-                for i, j in product(*map(range, list(data.values())[0].shape)):
-                    for item in self.raw_data["content"][i]["content"][j]["content"]:
-                        data[item["key"]][i, j] = item["value"]
-            else:
-                raise NotImplementedError
-        else:
-            if len(self.inputs) == 2:
-                for i in range(list(data.values())[0].shape[0]):
-                    data["emb"][i, :] = self.raw_data["content"][i]["content"]
-            elif len(self.inputs) == 4:
-                for i, j, k in product(*map(range, list(data.values())[0].shape[:-1])):
-                    data["emb"][i, j, k, :] = self.raw_data["content"][i]["content"][j]["content"][k]["content"]
-            else:
-                raise NotImplementedError
-
-        return data
+    def __getattribute__(self, name: str, *args: Any, **kwargs: Any) -> Any:
+        try:
+            return super().__getattribute__(name, *args, **kwargs)
+        except AttributeError:
+            return self._correction.__getattribute__(name, *args, **kwargs)
 
     @property
     def histogram_edges(self) -> Dict[str, np.ndarray]:
         if self._histogram_edges is None:
             self._histogram_edges = {}
-            _tmp = self.raw_data
-            for item in self.inputs:
-                self._histogram_edges[item] = np.array(_tmp["edges"])
+            _tmp = self._raw_correction_data
+            for item in self._inputs:
+                if "abs" in item:
+                    self._histogram_edges[item] = np.unique(np.append([0.0], np.abs(_tmp["edges"])))
+                else:
+                    self._histogram_edges[item] = np.array(_tmp["edges"])
                 _tmp = _tmp["content"][0]
         return self._histogram_edges
 
     @property
-    def histogram_edges_windowed(self) -> Dict[str, np.ndarray]:
-        if self._histogram_edges_windowed is None:
-            self._histogram_edges_windowed = {k: np.array(list(windowed(v, 2))) for k, v in self.histogram_edges.items()}
-        return self._histogram_edges_windowed
+    def windowed_histogram_edges(self) -> Dict[str, np.ndarray]:
+        return {k: np.array(list(windowed(v, 2))) for k, v in self.histogram_edges.items()}
 
-    def unroll_along(self, axis: int = 0) -> None:
-        self.edges = self.histogram_edges[self.inputs[axis]]
-        self.xlabel = f"{to_latex(self.inputs[axis])} {'(GeV)' if 'eta' not in self.inputs[axis] else ''}"
-
-        selection: List[Union[int, slice]] = [slice(None, None, None)] * len(self.inputs)
-        walking_axis = [i for i in range(len(self.inputs)) if i != axis]
-
-        self.unrolled_data = NestedDefaultDict()
-
-        for idx1, walking_window1 in enumerate(self.histogram_edges_windowed[self.inputs[walking_axis[0]]]):
-            selection[walking_axis[0]] = idx1
-            if len(self.inputs) == 2:
-                second_dim_key = ((self.inputs[walking_axis[0]], tuple(walking_window1)),)
-                for process in self.process_keys:
-                    self.unrolled_data[second_dim_key][process] = self.data[process][tuple(selection)].squeeze()
-            elif len(self.inputs) == 4:
-                for idx2, walking_window2 in enumerate(self.histogram_edges_windowed[self.inputs[walking_axis[1]]]):
-                    selection[walking_axis[1]] = idx2
-                    for idx3, walking_window3 in enumerate(self.histogram_edges_windowed[self.inputs[walking_axis[2]]]):
-                        selection[walking_axis[2]] = idx3
-                        third_dim_key = (
-                            (self.inputs[walking_axis[0]], tuple(walking_window1)),
-                            (self.inputs[walking_axis[1]], tuple(walking_window2)),
-                            (self.inputs[walking_axis[2]], tuple(walking_window3)),
-                        )
-                        for process in self.process_keys:
-                            self.unrolled_data[third_dim_key][process] = self.data[process][tuple(selection)].squeeze()
-            else:
-                raise NotImplementedError
-
-        self.unrolled_keys = list(self.unrolled_data.keys())
-
-    def is_equal_main_axis(self, other: Any) -> bool:
-        if isinstance(other, Correction):
-            return np.all(self.histogram_edges[self.inputs[self.unroll_axis]] == other.histogram_edges[self.inputs[self.unroll_axis]])
+    def adjust_binning_with(self, other: "CorrectionHelper") -> None:
+        if isinstance(other, CorrectionHelper):
+            assert self._inputs == other._inputs
+            for item in self._inputs:
+                merged_binning = np.unique(np.concatenate([self.histogram_edges[item], other.histogram_edges[item]]))
+                self.histogram_edges[item] = merged_binning
+                other.histogram_edges[item] = merged_binning
         else:
             raise TypeError
 
-    def is_equal_binning(self, other: Any) -> bool:
-        if isinstance(other, Correction):
-            for (key1, item1), (_, item2) in zip(self.histogram_edges.items(), other.histogram_edges.items()):
-                if self.inputs.index(key1) == self.unroll_axis and not np.all(item1 == item2):
-                    print("Not equal binning for main axis, ratio plot is skipped")
-                    continue
-                if not np.all(item1 == item2):
-                    return False
-            return True
-        else:
-            raise TypeError
+    def unroll(self, axis: int = 0) -> None:
+        self.edges = self.histogram_edges[self._inputs[axis]]
+        self.xlabel = f"{to_latex(self._inputs[axis])}{' (GeV)' if 'eta' not in self._inputs[axis] else ''}"
+        self.unrolled: Dict[str, Dict[tuple, np.ndarray]] = {key: {} for key in self.types}
 
-    def is_expandable_to(self, other: Any) -> bool:
-        if isinstance(other, Correction):
-            assert self.inputs == other.inputs
-            for key in self.inputs:
-                if self.inputs.index(key) == self.unroll_axis and not is_expandable(self.histogram_edges[key], other.histogram_edges[key]):
-                    print("Not expandable binning for main axis, ratio plot is skipped")
-                    continue
-                if not is_expandable(self.histogram_edges[key], other.histogram_edges[key]):
-                    return False
-            return True
-        else:
-            raise TypeError
+        walking_inputs = [item for idx, item in enumerate(self._inputs) if idx != axis]
+        for key in self.types:
+            for windows in product(*[self.windowed_histogram_edges[item] for item in walking_inputs]):
+                args = [self.edges[:-1] + np.diff(self.edges) / 2, *tuple(map(np.mean, windows))]
+                if key:
+                    args.append(key)
+                self.unrolled[key][tuple(zip(walking_inputs, map(tuple, windows)))] = self.evaluate(*args)
 
-    def expand_binning_to(self, other: Any) -> None:
-        if isinstance(other, Correction):
-            assert self.inputs == other.inputs
-            for axis, key in enumerate(self.inputs):
-                if is_expandable(self.histogram_edges[key], other.histogram_edges[key]):
-                    expanding_object = other if len(self.histogram_edges[key]) > len(other.histogram_edges[key]) else self
-                    fine_binning = self.histogram_edges[key] if len(self.histogram_edges[key]) > len(other.histogram_edges[key]) else other.histogram_edges[key]
 
-                    for process in expanding_object.process_keys:
-                        expanding_object.data[process] = expand(expanding_object.data[process], self.histogram_edges[key], other.histogram_edges[key], axis)
-
-                    expanding_object.histogram_edges[key] = fine_binning
-                else:
-                    print(f"{key} binning is not expandable")
-        else:
-            raise TypeError
+def get_corrections(filename: str) -> Dict[str, CorrectionHelper]:
+    with gzip.open(filename, "rb") as f:
+        raw_corrections = json.load(f)["corrections"]
+    corrections = correctionlib.CorrectionSet.from_file(filename)
+    return {
+        item["name"]: CorrectionHelper(
+            corrections[item["name"]],
+            item,
+        )
+        for item in raw_corrections
+    }
 
 
 def plot_corrections(
-    json_a: dict,
-    json_b: dict,
-    tag_a: str,
-    tag_b: str,
-    directory: str,
-    name: str = "all",
+    corrections_a: dict,
+    corrections_b: dict,
+    correction_tag_a: str,
+    correction_tag_b: str,
+    output_directory: str,
+    specific_correction: Union[str, None] = None,
+    unroll_axis: int = 0,
 ) -> None:
     correction_count = count()
-    for raw_corrections in combinations([*json_a["corrections"], *json_b["corrections"]], 2):
-        if raw_corrections[0]["name"] != raw_corrections[1]["name"]:
+
+    for correction_key_a, correction_key_b in combinations([*corrections_a.keys(), *corrections_b.keys()], 2):
+        if correction_key_a != correction_key_b or (specific_correction and correction_key_a != specific_correction):
             continue
         else:
             nth_correction = next(correction_count)
+            correction_a, correction_b = corrections_a[correction_key_a], corrections_b[correction_key_b]
+            name = correction_key_a
+            processes = correction_a.types
 
-        if name and raw_corrections[0]["name"] != name:
-            continue
+        adjusted_binning = False
+        if not is_equal_binning(correction_a, correction_b):
+            print("Not equal binning detected, expanding to common binning")
+            correction_a.expand_binning(correction_b)
+            adjusted_binning = True
 
-        corrections: List[Correction] = [Correction(item) for item in raw_corrections]
-        if not corrections[0].is_equal_binning(corrections[1]):
-            print(f"{corrections[0].name}: different binning between {tag_a} and {tag_b}, trying to expand")
-            if corrections[0].is_expandable_to(corrections[1]):
-                print(f"{corrections[0].name}: expanding successful")
-                corrections[0].expand_binning_to(corrections[1])  # or vice versa
-            else:
-                print(f"{corrections[0].name}: not expandable, skipping")
-                continue
-        corrections_name = corrections[0].name
-        corrections_unrolled_keys = corrections[0].unrolled_keys
-        corrections_process_keys = corrections[0].process_keys
+        correction_a.unroll(unroll_axis)
+        correction_b.unroll(unroll_axis)
+        unrolled_keys = correction_a.unrolled[processes[0]].keys()
 
-        for nth_window, correction_window in enumerate(corrections_unrolled_keys):
+        for nth_window, window in enumerate(unrolled_keys):
             fig, axes = plt.subplots(
                 2,
-                len(corrections[0].process_keys),
+                len(correction_a.types),
                 gridspec_kw=dict(height_ratios=[0.7, 0.3]),
-                figsize=(10 * len(corrections[0].process_keys), 12),
+                figsize=(10 * len(correction_a.types), 12),
                 sharex=True,
             )
 
             plt.subplots_adjust(hspace=0.1)
+            fig.suptitle(name)
 
-            fig.suptitle(corrections_name)
-
-            for process, ax in zip(
-                corrections[0].process_keys,
-                [axes[:, 0], axes[:, 1]] if len(corrections_process_keys) > 1 else [axes],
+            for correction_type, ax in zip(
+                processes,
+                [axes[:, 0], axes[:, 1]] if len(processes) > 1 else [axes],
             ):
                 ax[0].set_title(
-                    f"{process}: {correction_key_to_latex(correction_window)}",
+                    f"{correction_type}{': ' if correction_type else ''}{KeyTo.latex(window)}",
                     loc="left",
                     fontsize=16,
                 )
-                for correction_obj, tag_name in zip(corrections, [tag_a, tag_b]):
+                for correction, tag_name in zip(
+                    [correction_a, correction_b],
+                    [correction_tag_a, correction_tag_b],
+                ):
                     hep.histplot(
-                        correction_obj.unrolled_data[correction_window][process],
-                        correction_obj.edges,
+                        correction.unrolled[correction_type][window],
+                        correction.edges,
                         label=tag_name,
                         ax=ax[0],
                         histtype="errorbar",
@@ -356,50 +211,43 @@ def plot_corrections(
                         markerfacecolor="none",
                     )
 
-                _a_array = np.array(corrections[0].unrolled_data[correction_window][process])
-                _b_array = np.array(corrections[1].unrolled_data[correction_window][process])
+                hep.histplot(
+                    correction_a.unrolled[correction_type][window] / correction_b.unrolled[correction_type][window],
+                    correction_a.edges,
+                    label=f"${correction_a.ylabel}_{{{correction_tag_a}}}$ / ${correction_b.ylabel}_{{{correction_tag_b}}}$",
+                    ax=ax[1],
+                    histtype="errorbar",
+                    yerr=False,
+                    xerr=True,
+                    markerfacecolor="none",
+                )
 
-                if corrections[0].is_equal_main_axis(corrections[1]):
-                    hep.histplot(
-                        _a_array / _b_array,
-                        correction_obj.edges,
-                        label=f"${corrections[0].ylabel}_{{{tag_a}}}$ / ${corrections[1].ylabel}_{{{tag_b}}}$",
-                        ax=ax[1],
-                        histtype="errorbar",
-                        yerr=False,
-                        xerr=True,
-                        markerfacecolor="none",
-                    )
-                else:
-                    print(f"Skipping {corrections_name} ratio due to different binning between {tag_a} and {tag_b}")
-
-                [_ax.legend() for _ax in ax]
-
-                _max_y_value = max([max(correction_obj.unrolled_data[correction_window][process]) for correction_obj in corrections])
+                _max_y_value: float = np.max([np.max(correction.unrolled[correction_type][window]) for correction in [correction_a, correction_b]])
 
                 ax[0].set(
                     xscale="log",
                     ylim=(None, _max_y_value + 0.1),
-                    ylabel=correction_obj.ylabel,
+                    ylabel=correction_a.ylabel,
                 )
                 ax[1].set(
                     xscale="log",
-                    xlabel=correction_obj.xlabel,
+                    xlabel=correction_a.xlabel,
                     ylabel="ratio",
                 )
 
-                hep.cms.label("Own Work", ax=ax[0], loc=2, data=process == "emb")
+                hep.cms.label("Own Work", ax=ax[0], loc=2, data=not correction_type == "mc")
+                [_ax.legend() for _ax in ax]
 
-            if not os.path.exists(directory):
+            if not os.path.exists(output_directory):
                 os.makedirs(name="comparison_plots", exist_ok=True)
 
-            os.makedirs(name=os.path.join(directory, corrections_name), exist_ok=True)
+            os.makedirs(name=os.path.join(output_directory, name), exist_ok=True)
             for ext in ["pdf", "png"]:
                 plt.savefig(
                     os.path.join(
-                        directory,
-                        corrections_name,
-                        f"comparison_{corrections_name}_{tag_a}_{tag_b}_{correction_key_to_path(correction_window)}.{ext}",
+                        output_directory,
+                        name,
+                        f"comparison_{name}_{correction_tag_a}_{correction_tag_b}_{KeyTo.path(window)}.{ext}",
                     ),
                 )
             plt.close("all")
@@ -407,16 +255,21 @@ def plot_corrections(
             print(
                 " | ".join(
                     [
-                        f"Correction {nth_correction + 1}/{len(json_a['corrections'])}: {corrections_name}",
-                        f"Window {nth_window + 1}/{len(corrections_unrolled_keys)}: {correction_key_to_prompt(correction_window)}",
+                        f"Correction {nth_correction + 1}/{len(corrections_a)}: {name}",
+                        f"Window {nth_window + 1}/{len(unrolled_keys)}: {KeyTo.prompt(window)}",
                     ]
+                    + (["binning adjusted"] if adjusted_binning else [])
                 )
             )
 
 
 if __name__ == "__main__":
-    with gzip.open(args.input_a, "rb") as f:
-        json_a, name_json_a = json.load(f), args.tag_a
-    with gzip.open(args.input_b, "rb") as f:
-        json_b, name_json_b = json.load(f), args.tag_b
-    plot_corrections(json_a, json_b, tag_a=name_json_a, tag_b=name_json_b, directory=args.output, name=args.correction_name)
+    plot_corrections(
+        corrections_a=get_corrections(args.input_a),
+        corrections_b=get_corrections(args.input_b),
+        correction_tag_a=args.tag_a,
+        correction_tag_b=args.tag_b,
+        output_directory=args.output,
+        specific_correction=args.correction_name if args.correction_name else None,
+    )
+    print("Done")
