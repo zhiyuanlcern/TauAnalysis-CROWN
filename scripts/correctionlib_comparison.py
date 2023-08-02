@@ -168,7 +168,7 @@ def plot_corrections(
         adjusted_binning = False
         if not is_equal_binning(correction_a, correction_b):
             print("Not equal binning detected, expanding to common binning")
-            correction_a.expand_binning(correction_b)
+            correction_a.adjust_binning_with(correction_b)
             adjusted_binning = True
 
         correction_a.unroll(unroll_axis)
