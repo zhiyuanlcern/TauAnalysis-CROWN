@@ -1269,6 +1269,11 @@ def build_config(
             scopes,
             nanoAOD.genWeight,
         )
+        if era != "2018":
+            configuration.add_outputs(
+                scopes,
+                q.prefireweight,
+            )
     configuration.add_outputs(
         "mt",
         [
