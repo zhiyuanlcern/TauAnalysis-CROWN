@@ -808,6 +808,7 @@ def build_config(
             pairselection.LVTau2Uncorrected,
             pairquantities.ETDiTauPairQuantities,
             genparticles.ETGenDiTauPairQuantities,
+            pairquantities.FastMTTQuantities,
             scalefactors.Tau_2_VsJetTauID_lt_SF,
             scalefactors.Tau_2_VsEleTauID_SF,
             scalefactors.Tau_2_VsMuTauID_SF,
