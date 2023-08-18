@@ -844,7 +844,7 @@ def add_diTauTriggerSetup(configuration: Configuration):
                     "2016postVFP": [
                         {
                             "flagname": "trg_single_tau120_2",
-                            "hlt_path": "HLT_VLooseIsoPFTau120_Trk50_eta2p1_v",
+                            "hlt_path": "HLT_VLooseIsoPFTau120_Trk50_eta2p1",
                             "ptcut": 120,
                             "etacut": 2.1,
                             "filterbit": 5,
@@ -853,7 +853,7 @@ def add_diTauTriggerSetup(configuration: Configuration):
                         },
                         {
                             "flagname": "trg_single_tau140_2",
-                            "hlt_path": "HLT_VLooseIsoPFTau140_Trk50_eta2p1_v",
+                            "hlt_path": "HLT_VLooseIsoPFTau140_Trk50_eta2p1",
                             "ptcut": 140,
                             "etacut": 2.1,
                             "filterbit": 5,
@@ -864,7 +864,7 @@ def add_diTauTriggerSetup(configuration: Configuration):
                     "2016preVFP": [
                         {
                             "flagname": "trg_single_tau120_2",
-                            "hlt_path": "HLT_VLooseIsoPFTau120_Trk50_eta2p1_v",
+                            "hlt_path": "HLT_VLooseIsoPFTau120_Trk50_eta2p1",
                             "ptcut": 120,
                             "etacut": 2.1,
                             "filterbit": 5,
@@ -873,7 +873,7 @@ def add_diTauTriggerSetup(configuration: Configuration):
                         },
                         {
                             "flagname": "trg_single_tau140_2",
-                            "hlt_path": "HLT_VLooseIsoPFTau140_Trk50_eta2p1_v",
+                            "hlt_path": "HLT_VLooseIsoPFTau140_Trk50_eta2p1",
                             "ptcut": 140,
                             "etacut": 2.1,
                             "filterbit": 5,

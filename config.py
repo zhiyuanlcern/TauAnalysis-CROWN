@@ -239,8 +239,8 @@ def build_config(
             "btag_cut": EraModifier(  # medium
                 {
 
-                    "2016": 0.2598,  # taken from https://twiki.cern.ch/twiki/bin/view/CMS/BtagRecommendation106XUL16preVFP
-                    "2016": 0.2489,  # taken from https://twiki.cern.ch/twiki/bin/view/CMS/BtagRecommendation106XUL16postVFP
+                    "2016preVFP": 0.2598,  # taken from https://twiki.cern.ch/twiki/bin/view/CMS/BtagRecommendation106XUL16preVFP
+                    "2016postVFP": 0.2489,  # taken from https://twiki.cern.ch/twiki/bin/view/CMS/BtagRecommendation106XUL16postVFP
                     "2017": 0.3040,
                     "2018": 0.2783,
 
@@ -835,6 +835,7 @@ def build_config(
             pairselection.LVTau2Uncorrected,
             pairquantities.TTDiTauPairQuantities,
             genparticles.TTGenDiTauPairQuantities,
+            pairquantities.FastMTTQuantities,
             scalefactors.Tau_1_VsJetTauID_SF,
             scalefactors.Tau_1_VsEleTauID_SF,
             scalefactors.Tau_1_VsMuTauID_SF,
@@ -865,6 +866,7 @@ def build_config(
             pairselection.LVMu2Uncorrected,
             pairquantities.EMDiTauPairQuantities,
             genparticles.EMGenDiTauPairQuantities,
+            pairquantities.FastMTTQuantities,
             # scalefactors.MuonIDIso_SF,
             # scalefactors.EleID_SF,
             triggers.EMGenerateSingleElectronTriggerFlags,
