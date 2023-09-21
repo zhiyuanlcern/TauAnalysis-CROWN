@@ -848,6 +848,27 @@ def build_config(
             met.MetBasics,
         ],
     )
+    # As now 2022 data has no Jet_puID, so no possible to do JetPUIDCut
+    if era == "2022":
+        configuration.add_modification_rule(
+            "global",
+            RemoveProducer(
+                producers=[jets.GoodJets,
+                           jets.GoodBJets,
+                           jets.GoodPreBJets],
+                samples=["data"],
+            ),
+        )
+        configuration.add_modification_rule(
+            "global",
+            AppendProducer(
+                producers=[jets.GoodJets_2022,
+                           jets.GoodBJets_2022,
+                           jets.GoodPreBJets_2022],
+                samples=["data"],
+                update_output=False,
+            ),
+        )
     ## add prefiring
     if era != "2018":
         configuration.add_producers(
