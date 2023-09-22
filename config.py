@@ -841,34 +841,28 @@ def build_config(
             electrons.RenameElectronPt,
             electrons.BaseElectrons,
             jets.JetEnergyCorrection,
-            jets.GoodJets,
-            jets.GoodBJets,
-            jets.GoodPreBJets,
             event.DiLeptonVeto,
             met.MetBasics,
         ],
     )
     # As now 2022 data has no Jet_puID, so no possible to do JetPUIDCut
     if era == "2022":
-        configuration.add_modification_rule(
+        configuration.add_producers(
             "global",
-            RemoveProducer(
-                producers=[jets.GoodJets,
-                           jets.GoodBJets,
-                           jets.GoodPreBJets],
-                samples=["data"],
+            [
+                jets.GoodJets_2022,
+                jets.GoodBJets_2022,
+                jets.GoodPreBJets_2022],
             ),
-        )
-        configuration.add_modification_rule(
+    else:
+        configuration.add_producers(
             "global",
-            AppendProducer(
-                producers=[jets.GoodJets_2022,
-                           jets.GoodBJets_2022,
-                           jets.GoodPreBJets_2022],
-                samples=["data"],
-                update_output=False,
+            [
+                jets.GoodJets,
+                jets.GoodBJets,
+                jets.GoodPreBJets],
             ),
-        )
+        
     ## add prefiring
     if era != "2018":
         configuration.add_producers(
