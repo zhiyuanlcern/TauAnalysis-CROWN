@@ -25,7 +25,7 @@ from .producers import met as met
 from code_generation.modifiers import EraModifier, SampleModifier
 from .producers import jets as jets
 
-from .btag_variations import add_btagVariations
+# from .btag_variations import add_btagVariations
 from .tau_embedding_settings import setup_embedding
 
 
@@ -75,6 +75,48 @@ def build_config(
                     "2016postVFP": "data/golden_json/Cert_271036-284044_13TeV_Legacy2016_Collisions16_JSON.txt",
                     "2017": "data/golden_json/Cert_294927-306462_13TeV_UL2017_Collisions17_GoldenJSON.txt",
                     "2018": "data/golden_json/Cert_314472-325175_13TeV_Legacy2018_Collisions18_JSON.txt",
+                }
+            ),
+            "met_filters": EraModifier(
+                {
+                    "2016preVFP": [
+                        "Flag_goodVertices",
+                        "Flag_globalSuperTightHalo2016Filter",
+                        "Flag_HBHENoiseFilter",
+                        "Flag_HBHENoiseIsoFilter",
+                        "Flag_EcalDeadCellTriggerPrimitiveFilter",
+                        "Flag_BadPFMuonFilter",
+                        "Flag_eeBadScFilter",
+                    ],
+                    "2016postVFP": [
+                        "Flag_goodVertices",
+                        "Flag_globalSuperTightHalo2016Filter",
+                        "Flag_HBHENoiseFilter",
+                        "Flag_HBHENoiseIsoFilter",
+                        "Flag_EcalDeadCellTriggerPrimitiveFilter",
+                        "Flag_BadPFMuonFilter",
+                        "Flag_eeBadScFilter",
+                    ],
+                    "2017": [
+                        "Flag_goodVertices",
+                        "Flag_globalSuperTightHalo2016Filter",
+                        "Flag_HBHENoiseFilter",
+                        "Flag_HBHENoiseIsoFilter",
+                        "Flag_EcalDeadCellTriggerPrimitiveFilter",
+                        "Flag_BadPFMuonFilter",
+                        "Flag_eeBadScFilter",
+                        "Flag_ecalBadCalibFilter",
+                    ],
+                    "2018": [
+                        "Flag_goodVertices",
+                        "Flag_globalSuperTightHalo2016Filter",
+                        "Flag_HBHENoiseFilter",
+                        "Flag_HBHENoiseIsoFilter",
+                        "Flag_EcalDeadCellTriggerPrimitiveFilter",
+                        "Flag_BadPFMuonFilter",
+                        "Flag_eeBadScFilter",
+                        "Flag_ecalBadCalibFilter",
+                    ],
                 }
             ),
         },
@@ -177,48 +219,6 @@ def build_config(
         },
     )
 
-    # bjet base selection:
-    configuration.add_config_parameters(
-        "global",
-        {
-            "min_bjet_pt": 20,
-            "max_bjet_eta": EraModifier(
-                {
-                    "2016preVFP": 2.5,
-                    "2016postVFP": 2.5,
-                    "2017": 2.5,
-                    "2018": 2.5,
-                }
-            ),
-            "btag_cut": EraModifier(  # medium
-                {
-                    "2016preVFP": 0.2598,  # taken from https://twiki.cern.ch/twiki/bin/view/CMS/BtagRecommendation106XUL16preVFP
-                    "2016postVFP": 0.2489,  # taken from https://twiki.cern.ch/twiki/bin/view/CMS/BtagRecommendation106XUL16postVFP
-                    "2017": 0.3040,
-                    "2018": 0.2783,
-                }
-            ),
-        },
-    )
-
-    # bjet scale factors
-    configuration.add_config_parameters(
-        scopes,
-        {
-            "btag_sf_file": EraModifier(
-                {
-                    "2016preVFP": "data/jsonpog-integration/POG/BTV/2016preVFP_UL/btagging.json.gz",
-                    "2016postVFP": "data/jsonpog-integration/POG/BTV/2016postVFP_UL/btagging.json.gz",
-                    "2017": "data/jsonpog-integration/POG/BTV/2017_UL/btagging.json.gz",
-                    "2018": "data/jsonpog-integration/POG/BTV/2018_UL/btagging.json.gz",
-                }
-            ),
-            "btag_sf_variation": "central",
-            "btag_corr_algo": "deepJet_shape",
-        },
-    )
-
-
     configuration.add_config_parameters(
         scopes,
         {
@@ -275,31 +275,6 @@ def build_config(
             ),
             "embedding_selection_trigger_sf": "m_sel_trg_kit_ratio",
             "embedding_selection_id_sf": "EmbID_pt_eta_bins",
-        },
-    )
-    # Muon scale factors configuration
-    configuration.add_config_parameters(
-        ["mm"],
-        {
-            "muon_sf_file": EraModifier(
-                {
-                    "2016preVFP": "data/embedding/muon_2016preVFPUL.json.gz",
-                    "2016postVFP": "data/embedding/muon_2016postVFPUL.json.gz",
-                    "2017": "data/embedding/muon_2017.json.gz",
-                    "2018": "data/embedding/muon_2018.json.gz",
-                }
-            ),
-            "muon_id_sf_name": "NUM_MediumID_DEN_TrackerMuons",
-            "muon_iso_sf_name": "NUM_TightRelIso_DEN_MediumID",
-            "muon_sf_year_id": EraModifier(
-                {
-                    "2016preVFP": "2016preVFP_UL",
-                    "2016postVFP": "2016postVFP_UL",
-                    "2017": "2017_UL",
-                    "2018": "2018_UL",
-                }
-            ),
-            "muon_sf_varation": "sf",  # "sf" is nominal, "systup"/"systdown" are up/down variations
         },
     )
 
@@ -591,13 +566,14 @@ def build_config(
             event.PUweights,
             event.Lumi,
             event.npartons,
+            event.MetFilter,
 
             muons.BaseMuons,
             met.MetBasics,
 
             jets.GoodJets,
             jets.JetEnergyCorrection, 
-            jets.GoodBJets,
+        
 
             event.PrefireWeight,
 
@@ -625,8 +601,6 @@ def build_config(
 
             jets.JetCollection,
             jets.BasicJetQuantities,
-            jets.BasicBJetQuantities,
-            jets.BJetCollection,
 
 
             pairselection.LVMu1Uncorrected,
@@ -644,8 +618,6 @@ def build_config(
 
             pairquantities.DiTauPairMETQuantities,
 
-  
-            scalefactors.btagging_SF,
 
             muons.VetoMuons,
             muons.VetoSecondMuon,
@@ -717,8 +689,7 @@ def build_config(
             q.mt_1,
             q.mt_2,
             q.pzetamissvis,
-
-            q.btag_weight,  
+  
 
             q.deltaR_ditaupair,
             q.pt_vis,
@@ -848,15 +819,6 @@ def build_config(
         ),
     )
 
-    configuration.add_modification_rule(
-        scopes,
-        RemoveProducer(
-            producers=[
-                scalefactors.btagging_SF,
-            ],
-            samples=["data", "embedding", "embedding_mc"],
-        ),
-    )
 
     configuration.add_modification_rule(
         scopes,
@@ -874,10 +836,6 @@ def build_config(
 
     add_diTauTriggerSetup(configuration)  
 
-    #########################
-    # btagging scale factor shape variation
-    #########################
-    add_btagVariations(configuration, available_sample_types)
 
     #########################
     # Finalize and validate the configuration
