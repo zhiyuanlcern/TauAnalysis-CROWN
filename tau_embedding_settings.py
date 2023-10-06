@@ -663,9 +663,9 @@ def setup_embedding(configuration: Configuration, scopes: List[str]):
         "mt", triggers.MTGenerateCrossTriggerFlagsEmbedding.output_group
     )
 
-    # ######################
-    # ## Tau ID SFs
-    # ######################
+    ######################
+    ## Tau ID SFs
+    ######################
 
     configuration.add_modification_rule(
         ["et", "mt"],
@@ -935,41 +935,41 @@ def setup_embedding(configuration: Configuration, scopes: List[str]):
                         {
                             "flagname": "trg_wgt_single_mu24",
                             "embedding_trigger_sf": "Trg_IsoMu24_pt_eta_bins",
-                            "muon_trg_extrapolation": 1.02,  # for nominal case
+                            "muon_trg_extrapolation": 1.02, 
                         },
                         {
                             "flagname": "trg_wgt_single_mu27",
                             "embedding_trigger_sf": "Trg_IsoMu27_pt_eta_bins",
-                            "muon_trg_extrapolation": 1.02,  # for nominal case
+                            "muon_trg_extrapolation": 1.02, 
                         },
                         {
                             "flagname": "trg_wgt_single_mu24ormu27",
                             "embedding_trigger_sf": "Trg_IsoMu27_or_IsoMu24_pt_eta_bins",
-                            "muon_trg_extrapolation": 1.02,  # for nominal case
+                            "muon_trg_extrapolation": 1.02,  
                         },
                     ],
                     "2017": [
                         {
                             "flagname": "trg_wgt_single_mu24",
                             "embedding_trigger_sf": "Trg_IsoMu24_pt_eta_bins",
-                            "muon_trg_extrapolation": 1.02,  # for nominal case
+                            "muon_trg_extrapolation": 1.02,  
                         },
                         {
                             "flagname": "trg_wgt_single_mu27",
                             "embedding_trigger_sf": "Trg_IsoMu27_pt_eta_bins",
-                            "muon_trg_extrapolation": 1.02,  # for nominal case
+                            "muon_trg_extrapolation": 1.02, 
                         },
                         {
                             "flagname": "trg_wgt_single_mu24ormu27",
                             "embedding_trigger_sf": "Trg_IsoMu27_or_IsoMu24_pt_eta_bins",
-                            "muon_trg_extrapolation": 1.02,  # for nominal case
+                            "muon_trg_extrapolation": 1.02, 
                         },
                     ],
                     "2016postVFP": [
                         {
                             "flagname": "trg_wgt_single_mu22",
                             "embedding_trigger_sf": "Trg_pt_eta_bins",
-                            "muon_trg_extrapolation": 1.02,  # for nominal case
+                            "muon_trg_extrapolation": 1.02,  
                         },
                     ],
                     "2016preVFP": [
@@ -1002,48 +1002,48 @@ def setup_embedding(configuration: Configuration, scopes: List[str]):
                         {
                             "flagname": "trg_wgt_single_mu24",
                             "embedding_trigger_sf": "Trg_IsoMu24_pt_eta_bins",
-                            "muon_trg_extrapolation": 1.0,  # for nominal case
+                            "muon_trg_extrapolation": 0.98, 
                         },
                         {
                             "flagname": "trg_wgt_single_mu27",
                             "embedding_trigger_sf": "Trg_IsoMu27_pt_eta_bins",
-                            "muon_trg_extrapolation": 1.0,  # for nominal case
+                            "muon_trg_extrapolation": 0.98,  
                         },
                         {
                             "flagname": "trg_wgt_single_mu24ormu27",
                             "embedding_trigger_sf": "Trg_IsoMu27_or_IsoMu24_pt_eta_bins",
-                            "muon_trg_extrapolation": 1.0,  # for nominal case
+                            "muon_trg_extrapolation": 0.98,  
                         },
                     ],
                     "2017": [
                         {
                             "flagname": "trg_wgt_single_mu24",
                             "embedding_trigger_sf": "Trg_IsoMu24_pt_eta_bins",
-                            "muon_trg_extrapolation": 1.0,  # for nominal case
+                            "muon_trg_extrapolation": 0.98,  
                         },
                         {
                             "flagname": "trg_wgt_single_mu27",
                             "embedding_trigger_sf": "Trg_IsoMu27_pt_eta_bins",
-                            "muon_trg_extrapolation": 1.0,  # for nominal case
+                            "muon_trg_extrapolation": 0.98, 
                         },
                         {
                             "flagname": "trg_wgt_single_mu24ormu27",
                             "embedding_trigger_sf": "Trg_IsoMu27_or_IsoMu24_pt_eta_bins",
-                            "muon_trg_extrapolation": 1.0,  # for nominal case
+                            "muon_trg_extrapolation": 0.98,  
                         },
                     ],
                     "2016postVFP": [
                         {
                             "flagname": "trg_wgt_single_mu22",
                             "embedding_trigger_sf": "Trg_pt_eta_bins",
-                            "muon_trg_extrapolation": 1.0,  # for nominal case
+                            "muon_trg_extrapolation": 0.98,  
                         },
                     ],
                     "2016preVFP": [
                         {
                             "flagname": "trg_wgt_single_mu22",
                             "embedding_trigger_sf": "Trg_pt_eta_bins",
-                            "muon_trg_extrapolation": 1.0,  # for nominal case
+                            "muon_trg_extrapolation": 0.98,  
                         },
                     ],
                 }
