@@ -143,6 +143,17 @@ GoodJets = ProducerGroup(
     scopes=["global"],
     subproducers=[JetPtCut, JetEtaCut, JetIDCut, JetPUIDCut],
 )
+
+### As now 2022 data has no Jet_puID, so no possible to do JetPUIDCut
+GoodJets_2022 = ProducerGroup(
+    name="GoodJets_2022",
+    call="physicsobject::CombineMasks({df}, {output}, {input})",
+    input=[],
+    output=[q.good_jets_mask],
+    scopes=["global"],
+    subproducers=[JetPtCut, JetEtaCut, JetIDCut],
+)
+
 PreBJetEtaCut = Producer(
     name="PreBJetEtaCut",
     call="physicsobject::CutEta({df}, {input}, {output}, {max_bjet_eta})",
@@ -166,6 +177,17 @@ GoodBJets = ProducerGroup(
     scopes=["global"],
     subproducers=[BJetPtCut, BJetEtaCut, BTagCut],
 )
+
+### As now 2022 data has no Jet_puID, so no possible to do JetPUIDCut
+GoodBJets_2022 = ProducerGroup(
+    name="GoodBJets",
+    call="physicsobject::CombineMasks({df}, {output}, {input})",
+    input=[q.jet_id_mask, ],
+    output=[q.good_bjets_mask],
+    scopes=["global"],
+    subproducers=[BJetPtCut, BJetEtaCut, BTagCut],
+)
+
 GoodPreBJets = ProducerGroup(
     name="GoodPreBJets",
     call="physicsobject::CombineMasks({df}, {output}, {input})",
@@ -174,6 +196,17 @@ GoodPreBJets = ProducerGroup(
     scopes=["global"],
     subproducers=[PreBJetPtCut, PreBJetEtaCut],
 )
+
+### As now 2022 data has no Jet_puID, so no possible to do JetPUIDCut
+GoodPreBJets_2022 = ProducerGroup(
+    name="GoodPreBJets",
+    call="physicsobject::CombineMasks({df}, {output}, {input})",
+    input=[q.jet_id_mask,],
+    output=[q.good_prebjet_mask],
+    scopes=["global"],
+    subproducers=[PreBJetPtCut, PreBJetEtaCut],
+)
+
 
 ####################
 # Set of producers to apply a veto of jets overlapping with ditaupair candidates and ordering jets by their pt

@@ -178,8 +178,8 @@ def setup_embedding(configuration: Configuration, scopes: List[str]):
         {
             "embedding_muon_sf_file": EraModifier(
                 {
-                    "2016preVFP": "data/embedding/muon_2016preVFPUL.json.gz",
-                    "2016postVFP": "data/embedding/muon_2016postVFPUL.json.gz",
+                    "2016preVFP": "data/embedding/muon_2016preVFPUL.json.gz", ##Jordan: this is tmp fix, I copied data/embedding/muon_2018_UL.json.gz to data/embedding/tau_trigger2016preVFP_UL.json.gz
+                    "2016postVFP": "data/embedding/muon_2016postVFPUL.json.gz", ##Jordan: this is tmp fix, I copied data/embedding/muon_2018_UL.json.gz to data/embedding/tau_trigger2016preVFP_UL.json.gz
                     "2017": "data/embedding/muon_2017UL.json.gz",
                     "2018": "data/embedding/muon_2018UL.json.gz",
                 }
@@ -300,9 +300,9 @@ def setup_embedding(configuration: Configuration, scopes: List[str]):
             "emb_ditau_trigger_syst": "nom",
             "emb_ditau_trigger_file": EraModifier(
                 {
-                    "2016preVFP": "",
-                    "2016postVFP": "",
-                    "2017": "",
+                    "2016preVFP": "data/embedding/tau_trigger2016preVFP_UL.json.gz",  ##Jordan: this is tmp fix, I copied data/embedding/tau_trigger2018_UL.json.gz to data/embedding/tau_trigger2016preVFP_UL.json.gz
+                    "2016postVFP": "data/embedding/tau_trigger2016postVFP_UL.json.gz",  ##Jordan: this is tmp fix, I copied data/embedding/tau_trigger2018_UL.json.gz to data/embedding/tau_trigger2016postVFP_UL.json.gz
+                    "2017": "data/embedding/tau_trigger2017_UL.json.gz", ##Jordan: this is tmp fix, I copied data/embedding/tau_trigger2018_UL.json.gz to data/embedding/tau_trigger2017_UL.json.gz
                     "2018": "data/embedding/tau_trigger2018_UL.json.gz",
                 }
             ),

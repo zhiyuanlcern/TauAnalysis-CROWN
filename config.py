@@ -59,6 +59,7 @@ def build_config(
                     "2016postVFP": "data/jsonpog-integration/POG/LUM/2016postVFP_UL/puWeights.json.gz",
                     "2017": "data/jsonpog-integration/POG/LUM/2017_UL/puWeights.json.gz",
                     "2018": "data/jsonpog-integration/POG/LUM/2018_UL/puWeights.json.gz",
+                    "2022": "data/jsonpog-integration/POG/LUM/2018_UL/puWeights.json.gz", ## TODO: update to 2022 PU file when available. These lines only for testing
                 }
             ),
             "PU_reweighting_era": EraModifier(
@@ -67,6 +68,7 @@ def build_config(
                     "2016postVFP": "Collisions16_UltraLegacy_goldenJSON",
                     "2017": "Collisions17_UltraLegacy_goldenJSON",
                     "2018": "Collisions18_UltraLegacy_goldenJSON",
+                    "2022": "Collisions18_UltraLegacy_goldenJSON", ## TODO: update to 2022 PU file when available. These lines only for testing
                 }
             ),
             "PU_reweighting_variation": "nominal",
@@ -76,6 +78,7 @@ def build_config(
                     "2016postVFP": "data/golden_json/Cert_271036-284044_13TeV_Legacy2016_Collisions16_JSON.txt",
                     "2017": "data/golden_json/Cert_294927-306462_13TeV_UL2017_Collisions17_GoldenJSON.txt",
                     "2018": "data/golden_json/Cert_314472-325175_13TeV_Legacy2018_Collisions18_JSON.txt",
+                    "2022": "data/golden_json/Cert_Collisions2022_355100_362760_Golden.json.txt",
                 }
             ),
             "met_filters": EraModifier(
@@ -119,6 +122,20 @@ def build_config(
                         "Flag_EcalDeadCellTriggerPrimitiveFilter",
                         "Flag_BadPFMuonFilter",
                         #"Flag_BadPFMuonDzFilter",  # only since nanoAODv9 available
+
+                        "Flag_eeBadScFilter",
+                        "Flag_ecalBadCalibFilter",
+                    ],
+                    ## all years seem the same? just copying to 2022 then
+                    "2022": [
+                        "Flag_goodVertices",
+                        "Flag_globalSuperTightHalo2016Filter",
+                        "Flag_HBHENoiseFilter",
+                        "Flag_HBHENoiseIsoFilter",
+                        "Flag_EcalDeadCellTriggerPrimitiveFilter",
+                        "Flag_BadPFMuonFilter",
+                        #"Flag_BadPFMuonDzFilter",  # only since nanoAODv9 available
+
                         "Flag_eeBadScFilter",
                         "Flag_ecalBadCalibFilter",
                     ],
@@ -136,6 +153,7 @@ def build_config(
                     "2016postVFP": "data/jsonpog-integration/POG/TAU/2016postVFP_UL/tau.json.gz",
                     "2017": "data/jsonpog-integration/POG/TAU/2017_UL/tau.json.gz",
                     "2018": "data/jsonpog-integration/POG/TAU/2018_UL/tau.json.gz",
+                    "2022": "data/jsonpog-integration/POG/TAU/2018_UL/tau.json.gz", ## TODO: update to 2022 Tau file when available. These lines only for testing
                 }
             ),
             "tau_ES_json_name": "tau_energy_scale",
@@ -172,7 +190,15 @@ def build_config(
             "max_ele_dxy": 0.045,
             "max_ele_dz": 0.2,
             "max_ele_iso": 0.3,
-            "ele_id": "Electron_mvaFall17V2noIso_WP90",
+            "ele_id": EraModifier(
+                {
+                    "2016preVFP":"Electron_mvaFall17V2noIso_WP90",
+                    "2016postVFP":"Electron_mvaFall17V2noIso_WP90",
+                    "2017":"Electron_mvaFall17V2noIso_WP90",
+                    "2018":"Electron_mvaFall17V2noIso_WP90",
+                    "2022": "Electron_mvaNoIso_Fall17V2_WP90", ## TODO: update to 2022 recommendation when available. These lines only for testing
+                }
+            )
         },
     )
     # jet base selection:
@@ -188,6 +214,7 @@ def build_config(
                     "2016postVFP": 1,  # 0==fail, 1==pass(loose), 3==pass(loose,medium), 7==pass(loose,medium,tight)
                     "2017": 4,  # 0==fail, 4==pass(loose), 6==pass(loose,medium), 7==pass(loose,medium,tight)
                     "2018": 4,  # 0==fail, 4==pass(loose), 6==pass(loose,medium), 7==pass(loose,medium,tight)
+                    "2022": 4, ## TODO: update to 2022 recommendation when available. These lines only for testing
                 }
             ),
             "jet_puid_max_pt": 50,  # recommended to apply puID only for jets below 50 GeV
@@ -201,6 +228,7 @@ def build_config(
                     "2016postVFP": '"data/jsonpog-integration/POG/JME/2016postVFP_UL/jet_jerc.json.gz"',
                     "2017": '"data/jsonpog-integration/POG/JME/2017_UL/jet_jerc.json.gz"',
                     "2018": '"data/jsonpog-integration/POG/JME/2018_UL/jet_jerc.json.gz"',
+                    "2022": '"data/jsonpog-integration/POG/JME/2018_UL/jet_jerc.json.gz"', ## TODO: update to 2022 recommendation when available. These lines only for testing
                 }
             ),
             "jet_jer_tag": EraModifier(
@@ -209,6 +237,7 @@ def build_config(
                     "2016postVFP": '"Summer20UL16_JRV3_MC"',
                     "2017": '"Summer19UL17_JRV2_MC"',
                     "2018": '"Summer19UL18_JRV2_MC"',
+                    "2022": '"Summer19UL18_JRV2_MC"',## TODO: update to 2022 recommendation when available. These lines only for testing
                 }
             ),
             "jet_jes_tag_data": '""',
@@ -218,6 +247,7 @@ def build_config(
                     "2016postVFP": '"Summer19UL16_V7_MC"',
                     "2017": '"Summer19UL17_V5_MC"',
                     "2018": '"Summer19UL18_V5_MC"',
+                    "2022": '"Summer19UL18_V5_MC"',## TODO: update to 2022 recommendation when available. These lines only for testing
                 }
             ),
             "jet_jec_algo": '"AK4PFchs"',
@@ -234,6 +264,7 @@ def build_config(
                     "2016postVFP": 2.5,
                     "2017": 2.5,
                     "2018": 2.5,
+                    "2022": 2.5,## TODO: update to 2022 recommendation when available. These lines only for testing
                 }
             ),
             "btag_cut": EraModifier(  # medium
@@ -242,6 +273,8 @@ def build_config(
                     "2016postVFP": 0.2489,  # taken from https://twiki.cern.ch/twiki/bin/view/CMS/BtagRecommendation106XUL16postVFP
                     "2017": 0.3040,
                     "2018": 0.2783,
+                    "2022": 0.2783,## TODO: update to 2022 recommendation when available. These lines only for testing
+
 
                 }
             ),
@@ -257,6 +290,7 @@ def build_config(
                     "2016postVFP": "data/jsonpog-integration/POG/BTV/2016postVFP_UL/btagging.json.gz",
                     "2017": "data/jsonpog-integration/POG/BTV/2017_UL/btagging.json.gz",
                     "2018": "data/jsonpog-integration/POG/BTV/2018_UL/btagging.json.gz",
+                    "2022": "data/jsonpog-integration/POG/BTV/2018_UL/btagging.json.gz",## TODO: update to 2022 recommendation when available. These lines only for testing
                 }
             ),
             "btag_sf_variation": "central",
@@ -424,6 +458,7 @@ def build_config(
                     "2016postVFP": "data/jsonpog-integration/POG/MUO/2016postVFP_UL/muon_Z.json.gz",
                     "2017": "data/jsonpog-integration/POG/MUO/2017_UL/muon_Z.json.gz",
                     "2018": "data/jsonpog-integration/POG/MUO/2018_UL/muon_Z.json.gz",
+                    "2022": "data/jsonpog-integration/POG/MUO/2018_UL/muon_Z.json.gz",## TODO: update to 2022 recommendation when available. These lines only for testing
                 }
             ),
             "muon_id_sf_name": "NUM_MediumID_DEN_TrackerMuons",
@@ -434,6 +469,7 @@ def build_config(
                     "2016postVFP": "2016postVFP_UL",
                     "2017": "2017_UL",
                     "2018": "2018_UL",
+                    "2022": "2018_UL",## TODO: update to 2022 recommendation when available. These lines only for testing
                 }
             ),
             "muon_sf_varation": "sf",  # "sf" is nominal, "systup"/"systdown" are up/down variations
@@ -449,6 +485,7 @@ def build_config(
                     "2016postVFP": "data/jsonpog-integration/POG/EGM/2016postVFP_UL/electron.json.gz",
                     "2017": "data/jsonpog-integration/POG/EGM/2017_UL/electron.json.gz",
                     "2018": "data/jsonpog-integration/POG/EGM/2018_UL/electron.json.gz",
+                    "2022": "data/jsonpog-integration/POG/EGM/2018_UL/electron.json.gz", ## TODO: update to 2022 recommendation when available. These lines only for testing
                 }
             ),
             "ele_id_sf_name": "UL-Electron-ID-SF",
@@ -458,6 +495,7 @@ def build_config(
                     "2016postVFP": "2016postVFP",
                     "2017": "2017",
                     "2018": "2018",
+                    "2022": "2018",## TODO: update to 2022 recommendation when available. These lines only for testing
                 }
             ),
             "ele_sf_varation": "sf",  # "sf" is nominal, "sfup"/"sfdown" are up/down variations
@@ -534,6 +572,7 @@ def build_config(
                     "2016postVFP": "data/recoil_corrections/Type1_PuppiMET_2016.root",  # These are likely from Legacy data sets, therefore no difference in pre and postVFP
                     "2017": "data/recoil_corrections/Type1_PuppiMET_2017.root",
                     "2018": "data/recoil_corrections/Type1_PuppiMET_2018.root",
+                    "2022": "data/recoil_corrections/Type1_PuppiMET_2018.root",## TODO: update to 2022 recommendation when available. These lines only for testing
                 }
             ),
             "recoil_systematics_file": EraModifier(
@@ -542,6 +581,7 @@ def build_config(
                     "2016postVFP": "data/recoil_corrections/PuppiMETSys_2016.root",  # These are likely from Legacy data sets, therefore no difference in pre and postVFP
                     "2017": "data/recoil_corrections/PuppiMETSys_2017.root",
                     "2018": "data/recoil_corrections/PuppiMETSys_2018.root",
+                    "2022": "data/recoil_corrections/PuppiMETSys_2018.root",## TODO: update to 2022 recommendation when available. These lines only for testing
                 }
             ),
             "applyRecoilCorrections": SampleModifier(
@@ -577,6 +617,7 @@ def build_config(
                     "2016postVFP": "data/zpt/htt_scalefactors_legacy_2016.root",  # ToDO: Measured in legacy, therefore the same for pre- and postVFP for now
                     "2017": "data/zpt/htt_scalefactors_legacy_2017.root",
                     "2018": "data/zpt/htt_scalefactors_legacy_2018.root",
+                    "2022": "data/zpt/htt_scalefactors_legacy_2018.root",## TODO: update to 2022 recommendation when available. These lines only for testing
                 }
             ),
             "zptmass_functor": "zptmass_weight_nom",
@@ -594,6 +635,7 @@ def build_config(
                     "2016postVFP": "data/embedding/muon_2016postVFPUL.json.gz",
                     "2017": "data/embedding/muon_2017UL.json.gz",
                     "2018": "data/embedding/muon_2018UL.json.gz",
+                    "2022": "data/embedding/muon_2018UL.json.gz",## TODO: update to 2022 recommendation when available. These lines only for testing
                 }
             ),
             "mc_muon_id_sf": "ID_pt_eta_bins",
@@ -612,6 +654,7 @@ def build_config(
                     "2016postVFP": "data/embedding/electron_2016postVFPUL.json.gz",
                     "2017": "data/embedding/electron_2017UL.json.gz",
                     "2018": "data/embedding/electron_2018UL.json.gz",
+                    "2022": "data/embedding/electron_2018UL.json.gz", ## TODO: update to 2022 recommendation when available. These lines only for testing
                 }
             ),
             "mc_electron_id_sf": "ID90_pt_eta_bins",
@@ -625,7 +668,25 @@ def build_config(
         ["mt", "mm"],
         {
             "singlemuon_trigger_sf_mc": EraModifier(
-                {
+                {   
+                    ## TODO: update to 2022 recommendation when available. These lines only for testing
+                    "2022": [
+                        {
+                            "flagname": "trg_wgt_single_mu24",
+                            "mc_trigger_sf": "Trg_IsoMu24_pt_eta_bins",
+                            "mc_muon_trg_extrapolation": 1.0,  # for nominal case
+                        },
+                        {
+                            "flagname": "trg_wgt_single_mu27",
+                            "mc_trigger_sf": "Trg_IsoMu27_pt_eta_bins",
+                            "mc_muon_trg_extrapolation": 1.0,  # for nominal case
+                        },
+                        {
+                            "flagname": "trg_wgt_single_mu24ormu27",
+                            "mc_trigger_sf": "Trg_IsoMu27_or_IsoMu24_pt_eta_bins",
+                            "mc_muon_trg_extrapolation": 1.0,  # for nominal case
+                        },
+                    ],
                     "2018": [
                         {
                             "flagname": "trg_wgt_single_mu24",
@@ -681,9 +742,31 @@ def build_config(
     # electron trigger SF settings from embedding measurements
     configuration.add_config_parameters(
         ["et", "ee"],
-        {
+        {  
             "singlelectron_trigger_sf_mc": EraModifier(
-                {
+                {   ## TODO: update to 2022 recommendation when available. These lines only for testing
+                    "2022": [
+                        {
+                            "flagname": "trg_wgt_single_ele32",
+                            "mc_trigger_sf": "Trg32_Iso_pt_eta_bins",
+                            "mc_electron_trg_extrapolation": 1.0,  # for nominal case
+                        },
+                        {
+                            "flagname": "trg_wgt_single_ele35",
+                            "mc_trigger_sf": "Trg35_Iso_pt_eta_bins",
+                            "mc_electron_trg_extrapolation": 1.0,  # for nominal case
+                        },
+                        {
+                            "flagname": "trg_wgt_single_ele32orele35",
+                            "mc_trigger_sf": "Trg32_or_Trg35_Iso_pt_eta_bins",
+                            "mc_electron_trg_extrapolation": 1.0,  # for nominal case
+                        },
+                        {
+                            "flagname": "trg_wgt_single_ele27orele32orele35",
+                            "mc_trigger_sf": "Trg_Iso_pt_eta_bins",
+                            "mc_electron_trg_extrapolation": 1.0,  # for nominal case
+                        },
+                    ],
                     "2018": [
                         {
                             "flagname": "trg_wgt_single_ele32",
@@ -761,13 +844,28 @@ def build_config(
             electrons.RenameElectronPt,
             electrons.BaseElectrons,
             jets.JetEnergyCorrection,
-            jets.GoodJets,
-            jets.GoodBJets,
-            jets.GoodPreBJets,
             event.DiLeptonVeto,
             met.MetBasics,
         ],
     )
+    # As now 2022 data has no Jet_puID, so no possible to do JetPUIDCut
+    if era == "2022":
+        configuration.add_producers(
+            "global",
+            [
+                jets.GoodJets_2022,
+                jets.GoodBJets_2022,
+                jets.GoodPreBJets_2022],
+            ),
+    else:
+        configuration.add_producers(
+            "global",
+            [
+                jets.GoodJets,
+                jets.GoodBJets,
+                jets.GoodPreBJets],
+            ),
+        
     ## add prefiring
     if era != "2018":
         configuration.add_producers(
@@ -882,6 +980,7 @@ def build_config(
             pairselection.LVTau2Uncorrected,
             pairquantities.ETDiTauPairQuantities,
             genparticles.ETGenDiTauPairQuantities,
+            pairquantities.FastMTTQuantities,
             scalefactors.Tau_2_VsJetTauID_lt_SF,
             scalefactors.Tau_2_VsEleTauID_SF,
             scalefactors.Tau_2_VsMuTauID_SF,
@@ -908,6 +1007,7 @@ def build_config(
             pairselection.LVTau2Uncorrected,
             pairquantities.TTDiTauPairQuantities,
             genparticles.TTGenDiTauPairQuantities,
+            pairquantities.FastMTTQuantities,
             scalefactors.Tau_1_VsJetTauID_SF,
             scalefactors.Tau_1_VsEleTauID_SF,
             scalefactors.Tau_1_VsMuTauID_SF,
@@ -938,6 +1038,7 @@ def build_config(
             pairselection.LVMu2Uncorrected,
             pairquantities.EMDiTauPairQuantities,
             genparticles.EMGenDiTauPairQuantities,
+            pairquantities.FastMTTQuantities,
             # scalefactors.MuonIDIso_SF,
             # scalefactors.EleID_SF,
             triggers.EMGenerateSingleElectronTriggerFlags,
@@ -1833,7 +1934,29 @@ def build_config(
             shift_config={
                 ("et"): {
                     "singlelectron_trigger_sf_mc": EraModifier(
-                        {
+                        {   ## TODO: update to 2022 recommendation when available. These lines only for testing
+                             "2022": [
+                                {
+                                    "flagname": "trg_wgt_single_ele32orele35",
+                                    "mc_trigger_sf": "Trg32_or_Trg35_Iso_pt_eta_bins",
+                                    "mc_electron_trg_extrapolation": 1.02,
+                                },
+                                {
+                                    "flagname": "trg_wgt_single_ele32",
+                                    "mc_trigger_sf": "Trg32_Iso_pt_eta_bins",
+                                    "mc_electron_trg_extrapolation": 1.02,
+                                },
+                                {
+                                    "flagname": "trg_wgt_single_ele35",
+                                    "mc_trigger_sf": "Trg35_Iso_pt_eta_bins",
+                                    "mc_electron_trg_extrapolation": 1.02,
+                                },
+                                {
+                                    "flagname": "trg_wgt_single_ele27orele32orele35",
+                                    "mc_trigger_sf": "Trg_Iso_pt_eta_bins",
+                                    "mc_electron_trg_extrapolation": 1.02,
+                                },
+                            ],
                             "2018": [
                                 {
                                     "flagname": "trg_wgt_single_ele32orele35",
@@ -1910,7 +2033,29 @@ def build_config(
             shift_config={
                 ("et"): {
                     "singlelectron_trigger_sf_mc": EraModifier(
-                        {
+                        {   ## TODO: update to 2022 recommendation when available. These lines only for testing
+                            "2022": [
+                                {
+                                    "flagname": "trg_wgt_single_ele32orele35",
+                                    "mc_trigger_sf": "Trg32_or_Trg35_Iso_pt_eta_bins",
+                                    "mc_electron_trg_extrapolation": 0.98,
+                                },
+                                {
+                                    "flagname": "trg_wgt_single_ele32",
+                                    "mc_trigger_sf": "Trg32_Iso_pt_eta_bins",
+                                    "mc_electron_trg_extrapolation": 0.98,
+                                },
+                                {
+                                    "flagname": "trg_wgt_single_ele35",
+                                    "mc_trigger_sf": "Trg35_Iso_pt_eta_bins",
+                                    "mc_electron_trg_extrapolation": 0.98,
+                                },
+                                {
+                                    "flagname": "trg_wgt_single_ele27orele32orele35",
+                                    "mc_trigger_sf": "Trg_Iso_pt_eta_bins",
+                                    "mc_electron_trg_extrapolation": 0.98,
+                                },
+                            ],
                             "2018": [
                                 {
                                     "flagname": "trg_wgt_single_ele32orele35",
@@ -1988,7 +2133,24 @@ def build_config(
             shift_config={
                 ("mt"): {
                     "singlemuon_trigger_sf_mc": EraModifier(
-                        {
+                        {   ## TODO: update to 2022 recommendation when available. These lines only for testing
+                             "2022": [
+                                {
+                                    "flagname": "trg_wgt_single_mu24",
+                                    "mc_trigger_sf": "Trg_IsoMu24_pt_eta_bins",
+                                    "mc_muon_trg_extrapolation": 1.02,
+                                },
+                                {
+                                    "flagname": "trg_wgt_single_mu27",
+                                    "mc_trigger_sf": "Trg_IsoMu27_pt_eta_bins",
+                                    "mc_muon_trg_extrapolation": 1.02,
+                                },
+                                {
+                                    "flagname": "trg_wgt_single_mu24ormu27",
+                                    "mc_trigger_sf": "Trg_IsoMu27_or_IsoMu24_pt_eta_bins",
+                                    "mc_muon_trg_extrapolation": 1.02,
+                                },
+                            ],
                             "2018": [
                                 {
                                     "flagname": "trg_wgt_single_mu24",
@@ -2055,7 +2217,24 @@ def build_config(
             shift_config={
                 ("mt"): {
                     "singlemuon_trigger_sf_mc": EraModifier(
-                        {
+                        {   ## TODO: update to 2022 recommendation when available. These lines only for testing
+                            "2022": [
+                                {
+                                    "flagname": "trg_wgt_single_mu24",
+                                    "mc_trigger_sf": "Trg_IsoMu24_pt_eta_bins",
+                                    "mc_muon_trg_extrapolation": 0.98,
+                                },
+                                {
+                                    "flagname": "trg_wgt_single_mu27",
+                                    "mc_trigger_sf": "Trg_IsoMu27_pt_eta_bins",
+                                    "mc_muon_trg_extrapolation": 0.98,
+                                },
+                                {
+                                    "flagname": "trg_wgt_single_mu24ormu27",
+                                    "mc_trigger_sf": "Trg_IsoMu27_or_IsoMu24_pt_eta_bins",
+                                    "mc_muon_trg_extrapolation": 0.98,
+                                },
+                            ],
                             "2018": [
                                 {
                                     "flagname": "trg_wgt_single_mu24",

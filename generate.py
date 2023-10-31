@@ -22,8 +22,20 @@ def run(args):
         "wjets",
         "data",
         "electroweak_boson",
+        # these are the new samples        
+        # "ggh_hww",
+        # "ggZZ",
+        # "rem_VH",
+        # "qcd",
+        # "rem_ttbar",
+        # "vbf_hww",
+        # "wg",
+        # "triboson",
+        # "triboson",
+        # "rem_ttbar",
+        #
     ]
-    available_eras = ["2016preVFP", "2016postVFP", "2017", "2018"]
+    available_eras = ["2016preVFP", "2016postVFP", "2017", "2018", "2022"]
     available_scopes = ["et", "mt", "tt", "em", "ee", "mm"]
 
     ## setup variables
