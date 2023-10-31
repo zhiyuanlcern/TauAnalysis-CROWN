@@ -122,6 +122,7 @@ def build_config(
                         "Flag_EcalDeadCellTriggerPrimitiveFilter",
                         "Flag_BadPFMuonFilter",
                         #"Flag_BadPFMuonDzFilter",  # only since nanoAODv9 available
+
                         "Flag_eeBadScFilter",
                         "Flag_ecalBadCalibFilter",
                     ],
@@ -134,6 +135,7 @@ def build_config(
                         "Flag_EcalDeadCellTriggerPrimitiveFilter",
                         "Flag_BadPFMuonFilter",
                         #"Flag_BadPFMuonDzFilter",  # only since nanoAODv9 available
+
                         "Flag_eeBadScFilter",
                         "Flag_ecalBadCalibFilter",
                     ],
@@ -272,6 +274,7 @@ def build_config(
                     "2017": 0.3040,
                     "2018": 0.2783,
                     "2022": 0.2783,## TODO: update to 2022 recommendation when available. These lines only for testing
+
 
                 }
             ),
