@@ -7,27 +7,50 @@ from code_generation.producer import Producer, ProducerGroup
 # Tau ID cuts
 #############
 
+
 VsJetTauIDCut = Producer(
     name="VsJetTauIDCut",
-    call="physicsobject::tau::CutTauID({df}, {output}, {input}, {vsjet_tau_id_bit})",
+    call="physicsobject::tau::CutUChar_tID({df}, {output}, {input}, {vsjet_tau_id_bit})",
     input=[nanoAOD.Tau_ID_vsJet],
     output=[],
     scopes=["et", "mt", "tt"],
 )
 VsElectronTauIDCut = Producer(
     name="VsElectronTauIDCut",
-    call="physicsobject::tau::CutTauID({df}, {output}, {input}, {vsele_tau_id_bit})",
+    call="physicsobject::tau::CutUChar_tID({df}, {output}, {input}, {vsele_tau_id_bit})",
     input=[nanoAOD.Tau_ID_vsEle],
     output=[],
     scopes=["et", "mt", "tt"],
 )
 VsMuonTauIDCut = Producer(
     name="VsMuonTauIDCut",
-    call="physicsobject::tau::CutTauID({df}, {output}, {input}, {vsmu_tau_id_bit})",
+    call="physicsobject::tau::CutUChar_tID({df}, {output}, {input}, {vsmu_tau_id_bit})",
     input=[nanoAOD.Tau_ID_vsMu],
     output=[],
     scopes=["et", "mt", "tt"],
 )
+
+# VsJetTauIDCut = Producer(
+#     name="VsJetTauIDCut",
+#     call="physicsobject::tau::CutTauID({df}, {output}, {input}, {vsjet_tau_id_bit})",
+#     input=[nanoAOD.Tau_ID_vsJet],
+#     output=[],
+#     scopes=["et", "mt", "tt"],
+# )
+# VsElectronTauIDCut = Producer(
+#     name="VsElectronTauIDCut",
+#     call="physicsobject::tau::CutTauID({df}, {output}, {input}, {vsele_tau_id_bit})",
+#     input=[nanoAOD.Tau_ID_vsEle],
+#     output=[],
+#     scopes=["et", "mt", "tt"],
+# )
+# VsMuonTauIDCut = Producer(
+#     name="VsMuonTauIDCut",
+#     call="physicsobject::tau::CutTauID({df}, {output}, {input}, {vsmu_tau_id_bit})",
+#     input=[nanoAOD.Tau_ID_vsMu],
+#     output=[],
+#     scopes=["et", "mt", "tt"],
+# )
 
 ####################
 # Set of producers used for selection of good taus

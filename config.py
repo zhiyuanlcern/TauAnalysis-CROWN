@@ -354,6 +354,7 @@ def build_config(
                     "vsele_tau_id_WPbit": bit,
                 }
                 for wp, bit in {
+                    # "VVVLoose": 1, ## this will crash
                     "VVLoose": 2,
                     "VLoose": 3,
                     "Loose": 4,
@@ -376,8 +377,8 @@ def build_config(
                 for wp, bit in {
                     "VLoose": 1,
                     "Loose": 2,
-                    "Medium": 3,
-                    "Tight": 4,
+                    # "Medium": 3,
+                    # "Tight": 4,
                 }.items()
             ],
             "tau_sf_vsele_barrel": "nom",  # or "up"/"down" for up/down variation
@@ -867,7 +868,7 @@ def build_config(
             ),
         
     ## add prefiring
-    if era != "2018":
+    if era != "2018" and era != "2022":
         configuration.add_producers(
             "global",
             [
@@ -1449,7 +1450,7 @@ def build_config(
             scopes,
             nanoAOD.genWeight,
         )
-        if era != "2018":
+        if era != "2018" and era != "2022":
             configuration.add_outputs(
                 scopes,
                 q.prefireweight,
@@ -1771,7 +1772,7 @@ def build_config(
     #########################
     # Prefiring Shifts
     #########################
-    if era != "2018":
+    if era != "2018" and era != "2022":
         configuration.add_shift(
             SystematicShiftByQuantity(
                 name="prefiringDown",

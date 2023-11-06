@@ -175,7 +175,7 @@ def add_diTauTriggerSetup(configuration: Configuration):
                     "2022": [
                         {
                             "flagname": "trg_cross_mu20tau27_hps",
-                            "hlt_path": "HLT_IsoMu20_eta2p1_LooseChargedIsoPFTauHPS27_eta2p1_CrossL1",
+                            "hlt_path": "HLT_IsoMu20_eta2p1_LooseDeepTauPFTauHPS27_eta2p1_CrossL1",
                             "p1_ptcut": 21,
                             "p1_etacut": 2.1,
                             "p1_filterbit": 3,
@@ -185,21 +185,7 @@ def add_diTauTriggerSetup(configuration: Configuration):
                             "p2_filterbit": -1,  # TODO switch to "p2_filterbit": 4, if the bits are correct
                             "p2_trigger_particle_id": 15,
                             "max_deltaR_triggermatch": 0.4,
-                        },
-                        # the non HPS version exists for data only, but add it anyway to have the flag in the ntuple
-                        {
-                            "flagname": "trg_cross_mu20tau27",
-                            "hlt_path": "HLT_IsoMu20_eta2p1_LooseChargedIsoPFTau27_eta2p1_CrossL1",
-                            "p1_ptcut": 21,
-                            "p1_etacut": 2.1,
-                            "p1_filterbit": 3,
-                            "p1_trigger_particle_id": 13,
-                            "p2_ptcut": 32,
-                            "p2_etacut": 2.1,
-                            "p2_filterbit": -1,  # TODO switch to "p2_filterbit": 4, if the bits are correct
-                            "p2_trigger_particle_id": 15,
-                            "max_deltaR_triggermatch": 0.4,
-                        },
+                        },                        
                     ],
                     "2018": [
                         {
@@ -407,7 +393,7 @@ def add_diTauTriggerSetup(configuration: Configuration):
                     "2022": [
                         {
                             "flagname": "trg_cross_ele24tau30_hps",
-                            "hlt_path": "HLT_Ele24_eta2p1_WPTight_Gsf_LooseChargedIsoPFTauHPS30_eta2p1_CrossL1",
+                            "hlt_path": "HLT_Ele24_eta2p1_WPTight_Gsf_LooseDeepTauPFTauHPS30_eta2p1_CrossL1",
                             "p1_ptcut": 25,
                             "p2_ptcut": 32,
                             "p1_etacut": 2.5,
@@ -419,19 +405,6 @@ def add_diTauTriggerSetup(configuration: Configuration):
                             "max_deltaR_triggermatch": 0.4,
                         },
                         # the non HPS version exists for data only, but add it anyway to have the flag in the ntuple
-                        {
-                            "flagname": "trg_cross_ele24tau30",
-                            "hlt_path": "HLT_Ele24_eta2p1_WPTight_Gsf_LooseChargedIsoPFTau30_eta2p1_CrossL1",
-                            "p1_ptcut": 25,
-                            "p2_ptcut": 32,
-                            "p1_etacut": 2.5,
-                            "p2_etacut": 2.1,
-                            "p1_filterbit": 1,
-                            "p1_trigger_particle_id": 11,
-                            "p2_filterbit": 4,
-                            "p2_trigger_particle_id": 15,
-                            "max_deltaR_triggermatch": 0.4,
-                        },
                     ],
                     "2018": [
                         {
@@ -573,7 +546,7 @@ def add_diTauTriggerSetup(configuration: Configuration):
                     "2022": [
                         {
                             "flagname": "trg_double_tau35_mediumiso_hps",
-                            "hlt_path": "HLT_DoubleMediumChargedIsoPFTauHPS35_Trk1_eta2p1_Reg",
+                            "hlt_path": "HLT_DoubleMediumDeepTauPFTauHPS35_L2NN_eta2p1",
                             "p1_ptcut": 40,
                             "p2_ptcut": 40,
                             "p1_etacut": 2.1,
@@ -587,7 +560,7 @@ def add_diTauTriggerSetup(configuration: Configuration):
                         # the non HPS version exists for data only, but add it anyway to have the flag in the ntuple
                         {
                             "flagname": "trg_double_tau40_tightiso",
-                            "hlt_path": "HLT_DoubleTightChargedIsoPFTau40_Trk1_eta2p1_Reg",
+                            "hlt_path": "HLT_DoubleTightChargedIsoPFTauHPS35_Trk1_eta2p1",
                             "p1_ptcut": 40,
                             "p2_ptcut": 40,
                             "p1_etacut": 2.1,
@@ -600,7 +573,7 @@ def add_diTauTriggerSetup(configuration: Configuration):
                         },
                         {
                             "flagname": "trg_double_tau40_mediumiso_tightid",
-                            "hlt_path": "HLT_DoubleMediumChargedIsoPFTau40_Trk1_TightID_eta2p1_Reg",
+                            "hlt_path": "HLT_DoubleMediumChargedIsoPFTauHPS40_Trk1_eta2p1",
                             "p1_ptcut": 40,
                             "p2_ptcut": 40,
                             "p1_etacut": 2.1,
@@ -608,19 +581,6 @@ def add_diTauTriggerSetup(configuration: Configuration):
                             "p1_filterbit": -1,  # TODO switch to "p1_filterbit": 6, if the bits are correct
                             "p1_trigger_particle_id": 15,
                             "p2_filterbit": -1,  # TODO switch to "p2_filterbit": 6, if the bits are correct
-                            "p2_trigger_particle_id": 15,
-                            "max_deltaR_triggermatch": 0.4,
-                        },
-                        {
-                            "flagname": "trg_double_tau35_tightiso_tightid",
-                            "hlt_path": "HLT_DoubleTightChargedIsoPFTau35_Trk1_TightID_eta2p1_Reg",
-                            "p1_ptcut": 40,
-                            "p2_ptcut": 40,
-                            "p1_etacut": 2.1,
-                            "p2_etacut": 2.1,
-                            "p1_filterbit": 6,
-                            "p1_trigger_particle_id": 15,
-                            "p2_filterbit": 6,
                             "p2_trigger_particle_id": 15,
                             "max_deltaR_triggermatch": 0.4,
                         },
