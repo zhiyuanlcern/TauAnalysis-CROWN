@@ -93,6 +93,13 @@ JetPtCut = Producer(
     output=[],
     scopes=["global"],
 )
+FatJetPtCut = Producer(
+    name="FatJetPtCut",
+    call="physicsobject::CutPt({df}, {input}, {output}, {min_jet_pt})",
+    input=[nanoAOD.FatJet_pt],
+    output=[],
+    scopes=["global"],
+)
 BJetPtCut = Producer(
     name="BJetPtCut",
     call="physicsobject::CutPt({df}, {input}, {output}, {min_bjet_pt})",
@@ -143,7 +150,14 @@ GoodJets = ProducerGroup(
     scopes=["global"],
     subproducers=[JetPtCut, JetEtaCut, JetIDCut, JetPUIDCut],
 )
-
+GoodFatJets = ProducerGroup(
+    name="GoodFatJets",
+    call="physicsobject::CombineMasks({df}, {output}, {input})",
+    input=[],
+    output=[q.good_fatjets_mask],
+    scopes=["global"],
+    subproducers=[FatJetPtCut],
+)
 ### As now 2022 data has no Jet_puID, so no possible to do JetPUIDCut
 GoodJets_2022 = ProducerGroup(
     name="GoodJets_2022",
@@ -222,6 +236,15 @@ VetoOverlappingJets = Producer(
     output=[q.jet_overlap_veto_mask],
     scopes=["mt", "et", "tt", "em", "mm", "ee"],
 )
+VetoOverlappingFatJets = Producer(
+    name="VetoOverlappingFatJets",
+    call="jet::VetoOverlappingJets({df}, {output}, {input}, {deltaR_jet_veto})",
+    input=[nanoAOD.FatJet_eta, nanoAOD.FatJet_phi, q.p4_1, q.p4_2],
+    output=[q.fatjet_overlap_veto_mask],
+    scopes=["mt", "et", "tt", "em", "mm", "ee"],
+)
+
+
 
 GoodJetsWithVeto = ProducerGroup(
     name="GoodJetsWithVeto",
@@ -230,6 +253,15 @@ GoodJetsWithVeto = ProducerGroup(
     output=[],
     scopes=["mt", "et", "tt", "em", "mm", "ee"],
     subproducers=[VetoOverlappingJets],
+)
+GoodFatJetsWithVeto = ProducerGroup(
+    name="GoodFatJetsWithVeto",
+    call="physicsobject::CombineMasks({df}, {output}, {input})",
+    input=[q.good_fatjets_mask],
+    output=[],
+    scopes=["mt", "et", "tt", "em", "mm", "ee"],
+    # subproducers=[VetoOverlappingFatJets], #if require overlap almost nothing is left 
+    subproducers=[],
 )
 
 GoodBJetsWithVeto = Producer(
@@ -247,6 +279,15 @@ JetCollection = ProducerGroup(
     output=[q.good_jet_collection],
     scopes=["mt", "et", "tt", "em", "mm", "ee"],
     subproducers=[GoodJetsWithVeto],
+)
+
+FatJetCollection =  ProducerGroup(
+    name="FatJetCollection",
+    call="jet::OrderJetsByPt({df}, {output}, {input})",
+    input=[nanoAOD.FatJet_pt],
+    output=[q.good_fatjet_collection],
+    scopes=["mt", "et", "tt", "em", "mm", "ee"],
+    subproducers=[GoodFatJetsWithVeto],
 )
 
 BJetCollection = ProducerGroup(
@@ -304,6 +345,21 @@ LVJet2 = Producer(
     output=[q.jet_p4_2],
     scopes=["mt", "et", "tt", "em", "mm", "ee"],
 )
+
+FatJet = Producer(
+    # saving only one fat jet. We don't expect second fat jet in Htautau anyway
+    name="FatJet",
+    call="lorentzvectors::build({df}, {input_vec}, 0, {output})",
+    input=[
+        q.good_fatjet_collection,
+        nanoAOD.FatJet_pt,
+        nanoAOD.FatJet_eta,
+        nanoAOD.FatJet_phi,
+        nanoAOD.FatJet_mass,
+    ],
+    output=[q.fatjet_p4],
+    scopes=["mt", "et", "tt", "em", "mm", "ee"],
+)
 NumberOfJets = Producer(
     name="NumberOfJets",
     call="quantities::jet::NumberOfJets({df}, {output}, {input})",
@@ -316,6 +372,29 @@ NumberOfPreBJets = Producer(
     call="quantities::jet::NumberOfJets({df}, {output}, {input})",
     input=[q.good_prebjet_collection],
     output=[q.nprebjets],
+    scopes=["mt", "et", "tt", "em", "mm", "ee"],
+)
+
+
+fatjetpt = Producer(
+    name="fatjetpt",
+    call="quantities::pt({df}, {output}, {input})",
+    input=[q.fatjet_p4],
+    output=[q.fatjetpt],
+    scopes=["mt", "et", "tt", "em", "mm", "ee"],
+)
+fatjeteta = Producer(
+    name="fatjeteta",
+    call="quantities::eta({df}, {output}, {input})",
+    input=[q.fatjet_p4],
+    output=[q.fatjeteta],
+    scopes=["mt", "et", "tt", "em", "mm", "ee"],
+)
+fatjetphi = Producer(
+    name="fatjetphi",
+    call="quantities::phi({df}, {output}, {input})",
+    input=[q.fatjet_p4],
+    output=[q.fatjetphi],
     scopes=["mt", "et", "tt", "em", "mm", "ee"],
 )
 jpt_1 = Producer(
@@ -404,6 +483,19 @@ BasicJetQuantities = ProducerGroup(
     ],
 )
 
+BasicFatJetQuantities = ProducerGroup(
+    name="BasicFatJetQuantities",
+    call=None,
+    input=None,
+    output=None,
+    scopes=["mt", "et", "tt", "em", "mm", "ee"],
+    subproducers=[
+        FatJet,
+        fatjetpt,
+        fatjeteta,
+        fatjetphi
+    ],
+)
 ##########################
 # Basic b-Jet Quantities
 # nbtag, pt, eta, phi, b-tag value

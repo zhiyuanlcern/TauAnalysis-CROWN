@@ -903,3 +903,70 @@ FastMTTQuantities = ProducerGroup(
         "em": [p4_fastmtt_em, pt_fastmtt, eta_fastmtt, phi_fastmtt, m_fastmtt],
     },
 )
+index_tmp = Producer(
+    name = "index_tmp",
+    call = 'quantities::index_tmp({df}, {input},{output})',
+    input = [q.njets],
+    output = [q.index_tmp],
+    scopes=["mt"]
+)
+njets_float = Producer(
+    name = "njets_float",
+    call = 'quantities::njets_float({df}, {output} ,{input} )',
+    input = [q.njets],
+    output = [q.njets_float],
+    scopes=["mt"]
+)
+PNN_input = [q.index_tmp,
+        q.mt_tot,
+        q.pt_vis,
+        q.m_vis,
+        q.phi_1,
+        q.phi_2,
+        q.eta_1,
+        q.eta_1,
+        q.met,
+        q.pt_1,
+        q.pt_2,
+        q.pt_tt,
+        q.mt_1,
+        q.mt_2,
+        q.deltaR_ditaupair,
+        q.metSumEt,
+        q.njets_float,
+        q.pzetamissvis,
+        q.dxy_1,
+        q.metphi,
+        q.mTdileptonMET,]
+# pnn_score = Producer(
+#     name="pnn_score",
+#     call='quantities::pnn_score({df}, {output}, {input}, "mt_300", 300)',
+#     input=PNN_input,
+# output=[q.pnn_score],
+#     scopes=["mt"],
+
+# )
+PNN_signals = [60, 80, 100]
+pnn_output = [ q.pnn_score_60,  q.pnn_score_80, q.pnn_score_100]
+PNN_producer_dict = {}
+for (m, p) in zip(PNN_signals, pnn_output):
+    PNN_producer_dict[f'pnn_score_{m}']=Producer(
+    # pnn_score_60 = Producer(
+        name=f"pnn_score_{m}",
+        call='quantities::pnn_score({df}, {output}, {input}, ' +f'"mt_{m}", {m})',
+        input=PNN_input,
+        output = [p],  
+        scopes=["mt"],
+
+        )
+PNNQuantities = ProducerGroup(
+    name="PNNQuantities",
+    call=None,
+    input=None,
+    output=None,
+    scopes=["mt"], #, "et", "tt", "em"],
+    subproducers={
+        "mt": list(PNN_producer_dict.values()),
+        
+    },
+)

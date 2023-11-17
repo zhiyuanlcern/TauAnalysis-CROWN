@@ -377,8 +377,8 @@ def build_config(
                 for wp, bit in {
                     "VLoose": 1,
                     "Loose": 2,
-                    # "Medium": 3,
-                    # "Tight": 4,
+                    "Medium": 3,
+                    "Tight": 4,
                 }.items()
             ],
             "tau_sf_vsele_barrel": "nom",  # or "up"/"down" for up/down variation
@@ -853,7 +853,8 @@ def build_config(
     if era == "2022":
         configuration.add_producers(
             "global",
-            [
+            [   
+                jets.GoodFatJets,
                 jets.GoodJets_2022,
                 jets.GoodBJets_2022,
                 jets.GoodPreBJets_2022],
@@ -861,7 +862,8 @@ def build_config(
     else:
         configuration.add_producers(
             "global",
-            [
+            [   
+                jets.GoodFatJets,
                 jets.GoodJets,
                 jets.GoodBJets,
                 jets.GoodPreBJets],
@@ -878,9 +880,11 @@ def build_config(
     # common
     configuration.add_producers(
         scopes,
-        [
+        [   
+            jets.FatJetCollection,
             jets.JetCollection,
             jets.BasicJetQuantities,
+            jets.BasicFatJetQuantities,
             jets.BJetCollection,
             jets.PreBJetCollection,
             jets.BasicBJetQuantities,
@@ -951,6 +955,10 @@ def build_config(
             pairselection.LVTau2Uncorrected,
             pairquantities.MTDiTauPairQuantities,
             pairquantities.FastMTTQuantities,
+            pairquantities.index_tmp,
+            pairquantities.njets_float,
+            # pairquantities.pnn_score,
+            pairquantities.PNNQuantities,
             genparticles.MTGenDiTauPairQuantities,
             #  scalefactors.MuonIDIso_SF,
             scalefactors.Tau_2_VsJetTauID_lt_SF,
@@ -1363,6 +1371,9 @@ def build_config(
             q.phi_2,
             q.njets,
             q.nprebjets,
+            q.fatjetpt,
+            q.fatjeteta,
+            q.fatjetphi,
             q.jpt_1,
             q.jpt_2,
             q.jeta_1,
@@ -1479,6 +1490,9 @@ def build_config(
             q.electron_veto_flag,
             # q.id_wgt_mu_1,
             # q.iso_wgt_mu_1,
+            q.pnn_score_60,
+            q.pnn_score_80,
+            q.pnn_score_100,
         ],
     )
     configuration.add_outputs(
