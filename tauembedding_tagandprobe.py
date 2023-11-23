@@ -467,6 +467,8 @@ def build_config(
             ),
             "singlemuon_trigger_bit": EraModifier(
                 {
+                    "2018": [],
+                    "2017": [],
                     "2016preVFP": [
                         {
                             "flagname_1": "trg_Mu17TrkMu8_DZ_bit_12_Mu17_1",
