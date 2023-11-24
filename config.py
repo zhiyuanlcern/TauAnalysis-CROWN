@@ -854,19 +854,21 @@ def build_config(
         configuration.add_producers(
             "global",
             [   
-                jets.GoodFatJets,
+                # jets.GoodFatJets,
                 jets.GoodJets_2022,
                 jets.GoodBJets_2022,
-                jets.GoodPreBJets_2022],
+                # jets.GoodPreBJets_2022
+                ],
             ),
     else:
         configuration.add_producers(
             "global",
             [   
-                jets.GoodFatJets,
+                # jets.GoodFatJets,
                 jets.GoodJets,
                 jets.GoodBJets,
-                jets.GoodPreBJets],
+                # jets.GoodPreBJets
+                ],
             ),
         
     ## add prefiring
@@ -881,12 +883,12 @@ def build_config(
     configuration.add_producers(
         scopes,
         [   
-            jets.FatJetCollection,
+            # jets.FatJetCollection,
             jets.JetCollection,
             jets.BasicJetQuantities,
-            jets.BasicFatJetQuantities,
+            # jets.BasicFatJetQuantities,
             jets.BJetCollection,
-            jets.PreBJetCollection,
+            # jets.PreBJetCollection,
             jets.BasicBJetQuantities,
             scalefactors.btagging_SF,
             met.MetCorrections,
@@ -895,6 +897,17 @@ def build_config(
             genparticles.GenMatching,
         ],
     )
+    configuration.add_producers(
+        ['mt', 'et', 'tt', 'em'],
+        [
+            pairquantities.index_tmp,
+            pairquantities.njets_float,
+            pairquantities.deta_12,
+            pairquantities.dphi_12,
+            pairquantities.PNNQuantities,
+        ]
+    )
+           
     configuration.add_producers(
         "mm",
         [
@@ -955,10 +968,6 @@ def build_config(
             pairselection.LVTau2Uncorrected,
             pairquantities.MTDiTauPairQuantities,
             pairquantities.FastMTTQuantities,
-            pairquantities.index_tmp,
-            pairquantities.njets_float,
-            # pairquantities.pnn_score,
-            pairquantities.PNNQuantities,
             genparticles.MTGenDiTauPairQuantities,
             #  scalefactors.MuonIDIso_SF,
             scalefactors.Tau_2_VsJetTauID_lt_SF,
@@ -1370,10 +1379,10 @@ def build_config(
             q.phi_1,
             q.phi_2,
             q.njets,
-            q.nprebjets,
-            q.fatjetpt,
-            q.fatjeteta,
-            q.fatjetphi,
+            # q.nprebjets,
+            # q.fatjetpt,
+            # q.fatjeteta,
+            # q.fatjetphi,
             q.jpt_1,
             q.jpt_2,
             q.jeta_1,
@@ -1467,6 +1476,13 @@ def build_config(
                 q.prefireweight,
             )
     configuration.add_outputs(
+        ['mt', 'et', 'tt', 'em'],
+        [
+            q.pnn_score_60,q.pnn_score_80,q.pnn_score_100,q.pnn_score_120,q.pnn_score_125,
+            q.pnn_score_130,q.pnn_score_140,q.pnn_score_160,q.pnn_score_180,q.pnn_score_200,q.pnn_score_250,
+        ]
+    )
+    configuration.add_outputs(
         "mt",
         [
             q.nmuons,
@@ -1490,9 +1506,6 @@ def build_config(
             q.electron_veto_flag,
             # q.id_wgt_mu_1,
             # q.iso_wgt_mu_1,
-            q.pnn_score_60,
-            q.pnn_score_80,
-            q.pnn_score_100,
         ],
     )
     configuration.add_outputs(

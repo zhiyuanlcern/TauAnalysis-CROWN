@@ -470,7 +470,7 @@ BasicJetQuantities = ProducerGroup(
         LVJet1,
         LVJet2,
         NumberOfJets,
-        NumberOfPreBJets,
+        # NumberOfPreBJets,
         jpt_1,
         jeta_1,
         jphi_1,

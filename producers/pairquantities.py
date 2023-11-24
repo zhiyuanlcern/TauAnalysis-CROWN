@@ -908,65 +908,105 @@ index_tmp = Producer(
     call = 'quantities::index_tmp({df}, {input},{output})',
     input = [q.njets],
     output = [q.index_tmp],
-    scopes=["mt"]
+    scopes=["mt","et","tt","em"]
 )
 njets_float = Producer(
     name = "njets_float",
-    call = 'quantities::njets_float({df}, {output} ,{input} )',
+    call = 'quantities::njets_float({df}, {input} ,{output} )',
     input = [q.njets],
     output = [q.njets_float],
-    scopes=["mt"]
+    scopes=["mt","et","tt","em"]
+)
+deta_12 = Producer(
+    name = "deta_12",
+    call = 'quantities::deta_12({df},{output}, {input})',
+    input = [q.eta_1, q.eta_2],
+    output = [q.deta_12],
+    scopes=["mt","et","tt","em"]
+)
+dphi_12 = Producer(
+    name = "dphi_12",
+    call = 'quantities::dphi_12({df},{output}, {input})',
+    input = [q.phi_1, q.phi_2],
+    output = [q.dphi_12],
+    scopes=["mt","et","tt","em"]
 )
 PNN_input = [q.index_tmp,
-        q.mt_tot,
-        q.pt_vis,
-        q.m_vis,
-        q.phi_1,
-        q.phi_2,
-        q.eta_1,
-        q.eta_1,
-        q.met,
-        q.pt_1,
-        q.pt_2,
-        q.pt_tt,
-        q.mt_1,
-        q.mt_2,
-        q.deltaR_ditaupair,
-        q.metSumEt,
-        q.njets_float,
-        q.pzetamissvis,
-        q.dxy_1,
-        q.metphi,
-        q.mTdileptonMET,]
-# pnn_score = Producer(
-#     name="pnn_score",
-#     call='quantities::pnn_score({df}, {output}, {input}, "mt_300", 300)',
-#     input=PNN_input,
-# output=[q.pnn_score],
-#     scopes=["mt"],
+            nanoAOD.event,
+            q.mt_tot,
+            q.pt_vis,
+            q.m_vis,
+            q.phi_1,
+            q.phi_2,
+            q.eta_1,
+            q.eta_2,
+            q.met,
+            q.pt_1,
+            q.pt_2,
+            q.pt_tt,
+            q.mt_1,
+            q.mt_2,
+            q.deta_12,
+            q.dphi_12,
+            q.deltaR_ditaupair,
+            q.metSumEt,
+            q.njets_float,
+            q.pzetamissvis,
+            q.dxy_1,
+            q.metphi,
+            q.mTdileptonMET,
+            q.m_fastmtt,
+            q.pt_fastmtt,
+            q.eta_fastmtt,
+            ]
 
-# )
-PNN_signals = [60, 80, 100]
-pnn_output = [ q.pnn_score_60,  q.pnn_score_80, q.pnn_score_100]
+PNN_signals = [ 60,80,100,120,125, 130,140,160,180,200,250,] #
+
+pnn_output = [ q.pnn_score_60,q.pnn_score_80,q.pnn_score_100,q.pnn_score_120,q.pnn_score_125, q.pnn_score_130,q.pnn_score_140,q.pnn_score_160,q.pnn_score_180,q.pnn_score_200,q.pnn_score_250, ] 
 PNN_producer_dict = {}
 for (m, p) in zip(PNN_signals, pnn_output):
-    PNN_producer_dict[f'pnn_score_{m}']=Producer(
-    # pnn_score_60 = Producer(
-        name=f"pnn_score_{m}",
-        call='quantities::pnn_score({df}, {output}, {input}, ' +f'"mt_{m}", {m})',
+    PNN_producer_dict[f'pnn_score_{m}_mt']=Producer(
+        name=f"pnn_score_{m}_mt",
+        call='quantities::pnn_score({df}, {output}, {input}, ' + f'"mt_{m}", {m})',
         input=PNN_input,
         output = [p],  
-        scopes=["mt"],
-
+        scopes=["mt"]
         )
+    PNN_producer_dict[f'pnn_score_{m}_et']=Producer(
+        name=f"pnn_score_{m}_et",
+        call='quantities::pnn_score({df}, {output}, {input}, ' + f'"et_{m}", {m})',
+        input=PNN_input,
+        output = [p],  
+        scopes=["et"]
+        )
+    
+    PNN_producer_dict[f'pnn_score_{m}_tt']=Producer(
+        name=f"pnn_score_{m}_tt",
+        call='quantities::pnn_score({df}, {output}, {input}, ' + f'"tt_{m}", {m})',
+        input=PNN_input,
+        output = [p],  
+        scopes=["tt"]
+        )
+    
+    PNN_producer_dict[f'pnn_score_{m}_em']=Producer(
+        name=f"pnn_score_{m}_em",
+        call='quantities::pnn_score({df}, {output}, {input}, ' + f'"em_{m}", {m})',
+        input=PNN_input,
+        output = [p],  
+        scopes=["em"]
+        )
+    
 PNNQuantities = ProducerGroup(
     name="PNNQuantities",
     call=None,
     input=None,
     output=None,
-    scopes=["mt"], #, "et", "tt", "em"],
+    scopes=["mt", "et", "tt","em"],
     subproducers={
-        "mt": list(PNN_producer_dict.values()),
+        "mt": [value for key, value in PNN_producer_dict.items() if "mt" in key],
+        "et": [value for key, value in PNN_producer_dict.items() if "et" in key],
+        "tt": [value for key, value in PNN_producer_dict.items() if "tt" in key],
+        "em": [value for key, value in PNN_producer_dict.items() if "em" in key],
         
     },
 )
