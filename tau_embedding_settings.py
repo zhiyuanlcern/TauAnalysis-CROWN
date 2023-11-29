@@ -266,28 +266,68 @@ def setup_embedding(configuration: Configuration, scopes: List[str]):
     configuration.add_config_parameters(
         ["et", "ee"],
         {
-            "singlelectron_trigger_sf": [
+            "singlelectron_trigger_sf": EraModifier(
                 {
-                    "flagname": "trg_wgt_single_ele32",
-                    "embedding_trigger_sf": "Trg32_Iso_pt_eta_bins",
-                    "electron_trg_extrapolation": 1.0,  # for nominal case
-                },
-                {
-                    "flagname": "trg_wgt_single_ele35",
-                    "embedding_trigger_sf": "Trg35_Iso_pt_eta_bins",
-                    "electron_trg_extrapolation": 1.0,  # for nominal case
-                },
-                {
-                    "flagname": "trg_wgt_single_ele32orele35",
-                    "embedding_trigger_sf": "Trg32_or_Trg35_Iso_pt_eta_bins",
-                    "electron_trg_extrapolation": 1.0,  # for nominal case
-                },
-                {
-                    "flagname": "trg_wgt_single_ele27orele32orele35",
-                    "embedding_trigger_sf": "Trg_Iso_pt_eta_bins",
-                    "electron_trg_extrapolation": 1.0,  # for nominal case
-                },
-            ]
+                    "2018": [
+                        {
+                            "flagname": "trg_wgt_single_ele32",
+                            "embedding_trigger_sf": "Trg32_Iso_pt_eta_bins",
+                            "electron_trg_extrapolation": 1.0,  # for nominal case
+                        },
+                        {
+                            "flagname": "trg_wgt_single_ele35",
+                            "embedding_trigger_sf": "Trg35_Iso_pt_eta_bins",
+                            "electron_trg_extrapolation": 1.0,  # for nominal case
+                        },
+                        {
+                            "flagname": "trg_wgt_single_ele32orele35",
+                            "embedding_trigger_sf": "Trg32_or_Trg35_Iso_pt_eta_bins",
+                            "electron_trg_extrapolation": 1.0,  # for nominal case
+                        },
+                        {
+                            "flagname": "trg_wgt_single_ele27orele32orele35",
+                            "embedding_trigger_sf": "Trg_Iso_pt_eta_bins",
+                            "electron_trg_extrapolation": 1.0,  # for nominal case
+                        },
+                    ],
+                    "2017": [
+                        {
+                            "flagname": "trg_wgt_single_ele32",
+                            "embedding_trigger_sf": "Trg32_Iso_pt_eta_bins",
+                            "electron_trg_extrapolation": 1.0,  # for nominal case
+                        },
+                        {
+                            "flagname": "trg_wgt_single_ele35",
+                            "embedding_trigger_sf": "Trg35_Iso_pt_eta_bins",
+                            "electron_trg_extrapolation": 1.0,  # for nominal case
+                        },
+                        {
+                            "flagname": "trg_wgt_single_ele32orele35",
+                            "embedding_trigger_sf": "Trg32_or_Trg35_Iso_pt_eta_bins",
+                            "electron_trg_extrapolation": 1.0,  # for nominal case
+                        },
+                        {
+                            "flagname": "trg_wgt_single_ele27orele32orele35",
+                            "embedding_trigger_sf": "Trg_Iso_pt_eta_bins",
+                            "electron_trg_extrapolation": 1.0,  # for nominal case
+                        },
+                    ],
+                    "2016postVFP": [
+                        {
+                            "flagname": "trg_wgt_single_ele25",
+                            "embedding_trigger_sf": "Trg25_Iso_pt_eta_bins",
+                            "electron_trg_extrapolation": 1.0,  # for nominal case
+                        }
+                    ],
+                    "2016preVFP": [
+                        {
+                            "flagname": "trg_wgt_single_ele25",
+                            "embedding_trigger_sf": "Trg25_Iso_pt_eta_bins",
+                            "electron_trg_extrapolation": 1.0,  # for nominal case
+                        }
+                    ],
+                }
+            )
         },
     )
     # ditau trigger SF settings for embedding
