@@ -960,9 +960,9 @@ PNN_input = [q.index_tmp,
             q.eta_fastmtt,
             ]
 
-PNN_signals = [ 60,80,100,120,125, 130,140,160,180,200,250,] #
+PNN_signals = [ 60,80,100] #,120,125, 130,140,160,180,200,250,] #
 
-pnn_output = [ q.pnn_score_60,q.pnn_score_80,q.pnn_score_100,q.pnn_score_120,q.pnn_score_125, q.pnn_score_130,q.pnn_score_140,q.pnn_score_160,q.pnn_score_180,q.pnn_score_200,q.pnn_score_250, ] 
+pnn_output = [ q.pnn_score_60,q.pnn_score_80,q.pnn_score_100]#,q.pnn_score_120,q.pnn_score_125, q.pnn_score_130,q.pnn_score_140,q.pnn_score_160,q.pnn_score_180,q.pnn_score_200,q.pnn_score_250, ] 
 PNN_producer_dict = {}
 for (m, p) in zip(PNN_signals, pnn_output):
     PNN_producer_dict[f'pnn_score_{m}_mt']=Producer(
