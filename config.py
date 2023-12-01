@@ -212,8 +212,8 @@ def build_config(
                     "2016postVFP":"Electron_mvaFall17V2noIso_WP90",
                     "2017":"Electron_mvaFall17V2noIso_WP90",
                     "2018":"Electron_mvaFall17V2noIso_WP90",
-                    "2022EE": "Electron_mvaNoIso_Fall17V2_WP90", ## TODO: update to 2022 recommendation when available. These lines only for testing
-                    "2022postEE": "Electron_mvaNoIso_Fall17V2_WP90", ## TODO: update to 2022 recommendation when available. These lines only for testing
+                    "2022EE": "Electron_mvaNoIso_WP90", 
+                    "2022postEE": "Electron_mvaNoIso_WP90", 
                 }
             )
         },

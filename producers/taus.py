@@ -10,21 +10,21 @@ from code_generation.producer import Producer, ProducerGroup
 
 VsJetTauIDCut = Producer(
     name="VsJetTauIDCut",
-    call="physicsobject::tau::CutUChar_tID({df}, {output}, {input}, {vsjet_tau_id_bit})",
+    call="physicsobject::tau::CutTauUChar_tID({df}, {output}, {input}, {vsjet_tau_id_bit})",
     input=[nanoAOD.Tau_ID_vsJet],
     output=[],
     scopes=["et", "mt", "tt"],
 )
 VsElectronTauIDCut = Producer(
     name="VsElectronTauIDCut",
-    call="physicsobject::tau::CutUChar_tID({df}, {output}, {input}, {vsele_tau_id_bit})",
+    call="physicsobject::tau::CutTauUChar_tID({df}, {output}, {input}, {vsele_tau_id_bit})",
     input=[nanoAOD.Tau_ID_vsEle],
     output=[],
     scopes=["et", "mt", "tt"],
 )
 VsMuonTauIDCut = Producer(
     name="VsMuonTauIDCut",
-    call="physicsobject::tau::CutUChar_tID({df}, {output}, {input}, {vsmu_tau_id_bit})",
+    call="physicsobject::tau::CutTauUChar_tID({df}, {output}, {input}, {vsmu_tau_id_bit})",
     input=[nanoAOD.Tau_ID_vsMu],
     output=[],
     scopes=["et", "mt", "tt"],

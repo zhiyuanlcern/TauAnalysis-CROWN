@@ -257,14 +257,14 @@ electron_q_2 = Producer(
 )
 tau_q_1 = Producer(
     name="tau_q_1",
-    call="quantities::charge({df}, {output}, 0, {input})",
+    call="quantities::charge_short({df}, {output}, 0, {input})",
     input=[q.dileptonpair, nanoAOD.Tau_charge],
     output=[q.q_1],
     scopes=["tt"],
 )
 tau_q_2 = Producer(
     name="tau_q_2",
-    call="quantities::charge({df}, {output}, 1, {input})",
+    call="quantities::charge_short({df}, {output}, 1, {input})",
     input=[q.dileptonpair, nanoAOD.Tau_charge],
     output=[q.q_2],
     scopes=["mt", "et", "tt"],
@@ -320,7 +320,7 @@ tau_decaymode_1 = Producer(
 )
 tau_decaymode_1_notau = Producer(
     name="tau_decaymode_1_notau",
-    call="basefunctions::DefineQuantity({df}, {output}, -1)",
+    call="basefunctions::DefineQuantity({df}, {output}, UChar_t(255))",
     input=[],
     output=[q.tau_decaymode_1],
     scopes=["et", "mt", "em", "ee", "mm"],
@@ -373,7 +373,7 @@ tau_decaymode_2 = Producer(
 )
 tau_decaymode_2_notau = Producer(
     name="tau_decaymode_2_notau",
-    call="basefunctions::DefineQuantity({df}, {output}, -1)",
+    call="basefunctions::DefineQuantity({df}, {output}, UChar_t(255))",
     input=[],
     output=[q.tau_decaymode_2],
     scopes=["em", "ee", "mm"],

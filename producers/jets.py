@@ -116,7 +116,7 @@ BJetEtaCut = Producer(
 )
 JetIDCut = Producer(
     name="JetIDCut",
-    call="physicsobject::jet::CutID({df}, {output}, {input}, {jet_id})",
+    call="physicsobject::jet::CutUChar_tID({df}, {output}, {input}, {jet_id})",
     input=[nanoAOD.Jet_ID],
     output=[q.jet_id_mask],
     scopes=["global"],
