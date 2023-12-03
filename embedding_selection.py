@@ -128,6 +128,9 @@ def build_config(
                     "2016postVFP": "2016postVFP_UL",
                     "2017": "2017_UL",
                     "2018": "2018_UL",
+                    "2022EE": "2022EE", # since 2022, year id is not needed, but we still provide it to avoid compilation crash
+                    "2022postEE": "2022postEE", # since 2022, year id is not needed, but we still provide it to avoid compilation crash
+                    
                 }
             ),
             "muon_sf_varation": "sf",  # "sf" is nominal, "systup"/"systdown" are up/down variations

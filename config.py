@@ -246,8 +246,8 @@ def build_config(
                     "2016postVFP": '"data/jsonpog-integration/POG/JME/2016postVFP_UL/jet_jerc.json.gz"',
                     "2017": '"data/jsonpog-integration/POG/JME/2017_UL/jet_jerc.json.gz"',
                     "2018": '"data/jsonpog-integration/POG/JME/2018_UL/jet_jerc.json.gz"',
-                    "2022EE": '"data/jsonpog-integration/POG/JME/2022_Prompt/jet_jerc.json.gz"', ## TODO: update to 2022 recommendation when available. These lines only for testing
-                    "2022postEE": '"data/jsonpog-integration/POG/JME/2018_UL/jet_jerc.json.gz"', ## TODO: update to 2022 recommendation when available. These lines only for testing
+                    "2022EE": '"data/jsonpog-integration/POG/JME/2022_Prompt/jet_jerc.json.gz"', 
+                    "2022postEE": '"data/jsonpog-integration/POG/JME/2022_Summer22EE/jet_jerc.json.gz"', 
                 }
             ),
             "jet_jer_tag": EraModifier(
@@ -256,8 +256,8 @@ def build_config(
                     "2016postVFP": '"Summer20UL16_JRV3_MC"',
                     "2017": '"Summer19UL17_JRV2_MC"',
                     "2018": '"Summer19UL18_JRV2_MC"',
-                    "2022EE": '"JR_Winter22Run3_V1_MC"',## TODO: update to 2022 recommendation when available. These lines only for testing
-                    "2022postEE": '"Summer19UL18_JRV2_MC"',## TODO: update to 2022 recommendation when available. These lines only for testing
+                    "2022EE": '"JR_Winter22Run3_V1_MC"',
+                    "2022postEE": '"Summer22EEPrompt22_JRV1_MC"',
                 }
             ),
             "jet_jes_tag_data": '""',
@@ -267,8 +267,8 @@ def build_config(
                     "2016postVFP": '"Summer19UL16_V7_MC"',
                     "2017": '"Summer19UL17_V5_MC"',
                     "2018": '"Summer19UL18_V5_MC"',
-                    "2022EE": '"Winter22Run3_V2_MC"',## TODO: update to 2022 recommendation when available. These lines only for testing
-                    "2022postEE": '"Summer19UL18_V5_MC"',## TODO: update to 2022 recommendation when available. These lines only for testing
+                    "2022EE": '"Winter22Run3_V2_MC"',
+                    "2022postEE": '"Summer19UL18_V5_MC"',
                 }
             ),
             "jet_jec_algo": '"AK4PFPuppi"',
@@ -285,8 +285,8 @@ def build_config(
                     "2016postVFP": 2.5,
                     "2017": 2.5,
                     "2018": 2.5,
-                    "2022EE": 2.5,## TODO: update to 2022 recommendation when available. These lines only for testing
-                    "2022postEE": 2.5,## TODO: update to 2022 recommendation when available. These lines only for testing
+                    "2022EE": 2.5,
+                    "2022postEE": 2.5,
                 }
             ),
             "btag_cut": EraModifier(  # medium
@@ -295,9 +295,8 @@ def build_config(
                     "2016postVFP": 0.2489,  # taken from https://twiki.cern.ch/twiki/bin/view/CMS/BtagRecommendation106XUL16postVFP
                     "2017": 0.3040,
                     "2018": 0.2783,
-                    "2022EE": 0.2783,## TODO: update to 2022 recommendation when available. These lines only for testing
-                    "2022postEE": 0.2783,## TODO: update to 2022 recommendation when available. These lines only for testing
-
+                    "2022EE": 0.245,## from 2022, switching to ParticleNet b-tagging for better performance 
+                    "2022postEE": 0.2605 ##  taken from https://btv-wiki.docs.cern.ch/ScaleFactors/Run3Summer22/
 
                 }
             ),
@@ -317,8 +316,8 @@ def build_config(
                     "2022postEE": "data/jsonpog-integration/POG/BTV/2018_UL/btagging.json.gz",## TODO: update to 2022 recommendation when available. These lines only for testing
                 }
             ),
-            "btag_sf_variation": "central",
-            "btag_corr_algo": "deepJet_shape",
+            "btag_sf_variation": "central",## TODO: update to 2022 recommendation when available. These lines only for testing
+            "btag_corr_algo": "deepJet_shape",## TODO: update to 2022 recommendation when available. These lines only for testing
         },
     )
     # leptonveto base selection:
@@ -483,13 +482,22 @@ def build_config(
                     "2016postVFP": "data/jsonpog-integration/POG/MUO/2016postVFP_UL/muon_Z.json.gz",
                     "2017": "data/jsonpog-integration/POG/MUO/2017_UL/muon_Z.json.gz",
                     "2018": "data/jsonpog-integration/POG/MUO/2018_UL/muon_Z.json.gz",
-                    "2022EE": "data/jsonpog-integration/POG/MUO/2022EE_UL/muon_Z.json.gz",## TODO: update to 2022 recommendation when available. These lines only for testing
-                    "2022postEE": "data/jsonpog-integration/POG/MUO/2018_UL/muon_Z.json.gz",## TODO: update to 2022 recommendation when available. These lines only for testing
+                    "2022EE": "data/jsonpog-integration/POG/MUO/2022EE_UL/ScaleFactors_Muon_trackerMuons_Z_2022_Prompt_ID_ISO_schemaV2.json.gz",## TODO: update to 2022 recommendation when available. These lines only for testing
+                    "2022postEE": "data/jsonpog-integration/POG/MUO/2022postEE_UL/ScaleFactors_Muon_trackerMuons_Z_2022EE_Prompt_ID_ISO_schemaV2.json.gz",## TODO: update to 2022 recommendation when available. These lines only for testing
                 }
             ),
             "muon_id_sf_name": "NUM_MediumID_DEN_TrackerMuons",
             "muon_iso_sf_name": "NUM_TightPFIso_DEN_MediumID",
-            "muon_sf_varation": "sf",  # "sf" is nominal, "systup"/"systdown" are up/down variations
+            "muon_sf_year_id": EraModifier(
+                {
+                    "2016preVFP": "2016preVFP",
+                    "2016postVFP": "2016postVFP",
+                    "2017": "2017",
+                    "2018": "2018",
+                    "2022EE": "2022EE", # since 2022, year id is not needed, but we still provide it to avoid compilation crash
+                    "2022postEE": "2022postEE", # since 2022, year id is not needed, but we still provide it to avoid compilation crash
+                }),
+            "muon_sf_varation": "nominal",  # "sf" is nominal, "systup"/"systdown" are up/down variations
         },
     )
     # electron scale factors configuration
@@ -977,7 +985,7 @@ def build_config(
             pairselection.LVMu2Uncorrected,
             pairquantities.MuMuPairQuantities,
             genparticles.MuMuGenPairQuantities,
-            # scalefactors.MuonIDIso_SF,
+            scalefactors.MuonIDIso_SF,
             triggers.MuMuGenerateSingleMuonTriggerFlags,
         ],
     )
@@ -1022,7 +1030,7 @@ def build_config(
             pairquantities.MTDiTauPairQuantities,
             pairquantities.FastMTTQuantities,
             genparticles.MTGenDiTauPairQuantities,
-            #  scalefactors.MuonIDIso_SF,
+            scalefactors.MuonIDIso_SF,
             scalefactors.Tau_2_VsJetTauID_lt_SF,
             scalefactors.Tau_2_VsEleTauID_SF,
             scalefactors.Tau_2_VsMuTauID_SF,
@@ -1110,7 +1118,7 @@ def build_config(
             pairquantities.EMDiTauPairQuantities,
             genparticles.EMGenDiTauPairQuantities,
             pairquantities.FastMTTQuantities,
-            # scalefactors.MuonIDIso_SF,
+            scalefactors.MuonIDIso_SF,
             # scalefactors.EleID_SF,
             triggers.EMGenerateSingleElectronTriggerFlags,
             triggers.EMGenerateSingleMuonTriggerFlags,
@@ -1302,85 +1310,85 @@ def build_config(
             samples=["data"],
         ),
     )
-    # lepton scalefactors from our measurement
-    configuration.add_modification_rule(
-        ["mt"],
-        AppendProducer(
-            producers=[
-                scalefactors.TauEmbeddingMuonIDSF_1_MC,
-                scalefactors.TauEmbeddingMuonIsoSF_1_MC,
-            ],
-            samples=[
-                sample
-                for sample in available_sample_types
-                if sample not in ["data", "embedding", "embedding_mc"]
-            ],
-        ),
-    )
-    configuration.add_modification_rule(
-        ["et"],
-        AppendProducer(
-            producers=[
-                scalefactors.TauEmbeddingElectronIDSF_1_MC,
-                scalefactors.TauEmbeddingElectronIsoSF_1_MC,
-            ],
-            samples=[
-                sample
-                for sample in available_sample_types
-                if sample not in ["data", "embedding", "embedding_mc"]
-            ],
-        ),
-    )
-    configuration.add_modification_rule(
-        ["em"],
-        AppendProducer(
-            producers=[
-                scalefactors.TauEmbeddingElectronIDSF_1_MC,
-                scalefactors.TauEmbeddingElectronIsoSF_1_MC,
-                scalefactors.TauEmbeddingMuonIDSF_2_MC,
-                scalefactors.TauEmbeddingMuonIsoSF_2_MC,
-            ],
-            samples=[
-                sample
-                for sample in available_sample_types
-                if sample not in ["data", "embedding", "embedding_mc"]
-            ],
-        ),
-    )
-    configuration.add_modification_rule(
-        ["mm"],
-        AppendProducer(
-            producers=[
-                scalefactors.TauEmbeddingMuonIDSF_1_MC,
-                scalefactors.TauEmbeddingMuonIsoSF_1_MC,
-                scalefactors.TauEmbeddingMuonIDSF_2_MC,
-                scalefactors.TauEmbeddingMuonIsoSF_2_MC,
-                scalefactors.MTGenerateSingleMuonTriggerSF_MC,
-            ],
-            samples=[
-                sample
-                for sample in available_sample_types
-                if sample not in ["data", "embedding", "embedding_mc"]
-            ],
-        ),
-    )
-    configuration.add_modification_rule(
-        ["ee"],
-        AppendProducer(
-            producers=[
-                scalefactors.TauEmbeddingElectronIDSF_1_MC,
-                scalefactors.TauEmbeddingElectronIsoSF_1_MC,
-                scalefactors.TauEmbeddingElectronIDSF_2_MC,
-                scalefactors.TauEmbeddingElectronIsoSF_2_MC,
-                scalefactors.ETGenerateSingleElectronTriggerSF_MC,
-            ],
-            samples=[
-                sample
-                for sample in available_sample_types
-                if sample not in ["data", "embedding", "embedding_mc"]
-            ],
-        ),
-    )
+    # # lepton scalefactors from our measurement
+    # configuration.add_modification_rule(
+    #     ["mt"],
+    #     AppendProducer(
+    #         producers=[
+    #             scalefactors.TauEmbeddingMuonIDSF_1_MC,
+    #             scalefactors.TauEmbeddingMuonIsoSF_1_MC,
+    #         ],
+    #         samples=[
+    #             sample
+    #             for sample in available_sample_types
+    #             if sample not in ["data", "embedding", "embedding_mc"]
+    #         ],
+    #     ),
+    # )
+    # configuration.add_modification_rule(
+    #     ["et"],
+    #     AppendProducer(
+    #         producers=[
+    #             scalefactors.TauEmbeddingElectronIDSF_1_MC,
+    #             scalefactors.TauEmbeddingElectronIsoSF_1_MC,
+    #         ],
+    #         samples=[
+    #             sample
+    #             for sample in available_sample_types
+    #             if sample not in ["data", "embedding", "embedding_mc"]
+    #         ],
+    #     ),
+    # )
+    # configuration.add_modification_rule(
+    #     ["em"],
+    #     AppendProducer(
+    #         producers=[
+    #             scalefactors.TauEmbeddingElectronIDSF_1_MC,
+    #             scalefactors.TauEmbeddingElectronIsoSF_1_MC,
+    #             scalefactors.TauEmbeddingMuonIDSF_2_MC,
+    #             scalefactors.TauEmbeddingMuonIsoSF_2_MC,
+    #         ],
+    #         samples=[
+    #             sample
+    #             for sample in available_sample_types
+    #             if sample not in ["data", "embedding", "embedding_mc"]
+    #         ],
+    #     ),
+    # )
+    # configuration.add_modification_rule(
+    #     ["mm"],
+    #     AppendProducer(
+    #         producers=[
+    #             scalefactors.TauEmbeddingMuonIDSF_1_MC,
+    #             scalefactors.TauEmbeddingMuonIsoSF_1_MC,
+    #             scalefactors.TauEmbeddingMuonIDSF_2_MC,
+    #             scalefactors.TauEmbeddingMuonIsoSF_2_MC,
+    #             scalefactors.MTGenerateSingleMuonTriggerSF_MC,
+    #         ],
+    #         samples=[
+    #             sample
+    #             for sample in available_sample_types
+    #             if sample not in ["data", "embedding", "embedding_mc"]
+    #         ],
+    #     ),
+    # )
+    # configuration.add_modification_rule(
+    #     ["ee"],
+    #     AppendProducer(
+    #         producers=[
+    #             scalefactors.TauEmbeddingElectronIDSF_1_MC,
+    #             scalefactors.TauEmbeddingElectronIsoSF_1_MC,
+    #             scalefactors.TauEmbeddingElectronIDSF_2_MC,
+    #             scalefactors.TauEmbeddingElectronIsoSF_2_MC,
+    #             scalefactors.ETGenerateSingleElectronTriggerSF_MC,
+    #         ],
+    #         samples=[
+    #             sample
+    #             for sample in available_sample_types
+    #             if sample not in ["data", "embedding", "embedding_mc"]
+    #         ],
+    #     ),
+    # )
     configuration.add_modification_rule(
         ["mt"],
         AppendProducer(
@@ -1540,15 +1548,15 @@ def build_config(
             triggers.MTGenerateCrossTriggerFlags.output_group,
             triggers.GenerateSingleTrailingTauTriggerFlags.output_group,
             q.taujet_pt_2,
-            # q.gen_taujet_pt_2,
+            q.gen_taujet_pt_2,
             q.tau_decaymode_1,
             q.tau_decaymode_2,
             q.tau_gen_match_2,
             q.muon_veto_flag,
             q.dimuon_veto,
             q.electron_veto_flag,
-            # q.id_wgt_mu_1,
-            # q.iso_wgt_mu_1,
+            q.id_wgt_mu_1,
+            q.iso_wgt_mu_1,
         ],
     )
     configuration.add_outputs(
@@ -1566,7 +1574,7 @@ def build_config(
             triggers.ETGenerateCrossTriggerFlags.output_group,
             triggers.GenerateSingleTrailingTauTriggerFlags.output_group,
             q.taujet_pt_2,
-            # q.gen_taujet_pt_2,
+            q.gen_taujet_pt_2,
             q.tau_decaymode_1,
             q.tau_decaymode_2,
             q.tau_gen_match_2,
@@ -1598,7 +1606,8 @@ def build_config(
             triggers.GenerateSingleLeadingTauTriggerFlags.output_group,
             q.taujet_pt_1,
             q.taujet_pt_2,
-            # q.gen_taujet_pt_2,
+            q.gen_taujet_pt_1,
+            q.gen_taujet_pt_2,
             q.tau_decaymode_1,
             q.tau_decaymode_2,
             q.tau_gen_match_1,
@@ -1621,6 +1630,7 @@ def build_config(
             q.electron_veto_flag,
             q.tau_decaymode_1,
             q.tau_decaymode_2,
+            q.id_wgt_mu_2,
         ],
     )
 
@@ -2444,6 +2454,40 @@ def build_config(
             if sample not in ["data", "embedding", "embedding_mc"]
         ],
     )
+    ## Muon id, iso shifts
+    configuration.add_shift(
+            SystematicShift(
+                name="muon_IDISO_syst",
+                shift_config={
+                    ("mt", "em", "mm"): {
+                        "muon_sf_varation": "syst",
+                    }
+                },
+                producers={("mt", "em", "mm"): [scalefactors.MuonIDIso_SF]},
+            )
+        )
+    configuration.add_shift(
+            SystematicShift(
+                name="muon_IDISO_stat",
+                shift_config={
+                    ("mt", "em", "mm"): {
+                        "muon_sf_varation": "stat",
+                    }
+                },
+                producers={("mt", "em", "mm"): [scalefactors.MuonIDIso_SF]},
+            )
+        )
+    configuration.add_shift(
+            SystematicShift(
+                name="muon_IDISO_tagIso",
+                shift_config={
+                    ("mt", "em", "mm"): {
+                        "muon_sf_varation": "tagIso",
+                    }
+                },
+                producers={("mt", "em", "mm"): [scalefactors.MuonIDIso_SF]},
+            )
+        )
     #########################
     # TauID scale factor shifts, channel dependent # Tau energy scale shifts, dm dependent
     #########################
