@@ -268,7 +268,7 @@ def build_config(
                     "2017": '"Summer19UL17_V5_MC"',
                     "2018": '"Summer19UL18_V5_MC"',
                     "2022EE": '"Winter22Run3_V2_MC"',
-                    "2022postEE": '"Summer19UL18_V5_MC"',
+                    "2022postEE": '"Summer22EEPrompt22_V1_MC"',
                 }
             ),
             "jet_jec_algo": '"AK4PFPuppi"',
