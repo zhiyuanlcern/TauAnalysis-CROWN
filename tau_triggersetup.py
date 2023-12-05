@@ -1109,12 +1109,31 @@ def add_diTauTriggerSetup(configuration: Configuration):
                             "filterbit": 5,
                             "trigger_particle_id": 15,
                             "max_deltaR_triggermatch": 0.4,
+                        },
+                        {
+                            "flagname": "trg_single_deeptau180_1",
+                            "hlt_path": "HLT_LooseDeepTauPFTauHPS180_L2NN_eta2p1",
+                            "ptcut": 180,
+                            "etacut": 2.1,
+                            "filterbit": 5,
+                            "trigger_particle_id": 15,
+                            "max_deltaR_triggermatch": 0.4,
                         }
+                        
                     ],
                     "2022postEE": [
                         {
                             "flagname": "trg_single_tau180_1",
                             "hlt_path": "HLT_MediumChargedIsoPFTau180HighPtRelaxedIso_Trk50_eta2p1",
+                            "ptcut": 180,
+                            "etacut": 2.1,
+                            "filterbit": 5,
+                            "trigger_particle_id": 15,
+                            "max_deltaR_triggermatch": 0.4,
+                        },
+                        {
+                            "flagname": "trg_single_deeptau180_1",
+                            "hlt_path": "HLT_LooseDeepTauPFTauHPS180_L2NN_eta2p1",
                             "ptcut": 180,
                             "etacut": 2.1,
                             "filterbit": 5,
@@ -1204,12 +1223,30 @@ def add_diTauTriggerSetup(configuration: Configuration):
                             "filterbit": 5,
                             "trigger_particle_id": 15,
                             "max_deltaR_triggermatch": 0.4,
+                        },
+                        {
+                            "flagname": "trg_single_deeptau180_2",
+                            "hlt_path": "HLT_LooseDeepTauPFTauHPS180_L2NN_eta2p1",
+                            "ptcut": 180,
+                            "etacut": 2.1,
+                            "filterbit": 5,
+                            "trigger_particle_id": 15,
+                            "max_deltaR_triggermatch": 0.4,
                         }
                     ],
                     "2022postEE": [
                         {
                             "flagname": "trg_single_tau180_2",
                             "hlt_path": "HLT_MediumChargedIsoPFTau180HighPtRelaxedIso_Trk50_eta2p1",
+                            "ptcut": 180,
+                            "etacut": 2.1,
+                            "filterbit": 5,
+                            "trigger_particle_id": 15,
+                            "max_deltaR_triggermatch": 0.4,
+                        },
+                        {
+                            "flagname": "trg_single_deeptau180_2",
+                            "hlt_path": "HLT_LooseDeepTauPFTauHPS180_L2NN_eta2p1",
                             "ptcut": 180,
                             "etacut": 2.1,
                             "filterbit": 5,
