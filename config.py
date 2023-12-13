@@ -212,10 +212,12 @@ def build_config(
                     "2016postVFP":"Electron_mvaFall17V2noIso_WP90",
                     "2017":"Electron_mvaFall17V2noIso_WP90",
                     "2018":"Electron_mvaFall17V2noIso_WP90",
-                    "2022EE": "Electron_mvaNoIso_WP90", 
-                    "2022postEE": "Electron_mvaNoIso_WP90", 
-                }
-            )
+                    "2022EE": "Electron_cutBased", 
+                    "2022postEE": "Electron_cutBased", 
+                },
+            ),
+            ## Electron_cutBased	UChar_t	cut-based ID RunIII Winter22 (0:fail, 1:veto, 2:loose, 3:medium, 4:tight)
+            "ele_id_wp": 4,
         },
     )
     # jet base selection:
@@ -400,8 +402,8 @@ def build_config(
                 for wp, bit in {
                     "VLoose": 1,
                     "Loose": 2,
-                    # "Medium": 3,
-                    # "Tight": 4,
+                    "Medium": 3,
+                    "Tight": 4,
                 }.items()
             ],
             "tau_sf_vsele_barrel": "nom",  # or "up"/"down" for up/down variation
@@ -907,7 +909,7 @@ def build_config(
             # event.RunLumiEventFilter,
             event.SampleFlags,
             event.Lumi,
-            event.npartons,
+            # event.npartons,
             event.MetFilter,
             event.PUweights,
             # event.LHE_Scale_weight,
@@ -1175,17 +1177,17 @@ def build_config(
         ),
     )
 
-    configuration.add_modification_rule(
-        "global",
-        RemoveProducer(
-            producers=[event.npartons],
-            samples=[
-                sample
-                for sample in available_sample_types
-                if sample not in ["dyjets", "wjets", "electroweak_boson"]
-            ],
-        ),
-    )
+    # configuration.add_modification_rule(
+    #     "global",
+    #     RemoveProducer(
+    #         producers=[event.npartons],
+    #         samples=[
+    #             sample
+    #             for sample in available_sample_types
+    #             if sample not in ["dyjets", "wjets", "electroweak_boson"]
+    #         ],
+    #     ),
+    # )
     configuration.add_modification_rule(
         "global",
         RemoveProducer(
@@ -1429,7 +1431,7 @@ def build_config(
             q.is_diboson,
             nanoAOD.run,
             q.lumi,
-            q.npartons,
+            # q.npartons,
             nanoAOD.event,
             q.puweight,
             # q.lhe_scale_weight,
