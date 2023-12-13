@@ -72,7 +72,9 @@ Jet_rawFactor = NanoAODQuantity("Jet_rawFactor")
 Jet_ID = NanoAODQuantity("Jet_jetId")
 Jet_PUID = NanoAODQuantity("Jet_puId")
 Jet_associatedGenJet = NanoAODQuantity("Jet_genJetIdx")
-BJet_discriminator = NanoAODQuantity("Jet_btagPNetB")
+# BJet_discriminator = NanoAODQuantity("Jet_btagPNetB")
+BJet_discriminator = NanoAODQuantity("Jet_btagDeepFlavB")
+
 
 Pileup_nTrueInt = NanoAODQuantity("Pileup_nTrueInt")
 rho = NanoAODQuantity("Rho_fixedGridRhoFastjetAll")
@@ -134,3 +136,5 @@ TauEmbedding_InitialPairCandidates = NanoAODQuantity(
 )
 TauEmbedding_SelectionOldMass = NanoAODQuantity("TauEmbedding_SelectionOldMass")
 TauEmbedding_SelectionNewMass = NanoAODQuantity("TauEmbedding_SelectionNewMass")
+
+HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL_DZ = NanoAODQuantity("HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL_DZ")

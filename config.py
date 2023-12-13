@@ -297,8 +297,10 @@ def build_config(
                     "2016postVFP": 0.2489,  # taken from https://twiki.cern.ch/twiki/bin/view/CMS/BtagRecommendation106XUL16postVFP
                     "2017": 0.3040,
                     "2018": 0.2783,
-                    "2022EE": 0.245,## from 2022, switching to ParticleNet b-tagging for better performance 
-                    "2022postEE": 0.2605 ##  taken from https://btv-wiki.docs.cern.ch/ScaleFactors/Run3Summer22/
+                    # "2022EE": 0.245,## from 2022, switching to ParticleNet b-tagging for better performance 
+                    # "2022postEE": 0.2605 ##  taken from https://btv-wiki.docs.cern.ch/ScaleFactors/Run3Summer22/
+                    "2022EE": 0.3086, ## Unforturnately v11 has no pnet btagging score, this is deepjet cut
+                    "2022postEE": 0.3196,
 
                 }
             ),
