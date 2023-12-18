@@ -56,6 +56,7 @@ ElectronDzCut = Producer(
 ElectronIDCut = Producer(
     name="ElectronIDCut",
     call='physicsobject::electron::CutCBID({df}, {output}, "{ele_id}", {ele_id_wp})',
+    # call='physicsobject::electron::CutID({df}, {output}, "{ele_id}")',
     input=[],
     output=[],
     scopes=["global"],

@@ -305,12 +305,12 @@ def add_diTauTriggerSetup(configuration: Configuration):
         ["et", "ee", "em"],
         {
             "singleelectron_trigger": EraModifier(
-                {   ## TODO: update to 2022 recommendation when available. These lines only for testing
+                {   
                     "2022EE": [
                         {
-                            "flagname": "trg_single_ele27",
-                            "hlt_path": "HLT_Ele27_WPTight_Gsf",
-                            "ptcut": 28,
+                            "flagname": "trg_single_ele30",
+                            "hlt_path": "HLT_Ele30_WPTight_Gsf",
+                            "ptcut": 31,
                             "etacut": 2.1,
                             "filterbit": 1,
                             "trigger_particle_id": 11,
@@ -337,9 +337,9 @@ def add_diTauTriggerSetup(configuration: Configuration):
                     ],
                     "2022postEE": [
                         {
-                            "flagname": "trg_single_ele27",
-                            "hlt_path": "HLT_Ele27_WPTight_Gsf",
-                            "ptcut": 28,
+                            "flagname": "trg_single_ele30",
+                            "hlt_path": "HLT_Ele30_WPTight_Gsf",
+                            "ptcut": 31,
                             "etacut": 2.1,
                             "filterbit": 1,
                             "trigger_particle_id": 11,

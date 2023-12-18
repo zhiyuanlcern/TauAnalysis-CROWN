@@ -214,6 +214,8 @@ def build_config(
                     "2018":"Electron_mvaFall17V2noIso_WP90",
                     "2022EE": "Electron_cutBased", 
                     "2022postEE": "Electron_cutBased", 
+                    # "2022EE": "Electron_mvaNoIso_WP90", 
+                    # "2022postEE": "Electron_mvaNoIso_WP90", 
                 },
             ),
             ## Electron_cutBased	UChar_t	cut-based ID RunIII Winter22 (0:fail, 1:veto, 2:loose, 3:medium, 4:tight)
