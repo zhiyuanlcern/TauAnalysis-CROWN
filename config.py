@@ -59,8 +59,8 @@ def build_config(
                     "2016postVFP": "data/jsonpog-integration/POG/LUM/2016postVFP_UL/puWeights.json.gz",
                     "2017": "data/jsonpog-integration/POG/LUM/2017_UL/puWeights.json.gz",
                     "2018": "data/jsonpog-integration/POG/LUM/2018_UL/puWeights.json.gz",
-                    "2022EE": "data/jsonpog-integration/POG/LUM/2018_UL/puWeights.json.gz", ## TODO: update to 2022 PU file when available. These lines only for testing
-                    "2022postEE": "data/jsonpog-integration/POG/LUM/2018_UL/puWeights.json.gz", ## TODO: update to 2022 PU file when available. These lines only for testing
+                    "2022EE": "data/jsonpog-integration/POG/LUM/2022EE/puWeights_2022preEE.json.gz", ## TODO: update to 2022 PU file when available. These lines only for testing
+                    "2022postEE": "data/jsonpog-integration/POG/LUM/2022postEE/puWeights_2022postEE.json.gz", ## TODO: update to 2022 PU file when available. These lines only for testing
                 }
             ),
             "PU_reweighting_era": EraModifier(
@@ -69,8 +69,8 @@ def build_config(
                     "2016postVFP": "Collisions16_UltraLegacy_goldenJSON",
                     "2017": "Collisions17_UltraLegacy_goldenJSON",
                     "2018": "Collisions18_UltraLegacy_goldenJSON",
-                    "2022EE": "Collisions18_UltraLegacy_goldenJSON", ## TODO: update to 2022 PU file when available. These lines only for testing
-                    "2022postEE": "Collisions18_UltraLegacy_goldenJSON", ## TODO: update to 2022 PU file when available. These lines only for testing
+                    "2022EE": "Collision22_preEE_goldenJSON", ## TODO: update to 2022 PU file when available. These lines only for testing
+                    "2022postEE": "Collision22_postEE_goldenJSON", ## TODO: update to 2022 PU file when available. These lines only for testing
                 }
             ),
             "PU_reweighting_variation": "nominal",
@@ -212,10 +212,10 @@ def build_config(
                     "2016postVFP":"Electron_mvaFall17V2noIso_WP90",
                     "2017":"Electron_mvaFall17V2noIso_WP90",
                     "2018":"Electron_mvaFall17V2noIso_WP90",
-                    "2022EE": "Electron_cutBased", 
-                    "2022postEE": "Electron_cutBased", 
-                    # "2022EE": "Electron_mvaNoIso_WP90", 
-                    # "2022postEE": "Electron_mvaNoIso_WP90", 
+                    # "2022EE": "Electron_cutBased", 
+                    # "2022postEE": "Electron_cutBased", 
+                    "2022EE": "Electron_mvaNoIso_WP90", 
+                    "2022postEE": "Electron_mvaNoIso_WP90", 
                 },
             ),
             ## Electron_cutBased	UChar_t	cut-based ID RunIII Winter22 (0:fail, 1:veto, 2:loose, 3:medium, 4:tight)
