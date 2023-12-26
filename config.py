@@ -2495,7 +2495,7 @@ def build_config(
     #########################
     # TauID scale factor shifts, channel dependent # Tau energy scale shifts, dm dependent
     #########################
-    add_tauVariations(configuration, sample)
+    # add_tauVariations(configuration, sample)
     #########################
     # Import triggersetup   #
     #########################
