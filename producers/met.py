@@ -121,6 +121,13 @@ GenBosonMass = Producer(
     output=[q.genbosonmass],
     scopes=["global"],
 )
+GenBosonPt = Producer(
+    name="GenBosonPt",
+    call="met::genBosonPt({df}, {output}, {input})",
+    input=[q.recoil_genboson_p4_vec],
+    output=[q.genbosonpt],
+    scopes=["global"],
+)
 MetBasics = ProducerGroup(
     name="MetBasics",
     call=None,

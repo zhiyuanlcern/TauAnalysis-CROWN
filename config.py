@@ -1513,6 +1513,7 @@ def build_config(
             q.pt_ttjj,
             q.mt_tot,
             q.genbosonmass,
+            q.genbosonpt,
             q.gen_match_1,
             q.gen_match_2,
             q.pzetamissvis_pf,
