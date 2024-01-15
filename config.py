@@ -59,8 +59,8 @@ def build_config(
                     "2016postVFP": "data/jsonpog-integration/POG/LUM/2016postVFP_UL/puWeights.json.gz",
                     "2017": "data/jsonpog-integration/POG/LUM/2017_UL/puWeights.json.gz",
                     "2018": "data/jsonpog-integration/POG/LUM/2018_UL/puWeights.json.gz",
-                    "2022EE": "data/jsonpog-integration/POG/LUM/2018_UL/puWeights.json.gz", ## TODO: update to 2022 PU file when available. These lines only for testing
-                    "2022postEE": "data/jsonpog-integration/POG/LUM/2018_UL/puWeights.json.gz", ## TODO: update to 2022 PU file when available. These lines only for testing
+                    "2022EE": "data/jsonpog-integration/POG/LUM/2022EE/puWeights_2022preEE.json.gz", ## TODO: update to 2022 PU file when available. These lines only for testing
+                    "2022postEE": "data/jsonpog-integration/POG/LUM/2022postEE/puWeights_2022postEE.json.gz", ## TODO: update to 2022 PU file when available. These lines only for testing
                 }
             ),
             "PU_reweighting_era": EraModifier(
@@ -69,8 +69,8 @@ def build_config(
                     "2016postVFP": "Collisions16_UltraLegacy_goldenJSON",
                     "2017": "Collisions17_UltraLegacy_goldenJSON",
                     "2018": "Collisions18_UltraLegacy_goldenJSON",
-                    "2022EE": "Collisions18_UltraLegacy_goldenJSON", ## TODO: update to 2022 PU file when available. These lines only for testing
-                    "2022postEE": "Collisions18_UltraLegacy_goldenJSON", ## TODO: update to 2022 PU file when available. These lines only for testing
+                    "2022EE": "Collision22_preEE_goldenJSON", ## TODO: update to 2022 PU file when available. These lines only for testing
+                    "2022postEE": "Collision22_postEE_goldenJSON", ## TODO: update to 2022 PU file when available. These lines only for testing
                 }
             ),
             "PU_reweighting_variation": "nominal",
@@ -1036,9 +1036,9 @@ def build_config(
             pairquantities.FastMTTQuantities,
             genparticles.MTGenDiTauPairQuantities,
             scalefactors.MuonIDIso_SF,
-            scalefactors.Tau_2_VsJetTauID_lt_SF,
-            scalefactors.Tau_2_VsEleTauID_SF,
-            scalefactors.Tau_2_VsMuTauID_SF,
+            # scalefactors.Tau_2_VsJetTauID_lt_SF,
+            # scalefactors.Tau_2_VsEleTauID_SF,
+            # scalefactors.Tau_2_VsMuTauID_SF,
             triggers.MTGenerateSingleMuonTriggerFlags,
             triggers.MTGenerateCrossTriggerFlags,
             triggers.GenerateSingleTrailingTauTriggerFlags,
@@ -1065,9 +1065,9 @@ def build_config(
             pairquantities.ETDiTauPairQuantities,
             genparticles.ETGenDiTauPairQuantities,
             pairquantities.FastMTTQuantities,
-            scalefactors.Tau_2_VsJetTauID_lt_SF,
-            scalefactors.Tau_2_VsEleTauID_SF,
-            scalefactors.Tau_2_VsMuTauID_SF,
+            # scalefactors.Tau_2_VsJetTauID_lt_SF,
+            # scalefactors.Tau_2_VsEleTauID_SF,
+            # scalefactors.Tau_2_VsMuTauID_SF,
             # scalefactors.EleID_SF,
             triggers.ETGenerateSingleElectronTriggerFlags,
             triggers.ETGenerateCrossTriggerFlags,
@@ -1092,12 +1092,12 @@ def build_config(
             pairquantities.TTDiTauPairQuantities,
             genparticles.TTGenDiTauPairQuantities,
             pairquantities.FastMTTQuantities,
-            scalefactors.Tau_1_VsJetTauID_SF,
-            scalefactors.Tau_1_VsEleTauID_SF,
-            scalefactors.Tau_1_VsMuTauID_SF,
-            scalefactors.Tau_2_VsJetTauID_tt_SF,
-            scalefactors.Tau_2_VsEleTauID_SF,
-            scalefactors.Tau_2_VsMuTauID_SF,
+            # scalefactors.Tau_1_VsJetTauID_SF,
+            # scalefactors.Tau_1_VsEleTauID_SF,
+            # scalefactors.Tau_1_VsMuTauID_SF,
+            # scalefactors.Tau_2_VsJetTauID_tt_SF,
+            # scalefactors.Tau_2_VsEleTauID_SF,
+            # scalefactors.Tau_2_VsMuTauID_SF,
             triggers.TTGenerateDoubleTriggerFlags,
             triggers.GenerateSingleTrailingTauTriggerFlags,
             triggers.GenerateSingleLeadingTauTriggerFlags,
@@ -1130,32 +1130,32 @@ def build_config(
             triggers.EMGenerateCrossTriggerFlags,
         ],
     )
-    configuration.add_modification_rule(
-        ["et", "mt"],
-        RemoveProducer(
-            producers=[
-                scalefactors.Tau_2_VsMuTauID_SF,
-                scalefactors.Tau_2_VsJetTauID_lt_SF,
-                scalefactors.Tau_2_VsEleTauID_SF,
-            ],
-            samples="data",
-        ),
-    )
+    # configuration.add_modification_rule(
+    #     ["et", "mt"],
+    #     RemoveProducer(
+    #         producers=[
+    #             scalefactors.Tau_2_VsMuTauID_SF,
+    #             scalefactors.Tau_2_VsJetTauID_lt_SF,
+    #             scalefactors.Tau_2_VsEleTauID_SF,
+    #         ],
+    #         samples="data",
+    #     ),
+    # )
 
-    configuration.add_modification_rule(
-        ["tt"],
-        RemoveProducer(
-            producers=[
-                scalefactors.Tau_1_VsJetTauID_SF,
-                scalefactors.Tau_1_VsEleTauID_SF,
-                scalefactors.Tau_1_VsMuTauID_SF,
-                scalefactors.Tau_2_VsJetTauID_tt_SF,
-                scalefactors.Tau_2_VsEleTauID_SF,
-                scalefactors.Tau_2_VsMuTauID_SF,
-            ],
-            samples="data",
-        ),
-    )
+    # configuration.add_modification_rule(
+    #     ["tt"],
+    #     RemoveProducer(
+    #         producers=[
+    #             scalefactors.Tau_1_VsJetTauID_SF,
+    #             scalefactors.Tau_1_VsEleTauID_SF,
+    #             scalefactors.Tau_1_VsMuTauID_SF,
+    #             scalefactors.Tau_2_VsJetTauID_tt_SF,
+    #             scalefactors.Tau_2_VsEleTauID_SF,
+    #             scalefactors.Tau_2_VsMuTauID_SF,
+    #         ],
+    #         samples="data",
+    #     ),
+    # )
     configuration.add_modification_rule(
         scopes,
         RemoveProducer(
@@ -1515,6 +1515,7 @@ def build_config(
             q.mass_tt,
             q.mt_tot,
             q.genbosonmass,
+            q.genbosonpt,
             q.gen_match_1,
             q.gen_match_2,
             q.pzetamissvis_pf,
@@ -1544,9 +1545,9 @@ def build_config(
         [
             q.nmuons,
             q.ntaus,
-            scalefactors.Tau_2_VsJetTauID_lt_SF.output_group,
-            scalefactors.Tau_2_VsEleTauID_SF.output_group,
-            scalefactors.Tau_2_VsMuTauID_SF.output_group,
+            # scalefactors.Tau_2_VsJetTauID_lt_SF.output_group,
+            # scalefactors.Tau_2_VsEleTauID_SF.output_group,
+            # scalefactors.Tau_2_VsMuTauID_SF.output_group,
             pairquantities.VsJetTauIDFlag_2.output_group,
             pairquantities.VsEleTauIDFlag_2.output_group,
             pairquantities.VsMuTauIDFlag_2.output_group,
@@ -1570,9 +1571,9 @@ def build_config(
         [
             q.nelectrons,
             q.ntaus,
-            scalefactors.Tau_2_VsJetTauID_lt_SF.output_group,
-            scalefactors.Tau_2_VsEleTauID_SF.output_group,
-            scalefactors.Tau_2_VsMuTauID_SF.output_group,
+            # scalefactors.Tau_2_VsJetTauID_lt_SF.output_group,
+            # scalefactors.Tau_2_VsEleTauID_SF.output_group,
+            # scalefactors.Tau_2_VsMuTauID_SF.output_group,
             pairquantities.VsJetTauIDFlag_2.output_group,
             pairquantities.VsEleTauIDFlag_2.output_group,
             pairquantities.VsMuTauIDFlag_2.output_group,
@@ -1595,12 +1596,12 @@ def build_config(
         "tt",
         [
             q.ntaus,
-            scalefactors.Tau_1_VsJetTauID_SF.output_group,
-            scalefactors.Tau_1_VsEleTauID_SF.output_group,
-            scalefactors.Tau_1_VsMuTauID_SF.output_group,
-            scalefactors.Tau_2_VsJetTauID_tt_SF.output_group,
-            scalefactors.Tau_2_VsEleTauID_SF.output_group,
-            scalefactors.Tau_2_VsMuTauID_SF.output_group,
+            # scalefactors.Tau_1_VsJetTauID_SF.output_group,
+            # scalefactors.Tau_1_VsEleTauID_SF.output_group,
+            # scalefactors.Tau_1_VsMuTauID_SF.output_group,
+            # scalefactors.Tau_2_VsJetTauID_tt_SF.output_group,
+            # scalefactors.Tau_2_VsEleTauID_SF.output_group,
+            # scalefactors.Tau_2_VsMuTauID_SF.output_group,
             pairquantities.VsJetTauIDFlag_1.output_group,
             pairquantities.VsEleTauIDFlag_1.output_group,
             pairquantities.VsMuTauIDFlag_1.output_group,
@@ -2497,7 +2498,7 @@ def build_config(
     #########################
     # TauID scale factor shifts, channel dependent # Tau energy scale shifts, dm dependent
     #########################
-    add_tauVariations(configuration, sample)
+    # add_tauVariations(configuration, sample)
     #########################
     # Import triggersetup   #
     #########################

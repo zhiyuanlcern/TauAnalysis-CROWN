@@ -868,7 +868,7 @@ def add_diTauTriggerSetup(configuration: Configuration):
         ["em"],
         {
             "elmu_cross_trigger": EraModifier(
-                {   ## TODO: update to 2022 recommendation when available. These lines only for testing
+                {   
                     "2022EE": [
                         {
                             "flagname": "trg_cross_mu23ele12",
