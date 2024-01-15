@@ -148,6 +148,7 @@ MetBasics = ProducerGroup(
         MetSumEt,
         CalculateGenBosonVector,
         GenBosonMass,
+        GenBosonPt,
     ],
 )
 
