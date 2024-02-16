@@ -316,8 +316,8 @@ def build_config(
                     "2016postVFP": "data/jsonpog-integration/POG/BTV/2016postVFP_UL/btagging.json.gz",
                     "2017": "data/jsonpog-integration/POG/BTV/2017_UL/btagging.json.gz",
                     "2018": "data/jsonpog-integration/POG/BTV/2018_UL/btagging.json.gz",
-                    "2022EE": "data/jsonpog-integration/POG/BTV/2018_UL/btagging.json.gz",## TODO: update to 2022 recommendation when available. These lines only for testing
-                    "2022postEE": "data/jsonpog-integration/POG/BTV/2018_UL/btagging.json.gz",## TODO: update to 2022 recommendation when available. These lines only for testing
+                    "2022EE": "data/jsonpog-integration/POG/BTV/2022_Summer22/btagging.json.gz",## TODO: update to 2022 recommendation when available. These lines only for testing
+                    "2022postEE": "data/jsonpog-integration/POG/BTV/2022_Summer22EE/btagging.json.gz",## TODO: update to 2022 recommendation when available. These lines only for testing
                 }
             ),
             "btag_sf_variation": "central",## TODO: update to 2022 recommendation when available. These lines only for testing
