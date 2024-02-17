@@ -486,8 +486,8 @@ def build_config(
                     "2016postVFP": "data/jsonpog-integration/POG/MUO/2016postVFP_UL/muon_Z.json.gz",
                     "2017": "data/jsonpog-integration/POG/MUO/2017_UL/muon_Z.json.gz",
                     "2018": "data/jsonpog-integration/POG/MUO/2018_UL/muon_Z.json.gz",
-                    "2022EE": "data/jsonpog-integration/POG/MUO/2022EE_UL/ScaleFactors_Muon_trackerMuons_Z_2022_Prompt_ID_ISO_schemaV2.json.gz",## TODO: update to 2022 recommendation when available. These lines only for testing
-                    "2022postEE": "data/jsonpog-integration/POG/MUO/2022postEE_UL/ScaleFactors_Muon_trackerMuons_Z_2022EE_Prompt_ID_ISO_schemaV2.json.gz",## TODO: update to 2022 recommendation when available. These lines only for testing
+                    "2022EE": "data/jsonpog-integration/POG/MUO/2022EE_UL/ScaleFactors_Muon_Z_ID_ISO_2022_schemaV2.json.gz",## TODO: update to 2022 recommendation when available. These lines only for testing
+                    "2022postEE": "data/jsonpog-integration/POG/MUO/2022postEE_UL/ScaleFactors_Muon_Z_ID_ISO_2022_EE_schemaV2.json.gz",## TODO: update to 2022 recommendation when available. These lines only for testing
                 }
             ),
             "muon_id_sf_name": "NUM_MediumID_DEN_TrackerMuons",
@@ -514,19 +514,19 @@ def build_config(
                     "2016postVFP": "data/jsonpog-integration/POG/EGM/2016postVFP_UL/electron.json.gz",
                     "2017": "data/jsonpog-integration/POG/EGM/2017_UL/electron.json.gz",
                     "2018": "data/jsonpog-integration/POG/EGM/2018_UL/electron.json.gz",
-                    "2022EE": "data/jsonpog-integration/POG/EGM/2018_UL/electron.json.gz", ## TODO: update to 2022 recommendation when available. These lines only for testing
-                    "2022postEE": "data/jsonpog-integration/POG/EGM/2018_UL/electron.json.gz", ## TODO: update to 2022 recommendation when available. These lines only for testing
+                    "2022EE": "data/jsonpog-integration/POG/EGM/2022EE/electron.json.gz", ## TODO: update to 2022 recommendation when available. These lines only for testing
+                    "2022postEE": "data/jsonpog-integration/POG/EGM/2022postEE/electron.json.gz", ## TODO: update to 2022 recommendation when available. These lines only for testing
                 }
             ),
-            "ele_id_sf_name": "UL-Electron-ID-SF",
+            "ele_id_sf_name": "Electron-ID-SF",
             "ele_sf_year_id": EraModifier(
                 {
                     "2016preVFP": "2016preVFP",
                     "2016postVFP": "2016postVFP",
                     "2017": "2017",
                     "2018": "2018",
-                    "2022EE": "2018",## TODO: update to 2022 recommendation when available. These lines only for testing
-                    "2022postEE": "2018",## TODO: update to 2022 recommendation when available. These lines only for testing
+                    "2022EE": "2022Re-recoBCD",## TODO: update to 2022 recommendation when available. These lines only for testing
+                    "2022postEE": "2022Re-recoE+PromptFG",## TODO: update to 2022 recommendation when available. These lines only for testing
                 }
             ),
             "ele_sf_varation": "sf",  # "sf" is nominal, "sfup"/"sfdown" are up/down variations
@@ -669,8 +669,8 @@ def build_config(
                     "2016postVFP": "data/embedding/muon_2016postVFPUL.json.gz",
                     "2017": "data/embedding/muon_2017UL.json.gz",
                     "2018": "data/embedding/muon_2018UL.json.gz",
-                    "2022EE": "data/embedding/muon_2018UL.json.gz",## TODO: update to 2022 recommendation when available. These lines only for testing
-                    "2022postEE": "data/embedding/muon_2018UL.json.gz",## TODO: update to 2022 recommendation when available. These lines only for testing
+                    "2022EE": "data/embedding/ScaleFactors_Muon_Z_HLT_2022_abseta_pt_schemaV2.json.gz",## TODO: update to 2022 recommendation when available. These lines only for testing
+                    "2022postEE": "data/embedding/ScaleFactors_Muon_Z_HLT_2022_EE_abseta_pt_schemaV2.json.gz",## TODO: update to 2022 recommendation when available. These lines only for testing
                 }
             ),
             "mc_muon_id_sf": "ID_pt_eta_bins",
@@ -690,7 +690,7 @@ def build_config(
                     "2017": "data/embedding/electron_2017UL.json.gz",
                     "2018": "data/embedding/electron_2018UL.json.gz",
                     "2022EE": "data/embedding/electron_2018UL.json.gz", ## TODO: update to 2022 recommendation when available. These lines only for testing
-                    "2022postEE": "data/embedding/electron_2018UL.json.gz", ## TODO: update to 2022 recommendation when available. These lines only for testing
+                    "2022postEE": "data/embedding/electron_hlt.json.gz", ## TODO: update to 2022 recommendation when available. These lines only for testing
                 }
             ),
             "mc_electron_id_sf": "ID90_pt_eta_bins",
@@ -709,36 +709,38 @@ def build_config(
                     "2022EE": [
                         {
                             "flagname": "trg_wgt_single_mu24",
-                            "mc_trigger_sf": "Trg_IsoMu24_pt_eta_bins",
+                            "mc_trigger_sf": "NUM_IsoMu24_DEN_CutBasedIdMedium_and_PFIsoMedium",
+                            "mc_muon_sf_correctiontype": "nominal",
                             "mc_muon_trg_extrapolation": 1.0,  # for nominal case
                         },
-                        {
-                            "flagname": "trg_wgt_single_mu27",
-                            "mc_trigger_sf": "Trg_IsoMu27_pt_eta_bins",
-                            "mc_muon_trg_extrapolation": 1.0,  # for nominal case
-                        },
-                        {
-                            "flagname": "trg_wgt_single_mu24ormu27",
-                            "mc_trigger_sf": "Trg_IsoMu27_or_IsoMu24_pt_eta_bins",
-                            "mc_muon_trg_extrapolation": 1.0,  # for nominal case
-                        },
+                        # {
+                        #     "flagname": "trg_wgt_single_mu27",
+                        #     "mc_trigger_sf": "Trg_IsoMu27_pt_eta_bins",
+                        #     "mc_muon_trg_extrapolation": 1.0,  # for nominal case
+                        # },
+                        # {
+                        #     "flagname": "trg_wgt_single_mu24ormu27",
+                        #     "mc_trigger_sf": "Trg_IsoMu27_or_IsoMu24_pt_eta_bins",
+                        #     "mc_muon_trg_extrapolation": 1.0,  # for nominal case
+                        # },
                     ],
                     "2022postEE": [
                         {
                             "flagname": "trg_wgt_single_mu24",
-                            "mc_trigger_sf": "Trg_IsoMu24_pt_eta_bins",
+                            "mc_trigger_sf": "NUM_IsoMu24_DEN_CutBasedIdMedium_and_PFIsoMedium",
+                            "mc_muon_sf_correctiontype": "nominal",
                             "mc_muon_trg_extrapolation": 1.0,  # for nominal case
                         },
-                        {
-                            "flagname": "trg_wgt_single_mu27",
-                            "mc_trigger_sf": "Trg_IsoMu27_pt_eta_bins",
-                            "mc_muon_trg_extrapolation": 1.0,  # for nominal case
-                        },
-                        {
-                            "flagname": "trg_wgt_single_mu24ormu27",
-                            "mc_trigger_sf": "Trg_IsoMu27_or_IsoMu24_pt_eta_bins",
-                            "mc_muon_trg_extrapolation": 1.0,  # for nominal case
-                        },
+                        # {
+                        #     "flagname": "trg_wgt_single_mu27",
+                        #     "mc_trigger_sf": "Trg_IsoMu27_pt_eta_bins",
+                        #     "mc_muon_trg_extrapolation": 1.0,  # for nominal case
+                        # },
+                        # {
+                        #     "flagname": "trg_wgt_single_mu24ormu27",
+                        #     "mc_trigger_sf": "Trg_IsoMu27_or_IsoMu24_pt_eta_bins",
+                        #     "mc_muon_trg_extrapolation": 1.0,  # for nominal case
+                        # },
                     ],
                     "2018": [
                         {
@@ -799,48 +801,51 @@ def build_config(
             "singlelectron_trigger_sf_mc": EraModifier(
                 {   ## TODO: update to 2022 recommendation when available. These lines only for testing
                     "2022EE": [
-                        {
-                            "flagname": "trg_wgt_single_ele32",
-                            "mc_trigger_sf": "Trg32_Iso_pt_eta_bins",
-                            "mc_electron_trg_extrapolation": 1.0,  # for nominal case
-                        },
-                        {
-                            "flagname": "trg_wgt_single_ele35",
-                            "mc_trigger_sf": "Trg35_Iso_pt_eta_bins",
-                            "mc_electron_trg_extrapolation": 1.0,  # for nominal case
-                        },
-                        {
-                            "flagname": "trg_wgt_single_ele32orele35",
-                            "mc_trigger_sf": "Trg32_or_Trg35_Iso_pt_eta_bins",
-                            "mc_electron_trg_extrapolation": 1.0,  # for nominal case
-                        },
-                        {
-                            "flagname": "trg_wgt_single_ele27orele32orele35",
-                            "mc_trigger_sf": "Trg_Iso_pt_eta_bins",
-                            "mc_electron_trg_extrapolation": 1.0,  # for nominal case
-                        },
+                        # {
+                        #     "flagname": "trg_wgt_single_ele32",
+                        #     "mc_trigger_sf": "Trg32_Iso_pt_eta_bins",
+                        #     "mc_electron_trg_extrapolation": 1.0,  # for nominal case
+                        # },
+                        # {
+                        #     "flagname": "trg_wgt_single_ele35",
+                        #     "mc_trigger_sf": "Trg35_Iso_pt_eta_bins",
+                        #     "mc_electron_trg_extrapolation": 1.0,  # for nominal case
+                        # },
+                        # {
+                        #     "flagname": "trg_wgt_single_ele32orele35",
+                        #     "mc_trigger_sf": "Trg32_or_Trg35_Iso_pt_eta_bins",
+                        #     "mc_electron_trg_extrapolation": 1.0,  # for nominal case
+                        # },
+                        # {
+                        #     "flagname": "trg_wgt_single_ele27orele32orele35",
+                        #     "mc_trigger_sf": "Trg_Iso_pt_eta_bins",
+                        #     "mc_electron_trg_extrapolation": 1.0,  # for nominal case
+                        # },
                     ],
                     "2022postEE": [
                         {
-                            "flagname": "trg_wgt_single_ele32",
-                            "mc_trigger_sf": "Trg32_Iso_pt_eta_bins",
+                            "flagname": "trg_wgt_single_ele30",
+                            "mc_trigger_sf": "Electron-HLT-SF",
                             "mc_electron_trg_extrapolation": 1.0,  # for nominal case
+                            "mc_electron_year": "2022FG",
+                            "mc_trigger":"HLT_Ele30_WPTight_Gsf_and_Tight_ID",
+                            "mc_correctiontype": "sf",
                         },
-                        {
-                            "flagname": "trg_wgt_single_ele35",
-                            "mc_trigger_sf": "Trg35_Iso_pt_eta_bins",
-                            "mc_electron_trg_extrapolation": 1.0,  # for nominal case
-                        },
-                        {
-                            "flagname": "trg_wgt_single_ele32orele35",
-                            "mc_trigger_sf": "Trg32_or_Trg35_Iso_pt_eta_bins",
-                            "mc_electron_trg_extrapolation": 1.0,  # for nominal case
-                        },
-                        {
-                            "flagname": "trg_wgt_single_ele27orele32orele35",
-                            "mc_trigger_sf": "Trg_Iso_pt_eta_bins",
-                            "mc_electron_trg_extrapolation": 1.0,  # for nominal case
-                        },
+                        # {
+                        #     "flagname": "trg_wgt_single_ele35",
+                        #     "mc_trigger_sf": "Trg35_Iso_pt_eta_bins",
+                        #     "mc_electron_trg_extrapolation": 1.0,  # for nominal case
+                        # },
+                        # {
+                        #     "flagname": "trg_wgt_single_ele32orele35",
+                        #     "mc_trigger_sf": "Trg32_or_Trg35_Iso_pt_eta_bins",
+                        #     "mc_electron_trg_extrapolation": 1.0,  # for nominal case
+                        # },
+                        # {
+                        #     "flagname": "trg_wgt_single_ele27orele32orele35",
+                        #     "mc_trigger_sf": "Trg_Iso_pt_eta_bins",
+                        #     "mc_electron_trg_extrapolation": 1.0,  # for nominal case
+                        # },
                     ],
                     "2018": [
                         {
@@ -2024,48 +2029,51 @@ def build_config(
                     "singlelectron_trigger_sf_mc": EraModifier(
                         {   ## TODO: update to 2022 recommendation when available. These lines only for testing
                              "2022EE": [
-                                {
-                                    "flagname": "trg_wgt_single_ele32orele35",
-                                    "mc_trigger_sf": "Trg32_or_Trg35_Iso_pt_eta_bins",
-                                    "mc_electron_trg_extrapolation": 1.02,
-                                },
-                                {
-                                    "flagname": "trg_wgt_single_ele32",
-                                    "mc_trigger_sf": "Trg32_Iso_pt_eta_bins",
-                                    "mc_electron_trg_extrapolation": 1.02,
-                                },
-                                {
-                                    "flagname": "trg_wgt_single_ele35",
-                                    "mc_trigger_sf": "Trg35_Iso_pt_eta_bins",
-                                    "mc_electron_trg_extrapolation": 1.02,
-                                },
-                                {
-                                    "flagname": "trg_wgt_single_ele27orele32orele35",
-                                    "mc_trigger_sf": "Trg_Iso_pt_eta_bins",
-                                    "mc_electron_trg_extrapolation": 1.02,
-                                },
+                                # {
+                                #     "flagname": "trg_wgt_single_ele32orele35",
+                                #     "mc_trigger_sf": "Trg32_or_Trg35_Iso_pt_eta_bins",
+                                #     "mc_electron_trg_extrapolation": 1.02,
+                                # },
+                                # {
+                                #     "flagname": "trg_wgt_single_ele32",
+                                #     "mc_trigger_sf": "Trg32_Iso_pt_eta_bins",
+                                #     "mc_electron_trg_extrapolation": 1.02,
+                                # },
+                                # {
+                                #     "flagname": "trg_wgt_single_ele35",
+                                #     "mc_trigger_sf": "Trg35_Iso_pt_eta_bins",
+                                #     "mc_electron_trg_extrapolation": 1.02,
+                                # },
+                                # {
+                                #     "flagname": "trg_wgt_single_ele27orele32orele35",
+                                #     "mc_trigger_sf": "Trg_Iso_pt_eta_bins",
+                                #     "mc_electron_trg_extrapolation": 1.02,
+                                # },
                             ],
                              "2022postEE": [
                                 {
-                                    "flagname": "trg_wgt_single_ele32orele35",
-                                    "mc_trigger_sf": "Trg32_or_Trg35_Iso_pt_eta_bins",
-                                    "mc_electron_trg_extrapolation": 1.02,
+                                    "flagname": "trg_wgt_single_ele30",
+                                    "mc_trigger_sf": "Electron-HLT-SF",
+                                    "mc_electron_trg_extrapolation": 1.0,  # for nominal case
+                                    "mc_electron_year": "2022FG",
+                                    "mc_trigger":"HLT_Ele30_WPTight_Gsf_and_Tight_ID",
+                                    "mc_correctiontype": "sfup",
                                 },
-                                {
-                                    "flagname": "trg_wgt_single_ele32",
-                                    "mc_trigger_sf": "Trg32_Iso_pt_eta_bins",
-                                    "mc_electron_trg_extrapolation": 1.02,
-                                },
-                                {
-                                    "flagname": "trg_wgt_single_ele35",
-                                    "mc_trigger_sf": "Trg35_Iso_pt_eta_bins",
-                                    "mc_electron_trg_extrapolation": 1.02,
-                                },
-                                {
-                                    "flagname": "trg_wgt_single_ele27orele32orele35",
-                                    "mc_trigger_sf": "Trg_Iso_pt_eta_bins",
-                                    "mc_electron_trg_extrapolation": 1.02,
-                                },
+                                # {
+                                #     "flagname": "trg_wgt_single_ele32",
+                                #     "mc_trigger_sf": "Trg32_Iso_pt_eta_bins",
+                                #     "mc_electron_trg_extrapolation": 1.02,
+                                # },
+                                # {
+                                #     "flagname": "trg_wgt_single_ele35",
+                                #     "mc_trigger_sf": "Trg35_Iso_pt_eta_bins",
+                                #     "mc_electron_trg_extrapolation": 1.02,
+                                # },
+                                # {
+                                #     "flagname": "trg_wgt_single_ele27orele32orele35",
+                                #     "mc_trigger_sf": "Trg_Iso_pt_eta_bins",
+                                #     "mc_electron_trg_extrapolation": 1.02,
+                                # },
                             ],
                             "2018": [
                                 {
@@ -2145,48 +2153,51 @@ def build_config(
                     "singlelectron_trigger_sf_mc": EraModifier(
                         {   ## TODO: update to 2022 recommendation when available. These lines only for testing
                             "2022EE": [
-                                {
-                                    "flagname": "trg_wgt_single_ele32orele35",
-                                    "mc_trigger_sf": "Trg32_or_Trg35_Iso_pt_eta_bins",
-                                    "mc_electron_trg_extrapolation": 0.98,
-                                },
-                                {
-                                    "flagname": "trg_wgt_single_ele32",
-                                    "mc_trigger_sf": "Trg32_Iso_pt_eta_bins",
-                                    "mc_electron_trg_extrapolation": 0.98,
-                                },
-                                {
-                                    "flagname": "trg_wgt_single_ele35",
-                                    "mc_trigger_sf": "Trg35_Iso_pt_eta_bins",
-                                    "mc_electron_trg_extrapolation": 0.98,
-                                },
-                                {
-                                    "flagname": "trg_wgt_single_ele27orele32orele35",
-                                    "mc_trigger_sf": "Trg_Iso_pt_eta_bins",
-                                    "mc_electron_trg_extrapolation": 0.98,
-                                },
+                                # {
+                                #     "flagname": "trg_wgt_single_ele32orele35",
+                                #     "mc_trigger_sf": "Trg32_or_Trg35_Iso_pt_eta_bins",
+                                #     "mc_electron_trg_extrapolation": 0.98,
+                                # },
+                                # {
+                                #     "flagname": "trg_wgt_single_ele32",
+                                #     "mc_trigger_sf": "Trg32_Iso_pt_eta_bins",
+                                #     "mc_electron_trg_extrapolation": 0.98,
+                                # },
+                                # {
+                                #     "flagname": "trg_wgt_single_ele35",
+                                #     "mc_trigger_sf": "Trg35_Iso_pt_eta_bins",
+                                #     "mc_electron_trg_extrapolation": 0.98,
+                                # },
+                                # {
+                                #     "flagname": "trg_wgt_single_ele27orele32orele35",
+                                #     "mc_trigger_sf": "Trg_Iso_pt_eta_bins",
+                                #     "mc_electron_trg_extrapolation": 0.98,
+                                # },
                             ],
                             "2022postEE": [
                                 {
-                                    "flagname": "trg_wgt_single_ele32orele35",
-                                    "mc_trigger_sf": "Trg32_or_Trg35_Iso_pt_eta_bins",
-                                    "mc_electron_trg_extrapolation": 0.98,
+                                    "flagname": "trg_wgt_single_ele30",
+                                    "mc_trigger_sf": "Electron-HLT-SF",
+                                    "mc_electron_trg_extrapolation": 1.0,  # for nominal case
+                                    "mc_electron_year": "2022FG",
+                                    "mc_trigger":"HLT_Ele30_WPTight_Gsf_and_Tight_ID",
+                                    "mc_correctiontype": "sfdown",
                                 },
-                                {
-                                    "flagname": "trg_wgt_single_ele32",
-                                    "mc_trigger_sf": "Trg32_Iso_pt_eta_bins",
-                                    "mc_electron_trg_extrapolation": 0.98,
-                                },
-                                {
-                                    "flagname": "trg_wgt_single_ele35",
-                                    "mc_trigger_sf": "Trg35_Iso_pt_eta_bins",
-                                    "mc_electron_trg_extrapolation": 0.98,
-                                },
-                                {
-                                    "flagname": "trg_wgt_single_ele27orele32orele35",
-                                    "mc_trigger_sf": "Trg_Iso_pt_eta_bins",
-                                    "mc_electron_trg_extrapolation": 0.98,
-                                },
+                                # {
+                                #     "flagname": "trg_wgt_single_ele32",
+                                #     "mc_trigger_sf": "Trg32_Iso_pt_eta_bins",
+                                #     "mc_electron_trg_extrapolation": 0.98,
+                                # },
+                                # {
+                                #     "flagname": "trg_wgt_single_ele35",
+                                #     "mc_trigger_sf": "Trg35_Iso_pt_eta_bins",
+                                #     "mc_electron_trg_extrapolation": 0.98,
+                                # },
+                                # {
+                                #     "flagname": "trg_wgt_single_ele27orele32orele35",
+                                #     "mc_trigger_sf": "Trg_Iso_pt_eta_bins",
+                                #     "mc_electron_trg_extrapolation": 0.98,
+                                # },
                             ],
                             "2018": [
                                 {
@@ -2269,36 +2280,38 @@ def build_config(
                              "2022EE": [
                                 {
                                     "flagname": "trg_wgt_single_mu24",
-                                    "mc_trigger_sf": "Trg_IsoMu24_pt_eta_bins",
-                                    "mc_muon_trg_extrapolation": 1.02,
+                                    "mc_trigger_sf": "NUM_IsoMu24_DEN_CutBasedIdMedium_and_PFIsoMedium",
+                                    "mc_muon_sf_correctiontype": "systup",
+                                    "mc_muon_trg_extrapolation": 1,
                                 },
-                                {
-                                    "flagname": "trg_wgt_single_mu27",
-                                    "mc_trigger_sf": "Trg_IsoMu27_pt_eta_bins",
-                                    "mc_muon_trg_extrapolation": 1.02,
-                                },
-                                {
-                                    "flagname": "trg_wgt_single_mu24ormu27",
-                                    "mc_trigger_sf": "Trg_IsoMu27_or_IsoMu24_pt_eta_bins",
-                                    "mc_muon_trg_extrapolation": 1.02,
-                                },
+                                # {
+                                #     "flagname": "trg_wgt_single_mu27",
+                                #     "mc_trigger_sf": "Trg_IsoMu27_pt_eta_bins",
+                                #     "mc_muon_trg_extrapolation": 1.02,
+                                # },
+                                # {
+                                #     "flagname": "trg_wgt_single_mu24ormu27",
+                                #     "mc_trigger_sf": "Trg_IsoMu27_or_IsoMu24_pt_eta_bins",
+                                #     "mc_muon_trg_extrapolation": 1.02,
+                                # },
                             ],
                              "2022postEE": [
                                 {
                                     "flagname": "trg_wgt_single_mu24",
-                                    "mc_trigger_sf": "Trg_IsoMu24_pt_eta_bins",
-                                    "mc_muon_trg_extrapolation": 1.02,
+                                    "mc_trigger_sf": "NUM_IsoMu24_DEN_CutBasedIdMedium_and_PFIsoMedium",
+                                    "mc_muon_sf_correctiontype": "systup",
+                                    "mc_muon_trg_extrapolation": 1,
                                 },
-                                {
-                                    "flagname": "trg_wgt_single_mu27",
-                                    "mc_trigger_sf": "Trg_IsoMu27_pt_eta_bins",
-                                    "mc_muon_trg_extrapolation": 1.02,
-                                },
-                                {
-                                    "flagname": "trg_wgt_single_mu24ormu27",
-                                    "mc_trigger_sf": "Trg_IsoMu27_or_IsoMu24_pt_eta_bins",
-                                    "mc_muon_trg_extrapolation": 1.02,
-                                },
+                                # {
+                                #     "flagname": "trg_wgt_single_mu27",
+                                #     "mc_trigger_sf": "Trg_IsoMu27_pt_eta_bins",
+                                #     "mc_muon_trg_extrapolation": 1.02,
+                                # },
+                                # {
+                                #     "flagname": "trg_wgt_single_mu24ormu27",
+                                #     "mc_trigger_sf": "Trg_IsoMu27_or_IsoMu24_pt_eta_bins",
+                                #     "mc_muon_trg_extrapolation": 1.02,
+                                # },
                             ],
                             "2018": [
                                 {
@@ -2370,36 +2383,38 @@ def build_config(
                             "2022EE": [
                                 {
                                     "flagname": "trg_wgt_single_mu24",
-                                    "mc_trigger_sf": "Trg_IsoMu24_pt_eta_bins",
-                                    "mc_muon_trg_extrapolation": 0.98,
+                                    "mc_trigger_sf": "NUM_IsoMu24_DEN_CutBasedIdMedium_and_PFIsoMedium",
+                                    "mc_muon_sf_correctiontype": "systdown",
+                                    "mc_muon_trg_extrapolation": 1.,
                                 },
-                                {
-                                    "flagname": "trg_wgt_single_mu27",
-                                    "mc_trigger_sf": "Trg_IsoMu27_pt_eta_bins",
-                                    "mc_muon_trg_extrapolation": 0.98,
-                                },
-                                {
-                                    "flagname": "trg_wgt_single_mu24ormu27",
-                                    "mc_trigger_sf": "Trg_IsoMu27_or_IsoMu24_pt_eta_bins",
-                                    "mc_muon_trg_extrapolation": 0.98,
-                                },
+                                # {
+                                #     "flagname": "trg_wgt_single_mu27",
+                                #     "mc_trigger_sf": "Trg_IsoMu27_pt_eta_bins",
+                                #     "mc_muon_trg_extrapolation": 0.98,
+                                # },
+                                # {
+                                #     "flagname": "trg_wgt_single_mu24ormu27",
+                                #     "mc_trigger_sf": "Trg_IsoMu27_or_IsoMu24_pt_eta_bins",
+                                #     "mc_muon_trg_extrapolation": 0.98,
+                                # },
                             ],
                             "2022postEE": [
                                 {
                                     "flagname": "trg_wgt_single_mu24",
-                                    "mc_trigger_sf": "Trg_IsoMu24_pt_eta_bins",
-                                    "mc_muon_trg_extrapolation": 0.98,
+                                    "mc_trigger_sf": "NUM_IsoMu24_DEN_CutBasedIdMedium_and_PFIsoMedium",
+                                    "mc_muon_sf_correctiontype": "systdown",
+                                    "mc_muon_trg_extrapolation": 1.,
                                 },
-                                {
-                                    "flagname": "trg_wgt_single_mu27",
-                                    "mc_trigger_sf": "Trg_IsoMu27_pt_eta_bins",
-                                    "mc_muon_trg_extrapolation": 0.98,
-                                },
-                                {
-                                    "flagname": "trg_wgt_single_mu24ormu27",
-                                    "mc_trigger_sf": "Trg_IsoMu27_or_IsoMu24_pt_eta_bins",
-                                    "mc_muon_trg_extrapolation": 0.98,
-                                },
+                                # {
+                                #     "flagname": "trg_wgt_single_mu27",
+                                #     "mc_trigger_sf": "Trg_IsoMu27_pt_eta_bins",
+                                #     "mc_muon_trg_extrapolation": 0.98,
+                                # },
+                                # {
+                                #     "flagname": "trg_wgt_single_mu24ormu27",
+                                #     "mc_trigger_sf": "Trg_IsoMu27_or_IsoMu24_pt_eta_bins",
+                                #     "mc_muon_trg_extrapolation": 0.98,
+                                # },
                             ],
                             "2018": [
                                 {
