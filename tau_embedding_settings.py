@@ -820,7 +820,7 @@ def setup_embedding(configuration: Configuration, scopes: List[str]):
                 for wp in [
                     # "VVVLoose",
                     # "VVLoose",
-                    # "VLoose",
+                    "VLoose",
                     # "Loose",
                     # "Medium",
                     "Tight",

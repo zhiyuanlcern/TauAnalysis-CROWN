@@ -7,183 +7,770 @@ from .producers import electrons as electrons
 from .producers import taus as taus
 
 
-def add_tauVariations(configuration: Configuration, sample: str):
+def add_tauVariations(configuration: Configuration, sample: str, era: str):
     if sample == "embedding" or sample == "embedding_mc" or sample == "data":
         return configuration
     #########################
     # TauvsMuID scale factor shifts
     #########################
     # vsJet shifts et/mt, tau pt dependent
+    # configuration.add_shift(
+    #     SystematicShift(
+    #         name="vsJetTau30to35Down",
+    #         shift_config={("et", "mt"): {"tau_sf_vsjet_tau30to35": "down"}},
+    #         producers={("et", "mt"): scalefactors.Tau_2_VsJetTauID_lt_SF},
+    #     )
+    # )
+    # configuration.add_shift(
+    #     SystematicShift(
+    #         name="vsJetTau30to35Up",
+    #         shift_config={("et", "mt"): {"tau_sf_vsjet_tau30to35": "up"}},
+    #         producers={("et", "mt"): scalefactors.Tau_2_VsJetTauID_lt_SF},
+    #     )
+    # )
+    # configuration.add_shift(
+    #     SystematicShift(
+    #         name="vsJetTau35to40Down",
+    #         shift_config={("et", "mt"): {"tau_sf_vsjet_tau35to40": "down"}},
+    #         producers={("et", "mt"): scalefactors.Tau_2_VsJetTauID_lt_SF},
+    #     )
+    # )
+    # configuration.add_shift(
+    #     SystematicShift(
+    #         name="vsJetTau35to40Up",
+    #         shift_config={("et", "mt"): {"tau_sf_vsjet_tau35to40": "up"}},
+    #         producers={("et", "mt"): scalefactors.Tau_2_VsJetTauID_lt_SF},
+    #     )
+    # )
+    # configuration.add_shift(
+    #     SystematicShift(
+    #         name="vsJetTau40to500Down",
+    #         shift_config={("et", "mt"): {"tau_sf_vsjet_tau40to500": "down"}},
+    #         producers={("et", "mt"): scalefactors.Tau_2_VsJetTauID_lt_SF},
+    #     )
+    # )
+    # configuration.add_shift(
+    #     SystematicShift(
+    #         name="vsJetTau40to500Up",
+    #         shift_config={("et", "mt"): {"tau_sf_vsjet_tau40to500": "up"}},
+    #         producers={("et", "mt"): scalefactors.Tau_2_VsJetTauID_lt_SF},
+    #     )
+    # )
+    # configuration.add_shift(
+    #     SystematicShift(
+    #         name="vsJetTau500to1000Down",
+    #         shift_config={("et", "mt"): {"tau_sf_vsjet_tau500to1000": "down"}},
+    #         producers={("et", "mt"): scalefactors.Tau_2_VsJetTauID_lt_SF},
+    #     )
+    # )
+    # configuration.add_shift(
+    #     SystematicShift(
+    #         name="vsJetTau500to1000Up",
+    #         shift_config={("et", "mt"): {"tau_sf_vsjet_tau500to1000": "up"}},
+    #         producers={("et", "mt"): scalefactors.Tau_2_VsJetTauID_lt_SF},
+    #     )
+    # )
+    # configuration.add_shift(
+    #     SystematicShift(
+    #         name="vsJetTau1000toInfDown",
+    #         shift_config={("et", "mt"): {"tau_sf_vsjet_tau1000toinf": "down"}},
+    #         producers={("et", "mt"): scalefactors.Tau_2_VsJetTauID_lt_SF},
+    #     )
+    # )
+    # configuration.add_shift(
+    #     SystematicShift(
+    #         name="vsJetTau1000toInfUp",
+    #         shift_config={("et", "mt"): {"tau_sf_vsjet_tau1000toinf": "up"}},
+    #         producers={("et", "mt"): scalefactors.Tau_2_VsJetTauID_lt_SF},
+    #     )
+    # )
+
+    # configuration.add_shift(
+    #     SystematicShift(
+    #         name="vsJetTauDM0Down",
+    #         shift_config={("tt","et","mt"): {"tau_sf_vsjet_tauDM0": "down"}},
+    #         producers={
+    #             "tt": [
+    #                 scalefactors.Tau_1_VsJetTauID_SF,
+    #                 scalefactors.Tau_2_VsJetTauID_tt_SF,
+    #             ],
+    #             ("et", "mt"): scalefactors.Tau_2_VsJetTauID_lt_SF,
+    #         },
+    #     )
+    # )
     configuration.add_shift(
         SystematicShift(
-            name="vsJetTau30to35Down",
-            shift_config={("et", "mt"): {"tau_sf_vsjet_tau30to35": "down"}},
-            producers={("et", "mt"): scalefactors.Tau_2_VsJetTauID_lt_SF},
+            name="vsjet_tauDM0_stat1up",
+            shift_config={("tt","et","mt"): {
+                "tau_sf_vsjet_tauDM0": "stat1_dm0_up"
+                }},
+                producers={
+                    "tt": [
+                        scalefactors.Tau_1_VsJetTauID_SF,
+                        scalefactors.Tau_2_VsJetTauID_tt_SF,
+                    ],
+                    ("et", "mt"): scalefactors.Tau_2_VsJetTauID_lt_SF,
+                },
+            )
         )
-    )
     configuration.add_shift(
         SystematicShift(
-            name="vsJetTau30to35Up",
-            shift_config={("et", "mt"): {"tau_sf_vsjet_tau30to35": "up"}},
-            producers={("et", "mt"): scalefactors.Tau_2_VsJetTauID_lt_SF},
+            name="vsjet_tauDM0_stat2up",
+            shift_config={("tt","et","mt"): {
+                "tau_sf_vsjet_tauDM0": "stat2_dm0_up"
+                }},
+                producers={
+                    "tt": [
+                        scalefactors.Tau_1_VsJetTauID_SF,
+                        scalefactors.Tau_2_VsJetTauID_tt_SF,
+                    ],
+                    ("et", "mt"): scalefactors.Tau_2_VsJetTauID_lt_SF,
+                },
+            )
         )
-    )
     configuration.add_shift(
         SystematicShift(
-            name="vsJetTau35to40Down",
-            shift_config={("et", "mt"): {"tau_sf_vsjet_tau35to40": "down"}},
-            producers={("et", "mt"): scalefactors.Tau_2_VsJetTauID_lt_SF},
+            name="vsjet_tauDM0_systup",
+            shift_config={("tt","et","mt"): {
+                "tau_sf_vsjet_tauDM0": "syst_alleras_up"
+                }},
+                producers={
+                    "tt": [
+                        scalefactors.Tau_1_VsJetTauID_SF,
+                        scalefactors.Tau_2_VsJetTauID_tt_SF,
+                    ],
+                    ("et", "mt"): scalefactors.Tau_2_VsJetTauID_lt_SF,
+                },
+            )
         )
-    )
     configuration.add_shift(
         SystematicShift(
-            name="vsJetTau35to40Up",
-            shift_config={("et", "mt"): {"tau_sf_vsjet_tau35to40": "up"}},
-            producers={("et", "mt"): scalefactors.Tau_2_VsJetTauID_lt_SF},
+            name="vsjet_tauDM1_stat1up",
+            shift_config={("tt","et","mt"): {
+                "tau_sf_vsjet_tauDM1": "stat1_dm1_up"
+                }},
+                producers={
+                    "tt": [
+                        scalefactors.Tau_1_VsJetTauID_SF,
+                        scalefactors.Tau_2_VsJetTauID_tt_SF,
+                    ],
+                    ("et", "mt"): scalefactors.Tau_2_VsJetTauID_lt_SF,
+                },
+            )
         )
-    )
     configuration.add_shift(
         SystematicShift(
-            name="vsJetTau40to500Down",
-            shift_config={("et", "mt"): {"tau_sf_vsjet_tau40to500": "down"}},
-            producers={("et", "mt"): scalefactors.Tau_2_VsJetTauID_lt_SF},
+            name="vsjet_tauDM1_stat2up",
+            shift_config={("tt","et","mt"): {
+                "tau_sf_vsjet_tauDM1": "stat2_dm1_up"
+                }},
+                producers={
+                    "tt": [
+                        scalefactors.Tau_1_VsJetTauID_SF,
+                        scalefactors.Tau_2_VsJetTauID_tt_SF,
+                    ],
+                    ("et", "mt"): scalefactors.Tau_2_VsJetTauID_lt_SF,
+                },
+            )
         )
-    )
     configuration.add_shift(
         SystematicShift(
-            name="vsJetTau40to500Up",
-            shift_config={("et", "mt"): {"tau_sf_vsjet_tau40to500": "up"}},
-            producers={("et", "mt"): scalefactors.Tau_2_VsJetTauID_lt_SF},
+            name="vsjet_tauDM1_systup",
+            shift_config={("tt","et","mt"): {
+                "tau_sf_vsjet_tauDM1": "syst_alleras_up"
+                }},
+                producers={
+                    "tt": [
+                        scalefactors.Tau_1_VsJetTauID_SF,
+                        scalefactors.Tau_2_VsJetTauID_tt_SF,
+                    ],
+                    ("et", "mt"): scalefactors.Tau_2_VsJetTauID_lt_SF,
+                },
+            )
         )
-    )
     configuration.add_shift(
         SystematicShift(
-            name="vsJetTau500to1000Down",
-            shift_config={("et", "mt"): {"tau_sf_vsjet_tau500to1000": "down"}},
-            producers={("et", "mt"): scalefactors.Tau_2_VsJetTauID_lt_SF},
+            name="vsjet_tauDM10_stat1up",
+            shift_config={("tt","et","mt"): {
+                "tau_sf_vsjet_tauDM10": "stat1_dm10_up"
+                }},
+                producers={
+                    "tt": [
+                        scalefactors.Tau_1_VsJetTauID_SF,
+                        scalefactors.Tau_2_VsJetTauID_tt_SF,
+                    ],
+                    ("et", "mt"): scalefactors.Tau_2_VsJetTauID_lt_SF,
+                },
+            )
         )
-    )
     configuration.add_shift(
         SystematicShift(
-            name="vsJetTau500to1000Up",
-            shift_config={("et", "mt"): {"tau_sf_vsjet_tau500to1000": "up"}},
-            producers={("et", "mt"): scalefactors.Tau_2_VsJetTauID_lt_SF},
+            name="vsjet_tauDM10_stat2up",
+            shift_config={("tt","et","mt"): {
+                "tau_sf_vsjet_tauDM10": "stat2_dm10_up"
+                }},
+                producers={
+                    "tt": [
+                        scalefactors.Tau_1_VsJetTauID_SF,
+                        scalefactors.Tau_2_VsJetTauID_tt_SF,
+                    ],
+                    ("et", "mt"): scalefactors.Tau_2_VsJetTauID_lt_SF,
+                },
+            )
         )
-    )
     configuration.add_shift(
         SystematicShift(
-            name="vsJetTau1000toInfDown",
-            shift_config={("et", "mt"): {"tau_sf_vsjet_tau1000toinf": "down"}},
-            producers={("et", "mt"): scalefactors.Tau_2_VsJetTauID_lt_SF},
+            name="vsjet_tauDM10_systup",
+            shift_config={("tt","et","mt"): {
+                "tau_sf_vsjet_tauDM10": "syst_alleras_up"
+                }},
+                producers={
+                    "tt": [
+                        scalefactors.Tau_1_VsJetTauID_SF,
+                        scalefactors.Tau_2_VsJetTauID_tt_SF,
+                    ],
+                    ("et", "mt"): scalefactors.Tau_2_VsJetTauID_lt_SF,
+                },
+            )
         )
-    )
     configuration.add_shift(
         SystematicShift(
-            name="vsJetTau1000toInfUp",
-            shift_config={("et", "mt"): {"tau_sf_vsjet_tau1000toinf": "up"}},
-            producers={("et", "mt"): scalefactors.Tau_2_VsJetTauID_lt_SF},
+            name="vsjet_tauDM11_stat1up",
+            shift_config={("tt","et","mt"): {
+                "tau_sf_vsjet_tauDM11": "stat1_dm11_up"
+                }},
+                producers={
+                    "tt": [
+                        scalefactors.Tau_1_VsJetTauID_SF,
+                        scalefactors.Tau_2_VsJetTauID_tt_SF,
+                    ],
+                    ("et", "mt"): scalefactors.Tau_2_VsJetTauID_lt_SF,
+                },
+            )
         )
-    )
     configuration.add_shift(
         SystematicShift(
-            name="vsJetTauDM0Down",
-            shift_config={"tt": {"tau_sf_vsjet_tauDM0": "down"}},
-            producers={
-                "tt": [
-                    scalefactors.Tau_1_VsJetTauID_SF,
-                    scalefactors.Tau_2_VsJetTauID_tt_SF,
-                ]
+            name="vsjet_tauDM11_stat2up",
+            shift_config={("tt","et","mt"): {
+                "tau_sf_vsjet_tauDM11": "stat2_dm11_up"
+                }},
+                producers={
+                    "tt": [
+                        scalefactors.Tau_1_VsJetTauID_SF,
+                        scalefactors.Tau_2_VsJetTauID_tt_SF,
+                    ],
+                    ("et", "mt"): scalefactors.Tau_2_VsJetTauID_lt_SF,
+                },
+            )
+        )
+    configuration.add_shift(
+        SystematicShift(
+            name="vsjet_tauDM11_systup",
+            shift_config={("tt","et","mt"): {
+                "tau_sf_vsjet_tauDM11": "syst_alleras_up"
+                }},
+                producers={
+                    "tt": [
+                        scalefactors.Tau_1_VsJetTauID_SF,
+                        scalefactors.Tau_2_VsJetTauID_tt_SF,
+                    ],
+                    ("et", "mt"): scalefactors.Tau_2_VsJetTauID_lt_SF,
+                },
+            )
+        )
+
+
+    configuration.add_shift(
+        SystematicShift(
+            name="vsjet_tauDM0_stat1down",
+            shift_config={("tt","et","mt"): {
+                "tau_sf_vsjet_tauDM0": "stat1_dm0_down"
+                }},
+                producers={
+                    "tt": [
+                        scalefactors.Tau_1_VsJetTauID_SF,
+                        scalefactors.Tau_2_VsJetTauID_tt_SF,
+                    ],
+                    ("et", "mt"): scalefactors.Tau_2_VsJetTauID_lt_SF,
+                },
+            )
+        )
+    configuration.add_shift(
+        SystematicShift(
+            name="vsjet_tauDM0_stat2down",
+            shift_config={("tt","et","mt"): {
+                "tau_sf_vsjet_tauDM0": "stat2_dm0_down"
+                }},
+                producers={
+                    "tt": [
+                        scalefactors.Tau_1_VsJetTauID_SF,
+                        scalefactors.Tau_2_VsJetTauID_tt_SF,
+                    ],
+                    ("et", "mt"): scalefactors.Tau_2_VsJetTauID_lt_SF,
+                },
+            )
+        )
+    configuration.add_shift(
+        SystematicShift(
+            name="vsjet_tauDM0_systdown",
+            shift_config={("tt","et","mt"): {
+                "tau_sf_vsjet_tauDM0": "syst_alleras_down"
+                }},
+                producers={
+                    "tt": [
+                        scalefactors.Tau_1_VsJetTauID_SF,
+                        scalefactors.Tau_2_VsJetTauID_tt_SF,
+                    ],
+                    ("et", "mt"): scalefactors.Tau_2_VsJetTauID_lt_SF,
+                },
+            )
+        )
+    configuration.add_shift(
+        SystematicShift(
+            name="vsjet_tauDM1_stat1down",
+            shift_config={("tt","et","mt"): {
+                "tau_sf_vsjet_tauDM1": "stat1_dm1_down"
+                }},
+                producers={
+                    "tt": [
+                        scalefactors.Tau_1_VsJetTauID_SF,
+                        scalefactors.Tau_2_VsJetTauID_tt_SF,
+                    ],
+                    ("et", "mt"): scalefactors.Tau_2_VsJetTauID_lt_SF,
+                },
+            )
+        )
+    configuration.add_shift(
+        SystematicShift(
+            name="vsjet_tauDM1_stat2down",
+            shift_config={("tt","et","mt"): {
+                "tau_sf_vsjet_tauDM1": "stat2_dm1_down"
+                }},
+                producers={
+                    "tt": [
+                        scalefactors.Tau_1_VsJetTauID_SF,
+                        scalefactors.Tau_2_VsJetTauID_tt_SF,
+                    ],
+                    ("et", "mt"): scalefactors.Tau_2_VsJetTauID_lt_SF,
+                },
+            )
+        )
+    configuration.add_shift(
+        SystematicShift(
+            name="vsjet_tauDM1_systdown",
+            shift_config={("tt","et","mt"): {
+                "tau_sf_vsjet_tauDM1": "syst_alleras_down"
+                }},
+                producers={
+                    "tt": [
+                        scalefactors.Tau_1_VsJetTauID_SF,
+                        scalefactors.Tau_2_VsJetTauID_tt_SF,
+                    ],
+                    ("et", "mt"): scalefactors.Tau_2_VsJetTauID_lt_SF,
+                },
+            )
+        )
+    configuration.add_shift(
+        SystematicShift(
+            name="vsjet_tauDM10_stat1down",
+            shift_config={("tt","et","mt"): {
+                "tau_sf_vsjet_tauDM10": "stat1_dm10_down"
+                }},
+                producers={
+                    "tt": [
+                        scalefactors.Tau_1_VsJetTauID_SF,
+                        scalefactors.Tau_2_VsJetTauID_tt_SF,
+                    ],
+                    ("et", "mt"): scalefactors.Tau_2_VsJetTauID_lt_SF,
+                },
+            )
+        )
+    configuration.add_shift(
+        SystematicShift(
+            name="vsjet_tauDM10_stat2down",
+            shift_config={("tt","et","mt"): {
+                "tau_sf_vsjet_tauDM10": "stat2_dm10_down"
+                }},
+                producers={
+                    "tt": [
+                        scalefactors.Tau_1_VsJetTauID_SF,
+                        scalefactors.Tau_2_VsJetTauID_tt_SF,
+                    ],
+                    ("et", "mt"): scalefactors.Tau_2_VsJetTauID_lt_SF,
+                },
+            )
+        )
+    configuration.add_shift(
+        SystematicShift(
+            name="vsjet_tauDM10_systdown",
+            shift_config={("tt","et","mt"): {
+                "tau_sf_vsjet_tauDM10": "syst_alleras_down"
+                }},
+                producers={
+                    "tt": [
+                        scalefactors.Tau_1_VsJetTauID_SF,
+                        scalefactors.Tau_2_VsJetTauID_tt_SF,
+                    ],
+                    ("et", "mt"): scalefactors.Tau_2_VsJetTauID_lt_SF,
+                },
+            )
+        )
+    configuration.add_shift(
+        SystematicShift(
+            name="vsjet_tauDM11_stat1down",
+            shift_config={("tt","et","mt"): {
+                "tau_sf_vsjet_tauDM11": "stat1_dm11_down"
+                }},
+                producers={
+                    "tt": [
+                        scalefactors.Tau_1_VsJetTauID_SF,
+                        scalefactors.Tau_2_VsJetTauID_tt_SF,
+                    ],
+                    ("et", "mt"): scalefactors.Tau_2_VsJetTauID_lt_SF,
+                },
+            )
+        )
+    configuration.add_shift(
+        SystematicShift(
+            name="vsjet_tauDM11_stat2down",
+            shift_config={("tt","et","mt"): {
+                "tau_sf_vsjet_tauDM11": "stat2_dm11_down"
+                }},
+                producers={
+                    "tt": [
+                        scalefactors.Tau_1_VsJetTauID_SF,
+                        scalefactors.Tau_2_VsJetTauID_tt_SF,
+                    ],
+                    ("et", "mt"): scalefactors.Tau_2_VsJetTauID_lt_SF,
+                },
+            )
+        )
+    configuration.add_shift(
+        SystematicShift(
+            name="vsjet_tauDM11_systdown",
+            shift_config={("tt","et","mt"): {
+                "tau_sf_vsjet_tauDM11": "syst_alleras_down"
+                }},
+                producers={
+                    "tt": [
+                        scalefactors.Tau_1_VsJetTauID_SF,
+                        scalefactors.Tau_2_VsJetTauID_tt_SF,
+                    ],
+                    ("et", "mt"): scalefactors.Tau_2_VsJetTauID_lt_SF,
+                },
+            )
+        )
+    configuration.add_shift(
+        SystematicShift(
+            name="vsjet_tauDM0_TES_up",
+            shift_config={("tt","et","mt"): {
+                "tau_sf_vsjet_tauDM0": "syst_TES_2022_postEE_dm0_up" if era == "2022postEE" else "syst_TES_2022_preEE_dm0_up"
+                }},
+                producers={
+                    "tt": [
+                        scalefactors.Tau_1_VsJetTauID_SF,
+                        scalefactors.Tau_2_VsJetTauID_tt_SF,
+                    ],
+                    ("et", "mt"): scalefactors.Tau_2_VsJetTauID_lt_SF,
+                },
+            )
+        )
+    configuration.add_shift(
+        SystematicShift(
+            name="vsjet_tauDM0_TES_down",
+            shift_config={("tt","et","mt"): {
+                "tau_sf_vsjet_tauDM0": "syst_TES_2022_postEE_dm0_down" if era == "2022postEE" else "syst_TES_2022_preEE_dm0_down"
+                }},
+                producers={
+                    "tt": [
+                        scalefactors.Tau_1_VsJetTauID_SF,
+                        scalefactors.Tau_2_VsJetTauID_tt_SF,
+                    ],
+                    ("et", "mt"): scalefactors.Tau_2_VsJetTauID_lt_SF,
+                },
+            )
+        )
+    configuration.add_shift(
+        SystematicShift(
+            name="vsjet_tauDM1_TES_up",
+            shift_config={("tt","et","mt"): {
+                "tau_sf_vsjet_tauDM1": "syst_TES_2022_postEE_dm1_up" if era == "2022postEE" else "syst_TES_2022_preEE_dm1_up"
+                }},
+                producers={
+                    "tt": [
+                        scalefactors.Tau_1_VsJetTauID_SF,
+                        scalefactors.Tau_2_VsJetTauID_tt_SF,
+                    ],
+                    ("et", "mt"): scalefactors.Tau_2_VsJetTauID_lt_SF,
+                },
+            )
+        )
+    configuration.add_shift(
+        SystematicShift(
+            name="vsjet_tauDM10_TES_up",
+            shift_config={("tt","et","mt"): {
+                "tau_sf_vsjet_tauDM10": "syst_TES_2022_postEE_dm10_up" if era == "2022postEE" else "syst_TES_2022_preEE_dm10_up"
+                }},
+                producers={
+                    "tt": [
+                        scalefactors.Tau_1_VsJetTauID_SF,
+                        scalefactors.Tau_2_VsJetTauID_tt_SF,
+                    ],
+                    ("et", "mt"): scalefactors.Tau_2_VsJetTauID_lt_SF,
+                },
+            )
+        )
+    configuration.add_shift(
+        SystematicShift(
+            name="vsjet_tauDM10_TES_down",
+            shift_config={("tt","et","mt"): {
+                "tau_sf_vsjet_tauDM10": "syst_TES_2022_postEE_dm10_down" if era == "2022postEE" else "syst_TES_2022_preEE_dm10_down"
+                }},
+                producers={
+                    "tt": [
+                        scalefactors.Tau_1_VsJetTauID_SF,
+                        scalefactors.Tau_2_VsJetTauID_tt_SF,
+                    ],
+                    ("et", "mt"): scalefactors.Tau_2_VsJetTauID_lt_SF,
+                },
+            )
+        )
+    configuration.add_shift(
+        SystematicShift(
+            name="vsjet_tauDM1_TES_down",
+            shift_config={("tt","et","mt"): {
+                "tau_sf_vsjet_tauDM1": "syst_TES_2022_postEE_dm1_down" if era == "2022postEE" else "syst_TES_2022_preEE_dm1_down"
+                }},
+                producers={
+                    "tt": [
+                        scalefactors.Tau_1_VsJetTauID_SF,
+                        scalefactors.Tau_2_VsJetTauID_tt_SF,
+                    ],
+                    ("et", "mt"): scalefactors.Tau_2_VsJetTauID_lt_SF,
+                },
+            )
+        )
+    configuration.add_shift(
+        SystematicShift(
+            name="vsjet_tauDM11_TES_up",
+            shift_config={("tt","et","mt"): {
+                "tau_sf_vsjet_tauDM11": "syst_TES_2022_postEE_dm11_up" if era == "2022postEE" else "syst_TES_2022_preEE_dm11_up"
+                }},
+                producers={
+                    "tt": [
+                        scalefactors.Tau_1_VsJetTauID_SF,
+                        scalefactors.Tau_2_VsJetTauID_tt_SF,
+                    ],
+                    ("et", "mt"): scalefactors.Tau_2_VsJetTauID_lt_SF,
+                },
+            )
+        )
+    configuration.add_shift(
+        SystematicShift(
+            name="vsjet_tauDM11_TES_down",
+            shift_config={("tt","et","mt"): {
+                "tau_sf_vsjet_tauDM11": "syst_TES_2022_postEE_dm11_down" if era == "2022postEE" else "syst_TES_2022_preEE_dm11_down"
+                }},
+                producers={
+                    "tt": [
+                        scalefactors.Tau_1_VsJetTauID_SF,
+                        scalefactors.Tau_2_VsJetTauID_tt_SF,
+                    ],
+                    ("et", "mt"): scalefactors.Tau_2_VsJetTauID_lt_SF,
+                },
+            )
+        )
+    configuration.add_shift(
+        SystematicShift(
+            name="ditau_crosstau_trg_SF_up",
+            shift_config={
+                ("et","mt"): {
+                    "leptau_trigger_sf_list": [{
+                    "flagname": "trg_wgt_ditau_crosstau_2",
+                    "trigger_wp": "Medium",
+                    "trigger_corrtype": "sf", 
+                    "trigger_syst": "up",}]
+                },
+                "tt": {
+                    "ditau_trigger_sf_list": [{
+                    "flagname1": "trg_wgt_ditau_crosstau_1",
+                    "flagname2": "trg_wgt_ditau_crosstau_2",
+                    "trigger_wp": "Medium",
+                    "trigger_corrtype": "sf", 
+                    "trigger_syst": "up",}
+                ],
+                }
             },
+                producers={
+                    "tt": [
+                        scalefactors.TTGenerateDitauTriggerSF_1,
+                        scalefactors.TTGenerateDitauTriggerSF_2
+                    ],
+                    "et": scalefactors.ETGenerateDitauTriggerSF_2,
+                    "mt": scalefactors.MTGenerateDitauTriggerSF_2
+                },
+            )
         )
-    )
-    # vsJet shifts tt, tau dm dependent
     configuration.add_shift(
         SystematicShift(
-            name="vsJetTauDM0Up",
-            shift_config={"tt": {"tau_sf_vsjet_tauDM0": "up"}},
-            producers={
-                "tt": [
-                    scalefactors.Tau_1_VsJetTauID_SF,
-                    scalefactors.Tau_2_VsJetTauID_tt_SF,
-                ]
+            name="ditau_crosstau_trg_SF_down",
+            shift_config={
+                ("et","mt"): {
+                    "leptau_trigger_sf_list": [{
+                    "flagname": "trg_wgt_ditau_crosstau_2",
+                    "trigger_wp": "Medium",
+                    "trigger_corrtype": "sf", 
+                    "trigger_syst": "down",}]
+                },
+                "tt": {
+                    "ditau_trigger_sf_list": [{
+                    "flagname1": "trg_wgt_ditau_crosstau_1",
+                    "flagname2": "trg_wgt_ditau_crosstau_2",
+                    "trigger_wp": "Medium",
+                    "trigger_corrtype": "sf", 
+                    "trigger_syst": "down",}
+                ],
+                }
             },
+                producers={
+                    "tt": [
+                        scalefactors.TTGenerateDitauTriggerSF_1,
+                        scalefactors.TTGenerateDitauTriggerSF_2
+                    ],
+                    "et": scalefactors.ETGenerateDitauTriggerSF_2,
+                    "mt": scalefactors.MTGenerateDitauTriggerSF_2
+                },
+            )
         )
-    )
-    configuration.add_shift(
-        SystematicShift(
-            name="vsJetTauDM1Down",
-            shift_config={"tt": {"tau_sf_vsjet_tauDM1": "down"}},
-            producers={
-                "tt": [
-                    scalefactors.Tau_1_VsJetTauID_SF,
-                    scalefactors.Tau_2_VsJetTauID_tt_SF,
-                ]
-            },
-        )
-    )
-    configuration.add_shift(
-        SystematicShift(
-            name="vsJetTauDM1Up",
-            shift_config={"tt": {"tau_sf_vsjet_tauDM1": "up"}},
-            producers={
-                "tt": [
-                    scalefactors.Tau_1_VsJetTauID_SF,
-                    scalefactors.Tau_2_VsJetTauID_tt_SF,
-                ]
-            },
-        )
-    )
-    configuration.add_shift(
-        SystematicShift(
-            name="vsJetTauDM10Down",
-            shift_config={"tt": {"tau_sf_vsjet_tauDM10": "down"}},
-            producers={
-                "tt": [
-                    scalefactors.Tau_1_VsJetTauID_SF,
-                    scalefactors.Tau_2_VsJetTauID_tt_SF,
-                ]
-            },
-        )
-    )
-    configuration.add_shift(
-        SystematicShift(
-            name="vsJetTauDM10Up",
-            shift_config={"tt": {"tau_sf_vsjet_tauDM10": "up"}},
-            producers={
-                "tt": [
-                    scalefactors.Tau_1_VsJetTauID_SF,
-                    scalefactors.Tau_2_VsJetTauID_tt_SF,
-                ]
-            },
-        )
-    )
-    configuration.add_shift(
-        SystematicShift(
-            name="vsJetTauDM11Down",
-            shift_config={"tt": {"tau_sf_vsjet_tauDM11": "down"}},
-            producers={
-                "tt": [
-                    scalefactors.Tau_1_VsJetTauID_SF,
-                    scalefactors.Tau_2_VsJetTauID_tt_SF,
-                ]
-            },
-        )
-    )
-    configuration.add_shift(
-        SystematicShift(
-            name="vsJetTauDM11Up",
-            shift_config={"tt": {"tau_sf_vsjet_tauDM11": "up"}},
-            producers={
-                "tt": [
-                    scalefactors.Tau_1_VsJetTauID_SF,
-                    scalefactors.Tau_2_VsJetTauID_tt_SF,
-                ]
-            },
-        )
-    )
+    # configuration.add_shift(
+    #     SystematicShift(
+    #         name="vsJetTauDM0Down",
+    #         shift_config={"tt": {"tau_sf_vsjet_tauDM0": "down"}},
+    #         producers={
+    #             "tt": [
+    #                 scalefactors.Tau_1_VsJetTauID_SF,
+    #                 scalefactors.Tau_2_VsJetTauID_tt_SF,
+    #             ]
+    #         },
+    #     )
+    # )
+    # # vsJet shifts tt, tau dm dependent
+    # configuration.add_shift(
+    #     SystematicShift(
+    #         name="vsJetTauDM0Up",
+    #         shift_config={"tt": {"tau_sf_vsjet_tauDM0": "up"}},
+    #         producers={
+    #             "tt": [
+    #                 scalefactors.Tau_1_VsJetTauID_SF,
+    #                 scalefactors.Tau_2_VsJetTauID_tt_SF,
+    #             ]
+    #         },
+    #     )
+    # )
+    # configuration.add_shift(
+    #     SystematicShift(
+    #         name="vsJetTauDM1Down",
+    #         shift_config={"tt": {"tau_sf_vsjet_tauDM1": "down"}},
+    #         producers={
+    #             "tt": [
+    #                 scalefactors.Tau_1_VsJetTauID_SF,
+    #                 scalefactors.Tau_2_VsJetTauID_tt_SF,
+    #             ]
+    #         },
+    #     )
+    # )
+    # configuration.add_shift(
+    #     SystematicShift(
+    #         name="vsJetTauDM1Up",
+    #         shift_config={"tt": {"tau_sf_vsjet_tauDM1": "up"}},
+    #         producers={
+    #             "tt": [
+    #                 scalefactors.Tau_1_VsJetTauID_SF,
+    #                 scalefactors.Tau_2_VsJetTauID_tt_SF,
+    #             ]
+    #         },
+    #     )
+    # )
+    # configuration.add_shift(
+    #     SystematicShift(
+    #         name="vsJetTauDM10Down",
+    #         shift_config={"tt": {"tau_sf_vsjet_tauDM10": "down"}},
+    #         producers={
+    #             "tt": [
+    #                 scalefactors.Tau_1_VsJetTauID_SF,
+    #                 scalefactors.Tau_2_VsJetTauID_tt_SF,
+    #             ]
+    #         },
+    #     )
+    # )
+    # configuration.add_shift(
+    #     SystematicShift(
+    #         name="vsJetTauDM10Up",
+    #         shift_config={"tt": {"tau_sf_vsjet_tauDM10": "up"}},
+    #         producers={
+    #             "tt": [
+    #                 scalefactors.Tau_1_VsJetTauID_SF,
+    #                 scalefactors.Tau_2_VsJetTauID_tt_SF,
+    #             ]
+    #         },
+    #     )
+    # )
+    # configuration.add_shift(
+    #     SystematicShift(
+    #         name="vsJetTauDM11Down",
+    #         shift_config={"tt": {"tau_sf_vsjet_tauDM11": "down"}},
+    #         producers={
+    #             "tt": [
+    #                 scalefactors.Tau_1_VsJetTauID_SF,
+    #                 scalefactors.Tau_2_VsJetTauID_tt_SF,
+    #             ]
+    #         },
+    #     )
+    # )
+    # configuration.add_shift(
+    #     SystematicShift(
+    #         name="vsJetTauDM11Up",
+    #         shift_config={"tt": {"tau_sf_vsjet_tauDM11": "up"}},
+    #         producers={
+    #             "tt": [
+    #                 scalefactors.Tau_1_VsJetTauID_SF,
+    #                 scalefactors.Tau_2_VsJetTauID_tt_SF,
+    #             ]
+    #         },
+    #     )
+    # )
     #########################
     # TauvsEleID scale factor shifts
     #########################
+    # configuration.add_shift(
+    #     SystematicShift(
+    #         name="vsEleBarrelDown",
+    #         shift_config={
+    #             ("et","mt"): {
+    #                 "vsjet_tau_id_sf":  "vsele_tau_id": [
+    #             {
+    #                 "tau_id_discriminator": "DeepTau2018v2p5VSe",
+    #                 "tau_1_vsele_sf_outputname": "id_wgt_tau_vsEle_{wp}_1".format(
+    #                     wp=wp
+    #                 ),
+    #                 "tau_2_vsele_sf_outputname": "id_wgt_tau_vsEle_{wp}_2".format(
+    #                     wp=wp
+    #                 ),
+    #                 "vsele_tau_id_WP": "{wp}".format(wp=wp),
+    #                 "tau_1_vsele_id_outputname": "id_tau_vsEle_{wp}_1".format(wp=wp),
+    #                 "tau_2_vsele_id_outputname": "id_tau_vsEle_{wp}_2".format(wp=wp),
+    #                 "vsele_tau_id_WPbit": bit,
+    #             }
+    #             for wp, bit in {
+    #                 "VVLoose": 2,
+    #                 "Tight": 6,
+    #             }.items()
+    #         ],
+    #             },
+    #         },
+    #           producers={("et", "mt"): scalefactors.Tau_2_VsEleTauID_SF},
+    #         )
+    #     )
     configuration.add_shift(
         SystematicShift(
             name="vsEleBarrelDown",
