@@ -1073,7 +1073,7 @@ def build_config(
             # scalefactors.Tau_2_VsJetTauID_lt_SF,
             # scalefactors.Tau_2_VsEleTauID_SF,
             # scalefactors.Tau_2_VsMuTauID_SF,
-            # scalefactors.EleID_SF,
+            scalefactors.EleID_SF,
             triggers.ETGenerateSingleElectronTriggerFlags,
             triggers.ETGenerateCrossTriggerFlags,
             triggers.GenerateSingleTrailingTauTriggerFlags,
@@ -1129,7 +1129,7 @@ def build_config(
             genparticles.EMGenDiTauPairQuantities,
             pairquantities.FastMTTQuantities,
             scalefactors.MuonIDIso_SF,
-            # scalefactors.EleID_SF,
+            scalefactors.EleID_SF,
             triggers.EMGenerateSingleElectronTriggerFlags,
             triggers.EMGenerateSingleMuonTriggerFlags,
             triggers.EMGenerateCrossTriggerFlags,
@@ -1593,7 +1593,7 @@ def build_config(
             q.muon_veto_flag,
             q.dimuon_veto,
             q.electron_veto_flag,
-            # q.id_wgt_ele_wp90nonIso_1,
+            q.id_wgt_ele_wpTight,
             # q.id_wgt_ele_wp80nonIso_1,
         ],
     )
@@ -1643,6 +1643,7 @@ def build_config(
             q.tau_decaymode_1,
             q.tau_decaymode_2,
             q.id_wgt_mu_2,
+            q.id_wgt_ele_wpTight,
         ],
     )
 
@@ -2479,10 +2480,10 @@ def build_config(
     ## Muon id, iso shifts
     configuration.add_shift(
             SystematicShift(
-                name="muon_IDISO_syst",
+                name="muon_IDISO_up",
                 shift_config={
                     ("mt", "em", "mm"): {
-                        "muon_sf_varation": "syst",
+                        "muon_sf_varation": "systup",
                     }
                 },
                 producers={("mt", "em", "mm"): [scalefactors.MuonIDIso_SF]},
@@ -2490,10 +2491,10 @@ def build_config(
         )
     configuration.add_shift(
             SystematicShift(
-                name="muon_IDISO_stat",
+                name="muon_IDISO_down",
                 shift_config={
                     ("mt", "em", "mm"): {
-                        "muon_sf_varation": "stat",
+                        "muon_sf_varation": "systdown",
                     }
                 },
                 producers={("mt", "em", "mm"): [scalefactors.MuonIDIso_SF]},

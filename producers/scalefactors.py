@@ -203,15 +203,15 @@ TauID_SF = ProducerGroup(
 #########################
 # Electron ID/ISO SF
 #########################
-Ele_1_IDWP90_SF = Producer(
-    name="Ele_IDWP90_SF",
-    call='scalefactor::electron::id({df}, {input}, "{ele_sf_year_id}", "wp90noiso", "{ele_sf_varation}", {output}, "{ele_sf_file}", "{ele_id_sf_name}")',
+Ele_1_IDTight_SF = Producer(
+    name="Ele_IDTight_SF",
+    call='scalefactor::electron::id({df}, {input}, "{ele_sf_year_id}", "Tight", "{ele_sf_varation}", {output}, "{ele_sf_file}", "{ele_id_sf_name}")',
     input=[q.pt_1, q.eta_1],
-    output=[q.id_wgt_ele_wp90nonIso_1],
+    output=[q.id_wgt_ele_wpTight],
     scopes=["em", "ee", "et"],
 )
 Ele_2_IDWP90_SF = Producer(
-    name="Ele_IDWP90_SF",
+    name="Ele_IDTight_SF",
     call='scalefactor::electron::id({df}, {input}, "{ele_sf_year_id}", "wp90noiso", "{ele_sf_varation}", {output}, "{ele_sf_file}", "{ele_id_sf_name}")',
     input=[q.pt_2, q.eta_2],
     output=[q.id_wgt_ele_wp90nonIso_2],
@@ -238,14 +238,14 @@ EleID_SF = ProducerGroup(
     output=None,
     scopes=["em", "ee", "et"],
     subproducers={
-        "em": [Ele_1_IDWP90_SF, Ele_1_IDWP80_SF],
+        "em": [Ele_1_IDTight_SF],
         "ee": [
-            Ele_1_IDWP90_SF,
+            Ele_1_IDTight_SF,
             Ele_1_IDWP80_SF,
             Ele_2_IDWP90_SF,
             Ele_2_IDWP80_SF,
         ],
-        "et": [Ele_1_IDWP90_SF, Ele_1_IDWP80_SF],
+        "et": [Ele_1_IDTight_SF],
     },
 )
 

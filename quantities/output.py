@@ -264,7 +264,7 @@ is_electroweak_boson = Quantity("is_electroweak_boson")
 
 
 # Electron Weights
-id_wgt_ele_wp90nonIso_1 = Quantity("id_wgt_ele_wp90nonIso_1")
+id_wgt_ele_wpTight = Quantity("id_wgt_ele_wpTight")
 id_wgt_ele_wp90nonIso_2 = Quantity("id_wgt_ele_wp90nonIso_2")
 id_wgt_ele_wp80nonIso_1 = Quantity("id_wgt_ele_wp80nonIso_1")
 id_wgt_ele_wp80nonIso_2 = Quantity("id_wgt_ele_wp80nonIso_2")
