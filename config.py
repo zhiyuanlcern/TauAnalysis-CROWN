@@ -358,12 +358,12 @@ def build_config(
                     "vsjet_tau_id_WPbit": bit,
                 }
                 for wp, bit in {
-                    "VVVLoose": 1,
-                    "VVLoose": 2,
+                    # "VVVLoose": 1,
+                    # "VVLoose": 2,
                     # "VLoose": 3,
                     # "Loose": 4,
                     "Medium": 5,
-                    "Tight": 6,
+                    # "Tight": 6,
                     # "VTight": 7,
                     # "VVTight": 8,
                 }.items()
@@ -2582,6 +2582,28 @@ def build_config(
                     }
                 },
                 producers={("mt", "em", "mm"): [scalefactors.MuonIDIso_SF]},
+            )
+        )
+    configuration.add_shift(
+            SystematicShift(
+                name="ele_IDsfup",
+                shift_config={
+                    ("et", "em", "ee"): {
+                        "ele_sf_varation": "sfup",
+                    }
+                },
+                producers={("et", "em", "ee"): [scalefactors.EleID_SF,]},
+            )
+        )
+    configuration.add_shift(
+            SystematicShift(
+                name="ele_IDsfdown",
+                shift_config={
+                    ("et", "em", "ee"): {
+                        "ele_sf_varation": "sfdown",
+                    }
+                },
+                producers={("et", "em", "ee"): [scalefactors.EleID_SF,]},
             )
         )
     #########################
