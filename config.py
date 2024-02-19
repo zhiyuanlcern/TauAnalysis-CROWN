@@ -725,8 +725,8 @@ def build_config(
                     "2016postVFP": "data/embedding/electron_2016postVFPUL.json.gz",
                     "2017": "data/embedding/electron_2017UL.json.gz",
                     "2018": "data/embedding/electron_2018UL.json.gz",
-                    "2022EE": "data/embedding/electron_2018UL.json.gz", ## TODO: update to 2022 recommendation when available. These lines only for testing
-                    "2022postEE": "data/embedding/electron_hlt.json.gz", ## TODO: update to 2022 recommendation when available. These lines only for testing
+                    "2022EE": "data/embedding/electron_2022postEE_hlt.json", ## TODO: update to 2022 recommendation when available. These lines only for testing
+                    "2022postEE": "data/embedding/electron_2022postEE_hlt.json",
                 }
             ),
             "mc_electron_id_sf": "ID90_pt_eta_bins",
@@ -737,11 +737,10 @@ def build_config(
     )
     # muon trigger SF settings from embedding measurements
     configuration.add_config_parameters(
-        ["mt", "mm"],
+        ["mt", "mm", "em"],
         {
             "singlemuon_trigger_sf_mc": EraModifier(
                 {   
-                    ## TODO: update to 2022 recommendation when available. These lines only for testing
                     "2022EE": [
                         {
                             "flagname": "trg_wgt_single_mu24",
@@ -832,11 +831,19 @@ def build_config(
     )
     # electron trigger SF settings from embedding measurements
     configuration.add_config_parameters(
-        ["et", "ee"],
+        ["et", "ee", "em"],
         {  
             "singlelectron_trigger_sf_mc": EraModifier(
                 {   ## TODO: update to 2022 recommendation when available. These lines only for testing
                     "2022EE": [
+                        {
+                            "flagname": "trg_wgt_single_ele30",
+                            "mc_trigger_sf": "Electron-HLT-SF",
+                            "mc_electron_trg_extrapolation": 1.0,  # for nominal case
+                            "mc_electron_year": "2022FG",
+                            "mc_trigger":"HLT_Ele30_WPTight_Gsf_and_Tight_ID",
+                            "mc_correctiontype": "sf",
+                        },
                         # {
                         #     "flagname": "trg_wgt_single_ele32",
                         #     "mc_trigger_sf": "Trg32_Iso_pt_eta_bins",
@@ -1472,6 +1479,21 @@ def build_config(
         ),
     )
     configuration.add_modification_rule(
+        ["em"],
+        AppendProducer(
+            producers=[
+                scalefactors.MTGenerateSingleMuonTriggerSF_MC,            
+                scalefactors.ETGenerateSingleElectronTriggerSF_MC,
+                ],
+
+            samples=[
+                sample
+                for sample in available_sample_types
+                if sample not in ["data", "embedding", "embedding_mc"]
+            ],
+        ),
+    )
+    configuration.add_modification_rule(
         ["et"],
         AppendProducer(
             producers=[
@@ -2099,10 +2121,18 @@ def build_config(
         SystematicShift(
             name="singleElectronTriggerSFUp",
             shift_config={
-                ("et"): {
+                ("et", "em"): {
                     "singlelectron_trigger_sf_mc": EraModifier(
                         {   ## TODO: update to 2022 recommendation when available. These lines only for testing
                              "2022EE": [
+                                {
+                                    "flagname": "trg_wgt_single_ele30",
+                                    "mc_trigger_sf": "Electron-HLT-SF",
+                                    "mc_electron_trg_extrapolation": 1.0,  # for nominal case
+                                    "mc_electron_year": "2022FG",
+                                    "mc_trigger":"HLT_Ele30_WPTight_Gsf_and_Tight_ID",
+                                    "mc_correctiontype": "sfup",
+                                },
                                 # {
                                 #     "flagname": "trg_wgt_single_ele32orele35",
                                 #     "mc_trigger_sf": "Trg32_or_Trg35_Iso_pt_eta_bins",
@@ -2211,7 +2241,7 @@ def build_config(
                     )
                 }
             },
-            producers={("et"): scalefactors.ETGenerateSingleElectronTriggerSF_MC},
+            producers={("et", "em"): scalefactors.ETGenerateSingleElectronTriggerSF_MC},
         ),
         samples=[
             sample
@@ -2223,10 +2253,18 @@ def build_config(
         SystematicShift(
             name="singleElectronTriggerSFDown",
             shift_config={
-                ("et"): {
+                ("et", "em"): {
                     "singlelectron_trigger_sf_mc": EraModifier(
                         {   ## TODO: update to 2022 recommendation when available. These lines only for testing
                             "2022EE": [
+                                {
+                                    "flagname": "trg_wgt_single_ele30",
+                                    "mc_trigger_sf": "Electron-HLT-SF",
+                                    "mc_electron_trg_extrapolation": 1.0,  # for nominal case
+                                    "mc_electron_year": "2022FG",
+                                    "mc_trigger":"HLT_Ele30_WPTight_Gsf_and_Tight_ID",
+                                    "mc_correctiontype": "sfdown",
+                                },
                                 # {
                                 #     "flagname": "trg_wgt_single_ele32orele35",
                                 #     "mc_trigger_sf": "Trg32_or_Trg35_Iso_pt_eta_bins",
@@ -2247,6 +2285,7 @@ def build_config(
                                 #     "mc_trigger_sf": "Trg_Iso_pt_eta_bins",
                                 #     "mc_electron_trg_extrapolation": 0.98,
                                 # },
+
                             ],
                             "2022postEE": [
                                 {
@@ -2335,7 +2374,7 @@ def build_config(
                     )
                 }
             },
-            producers={("et"): scalefactors.ETGenerateSingleElectronTriggerSF_MC},
+            producers={("et", "em"): scalefactors.ETGenerateSingleElectronTriggerSF_MC},
         ),
         samples=[
             sample
@@ -2348,10 +2387,9 @@ def build_config(
         SystematicShift(
             name="singleMuonTriggerSFUp",
             shift_config={
-                ("mt"): {
+                ("mt", "em"): {
                     "singlemuon_trigger_sf_mc": EraModifier(
-                        {   ## TODO: update to 2022 recommendation when available. These lines only for testing
-                             "2022EE": [
+                        {   "2022EE": [
                                 {
                                     "flagname": "trg_wgt_single_mu24",
                                     "mc_trigger_sf": "NUM_IsoMu24_DEN_CutBasedIdMedium_and_PFIsoMedium",
@@ -2439,7 +2477,7 @@ def build_config(
                     )
                 }
             },
-            producers={("mt"): scalefactors.MTGenerateSingleMuonTriggerSF_MC},
+            producers={("mt", "em"): scalefactors.MTGenerateSingleMuonTriggerSF_MC},
         ),
         samples=[
             sample
@@ -2451,9 +2489,9 @@ def build_config(
         SystematicShift(
             name="singleMuonTriggerSFDown",
             shift_config={
-                ("mt"): {
+                ("mt", "em"): {
                     "singlemuon_trigger_sf_mc": EraModifier(
-                        {   ## TODO: update to 2022 recommendation when available. These lines only for testing
+                        {   
                             "2022EE": [
                                 {
                                     "flagname": "trg_wgt_single_mu24",
@@ -2542,7 +2580,7 @@ def build_config(
                     )
                 }
             },
-            producers={("mt"): scalefactors.MTGenerateSingleMuonTriggerSF_MC},
+            producers={("mt", "em"): scalefactors.MTGenerateSingleMuonTriggerSF_MC},
         ),
         samples=[
             sample
