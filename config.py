@@ -468,7 +468,7 @@ def build_config(
     configuration.add_config_parameters(
         ["et", "mt"],
         {
-            "min_tau_pt": 30.0, # use AN definition
+            "min_tau_pt": 28.0, # use AN definition
             "max_tau_eta": 2.3,
             "max_tau_dz": 0.2,
             "vsjet_tau_id_bit": 1,#"VVVLoose": 1,"VVLoose": 2,"VLoose": 3,"Loose": 4,"Medium": 5,"Tight": 6,
