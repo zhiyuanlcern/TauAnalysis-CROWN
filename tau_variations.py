@@ -1013,6 +1013,8 @@ def add_tauVariations(configuration: Configuration, sample: str, era: str):
     #########################
     # TES Shifts
     #########################
+
+    ## for some reason the current tauES shifts fails for Up variations and for mt only....wtf
     configuration.add_shift(
         SystematicShift(
             name="tauEs1prong0pizeroDown",

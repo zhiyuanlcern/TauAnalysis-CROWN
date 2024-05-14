@@ -8,7 +8,7 @@ def add_diTauTriggerSetup(configuration: Configuration):
         ["mt", "mm", "em"],
         {
             "singlemoun_trigger": EraModifier(
-                {   ## TODO: update to 2022 recommendation when available. These lines only for testing
+                {   ##  0 => TrkIsoVVL, 1 => Iso, 2 => OverlapFilter PFTau, 3 => 1mu, 4 => 2mu, 5 => 1mu-1e, 6 => 1mu-1tau, 7 => 3mu, 8 => 2mu-1e, 9 => 1mu-2e, 10 => 1mu (Mu50), 11 => 1mu (Mu100), 12 => 1mu-1photon for Muon;
                     "2022EE": [
                         {
                             "flagname": "trg_single_mu24",
@@ -191,7 +191,7 @@ def add_diTauTriggerSetup(configuration: Configuration):
         ["mt"],
         {
             "mutau_cross_trigger": EraModifier(
-                {   ## TODO: update to 2022 recommendation when available. These lines only for testing
+                {   ## 0 => LooseChargedIso, 1 => MediumChargedIso, 2 => TightChargedIso, 3 => DeepTau, 4 => TightID OOSC photons, 5 => HPS, 6 => charged iso di-tau, 7 => deeptau di-tau, 8 => e-tau, 9 => mu-tau, 10 => single-tau/tau+MET, 11 => run 2 VBF+ditau, 12 => run 3 VBF+ditau, 13 => run 3 double PF jets + ditau, 14 => di-tau + PFJet, 15 => Displaced Tau, 16 => Monitoring, 17 => regional paths, 18 => L1 seeded paths, 19 => 1 prong tau paths for Tau; 
                     "2022EE": [
                         {
                             "flagname": "trg_cross_mu20tau27_hps",
@@ -202,7 +202,7 @@ def add_diTauTriggerSetup(configuration: Configuration):
                             "p1_trigger_particle_id": 13,
                             "p2_ptcut": 32,
                             "p2_etacut": 2.1,
-                            "p2_filterbit": -1,  # TODO switch to "p2_filterbit": 4, if the bits are correct
+                            "p2_filterbit": 9,  # TODO switch to "p2_filterbit": 4, if the bits are correct
                             "p2_trigger_particle_id": 15,
                             "max_deltaR_triggermatch": 0.4,
                         },                        
@@ -217,7 +217,7 @@ def add_diTauTriggerSetup(configuration: Configuration):
                             "p1_trigger_particle_id": 13,
                             "p2_ptcut": 32,
                             "p2_etacut": 2.1,
-                            "p2_filterbit": -1,  # TODO switch to "p2_filterbit": 4, if the bits are correct
+                            "p2_filterbit": 9,  # TODO switch to "p2_filterbit": 4, if the bits are correct
                             "p2_trigger_particle_id": 15,
                             "max_deltaR_triggermatch": 0.4,
                         },                        
@@ -453,7 +453,7 @@ def add_diTauTriggerSetup(configuration: Configuration):
         ["et"],
         {
             "eltau_cross_trigger": EraModifier(
-                {   ## TODO: update to 2022 recommendation when available. These lines only for testing
+                {   ## 0 => LooseChargedIso, 1 => MediumChargedIso, 2 => TightChargedIso, 3 => DeepTau, 4 => TightID OOSC photons, 5 => HPS, 6 => charged iso di-tau, 7 => deeptau di-tau, 8 => e-tau, 9 => mu-tau, 10 => single-tau/tau+MET, 11 => run 2 VBF+ditau, 12 => run 3 VBF+ditau, 13 => run 3 double PF jets + ditau, 14 => di-tau + PFJet, 15 => Displaced Tau, 16 => Monitoring, 17 => regional paths, 18 => L1 seeded paths, 19 => 1 prong tau paths for Tau; 
                     "2022EE": [
                         {
                             "flagname": "trg_cross_ele24tau30_hps",
@@ -464,7 +464,7 @@ def add_diTauTriggerSetup(configuration: Configuration):
                             "p2_etacut": 2.1,
                             "p1_filterbit": 1,
                             "p1_trigger_particle_id": 11,
-                            "p2_filterbit": -1,  # TODO switch to "p2_filterbit": 4, if the bits are correct
+                            "p2_filterbit": 8,
                             "p2_trigger_particle_id": 15,
                             "max_deltaR_triggermatch": 0.4,
                         },
@@ -480,7 +480,7 @@ def add_diTauTriggerSetup(configuration: Configuration):
                             "p2_etacut": 2.1,
                             "p1_filterbit": 1,
                             "p1_trigger_particle_id": 11,
-                            "p2_filterbit": -1,  # TODO switch to "p2_filterbit": 4, if the bits are correct
+                            "p2_filterbit": 8,  
                             "p2_trigger_particle_id": 15,
                             "max_deltaR_triggermatch": 0.4,
                         },
@@ -622,18 +622,18 @@ def add_diTauTriggerSetup(configuration: Configuration):
         ["tt"],
         {
             "doubletau_trigger": EraModifier(
-                {    ## TODO: update to 2022 recommendation when available. These lines only for testing
+                {    ## 0 => LooseChargedIso, 1 => MediumChargedIso, 2 => TightChargedIso, 3 => DeepTau, 4 => TightID OOSC photons, 5 => HPS, 6 => charged iso di-tau, 7 => deeptau di-tau, 8 => e-tau, 9 => mu-tau, 10 => single-tau/tau+MET, 11 => run 2 VBF+ditau, 12 => run 3 VBF+ditau, 13 => run 3 double PF jets + ditau, 14 => di-tau + PFJet, 15 => Displaced Tau, 16 => Monitoring, 17 => regional paths, 18 => L1 seeded paths, 19 => 1 prong tau paths for Tau; 
                     "2022EE": [
                         {
-                            "flagname": "trg_double_tau35_mediumiso_hps",
+                            "flagname": "trg_double_tau35_mediumiso_hps", ## it's a name, the trigger is really deeptau not mediumiso hps tau
                             "hlt_path": "HLT_DoubleMediumDeepTauPFTauHPS35_L2NN_eta2p1",
                             "p1_ptcut": 40,
                             "p2_ptcut": 40,
                             "p1_etacut": 2.1,
                             "p2_etacut": 2.1,
-                            "p1_filterbit": -1,  # TODO switch to "p1_filterbit": 6, if the bits are correct
+                            "p1_filterbit": 7,  
                             "p1_trigger_particle_id": 15,
-                            "p2_filterbit": -1,  # TODO switch to "p2_filterbit": 6, if the bits are correct
+                            "p2_filterbit": 7,  
                             "p2_trigger_particle_id": 15,
                             "max_deltaR_triggermatch": 0.4,
                         },
@@ -645,9 +645,9 @@ def add_diTauTriggerSetup(configuration: Configuration):
                             "p2_ptcut": 40,
                             "p1_etacut": 2.1,
                             "p2_etacut": 2.1,
-                            "p1_filterbit": -1,  # TODO switch to "p1_filterbit": 6, if the bits are correct
+                            "p1_filterbit": 7,  
                             "p1_trigger_particle_id": 15,
-                            "p2_filterbit": -1,  # TODO switch to "p2_filterbit": 6, if the bits are correct
+                            "p2_filterbit": 7,  
                             "p2_trigger_particle_id": 15,
                             "max_deltaR_triggermatch": 0.4,
                         },
@@ -658,9 +658,9 @@ def add_diTauTriggerSetup(configuration: Configuration):
                             "p2_ptcut": 40,
                             "p1_etacut": 2.1,
                             "p2_etacut": 2.1,
-                            "p1_filterbit": -1,  # TODO switch to "p1_filterbit": 6, if the bits are correct
+                            "p1_filterbit": 7,  # TODO switch to "p1_filterbit": 6, if the bits are correct
                             "p1_trigger_particle_id": 15,
-                            "p2_filterbit": -1,  # TODO switch to "p2_filterbit": 6, if the bits are correct
+                            "p2_filterbit": 7,  # TODO switch to "p2_filterbit": 6, if the bits are correct
                             "p2_trigger_particle_id": 15,
                             "max_deltaR_triggermatch": 0.4,
                         },
@@ -673,9 +673,9 @@ def add_diTauTriggerSetup(configuration: Configuration):
                             "p2_ptcut": 40,
                             "p1_etacut": 2.1,
                             "p2_etacut": 2.1,
-                            "p1_filterbit": -1,  # TODO switch to "p1_filterbit": 6, if the bits are correct
+                            "p1_filterbit": 7,  # TODO switch to "p1_filterbit": 6, if the bits are correct
                             "p1_trigger_particle_id": 15,
-                            "p2_filterbit": -1,  # TODO switch to "p2_filterbit": 6, if the bits are correct
+                            "p2_filterbit": 7,  # TODO switch to "p2_filterbit": 6, if the bits are correct
                             "p2_trigger_particle_id": 15,
                             "max_deltaR_triggermatch": 0.4,
                         },
@@ -687,9 +687,9 @@ def add_diTauTriggerSetup(configuration: Configuration):
                             "p2_ptcut": 40,
                             "p1_etacut": 2.1,
                             "p2_etacut": 2.1,
-                            "p1_filterbit": -1,  # TODO switch to "p1_filterbit": 6, if the bits are correct
+                            "p1_filterbit": 7,  # TODO switch to "p1_filterbit": 6, if the bits are correct
                             "p1_trigger_particle_id": 15,
-                            "p2_filterbit": -1,  # TODO switch to "p2_filterbit": 6, if the bits are correct
+                            "p2_filterbit": 7,  # TODO switch to "p2_filterbit": 6, if the bits are correct
                             "p2_trigger_particle_id": 15,
                             "max_deltaR_triggermatch": 0.4,
                         },
@@ -700,9 +700,9 @@ def add_diTauTriggerSetup(configuration: Configuration):
                             "p2_ptcut": 40,
                             "p1_etacut": 2.1,
                             "p2_etacut": 2.1,
-                            "p1_filterbit": -1,  # TODO switch to "p1_filterbit": 6, if the bits are correct
+                            "p1_filterbit": 7,  # TODO switch to "p1_filterbit": 6, if the bits are correct
                             "p1_trigger_particle_id": 15,
-                            "p2_filterbit": -1,  # TODO switch to "p2_filterbit": 6, if the bits are correct
+                            "p2_filterbit": 7,  # TODO switch to "p2_filterbit": 6, if the bits are correct
                             "p2_trigger_particle_id": 15,
                             "max_deltaR_triggermatch": 0.4,
                         },
@@ -1106,7 +1106,7 @@ def add_diTauTriggerSetup(configuration: Configuration):
                             "hlt_path": "HLT_MediumChargedIsoPFTau180HighPtRelaxedIso_Trk50_eta2p1",
                             "ptcut": 180,
                             "etacut": 2.1,
-                            "filterbit": 5,
+                            "filterbit": 3,
                             "trigger_particle_id": 15,
                             "max_deltaR_triggermatch": 0.4,
                         },
@@ -1115,7 +1115,7 @@ def add_diTauTriggerSetup(configuration: Configuration):
                             "hlt_path": "HLT_LooseDeepTauPFTauHPS180_L2NN_eta2p1",
                             "ptcut": 180,
                             "etacut": 2.1,
-                            "filterbit": 5,
+                            "filterbit": 3,
                             "trigger_particle_id": 15,
                             "max_deltaR_triggermatch": 0.4,
                         }
@@ -1127,7 +1127,7 @@ def add_diTauTriggerSetup(configuration: Configuration):
                             "hlt_path": "HLT_MediumChargedIsoPFTau180HighPtRelaxedIso_Trk50_eta2p1",
                             "ptcut": 180,
                             "etacut": 2.1,
-                            "filterbit": 5,
+                            "filterbit": 3,
                             "trigger_particle_id": 15,
                             "max_deltaR_triggermatch": 0.4,
                         },
@@ -1136,7 +1136,7 @@ def add_diTauTriggerSetup(configuration: Configuration):
                             "hlt_path": "HLT_LooseDeepTauPFTauHPS180_L2NN_eta2p1",
                             "ptcut": 180,
                             "etacut": 2.1,
-                            "filterbit": 5,
+                            "filterbit": 3,
                             "trigger_particle_id": 15,
                             "max_deltaR_triggermatch": 0.4,
                         }
@@ -1220,7 +1220,7 @@ def add_diTauTriggerSetup(configuration: Configuration):
                             "hlt_path": "HLT_MediumChargedIsoPFTau180HighPtRelaxedIso_Trk50_eta2p1",
                             "ptcut": 180,
                             "etacut": 2.1,
-                            "filterbit": 5,
+                            "filterbit": 3,
                             "trigger_particle_id": 15,
                             "max_deltaR_triggermatch": 0.4,
                         },
@@ -1229,7 +1229,7 @@ def add_diTauTriggerSetup(configuration: Configuration):
                             "hlt_path": "HLT_LooseDeepTauPFTauHPS180_L2NN_eta2p1",
                             "ptcut": 180,
                             "etacut": 2.1,
-                            "filterbit": 5,
+                            "filterbit": 3,
                             "trigger_particle_id": 15,
                             "max_deltaR_triggermatch": 0.4,
                         }
@@ -1240,7 +1240,7 @@ def add_diTauTriggerSetup(configuration: Configuration):
                             "hlt_path": "HLT_MediumChargedIsoPFTau180HighPtRelaxedIso_Trk50_eta2p1",
                             "ptcut": 180,
                             "etacut": 2.1,
-                            "filterbit": 5,
+                            "filterbit": 3,
                             "trigger_particle_id": 15,
                             "max_deltaR_triggermatch": 0.4,
                         },
@@ -1249,7 +1249,7 @@ def add_diTauTriggerSetup(configuration: Configuration):
                             "hlt_path": "HLT_LooseDeepTauPFTauHPS180_L2NN_eta2p1",
                             "ptcut": 180,
                             "etacut": 2.1,
-                            "filterbit": 5,
+                            "filterbit": 3,
                             "trigger_particle_id": 15,
                             "max_deltaR_triggermatch": 0.4,
                         }
