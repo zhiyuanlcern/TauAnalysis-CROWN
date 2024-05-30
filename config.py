@@ -214,14 +214,14 @@ def build_config(
                     "2016postVFP":"Electron_mvaFall17V2noIso_WP90",
                     "2017":"Electron_mvaFall17V2noIso_WP90",
                     "2018":"Electron_mvaFall17V2noIso_WP90",
-                    "2022EE": "Electron_cutBased", 
-                    "2022postEE": "Electron_cutBased", 
-                    # "2022EE": "Electron_mvaNoIso_WP90", 
-                    # "2022postEE": "Electron_mvaNoIso_WP90", 
+                    # "2022EE": "Electron_cutBased", 
+                    # "2022postEE": "Electron_cutBased", 
+                    "2022EE": "Electron_mvaIso_WP90", 
+                    "2022postEE": "Electron_mvaIso_WP90", 
                 },
             ),
             ## Electron_cutBased	UChar_t	cut-based ID RunIII Winter22 (0:fail, 1:veto, 2:loose, 3:medium, 4:tight)
-            "ele_id_wp": 4,
+            # "ele_id_wp": 4,
         },
     )
     # jet base selection:
@@ -331,7 +331,7 @@ def build_config(
         "global",
         {
             "min_dielectronveto_pt": 15.0,
-            "dielectronveto_id": "Electron_cutBased",
+            "dielectronveto_id": "Electron_mvaIso_WP90",
             "dielectronveto_id_wp": 1,
             "min_dimuonveto_pt": 15.0,
             "dimuonveto_id": "Muon_looseId",
