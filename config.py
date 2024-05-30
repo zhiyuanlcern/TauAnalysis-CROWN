@@ -581,13 +581,13 @@ def build_config(
         ["em"],
         {
             "electron_index_in_pair": 0,
-            "min_electron_pt": 25.0,
-            "max_electron_eta": 2.1,
-            "electron_iso_cut": 0.3,
+            "min_electron_pt": 15.0,
+            "max_electron_eta": 2.4,
+            "electron_iso_cut": 0.15,
             "muon_index_in_pair": 1,
-            "min_muon_pt": 23.0,
-            "max_muon_eta": 2.1,
-            "muon_iso_cut": 0.5,
+            "min_muon_pt": 15.0,
+            "max_muon_eta": 2.4,
+            "muon_iso_cut": 0.2,
         },
     )
     configuration.add_config_parameters(
@@ -604,8 +604,8 @@ def build_config(
     configuration.add_config_parameters(
         scopes,
         {
-            "deltaR_jet_veto": 0.5,
-            "pairselection_min_dR": 0.5,
+            "deltaR_jet_veto": 0.3,
+            "pairselection_min_dR": 0.3,
         },
     )
     ## all scopes MET selection
