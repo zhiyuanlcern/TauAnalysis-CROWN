@@ -468,7 +468,7 @@ def build_config(
     configuration.add_config_parameters(
         ["et", "mt"],
         {
-            "min_tau_pt": 28.0, # use AN definition
+            "min_tau_pt": 30.0, # use AN definition
             "max_tau_eta": 2.3,
             "max_tau_dz": 0.2,
             "vsjet_tau_id_bit": 1,#"VVVLoose": 1,"VVLoose": 2,"VLoose": 3,"Loose": 4,"Medium": 5,"Tight": 6,
@@ -1807,122 +1807,122 @@ def build_config(
     #########################
     # Lepton to tau fakes energy scalefactor shifts  #
     #########################
-    # if "dyjets" in sample or "electroweak_boson" in sample:
-    #     configuration.add_shift(
-    #         SystematicShift(
-    #             name="tauMuFakeEsDown",
-    #             shift_config={
-    #                 "mt": {
-    #                     "tau_mufake_es": "down",
-    #                 }
-    #             },
-    #             producers={"mt": [taus.TauPtCorrection_muFake]},
-    #         )
-    #     )
-    #     configuration.add_shift(
-    #         SystematicShift(
-    #             name="tauMuFakeEsUp",
-    #             shift_config={
-    #                 "mt": {
-    #                     "tau_mufake_es": "up",
-    #                 }
-    #             },
-    #             producers={"mt": [taus.TauPtCorrection_muFake]},
-    #         )
-    #     )
-    #     configuration.add_shift(
-    #         SystematicShift(
-    #             name="tauEleFakeEs1prongBarrelDown",
-    #             shift_config={
-    #                 "et": {
-    #                     "tau_elefake_es_DM0_barrel": "down",
-    #                 }
-    #             },
-    #             producers={"et": [taus.TauPtCorrection_eleFake]},
-    #         )
-    #     )
-    #     configuration.add_shift(
-    #         SystematicShift(
-    #             name="tauEleFakeEs1prongBarrelUp",
-    #             shift_config={
-    #                 "et": {
-    #                     "tau_elefake_es_DM0_barrel": "up",
-    #                 }
-    #             },
-    #             producers={"et": [taus.TauPtCorrection_eleFake]},
-    #         )
-    #     )
-    #     configuration.add_shift(
-    #         SystematicShift(
-    #             name="tauEleFakeEs1prongEndcapDown",
-    #             shift_config={
-    #                 "et": {
-    #                     "tau_elefake_es_DM0_endcap": "down",
-    #                 }
-    #             },
-    #             producers={"et": [taus.TauPtCorrection_eleFake]},
-    #         )
-    #     )
-    #     configuration.add_shift(
-    #         SystematicShift(
-    #             name="tauEleFakeEs1prongEndcapUp",
-    #             shift_config={
-    #                 "et": {
-    #                     "tau_elefake_es_DM0_endcap": "up",
-    #                 }
-    #             },
-    #             producers={"et": [taus.TauPtCorrection_eleFake]},
-    #         )
-    #     )
-    #     configuration.add_shift(
-    #         SystematicShift(
-    #             name="tauEleFakeEs1prong1pizeroBarrelDown",
-    #             shift_config={
-    #                 "et": {
-    #                     "tau_elefake_es_DM1_barrel": "down",
-    #                 }
-    #             },
-    #             producers={"et": [taus.TauPtCorrection_eleFake]},
-    #         )
-    #     )
-    #     configuration.add_shift(
-    #         SystematicShift(
-    #             name="tauEleFakeEs1prong1pizeroBarrelUp",
-    #             shift_config={
-    #                 "et": {
-    #                     "tau_elefake_es_DM1_barrel": "up",
-    #                 }
-    #             },
-    #             producers={"et": [taus.TauPtCorrection_eleFake]},
-    #         )
-    #     )
-    #     configuration.add_shift(
-    #         SystematicShift(
-    #             name="tauEleFakeEs1prong1pizeroEndcapDown",
-    #             shift_config={
-    #                 "et": {
-    #                     "tau_elefake_es_DM1_endcap": "down",
-    #                 }
-    #             },
-    #             producers={"et": [taus.TauPtCorrection_eleFake]},
-    #         )
-    #     )
-    #     configuration.add_shift(
-    #         SystematicShift(
-    #             name="tauEleFakeEs1prong1pizeroEndcapUp",
-    #             shift_config={
-    #                 "et": {
-    #                     "tau_elefake_es_DM1_endcap": "up",
-    #                 }
-    #             },
-    #             producers={"et": [taus.TauPtCorrection_eleFake]},
-    #         ),
-    #         samples=[
-    #             sample
-    #             for sample in available_sample_types
-    #             if sample not in ["data", "embedding", "embedding_mc"]
-    #         ],
-    #     )
+    if "dyjets" in sample or "electroweak_boson" in sample:
+        configuration.add_shift(
+            SystematicShift(
+                name="tauMuFakeEsDown",
+                shift_config={
+                    "mt": {
+                        "tau_mufake_es": "down",
+                    }
+                },
+                producers={"mt": [taus.TauPtCorrection_muFake]},
+            )
+        )
+        configuration.add_shift(
+            SystematicShift(
+                name="tauMuFakeEsUp",
+                shift_config={
+                    "mt": {
+                        "tau_mufake_es": "up",
+                    }
+                },
+                producers={"mt": [taus.TauPtCorrection_muFake]},
+            )
+        )
+        configuration.add_shift(
+            SystematicShift(
+                name="tauEleFakeEs1prongBarrelDown",
+                shift_config={
+                    "et": {
+                        "tau_elefake_es_DM0_barrel": "down",
+                    }
+                },
+                producers={"et": [taus.TauPtCorrection_eleFake]},
+            )
+        )
+        configuration.add_shift(
+            SystematicShift(
+                name="tauEleFakeEs1prongBarrelUp",
+                shift_config={
+                    "et": {
+                        "tau_elefake_es_DM0_barrel": "up",
+                    }
+                },
+                producers={"et": [taus.TauPtCorrection_eleFake]},
+            )
+        )
+        configuration.add_shift(
+            SystematicShift(
+                name="tauEleFakeEs1prongEndcapDown",
+                shift_config={
+                    "et": {
+                        "tau_elefake_es_DM0_endcap": "down",
+                    }
+                },
+                producers={"et": [taus.TauPtCorrection_eleFake]},
+            )
+        )
+        configuration.add_shift(
+            SystematicShift(
+                name="tauEleFakeEs1prongEndcapUp",
+                shift_config={
+                    "et": {
+                        "tau_elefake_es_DM0_endcap": "up",
+                    }
+                },
+                producers={"et": [taus.TauPtCorrection_eleFake]},
+            )
+        )
+        configuration.add_shift(
+            SystematicShift(
+                name="tauEleFakeEs1prong1pizeroBarrelDown",
+                shift_config={
+                    "et": {
+                        "tau_elefake_es_DM1_barrel": "down",
+                    }
+                },
+                producers={"et": [taus.TauPtCorrection_eleFake]},
+            )
+        )
+        configuration.add_shift(
+            SystematicShift(
+                name="tauEleFakeEs1prong1pizeroBarrelUp",
+                shift_config={
+                    "et": {
+                        "tau_elefake_es_DM1_barrel": "up",
+                    }
+                },
+                producers={"et": [taus.TauPtCorrection_eleFake]},
+            )
+        )
+        configuration.add_shift(
+            SystematicShift(
+                name="tauEleFakeEs1prong1pizeroEndcapDown",
+                shift_config={
+                    "et": {
+                        "tau_elefake_es_DM1_endcap": "down",
+                    }
+                },
+                producers={"et": [taus.TauPtCorrection_eleFake]},
+            )
+        )
+        configuration.add_shift(
+            SystematicShift(
+                name="tauEleFakeEs1prong1pizeroEndcapUp",
+                shift_config={
+                    "et": {
+                        "tau_elefake_es_DM1_endcap": "up",
+                    }
+                },
+                producers={"et": [taus.TauPtCorrection_eleFake]},
+            ),
+            samples=[
+                sample
+                for sample in available_sample_types
+                if sample not in ["data", "embedding", "embedding_mc"]
+            ],
+        )
 
     #########################
     # MET Shifts
