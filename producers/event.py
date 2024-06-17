@@ -297,3 +297,67 @@ LHE_Scale_weight = Producer(
     output=[q.lhe_scale_weight],
     scopes=["global", "em", "et", "mt", "tt", "mm", "ee"],
 )
+
+ggH_ME_reweighting_weight_h_tb = Producer(
+    name="ggH_ME_reweighting_weight_h_tb",
+    call="reweighting::ggH_ME_reweighting_weight({df}, {output}, {input}, 0)",
+    input=[nanoAOD.LHEReweightingWeight],
+    output=[q.ggH_ME_reweighting_weight_h_tb],
+    scopes=["global", "em", "et", "mt", "tt"],
+)
+
+ggH_ME_reweighting_weight_h_t = Producer(
+    name="ggH_ME_reweighting_weight_h_t",
+    call="reweighting::ggH_ME_reweighting_weight({df}, {output}, {input}, 1)",
+    input=[nanoAOD.LHEReweightingWeight],
+    output=[q.ggH_ME_reweighting_weight_h_t],
+    scopes=["global", "em", "et", "mt", "tt"],
+)
+
+ggH_ME_reweighting_weight_h_b = Producer(
+    name="ggH_ME_reweighting_weight_h_b",
+    call="reweighting::ggH_ME_reweighting_weight({df}, {output}, {input}, 2)",
+    input=[nanoAOD.LHEReweightingWeight],
+    output=[q.ggH_ME_reweighting_weight_h_b],
+    scopes=["global", "em", "et", "mt", "tt"],
+)
+
+ggH_ME_reweighting_weight_A_tb = Producer(
+    name="ggH_ME_reweighting_weight_A_tb",
+    call="reweighting::ggH_ME_reweighting_weight({df}, {output}, {input}, 3)",
+    input=[nanoAOD.LHEReweightingWeight],
+    output=[q.ggH_ME_reweighting_weight_A_tb],
+    scopes=["global", "em", "et", "mt", "tt"],
+)
+
+ggH_ME_reweighting_weight_A_t = Producer(
+    name="ggH_ME_reweighting_weight_A_t",
+    call="reweighting::ggH_ME_reweighting_weight({df}, {output}, {input}, 4)",
+    input=[nanoAOD.LHEReweightingWeight],
+    output=[q.ggH_ME_reweighting_weight_A_t],
+    scopes=["global", "em", "et", "mt", "tt"],
+)
+
+ggH_ME_reweighting_weight_A_b = Producer(
+    name="ggH_ME_reweighting_weight_A_b",
+    call="reweighting::ggH_ME_reweighting_weight({df}, {output}, {input}, 5)",
+    input=[nanoAOD.LHEReweightingWeight],
+    output=[q.ggH_ME_reweighting_weight_A_b],
+    scopes=["global", "em", "et", "mt", "tt"],
+)
+
+ggH_ME_reweighting = ProducerGroup(
+    name="ggH_ME_reweighting",
+    call=None,
+    input=None,
+    output=None,
+    scopes=["global","em", "et", "mt", "tt"],
+    subproducers=[
+        ggH_ME_reweighting_weight_h_tb,
+        ggH_ME_reweighting_weight_h_t,
+        ggH_ME_reweighting_weight_h_b,
+        ggH_ME_reweighting_weight_A_tb,
+        ggH_ME_reweighting_weight_A_t,
+        ggH_ME_reweighting_weight_A_b,
+    ],
+)

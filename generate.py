@@ -22,6 +22,7 @@ def run(args):
         "wjets",
         "data",
         "electroweak_boson",
+        'ggh_htautau_2HDM'
         # these are the new samples        
         # "ggh_hww",
         # "ggZZ",

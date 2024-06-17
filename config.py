@@ -1307,7 +1307,7 @@ def build_config(
         scopes,
         AppendProducer(
             producers=[event.GGH_NNLO_Reweighting, event.GGH_WG1_Uncertainties],
-            samples=["ggh_htautau", "rem_htautau"],
+            samples=["ggh_htautau", "rem_htautau","ggh_htautau_2HDM"],
         ),
     )
     configuration.add_modification_rule(
@@ -1326,6 +1326,12 @@ def build_config(
         AppendProducer(
             producers=event.ZPtMassReweighting, samples=["dyjets", "electroweak_boson"]
         ),
+    )
+    configuration.add_modification_rule(
+        scopes,
+        AppendProducer(
+            producers=event.ggH_ME_reweighting, samples=["ggh_htautau_2HDM"]
+        )
     )
     # changes needed for data
     # global scope

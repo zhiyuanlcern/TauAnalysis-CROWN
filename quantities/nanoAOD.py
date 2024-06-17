@@ -5,7 +5,7 @@ luminosityBlock = NanoAODQuantity("luminosityBlock")
 event = NanoAODQuantity("event")
 LHE_Njets = NanoAODQuantity("LHE_Njets")
 prefireWeight = NanoAODQuantity("L1PreFiringWeight_Nom")
-
+LHEReweightingWeight =NanoAODQuantity("LHEReweightingWeight")
 Tau_pt = NanoAODQuantity("Tau_pt")
 Tau_eta = NanoAODQuantity("Tau_eta")
 Tau_phi = NanoAODQuantity("Tau_phi")
