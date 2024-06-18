@@ -237,6 +237,49 @@ gen_taujet_pt_2 = Producer(
     output=[q.gen_taujet_pt_2],
     scopes=["mt", "et", "tt"],
 )
+gen_higgs_p4 = Producer(
+    name="gen_higgs_p4",
+    call="lorentzvectors::buildHiggs({df},  {output}, {input})",
+    input=[
+        nanoAOD.GenParticle_pdgId,
+        nanoAOD.GenParticle_statusFlags,
+        nanoAOD.GenParticle_pt,
+        nanoAOD.GenParticle_eta,
+        nanoAOD.GenParticle_phi,
+        nanoAOD.GenParticle_mass,
+    ],
+    output=[q.gen_higgs_p4],
+    scopes=["mt", "et", "tt", "em", "mm", "ee"],
+)
+gen_higgs_pt = Producer(
+    name="gen_higgs_pt",
+    call="quantities::pt({df}, {output}, {input})",
+    input=[q.gen_higgs_p4],
+    output=[q.gen_higgs_pt],
+    scopes=["mt", "et", "tt", "em", "mm", "ee"],
+)
+gen_higgs_eta = Producer(
+    name="gen_higgs_eta",
+    call="quantities::eta({df}, {output}, {input})",
+    input=[q.gen_higgs_p4],
+    output=[q.gen_higgs_eta],
+    scopes=["mt", "et", "tt", "em", "mm", "ee"],
+)
+gen_higgs_phi = Producer(
+    name="gen_higgs_phi",
+    call="quantities::phi({df}, {output}, {input})",
+    input=[q.gen_higgs_p4],
+    output=[q.gen_higgs_phi],
+    scopes=["mt", "et", "tt", "em", "mm", "ee"],
+)
+gen_higgs_mass = Producer(
+    name="gen_higgs_mass",
+    call="quantities::mass({df}, {output}, {input})",
+    input=[q.gen_higgs_p4],
+    output=[q.gen_higgs_mass],
+    scopes=["mt", "et", "tt", "em", "mm", "ee"],
+)
+
 UnrollGenMuLV1 = ProducerGroup(
     name="UnrollGenMuLV1",
     call=None,

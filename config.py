@@ -1330,7 +1330,8 @@ def build_config(
     configuration.add_modification_rule(
         scopes,
         AppendProducer(
-            producers=event.ggH_ME_reweighting, samples=["ggh_htautau_2HDM"]
+            producers=[event.ggH_ME_reweighting, genparticles.gen_higgs_p4, genparticles.gen_higgs_pt,genparticles.gen_higgs_eta,genparticles.gen_higgs_phi,genparticles.gen_higgs_mass], 
+            samples=["ggh_htautau_2HDM"]
         )
     )
     # changes needed for data
@@ -1777,6 +1778,16 @@ def build_config(
                 nanoAOD.HTXS_stage_0,
                 nanoAOD.HTXS_stage1_2_cat_pTjet30GeV,
                 nanoAOD.HTXS_stage1_2_fine_cat_pTjet30GeV,
+            ],
+        )
+    if "2HDM" in sample:
+        configuration.add_outputs(
+            scopes,
+            [
+                q.gen_higgs_pt,
+                q.gen_higgs_eta,
+                q.gen_higgs_phi,
+                q.gen_higgs_mass
             ],
         )
     #########################

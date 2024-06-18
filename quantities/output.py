@@ -176,6 +176,13 @@ gen_mass_2 = Quantity("gen_mass_2")
 gen_pdgid_2 = Quantity("gen_pdgid_2")
 gen_m_vis = Quantity("gen_m_vis")
 
+gen_higgs_p4 = Quantity("gen_higgs_p4")
+gen_higgs_pt = Quantity("gen_higgs_pt")
+gen_higgs_eta = Quantity("gen_higgs_eta")
+gen_higgs_phi = Quantity("gen_higgs_phi")
+gen_higgs_mass = Quantity("gen_higgs_mass")
+
+
 hadronic_gen_taus = Quantity("hadronic_gen_taus")
 
 topPtReweightWeight = Quantity("topPtReweightWeight")
