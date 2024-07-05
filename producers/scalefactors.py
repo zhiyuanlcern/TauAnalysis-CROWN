@@ -130,7 +130,7 @@ Tau_1_VsEleTauID_SF = ExtendedVectorProducer(
     input=[q.eta_1, q.tau_decaymode_1, q.tau_gen_match_1],
     output="tau_1_vsele_sf_outputname",
     scope=["tt"],
-    vec_config="vsele_tau_id",
+    vec_config="vsele_tau_id_sf",
 )
 Tau_1_VsMuTauID_SF = ExtendedVectorProducer(
     name="Tau_1_VsMuTauID_SF",
@@ -162,7 +162,7 @@ Tau_2_VsEleTauID_SF = ExtendedVectorProducer(
     input=[q.eta_2, q.tau_decaymode_2, q.tau_gen_match_2],
     output="tau_2_vsele_sf_outputname",
     scope=["et", "mt", "tt"],
-    vec_config="vsele_tau_id",
+    vec_config="vsele_tau_id_sf",
 )
 Tau_2_VsMuTauID_SF = ExtendedVectorProducer(
     name="Tau_2_VsMuTauID_SF",

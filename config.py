@@ -361,11 +361,11 @@ def build_config(
                     # "VVVLoose": 1,
                     # "VVLoose": 2,
                     # "VLoose": 3,
-                    # "Loose": 4,
+                    "Loose": 4,
                     "Medium": 5,
-                    # "Tight": 6,
-                    # "VTight": 7,
-                    # "VVTight": 8,
+                    "Tight": 6,
+                    "VTight": 7,
+                    "VVTight": 8,
                 }.items()
             ],
             "vsjet_tau_id_sf": [
@@ -391,12 +391,6 @@ def build_config(
             "vsele_tau_id": [
                 {
                     "tau_id_discriminator": "DeepTau2018v2p5VSe",
-                    "tau_1_vsele_sf_outputname": "id_wgt_tau_vsEle_{wp}_1".format(
-                        wp=wp
-                    ),
-                    "tau_2_vsele_sf_outputname": "id_wgt_tau_vsEle_{wp}_2".format(
-                        wp=wp
-                    ),
                     "vsele_tau_id_WP": "{wp}".format(wp=wp),
                     "tau_1_vsele_id_outputname": "id_tau_vsEle_{wp}_1".format(wp=wp),
                     "tau_2_vsele_id_outputname": "id_tau_vsEle_{wp}_2".format(wp=wp),
@@ -409,8 +403,28 @@ def build_config(
                     # "Loose": 4,
                     # "Medium": 5,
                     "Tight": 6,
-                    # "VTight": 7,
-                    # "VVTight": 8,
+                    "VTight": 7,
+                    "VVTight": 8,
+                }.items()
+            ],
+            "vsele_tau_id_sf": [
+                ### for Deeptau20182p5 SF, there are only Loose-Tight SF. Therefore use a duplicate list
+                ## with less wps for sf calculation
+                {
+                    "tau_id_discriminator": "DeepTau2018v2p5VSe",
+                    "tau_1_vsele_sf_outputname": "id_wgt_tau_vsEle_{wp}_1".format(
+                        wp=wp
+                    ),
+                    "tau_2_vsele_sf_outputname": "id_wgt_tau_vsEle_{wp}_2".format(
+                        wp=wp
+                    ),
+                    "vsele_tau_id_WP": "{wp}".format(wp=wp),
+                    "tau_1_vsele_id_outputname": "id_tau_vsEle_{wp}_1".format(wp=wp),
+                    "tau_2_vsele_id_outputname": "id_tau_vsEle_{wp}_2".format(wp=wp),
+                    "vsele_tau_id_WPbit": bit,
+                }
+                for wp, bit in {
+                    "Tight": 6,
                 }.items()
             ],
             "vsmu_tau_id": [
