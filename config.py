@@ -388,7 +388,7 @@ def build_config(
                     "Medium": 5,
                     "Tight": 6,
                     "VTight": 7,
-                    "VVTight": 8,
+                    # "VVTight": 8,
                 }.items()
             ],
             "vsele_tau_id": [
