@@ -7,7 +7,7 @@ from code_generation.producer import Producer, ProducerGroup
 ####################
 JetPtCorrection = Producer(
     name="JetPtCorrection",
-    call="physicsobject::jet::JetPtCorrection({df}, {output}, {input}, {jet_reapplyJES}, {jet_jes_sources}, {jet_jes_shift}, {jet_jer_shift}, {jet_jec_file}, {jet_jer_tag}, {jet_jes_tag}, {jet_jec_algo})",
+    call="physicsobject::jet::JetPtCorrection({df}, {output}, {input}, {jet_reapplyJES}, {jet_jes_sources}, {jet_jes_shift}, {jet_jer_shift}, {jet_jec_file}, {jet_jer_tag}, {jet_jes_tag}, {jet_jec_algo}, {jet_veto_map}, {jet_veto_tag})",
     input=[
         nanoAOD.Jet_pt,
         nanoAOD.Jet_eta,
@@ -25,10 +25,11 @@ JetPtCorrection = Producer(
 )
 JetPtCorrection_data = Producer(
     name="JetPtCorrection_data",
-    call="physicsobject::jet::JetPtCorrection_data({df}, {output}, {input}, {jet_jec_file}, {jet_jes_tag_data}, {jet_jec_algo})",
+    call="physicsobject::jet::JetPtCorrection_data({df}, {output}, {input}, {jet_jec_file}, {jet_jes_tag_data}, {jet_jec_algo}, {jet_veto_map}, {jet_veto_tag} )",
     input=[
         nanoAOD.Jet_pt,
         nanoAOD.Jet_eta,
+        nanoAOD.Jet_phi,
         nanoAOD.Jet_area,
         nanoAOD.Jet_rawFactor,
         nanoAOD.rho,

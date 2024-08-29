@@ -171,7 +171,7 @@ DiElectronVetoPtCut = Producer(
 )
 DiElectronVetoIDCut = Producer(
     name="DiElectronVetoIDCut",
-    call='physicsobject::electron::CutCBID({df}, {output}, "{dielectronveto_id}", {dielectronveto_id_wp})',
+    call='physicsobject::electron::CutID({df}, {output}, "{dielectronveto_id}")',
     input=[],
     output=[],
     scopes=["global"],
