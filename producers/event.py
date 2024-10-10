@@ -303,7 +303,7 @@ ggH_ME_reweighting_weight_h_tb = Producer(
     call="reweighting::ggH_ME_reweighting_weight({df}, {output}, {input}, 0)",
     input=[nanoAOD.LHEReweightingWeight],
     output=[q.ggH_ME_reweighting_weight_h_tb],
-    scopes=["global", "em", "et", "mt", "tt"],
+    scopes=[ "em", "et", "mt", "tt"],
 )
 
 ggH_ME_reweighting_weight_h_t = Producer(
@@ -311,7 +311,7 @@ ggH_ME_reweighting_weight_h_t = Producer(
     call="reweighting::ggH_ME_reweighting_weight({df}, {output}, {input}, 1)",
     input=[nanoAOD.LHEReweightingWeight],
     output=[q.ggH_ME_reweighting_weight_h_t],
-    scopes=["global", "em", "et", "mt", "tt"],
+    scopes=[ "em", "et", "mt", "tt"],
 )
 
 ggH_ME_reweighting_weight_h_b = Producer(
@@ -319,7 +319,7 @@ ggH_ME_reweighting_weight_h_b = Producer(
     call="reweighting::ggH_ME_reweighting_weight({df}, {output}, {input}, 2)",
     input=[nanoAOD.LHEReweightingWeight],
     output=[q.ggH_ME_reweighting_weight_h_b],
-    scopes=["global", "em", "et", "mt", "tt"],
+    scopes=[ "em", "et", "mt", "tt"],
 )
 
 ggH_ME_reweighting_weight_A_tb = Producer(
@@ -327,7 +327,7 @@ ggH_ME_reweighting_weight_A_tb = Producer(
     call="reweighting::ggH_ME_reweighting_weight({df}, {output}, {input}, 3)",
     input=[nanoAOD.LHEReweightingWeight],
     output=[q.ggH_ME_reweighting_weight_A_tb],
-    scopes=["global", "em", "et", "mt", "tt"],
+    scopes=[ "em", "et", "mt", "tt"],
 )
 
 ggH_ME_reweighting_weight_A_t = Producer(
@@ -335,7 +335,7 @@ ggH_ME_reweighting_weight_A_t = Producer(
     call="reweighting::ggH_ME_reweighting_weight({df}, {output}, {input}, 4)",
     input=[nanoAOD.LHEReweightingWeight],
     output=[q.ggH_ME_reweighting_weight_A_t],
-    scopes=["global", "em", "et", "mt", "tt"],
+    scopes=[ "em", "et", "mt", "tt"],
 )
 
 ggH_ME_reweighting_weight_A_b = Producer(
@@ -343,7 +343,7 @@ ggH_ME_reweighting_weight_A_b = Producer(
     call="reweighting::ggH_ME_reweighting_weight({df}, {output}, {input}, 5)",
     input=[nanoAOD.LHEReweightingWeight],
     output=[q.ggH_ME_reweighting_weight_A_b],
-    scopes=["global", "em", "et", "mt", "tt"],
+    scopes=[ "em", "et", "mt", "tt"],
 )
 
 ggH_ME_reweighting = ProducerGroup(
@@ -351,7 +351,7 @@ ggH_ME_reweighting = ProducerGroup(
     call=None,
     input=None,
     output=None,
-    scopes=["global","em", "et", "mt", "tt"],
+    scopes=["em", "et", "mt", "tt"],
     subproducers=[
         ggH_ME_reweighting_weight_h_tb,
         ggH_ME_reweighting_weight_h_t,

@@ -672,6 +672,20 @@ mass_tt = Producer(
     output=[q.mass_tt],
     scopes=["mt", "et", "tt", "em", "ee", "mm"],
 )
+pt_ll = Producer(
+    name="pt_ll",
+    call="quantities::pt_ll({df}, {output}, {input})",
+    input=[q.p4_1, q.p4_2],
+    output=[q.pt_ll],
+    scopes=["mt", "et", "tt", "em", "ee", "mm"],
+)
+mass_ll = Producer(
+    name="mass_ll",
+    call="quantities::mass_ll({df}, {output}, {input})",
+    input=[q.p4_1, q.p4_2],
+    output=[q.mass_ll],
+    scopes=["mt", "et", "tt", "em", "ee", "mm"],
+)
 pt_ttjj = Producer(
     name="pt_ttjj",
     call="quantities::pt_ttjj({df}, {output}, {input})",
@@ -763,8 +777,10 @@ DiTauPairMETQuantities = ProducerGroup(
         mt_1,
         mt_2,
         pt_tt,
+        pt_ll,
         pt_ttjj,
         mass_tt,
+        mass_ll,
         mt_tot,
         Pzetamissvis_pf,
         mTdileptonMET_pf,

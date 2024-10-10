@@ -515,7 +515,7 @@ def build_config(
             "max_tau_dz": 0.2,
             "vsjet_tau_id_bit": 5,#"VVVLoose": 1,"VVLoose": 2,"VLoose": 3,"Loose": 4,"Medium": 5,"Tight": 6,
             "vsele_tau_id_bit": 2,# "VVLoose": 2,"VLoose": 3,"Loose": 4,"Medium": 5,"Tight": 6,
-            "vsmu_tau_id_bit": 4, #"VLoose": 1,"Loose": 2,"Medium": 3,"Tight": 4,
+            "vsmu_tau_id_bit": 1, #"VLoose": 1,"Loose": 2,"Medium": 3,"Tight": 4,
         },
     )
     # TT tau selection:
@@ -1312,7 +1312,7 @@ def build_config(
         ),
     )
     configuration.add_modification_rule(
-        scopes,
+        ["tt", "mt", "et", "em"],
         AppendProducer(
             producers=[event.ggH_ME_reweighting, genparticles.gen_higgs_p4, genparticles.gen_higgs_pt,genparticles.gen_higgs_eta,genparticles.gen_higgs_phi,genparticles.gen_higgs_mass], 
             samples=["ggh_htautau_2HDM"]
@@ -1503,10 +1503,6 @@ def build_config(
             # q.jtag_value_2,
             q.mjj,
             q.m_vis,
-            q.m_fastmtt,
-            q.pt_fastmtt,
-            q.eta_fastmtt,
-            q.phi_fastmtt,
             q.deltaR_ditaupair,
             q.pt_vis,
             q.nbtag,
@@ -1558,8 +1554,10 @@ def build_config(
             q.mt_1,
             q.mt_2,
             q.pt_tt,
-            q.pt_ttjj,
             q.mass_tt,
+            q.pt_ll,
+            q.mass_ll,
+            q.pt_ttjj,
             q.mt_tot,
             q.genbosonmass,
             q.genbosonpt,
@@ -1574,6 +1572,15 @@ def build_config(
             # q.mt_tot_pf,
             q.pt_dijet,
             # q.jet_hemisphere,
+        ],
+    )
+    configuration.add_outputs(
+        ["mt", "et", "tt", "em"],
+        [
+            q.m_fastmtt,
+            q.pt_fastmtt,
+            q.eta_fastmtt,
+            q.phi_fastmtt,
         ],
     )
     # add genWeight for everything but data
