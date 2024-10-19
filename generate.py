@@ -36,7 +36,7 @@ def run(args):
         # "rem_ttbar",
         #
     ]
-    available_eras = ["2016preVFP", "2016postVFP", "2017", "2018", "2022EE","2022postEE"]
+    available_eras = ["2016preVFP", "2016postVFP", "2017", "2018", "2022EE","2022postEE", "2023", "2023BPix"]
     available_scopes = ["et", "mt", "tt", "em", "ee", "mm"]
 
     ## setup variables

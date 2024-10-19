@@ -180,6 +180,14 @@ Ele_1_IDTight_SF = Producer(
     output=[q.id_wgt_ele_wpTight],
     scopes=["em", "ee", "et"],
 )
+
+Ele_1_IDTight_SF_2023 = Producer(
+    name="Ele_IDTight_SF",
+    call='scalefactor::electron::id_2023({df}, {input}, "{ele_sf_year_id}", "wp90iso", "{ele_sf_varation}", {output}, "{ele_sf_file}", "{ele_id_sf_name}")',
+    input=[q.pt_1, q.eta_1, q.phi_1],
+    output=[q.id_wgt_ele_wpTight],
+    scopes=["em", "ee", "et"],
+)
 EleID_SF = ProducerGroup(
     name="EleID_SF",
     call=None,
@@ -190,6 +198,19 @@ EleID_SF = ProducerGroup(
         "em": [Ele_1_IDTight_SF],
         "ee": [Ele_1_IDTight_SF],
         "et": [Ele_1_IDTight_SF],
+    },
+)
+
+EleID_SF_2023 = ProducerGroup(
+    name="EleID_SF",
+    call=None,
+    input=None,
+    output=None,
+    scopes=["em", "ee", "et"],
+    subproducers={
+        "em": [Ele_1_IDTight_SF_2023],
+        "ee": [Ele_1_IDTight_SF_2023],
+        "et": [Ele_1_IDTight_SF_2023],
     },
 )
 
