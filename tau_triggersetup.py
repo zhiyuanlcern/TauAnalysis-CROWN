@@ -1512,7 +1512,7 @@ def add_diTauTriggerSetup(configuration: Configuration):
                     "2023": [
                         {
                             "flagname": "trg_single_tau180_1",
-                            "hlt_path": "HLT_MediumChargedIsoPFTau180HighPtRelaxedIso_Trk50_eta2p1",
+                            "hlt_path": "HLT_LooseDeepTauPFTauHPS180_L2NN_eta2p1",
                             "ptcut": 180,
                             "etacut": 2.1,
                             "filterbit": 3,
@@ -1533,7 +1533,7 @@ def add_diTauTriggerSetup(configuration: Configuration):
                     "2023BPix": [
                         {
                             "flagname": "trg_single_tau180_1",
-                            "hlt_path": "HLT_MediumChargedIsoPFTau180HighPtRelaxedIso_Trk50_eta2p1",
+                            "hlt_path": "HLT_LooseDeepTauPFTauHPS180_L2NN_eta2p1",
                             "ptcut": 180,
                             "etacut": 2.1,
                             "filterbit": 3,
@@ -1553,7 +1553,7 @@ def add_diTauTriggerSetup(configuration: Configuration):
                     "2022EE": [
                         {
                             "flagname": "trg_single_tau180_1",
-                            "hlt_path": "HLT_MediumChargedIsoPFTau180HighPtRelaxedIso_Trk50_eta2p1",
+                            "hlt_path": "HLT_LooseDeepTauPFTauHPS180_L2NN_eta2p1",
                             "ptcut": 180,
                             "etacut": 2.1,
                             "filterbit": 3,
@@ -1574,7 +1574,7 @@ def add_diTauTriggerSetup(configuration: Configuration):
                     "2022postEE": [
                         {
                             "flagname": "trg_single_tau180_1",
-                            "hlt_path": "HLT_MediumChargedIsoPFTau180HighPtRelaxedIso_Trk50_eta2p1",
+                            "hlt_path": "HLT_LooseDeepTauPFTauHPS180_L2NN_eta2p1",
                             "ptcut": 180,
                             "etacut": 2.1,
                             "filterbit": 3,
@@ -1668,7 +1668,7 @@ def add_diTauTriggerSetup(configuration: Configuration):
                     "2023": [
                         {
                             "flagname": "trg_single_tau180_2",
-                            "hlt_path": "HLT_MediumChargedIsoPFTau180HighPtRelaxedIso_Trk50_eta2p1",
+                            "hlt_path": "HLT_LooseDeepTauPFTauHPS180_L2NN_eta2p1",
                             "ptcut": 180,
                             "etacut": 2.1,
                             "filterbit": 3,
@@ -1688,7 +1688,7 @@ def add_diTauTriggerSetup(configuration: Configuration):
                     "2023BPix": [
                         {
                             "flagname": "trg_single_tau180_2",
-                            "hlt_path": "HLT_MediumChargedIsoPFTau180HighPtRelaxedIso_Trk50_eta2p1",
+                            "hlt_path": "HLT_LooseDeepTauPFTauHPS180_L2NN_eta2p1",
                             "ptcut": 180,
                             "etacut": 2.1,
                             "filterbit": 3,
@@ -1708,7 +1708,7 @@ def add_diTauTriggerSetup(configuration: Configuration):
                     "2022EE": [
                         {
                             "flagname": "trg_single_tau180_2",
-                            "hlt_path": "HLT_MediumChargedIsoPFTau180HighPtRelaxedIso_Trk50_eta2p1",
+                            "hlt_path": "HLT_LooseDeepTauPFTauHPS180_L2NN_eta2p1",
                             "ptcut": 180,
                             "etacut": 2.1,
                             "filterbit": 3,
@@ -1728,7 +1728,7 @@ def add_diTauTriggerSetup(configuration: Configuration):
                     "2022postEE": [
                         {
                             "flagname": "trg_single_tau180_2",
-                            "hlt_path": "HLT_MediumChargedIsoPFTau180HighPtRelaxedIso_Trk50_eta2p1",
+                            "hlt_path": "HLT_LooseDeepTauPFTauHPS180_L2NN_eta2p1",
                             "ptcut": 180,
                             "etacut": 2.1,
                             "filterbit": 3,

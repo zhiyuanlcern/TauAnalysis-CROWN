@@ -122,8 +122,8 @@ def build_config(
                {
                 "2022EE": "data/jsonpog-integration/POG/TAU/output/tau_trigger_DeepTau2018v2p5_2022preEE.json.gz",  ## source : https://gitlab.cern.ch/cms-tau-pog/jsonpog-integration/-/tree/TauPOG_v2_deepTauV2p5/POG/TAU/output?ref_type=heads 
                 "2022postEE": "data/jsonpog-integration/POG/TAU/output/tau_trigger_DeepTau2018v2p5_2022postEE.json.gz",  ## mannually wrapped  in :   "schema_version": 2, "corrections": [ {}] to make it work in CROWN
-                "2023": "data/jsonpog-integration/POG/TAU/output/tau_trigger_DeepTau2018v2p5_2022preEE.json.gz", 
-                "2023BPix": "data/jsonpog-integration/POG/TAU/output/tau_trigger_DeepTau2018v2p5_2022preEE.json.gz", 
+                "2023": "data/jsonpog-integration/POG/TAU/output/tau_trigger_DeepTau2018v2p5_2023preBPix.json.gz", 
+                "2023BPix": "data/jsonpog-integration/POG/TAU/output/tau_trigger_DeepTau2018v2p5_2023postBPix.json.gz", 
                }
             ),
 
@@ -240,8 +240,6 @@ def build_config(
                     "2018": '"Summer19UL18_JRV2_MC"',
                     "2022EE": '"Summer22_22Sep2023_JRV1_MC"',
                     "2022postEE": '"Summer22EE_22Sep2023_JRV1_MC"',
-                    # "2022EE": '"JR_Winter22Run3_V1_MC"',
-                    # "2022postEE": '"Summer22EEPrompt22_JRV1_MC"',
                     "2023": '"Summer23Prompt23_RunCv123_JRV1_MC"', 
                     "2023BPix": '"Summer23BPixPrompt23_RunD_JRV1_MC"', 
 
@@ -257,10 +255,8 @@ def build_config(
                     "2022EE": '"Summer22_22Sep2023_V2_MC"',
                     "2022postEE": '"Summer22EE_22Sep2023_V2_MC"',
                     "2023": '"Summer23Prompt23_V1_MC"', 
-                    "2023BPix": '"Summer23BPixPrompt23_V1_MC "', 
+                    "2023BPix": '"Summer23BPixPrompt23_V1_MC"', 
 
-                    # "2022EE": '"Winter22Run3_V2_MC"',
-                    # "2022postEE": '"Summer22EEPrompt22_V1_MC"',
 
                 }
             ),
@@ -755,8 +751,8 @@ def build_config(
                     "2018": "data/embedding/electron_2018UL.json.gz",
                     "2022EE": "data/jsonpog-integration/POG/EGM/2022_Summer22/electronHlt.json.gz", 
                     "2022postEE": "data/jsonpog-integration/POG/EGM/2022_Summer22EE/electronHlt.json.gz",
-                    "2023": "data/jsonpog-integration/POG/EGM/2023_Summer23/electronHlt.json.gz", #TODO: Update to 2023
-                    "2023BPix": "data/jsonpog-integration/POG/EGM/2023_Summer23BPix/electronHlt.json.gz", #TODO: Update to 2023
+                    "2023": "data/jsonpog-integration/POG/EGM/2023_Summer23/electronHlt.json.gz", 
+                    "2023BPix": "data/jsonpog-integration/POG/EGM/2023_Summer23BPix/electronHlt.json.gz", 
                 }
             ),
             "mc_electron_id_extrapolation": 1.0,  # for nominal case
