@@ -951,3 +951,22 @@ FastMTTQuantities = ProducerGroup(
         "mm": [p4_fastmtt_mm, pt_fastmtt, eta_fastmtt, phi_fastmtt, m_fastmtt],
     },
 )
+
+
+costheta = Producer(
+    name="costheta",
+    call="quantities::calculate_costheta({df}, {output}, {input})",
+    input=[q.p4_1, q.p4_fastmtt],
+    output=[q.costheta],
+    scopes=["mt", "et", "tt", "em", "mm"],
+)
+DiTauPairNNQuantities = ProducerGroup(
+    name="DiTauPairNNQuantities",
+    call=None,
+    input=None,
+    output=None,
+    scopes=["mt", "et", "tt", "em", "mm"],
+    subproducers=[
+        costheta,
+    ],
+)

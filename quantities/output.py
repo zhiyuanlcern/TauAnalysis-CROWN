@@ -132,6 +132,8 @@ pt_ttjj_pf = Quantity("pt_ttjj_pf")
 mt_tot_pf = Quantity("mt_tot_pf")
 pt_dijet = Quantity("pt_dijet")
 jet_hemisphere = Quantity("jet_hemisphere")
+costheta=Quantity("costheta")
+
 
 njets = Quantity("njets")
 nprebjets = Quantity("nprebjets")

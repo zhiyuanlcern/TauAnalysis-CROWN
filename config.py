@@ -99,6 +99,11 @@ def build_config(
                         "Flag_BadPFMuonFilter",
                         #"Flag_BadPFMuonDzFilter",  # only since nanoAODv9 available
                         "Flag_eeBadScFilter",
+                        ## new filters for 2022/23
+                        "Flag_BadPFMuonDzFilter",
+                        "Flag_hfNoisyHitsFilter",
+                        "Flag_ecalBadCalibFilter",
+
                     ], 
         },
     )
@@ -732,7 +737,7 @@ def build_config(
                     "2022EE": "data/jsonpog-integration/POG/MUO/2022_Summer22/ScaleFactors_Muon_Z_HLT_2022_abseta_pt_schemaV2.json.gz", # source: https://gitlab.cern.ch/cms-muonPOG/muonefficiencies/-/tree/master/Run3?ref_type=heads
                     "2022postEE": "data/jsonpog-integration/POG/MUO/2022_Summer22EE/ScaleFactors_Muon_Z_HLT_2022_EE_abseta_pt_schemaV2.json.gz", #source: https://gitlab.cern.ch/cms-muonPOG/muonefficiencies/-/tree/master/Run3?ref_type=heads
                     "2023": "data/jsonpog-integration/POG/MUO/2023_Summer23/ScaleFactors_Muon_Z_HLT_2023_abseta_pt_schemaV2.json.gz", 
-                    "2023BPix": "data/jsonpog-integration/POG/MUO/2023_Summer23BPix/ScaleFactors_Muon_Z_HLT_2023_BPix_abseta_pt_schemaV2.json.gz", 
+                    "2023BPix": "data/jsonpog-integration/POG/MUO/2023_Summer23BPix/ScaleFactors_Muon_Z_HLT_2023_BPix_abseta_pt_schemaV2.json.gz",  # source: https://gitlab.cern.ch/cms-muonPOG/muonefficiencies/-/tree/master/Run3/2023/2023_Z/HLT/json?ref_type=heads
                 }
             ),
             "mc_muon_id_extrapolation": 1.0,  # for nominal case
@@ -1047,6 +1052,7 @@ def build_config(
             met.MetCorrections,
             met.PFMetCorrections,
             pairquantities.DiTauPairMETQuantities,
+            pairquantities.DiTauPairNNQuantities,
             genparticles.GenMatching,
         ],
     )
@@ -1596,6 +1602,7 @@ def build_config(
             # q.mt_tot_pf,
             q.pt_dijet,
             # q.jet_hemisphere,
+            q.costheta,
         ],
     )
     configuration.add_outputs(
