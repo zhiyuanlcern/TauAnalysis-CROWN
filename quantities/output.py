@@ -136,6 +136,18 @@ costheta=Quantity("costheta")
 pt_1_LT=Quantity("pt_1_LT")          # add pt_1_LT by Leyan 2024/12/18
 m_vis_square=Quantity("m_vis_square")
 
+pt1_to_ptH=Quantity("pt1_to_ptH")
+costheta_1_LT=Quantity("costheta_1_LT")
+costheta_2_LT=Quantity("costheta_2_LT")
+costhstar_1_LT=Quantity("costhstar_1_LT")
+costhstar_2_LT=Quantity("costhstar_2_LT")
+kT=Quantity("kT")
+antikT=Quantity("antikT")
+dphi_12=Quantity("dphi_12")
+dphi_H1=Quantity("dphi_H1")
+dphi_H2=Quantity("dphi_H2")
+dphi_MET_1=Quantity("dphi_MET_1")
+dphi_MET_2=Quantity("dphi_MET_2") 
 
 njets = Quantity("njets")
 nprebjets = Quantity("nprebjets")
