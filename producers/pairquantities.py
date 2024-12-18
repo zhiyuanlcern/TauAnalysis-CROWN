@@ -1047,39 +1047,81 @@ antikT = Producer(
     output=[q.antikT],
     scopes=["mt", "et", "tt", "em", "mm"],
 )
+kT_LT = Producer(
+    name="kT_LT",
+    call="quantities::calculate_kT({df}, {output}, {input})",
+    input=[q.p4_1_LT, q.p4_2_LT],
+    output=[q.kT_LT],
+    scopes=["mt", "et", "tt", "em", "mm"],
+)
+antikT_LT = Producer(
+    name="antikT_LT",
+    call="quantities::calculate_antikT({df}, {output}, {input})",
+    input=[q.p4_1_LT, q.p4_2_LT],
+    output=[q.antikT_LT],
+    scopes=["mt", "et", "tt", "em", "mm"],
+)
 dphi_12 = Producer(
     name="dphi_12",
     call="quantities::calculate_dphi({df}, {output}, {input})",
-    input=[q.p4_1, q.p4_2],
+    input=[q.phi_1, q.phi_2],
     output=[q.dphi_12],
     scopes=["mt", "et", "tt", "em", "mm"],
 )
 dphi_H1 = Producer(
     name="dphi_H1",
     call="quantities::calculate_dphi({df}, {output}, {input})",
-    input=[q.p4_1, q.p4_fastmtt],
+    input=[q.phi_1, q.phi_fastmtt],
     output=[q.dphi_H1],
     scopes=["mt", "et", "tt", "em", "mm"],
 )
 dphi_H2 = Producer(
     name="dphi_H2",
     call="quantities::calculate_dphi({df}, {output}, {input})",
-    input=[q.p4_2, q.p4_fastmtt],
+    input=[q.phi_2, q.phi_fastmtt],
     output=[q.dphi_H2],
+    scopes=["mt", "et", "tt", "em", "mm"],
+)
+dphi_H1_LT = Producer(
+    name="dphi_H1_LT",
+    call="quantities::calculate_dphi({df}, {output}, {input})",
+    input=[q.phi_1_LT, q.phi_fastmtt],
+    output=[q.dphi_H1_LT],
+    scopes=["mt", "et", "tt", "em", "mm"],
+)
+dphi_H2_LT = Producer(
+    name="dphi_H2_LT",
+    call="quantities::calculate_dphi({df}, {output}, {input})",
+    input=[q.phi_2_LT, q.phi_fastmtt],
+    output=[q.dphi_H2_LT],
     scopes=["mt", "et", "tt", "em", "mm"],
 )
 dphi_MET_1 = Producer(
     name="dphi_MET_1",
     call="quantities::calculate_dphi({df}, {output}, {input})",
-    input=[q.p4_1, q.met_p4_recoilcorrected],
+    input=[q.phi_1, q.metphi],
     output=[q.dphi_MET_1],
     scopes=["mt", "et", "tt", "em", "mm"],
 )
 dphi_MET_2 = Producer(
     name="dphi_MET_2",
     call="quantities::calculate_dphi({df}, {output}, {input})",
-    input=[q.p4_2, q.met_p4_recoilcorrected],
+    input=[q.phi_2, q.metphi],
     output=[q.dphi_MET_2],
+    scopes=["mt", "et", "tt", "em", "mm"],
+)
+dphi_MET_1_LT = Producer(
+    name="dphi_MET_1_LT",
+    call="quantities::calculate_dphi({df}, {output}, {input})",
+    input=[q.phi_1_LT, q.metphi],
+    output=[q.dphi_MET_1_LT],
+    scopes=["mt", "et", "tt", "em", "mm"],
+)
+dphi_MET_2_LT = Producer(
+    name="dphi_MET_2_LT",
+    call="quantities::calculate_dphi({df}, {output}, {input})",
+    input=[q.phi_2_LT, q.metphi],
+    output=[q.dphi_MET_2_LT],
     scopes=["mt", "et", "tt", "em", "mm"],
 )
 pt1_to_ptH = Producer(
@@ -1131,11 +1173,12 @@ pt_vis_to_mH = Producer(
     output=[q.pt_vis_to_mH],
     scopes=["mt", "et", "tt", "em", "mm"],
 )
-pt_ttmet_to_mH = Producer(
-    name="pt_ttmet_to_mH",
+##  pt_tt is the sum of p4_1, p4_2, p4_met_recoilcorrected pt()
+pt_tt_to_mH = Producer(
+    name="pt_tt_to_mH",
     call="quantities::calculate_ratio({df}, {output}, {input})",
     input=[q.pt_tt, q.m_fastmtt],
-    output=[q.pt_ttmet_to_mH],
+    output=[q.pt_tt_to_mH],
     scopes=["mt", "et", "tt", "em", "mm"],
 )
 pt_fastmtt_to_mH = Producer(
@@ -1166,6 +1209,53 @@ pt2_to_mH = Producer(
     output=[q.pt2_to_mH],
     scopes=["mt", "et", "tt", "em", "mm"],
 )
+deta_12 = Producer(
+    name="deta_12",
+    call="quantities::calculate_subtract({df}, {output}, {input})",
+    input=[q.eta_1, q.eta_2],
+    output=[q.deta_12],
+    scopes=["mt", "et", "tt", "em", "mm"],
+)
+deta_12_LT = Producer(
+    name="deta_12_LT",
+    call="quantities::calculate_subtract({df}, {output}, {input})",
+    input=[q.eta_1_LT, q.eta_2_LT],
+    output=[q.deta_12_LT],
+    scopes=["mt", "et", "tt", "em", "mm"],
+)
+
+p4_1_LT = Producer(
+    name="p4_1_LT",
+    call="quantities::buildLorentzVector({df}, {output}, {input})",
+    input=[
+        q.pt_1_LT,
+        q.eta_1_LT,
+        q.phi_1_LT,
+        q.mass_1,
+    ],
+    output=[q.p4_1_LT],
+    scopes=["mt", "et", "tt", "em", "mm"],
+)
+p4_2_LT = Producer(
+    name="p4_2_LT",
+    call="quantities::buildLorentzVector({df}, {output}, {input})",
+    input=[
+        q.pt_2_LT,
+        q.eta_2_LT,
+        q.phi_2_LT,
+        q.mass_2,
+    ],
+    output=[q.p4_2_LT],
+    scopes=["mt", "et", "tt", "em", "mm"],
+)
+deltaR_LT = Producer(
+    name="deltaR_LT",
+    call="quantities::deltaR({df}, {output}, {input})",
+    input=[q.p4_1_LT, q.p4_2_LT],
+    output=[q.deltaR_LT],
+    scopes=["mt", "et", "tt", "em", "ee", "mm"],
+)
+
 DiTauPairboostQuantities = ProducerGroup(
     name="DiTauPairboostQuantities",
     call=None,
@@ -1179,6 +1269,8 @@ DiTauPairboostQuantities = ProducerGroup(
         eta_2_LT,
         phi_1_LT,
         phi_2_LT,
+        p4_1_LT,
+        p4_2_LT,
     ],
 )
 DiTauPairNNQuantities = ProducerGroup(
@@ -1197,20 +1289,29 @@ DiTauPairNNQuantities = ProducerGroup(
         costhstar_2_LT,
         kT,
         antikT,
+        kT_LT,
+        antikT_LT,
         dphi_12,
         dphi_H1,
         dphi_H2,
+        dphi_H1_LT,
+        dphi_H2_LT,
         dphi_MET_1,
         dphi_MET_2,
         pt1_LT_to_ptH, 
         pt2_to_mH, 
         pt2_LT_to_ptH, 
-        pt_ttmet_to_mH, 
+        pt_tt_to_mH, 
         pt1_LT_to_mH, 
         pt_fastmtt_to_mH, 
         pt2_LT_to_mH, 
         pt_vis_to_mH, 
-        pt1_to_mH
+        pt1_to_mH,
+        deta_12,
+        deta_12_LT,
+        dphi_MET_1_LT,
+        dphi_MET_2_LT,
+        deltaR_LT,
     
     ],
 )
