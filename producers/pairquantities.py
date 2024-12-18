@@ -1089,8 +1089,62 @@ pt1_to_ptH = Producer(
     output=[q.pt1_to_ptH],
     scopes=["mt", "et", "tt", "em", "mm"],
 )
-
-
+pt2_to_ptH = Producer(
+    name="pt2_to_ptH",
+    call="quantities::calculate_ratio({df}, {output}, {input})",
+    input=[q.pt_2, q.pt_fastmtt],
+    output=[q.pt2_to_ptH],
+    scopes=["mt", "et", "tt", "em", "mm"],
+)
+pt1_LT_to_ptH = Producer(
+    name="pt1_LT_to_ptH",
+    call="quantities::calculate_ratio({df}, {output}, {input})",
+    input=[q.pt_1_LT, q.pt_fastmtt],
+    output=[q.pt1_LT_to_ptH],
+    scopes=["mt", "et", "tt", "em", "mm"],
+)
+pt2_LT_to_ptH = Producer(
+    name="pt2_LT_to_ptH",
+    call="quantities::calculate_ratio({df}, {output}, {input})",
+    input=[q.pt_2_LT, q.pt_fastmtt],
+    output=[q.pt2_LT_to_ptH],
+    scopes=["mt", "et", "tt", "em", "mm"],
+)
+pt1_LT_to_mH = Producer(
+    name="pt1_LT_to_mH",
+    call="quantities::calculate_ratio({df}, {output}, {input})",
+    input=[q.pt_1_LT, q.m_fastmtt],
+    output=[q.pt1_LT_to_mH],
+    scopes=["mt", "et", "tt", "em", "mm"],
+)
+pt2_LT_to_mH = Producer(
+    name="pt2_LT_to_mH",
+    call="quantities::calculate_ratio({df}, {output}, {input})",
+    input=[q.pt_2_LT, q.m_fastmtt],
+    output=[q.pt2_LT_to_mH],
+    scopes=["mt", "et", "tt", "em", "mm"],
+)
+pt_vis_to_mH = Producer(
+    name="pt_vis_to_mH",
+    call="quantities::calculate_ratio({df}, {output}, {input})",
+    input=[q.pt_vis, q.m_fastmtt],
+    output=[q.pt_vis_to_mH],
+    scopes=["mt", "et", "tt", "em", "mm"],
+)
+pt_ttmet_to_mH = Producer(
+    name="pt_ttmet_to_mH",
+    call="quantities::calculate_ratio({df}, {output}, {input})",
+    input=[q.pt_ttmet, q.m_fastmtt],
+    output=[q.pt_ttmet_to_mH],
+    scopes=["mt", "et", "tt", "em", "mm"],
+)
+pt_fastmtt_to_mH = Producer(
+    name="pt_fastmtt_to_mH",
+    call="quantities::calculate_ratio({df}, {output}, {input})",
+    input=[q.pt_fastmtt, q.m_fastmtt],
+    output=[q.pt_fastmtt_to_mH],
+    scopes=["mt", "et", "tt", "em", "mm"],
+)
 pt1_LT_to_pt2_LT = Producer(
     name="pt1_to_ptH",
     call="quantities::calculate_ratio({df}, {output}, {input})",
@@ -1098,12 +1152,18 @@ pt1_LT_to_pt2_LT = Producer(
     output=[q.pt1_LT_to_pt2_LT],
     scopes=["mt", "et", "tt", "em", "mm"],
 )
-
-pt2_to_ptH = Producer(
-    name="pt2_to_ptH",
+pt1_to_mH = Producer(
+    name="pt1_to_mH",
     call="quantities::calculate_ratio({df}, {output}, {input})",
-    input=[q.pt_2, q.pt_fastmtt],
-    output=[q.pt2_to_ptH],
+    input=[q.pt_1, q.m_fastmtt],
+    output=[q.pt1_to_mH],
+    scopes=["mt", "et", "tt", "em", "mm"],
+)
+pt2_to_mH = Producer(
+    name="pt2_to_mH",
+    call="quantities::calculate_ratio({df}, {output}, {input})",
+    input=[q.pt_2, q.m_fastmtt],
+    output=[q.pt2_to_mH],
     scopes=["mt", "et", "tt", "em", "mm"],
 )
 DiTauPairboostQuantities = ProducerGroup(
