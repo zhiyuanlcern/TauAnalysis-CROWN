@@ -1611,6 +1611,7 @@ def build_config(
             q.phi_2_LT,
             q.m_vis_square,           # add m_vis_square by Leyan 2024/12/28
             q.pt1_to_ptH,
+            q.pt2_to_ptH,
             q.costheta_1_LT,
             q.costheta_2_LT,
             q.costhstar_1_LT,

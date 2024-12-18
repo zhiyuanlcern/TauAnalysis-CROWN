@@ -136,6 +136,7 @@ pt_1_LT=Quantity("pt_1_LT")          # add pt_1_LT by Leyan 2024/12/18
 pt_1_LT=Quantity("pt_2_LT") 
 m_vis_square=Quantity("m_vis_square")
 pt1_to_ptH=Quantity("pt1_to_ptH")
+pt2_to_ptH=Quantity("pt2_to_ptH")
 costheta_1_LT=Quantity("costheta_1_LT")
 costheta_2_LT=Quantity("costheta_2_LT")
 costhstar_1_LT=Quantity("costhstar_1_LT")
