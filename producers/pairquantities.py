@@ -953,11 +953,63 @@ FastMTTQuantities = ProducerGroup(
 )
 
 
+
+## add pt_1_LT by Leyan 2024/12/18
+pt_1_LT = Producer(
+    name="pt_1_LT",              # G
+    call="quantities::calculate_boost_pt({df}, {output}, {input})", # G function
+    input=[q.p4_1, q.p4_fastmtt],
+    output=[q.pt_1_LT],          # G
+    scopes=["mt", "et", "tt", "em", "mm"],
+)
+pt_2_LT = Producer(
+    name="pt_2_LT",              # G
+    call="quantities::calculate_boost_pt({df}, {output}, {input})", # G function
+    input=[q.p4_2, q.p4_fastmtt],
+    output=[q.pt_2_LT],          # G
+    scopes=["mt", "et", "tt", "em", "mm"],
+)
+eta_1_LT = Producer(
+    name="eta_1_LT",              # G
+    call="quantities::calculate_boost_eta({df}, {output}, {input})", # G function
+    input=[q.p4_1, q.p4_fastmtt],
+    output=[q.eta_1_LT],          # G
+    scopes=["mt", "et", "tt", "em", "mm"],
+)
+eta_2_LT = Producer(
+    name="eta_2_LT",              # G
+    call="quantities::calculate_boost_eta({df}, {output}, {input})", # G function
+    input=[q.p4_2, q.p4_fastmtt],
+    output=[q.eta_2_LT],          # G
+    scopes=["mt", "et", "tt", "em", "mm"],
+)
+phi_1_LT = Producer(
+    name="phi_1_LT",              # G
+    call="quantities::calculate_boost_phi({df}, {output}, {input})", # G function
+    input=[q.p4_1, q.p4_fastmtt],
+    output=[q.phi_1_LT],          # G
+    scopes=["mt", "et", "tt", "em", "mm"],
+)
+phi_2_LT = Producer(
+    name="phi_2_LT",              # G
+    call="quantities::calculate_boost_phi({df}, {output}, {input})", # G function
+    input=[q.p4_2, q.p4_fastmtt],
+    output=[q.phi_2_LT],          # G
+    scopes=["mt", "et", "tt", "em", "mm"],
+)
 costheta_1_LT = Producer(
     name="costheta_1_LT",
     call="quantities::calculate_costheta({df}, {output}, {input})",
     input=[q.p4_1, q.p4_fastmtt],
     output=[q.costheta_1_LT],
+    scopes=["mt", "et", "tt", "em", "mm"],
+)
+## add pt_1_LT by Leyan 2024/12/18
+m_vis_square = Producer(
+    name="m_vis_square",
+    call="quantities::calculate_m_vis_square({df}, {output}, {input})",
+    input=[q.p4_1, q.p4_fastmtt],
+    output=[q.m_vis_square],
     scopes=["mt", "et", "tt", "em", "mm"],
 )
 costheta_2_LT = Producer(
@@ -1030,7 +1082,6 @@ dphi_MET_2 = Producer(
     output=[q.dphi_MET_2],
     scopes=["mt", "et", "tt", "em", "mm"],
 )
-
 pt1_to_ptH = Producer(
     name="pt1_to_ptH",
     call="quantities::calculate_ratio({df}, {output}, {input})",
@@ -1038,7 +1089,6 @@ pt1_to_ptH = Producer(
     output=[q.pt1_to_ptH],
     scopes=["mt", "et", "tt", "em", "mm"],
 )
-
 pt2_to_ptH = Producer(
     name="pt2_to_ptH",
     call="quantities::calculate_ratio({df}, {output}, {input})",
@@ -1046,7 +1096,21 @@ pt2_to_ptH = Producer(
     output=[q.pt2_to_ptH],
     scopes=["mt", "et", "tt", "em", "mm"],
 )
-
+DiTauPairboostQuantities = ProducerGroup(
+    name="DiTauPairboostQuantities",
+    call=None,
+    input=None,
+    output=None,
+    scopes=["mt", "et", "tt", "em", "mm"],
+    subproducers=[
+        pt_1_LT,
+        pt_2_LT,
+        eta_1_LT,
+        eta_2_LT,
+        phi_1_LT,
+        phi_2_LT,
+    ],
+)
 DiTauPairNNQuantities = ProducerGroup(
     name="DiTauPairNNQuantities",
     call=None,
@@ -1054,7 +1118,7 @@ DiTauPairNNQuantities = ProducerGroup(
     output=None,
     scopes=["mt", "et", "tt", "em", "mm"],
     subproducers=[
-        costheta,
+        m_vis_square,
         pt1_to_ptH,
         pt2_to_ptH,
         costheta_1_LT,
@@ -1070,3 +1134,4 @@ DiTauPairNNQuantities = ProducerGroup(
         dphi_MET_2,
     ],
 )
+
