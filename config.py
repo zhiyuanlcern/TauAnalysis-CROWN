@@ -1604,6 +1604,7 @@ def build_config(
             # q.jet_hemisphere,
             q.costheta,
             q.pt1_to_ptH,
+            q.pt2_to_ptH,
             q.costheta_1_LT,
             q.costheta_2_LT,
             q.costhstar_1_LT,
