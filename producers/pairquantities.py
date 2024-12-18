@@ -1134,7 +1134,7 @@ pt_vis_to_mH = Producer(
 pt_ttmet_to_mH = Producer(
     name="pt_ttmet_to_mH",
     call="quantities::calculate_ratio({df}, {output}, {input})",
-    input=[q.pt_ttmet, q.m_fastmtt],
+    input=[q.pt_tt, q.m_fastmtt],
     output=[q.pt_ttmet_to_mH],
     scopes=["mt", "et", "tt", "em", "mm"],
 )
@@ -1146,7 +1146,7 @@ pt_fastmtt_to_mH = Producer(
     scopes=["mt", "et", "tt", "em", "mm"],
 )
 pt1_LT_to_pt2_LT = Producer(
-    name="pt1_to_ptH",
+    name="pt1_LT_to_pt2_LT",
     call="quantities::calculate_ratio({df}, {output}, {input})",
     input=[q.pt_1_LT, q.pt_2_LT],
     output=[q.pt1_LT_to_pt2_LT],
@@ -1202,6 +1202,15 @@ DiTauPairNNQuantities = ProducerGroup(
         dphi_H2,
         dphi_MET_1,
         dphi_MET_2,
+        pt1_LT_to_ptH, 
+        pt2_to_mH, 
+        pt2_LT_to_ptH, 
+        pt_ttmet_to_mH, 
+        pt1_LT_to_mH, 
+        pt_fastmtt_to_mH, 
+        pt2_LT_to_mH, 
+        pt_vis_to_mH, 
+        pt1_to_mH
     
     ],
 )
