@@ -1052,7 +1052,7 @@ def build_config(
             met.MetCorrections,
             met.PFMetCorrections,
             pairquantities.DiTauPairMETQuantities,
-            pairquantities.DiTauPairboostQuantities
+            pairquantities.DiTauPairboostQuantities,
             pairquantities.DiTauPairNNQuantities,
             genparticles.GenMatching,
         ],
@@ -1604,6 +1604,11 @@ def build_config(
             q.pt_dijet,
             # q.jet_hemisphere,
             q.pt_1_LT,                # add pt_1_LT by Leyan 2024/12/28
+            q.pt_2_LT,
+            q.eta_1_LT,
+            q.eta_2_LT,
+            q.phi_1_LT,
+            q.phi_2_LT,
             q.m_vis_square,           # add m_vis_square by Leyan 2024/12/28
             q.pt1_to_ptH,
             q.costheta_1_LT,
