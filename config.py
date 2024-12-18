@@ -1604,6 +1604,17 @@ def build_config(
             # q.jet_hemisphere,
             q.costheta,
             q.pt1_to_ptH,
+            q.costheta_1_LT,
+            q.costheta_2_LT,
+            q.costhstar_1_LT,
+            q.costhstar_2_LT,
+            q.kT,
+            q.antikT,
+            q.dphi_12,
+            q.dphi_H1,
+            q.dphi_H2,
+            q.dphi_MET_1,
+            q.dphi_MET_2,
         ],
     )
     configuration.add_outputs(

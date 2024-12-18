@@ -953,11 +953,81 @@ FastMTTQuantities = ProducerGroup(
 )
 
 
-costheta = Producer(
-    name="costheta",
+costheta_1_LT = Producer(
+    name="costheta_1_LT",
     call="quantities::calculate_costheta({df}, {output}, {input})",
     input=[q.p4_1, q.p4_fastmtt],
-    output=[q.costheta],
+    output=[q.costheta_1_LT],
+    scopes=["mt", "et", "tt", "em", "mm"],
+)
+costheta_2_LT = Producer(
+    name="costheta_2_LT",
+    call="quantities::calculate_costheta({df}, {output}, {input})",
+    input=[q.p4_2, q.p4_fastmtt],
+    output=[q.costheta_2_LT],
+    scopes=["mt", "et", "tt", "em", "mm"],
+)
+costhstar_1_LT = Producer(
+    name="costhstar_1_LT",
+    call="quantities::calculate_costhstar({df}, {output}, {input})",
+    input=[q.p4_1, q.p4_fastmtt],
+    output=[q.costhstar_1_LT],
+    scopes=["mt", "et", "tt", "em", "mm"],
+)
+costhstar_2_LT = Producer(
+    name="costhstar_2_LT",
+    call="quantities::calculate_costhstar({df}, {output}, {input})",
+    input=[q.p4_2, q.p4_fastmtt],
+    output=[q.costhstar_2_LT],
+    scopes=["mt", "et", "tt", "em", "mm"],
+)
+kT = Producer(
+    name="kT",
+    call="quantities::calculate_kT({df}, {output}, {input})",
+    input=[q.p4_1, q.p4_2],
+    output=[q.kT],
+    scopes=["mt", "et", "tt", "em", "mm"],
+)
+antikT = Producer(
+    name="antikT",
+    call="quantities::calculate_antikT({df}, {output}, {input})",
+    input=[q.p4_1, q.p4_2],
+    output=[q.antikT],
+    scopes=["mt", "et", "tt", "em", "mm"],
+)
+dphi_12 = Producer(
+    name="dphi_12",
+    call="quantities::calculate_dphi({df}, {output}, {input})",
+    input=[q.p4_1, q.p4_2],
+    output=[q.dphi_12],
+    scopes=["mt", "et", "tt", "em", "mm"],
+)
+dphi_H1 = Producer(
+    name="dphi_H1",
+    call="quantities::calculate_dphi({df}, {output}, {input})",
+    input=[q.p4_1, q.p4_fastmtt],
+    output=[q.dphi_H1],
+    scopes=["mt", "et", "tt", "em", "mm"],
+)
+dphi_H2 = Producer(
+    name="dphi_H2",
+    call="quantities::calculate_dphi({df}, {output}, {input})",
+    input=[q.p4_2, q.p4_fastmtt],
+    output=[q.dphi_H2],
+    scopes=["mt", "et", "tt", "em", "mm"],
+)
+dphi_MET_1 = Producer(
+    name="dphi_MET_1",
+    call="quantities::calculate_dphi({df}, {output}, {input})",
+    input=[q.p4_1, q.met_p4_recoilcorrected],
+    output=[q.dphi_MET_1],
+    scopes=["mt", "et", "tt", "em", "mm"],
+)
+dphi_MET_2 = Producer(
+    name="dphi_MET_2",
+    call="quantities::calculate_dphi({df}, {output}, {input})",
+    input=[q.p4_2, q.met_p4_recoilcorrected],
+    output=[q.dphi_MET_2],
     scopes=["mt", "et", "tt", "em", "mm"],
 )
 
@@ -978,5 +1048,16 @@ DiTauPairNNQuantities = ProducerGroup(
     subproducers=[
         costheta,
         pt1_to_ptH,
+        costheta_1_LT,
+        costheta_2_LT,
+        costhstar_1_LT,
+        costhstar_2_LT,
+        kT,
+        antikT,
+        dphi_12,
+        dphi_H1,
+        dphi_H2,
+        dphi_MET_1,
+        dphi_MET_2,
     ],
 )
