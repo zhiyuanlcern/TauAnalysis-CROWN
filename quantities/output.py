@@ -133,6 +133,8 @@ mt_tot_pf = Quantity("mt_tot_pf")
 pt_dijet = Quantity("pt_dijet")
 jet_hemisphere = Quantity("jet_hemisphere")
 costheta=Quantity("costheta")
+pt_1_LT=Quantity("pt_1_LT")          # add pt_1_LT by Leyan 2024/12/18
+m_vis_square=Quantity("m_vis_square")
 
 
 njets = Quantity("njets")

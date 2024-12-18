@@ -1603,6 +1603,8 @@ def build_config(
             q.pt_dijet,
             # q.jet_hemisphere,
             q.costheta,
+            q.pt_1_LT,                # add pt_1_LT by Leyan 2024/12/28
+            q.m_vis_square,           # add m_vis_square by Leyan 2024/12/28
         ],
     )
     configuration.add_outputs(

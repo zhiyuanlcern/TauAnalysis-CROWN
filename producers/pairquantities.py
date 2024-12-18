@@ -960,6 +960,29 @@ costheta = Producer(
     output=[q.costheta],
     scopes=["mt", "et", "tt", "em", "mm"],
 )
+
+## add pt_1_LT by Leyan 2024/12/18
+pt_1_LT = Producer(
+    name="pt_1_LT",              # G
+    call="quantities::calculate_boost_pt({df}, {output}, {input})", # G function
+    input=[q.p4_1, q.p4_fastmtt],
+    output=[q.pt_1_LT],          # G
+    scopes=["mt", "et", "tt", "em", "mm"],
+)
+
+## add pt_1_LT by Leyan 2024/12/18
+m_vis_square = Producer(
+    name="m_vis_square",
+    call="quantities::calculate_m_vis_square({df}, {output}, {input})",
+    input=[q.p4_1, q.p4_fastmtt],
+    output=[q.m_vis_square],
+    scopes=["mt", "et", "tt", "em", "mm"],
+)
+
+
+
+
+
 DiTauPairNNQuantities = ProducerGroup(
     name="DiTauPairNNQuantities",
     call=None,
@@ -968,5 +991,12 @@ DiTauPairNNQuantities = ProducerGroup(
     scopes=["mt", "et", "tt", "em", "mm"],
     subproducers=[
         costheta,
+        pt_1_LT,
+        m_vis_square,
+
     ],
 )
+
+
+
+
