@@ -1603,6 +1603,7 @@ def build_config(
             q.pt_dijet,
             # q.jet_hemisphere,
             q.costheta,
+            q.pt1_to_ptH,
         ],
     )
     configuration.add_outputs(

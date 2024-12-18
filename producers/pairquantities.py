@@ -960,6 +960,15 @@ costheta = Producer(
     output=[q.costheta],
     scopes=["mt", "et", "tt", "em", "mm"],
 )
+
+pt1_to_ptH = Producer(
+    name="pt1_to_ptH",
+    call="quantities::calculate_ratio({df}, {output}, {input})",
+    input=[q.pt_1, q.pt_fastmtt],
+    output=[q.pt1_to_ptH],
+    scopes=["mt", "et", "tt", "em", "mm"],
+)
+
 DiTauPairNNQuantities = ProducerGroup(
     name="DiTauPairNNQuantities",
     call=None,
@@ -968,5 +977,6 @@ DiTauPairNNQuantities = ProducerGroup(
     scopes=["mt", "et", "tt", "em", "mm"],
     subproducers=[
         costheta,
+        pt1_to_ptH,
     ],
 )
