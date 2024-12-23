@@ -135,7 +135,7 @@ def build_config(
             "tau_ES_json_name": "tau_energy_scale",
             "tau_id_algorithm": "DeepTau2018v2p5",
             "tau_ES_wp": "Medium", 
-            "tau_ES_wp_VSe": "VVLoose", 
+            "tau_ES_wp_VSe": "Tight", 
             "tau_ES_shift_DM0": "nom",
             "tau_ES_shift_DM1": "nom",
             "tau_ES_shift_DM10": "nom",
