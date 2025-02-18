@@ -173,7 +173,7 @@ deta_12_LT=Quantity("deta_12_LT")
 deltaR_LT=Quantity("deltaR_LT")
 p4_1_LT=Quantity("p4_1_LT")
 p4_2_LT=Quantity("p4_2_LT")
-
+Z_NN_LT=Quantity("Z_NN_LT")
 njets = Quantity("njets")
 nprebjets = Quantity("nprebjets")
 nbtag = Quantity("nbtag")
@@ -255,6 +255,18 @@ THU_qqH_JET01 = Quantity("THU_qqH_JET01")
 
 ## MET quantities
 met_p4 = Quantity("met_p4")
+met_p4_recoilcorrected_averageEta_met = Quantity("met_p4_recoilcorrected_averageEta_met")
+
+## average eta MET quantities
+
+Pzetamissvis_averageEta_met = Quantity("Pzetamissvis_averageEta_met")
+mTdileptonMET_averageEta_met = Quantity("mTdileptonMET_averageEta_met")
+mt_1_averageEta_met = Quantity("mt_1_averageEta_met")
+mt_2_averageEta_met = Quantity("mt_2_averageEta_met")
+pt_tt_averageEta_met = Quantity("pt_tt_averageEta_met")
+mass_tt_averageEta_met = Quantity("mass_tt_averageEta_met")
+mt_tot_averageEta_met = Quantity("mt_tot_averageEta_met")
+
 recoil_genboson_p4_vec = Quantity("recoil_genboson_p4_vec")
 genbosonmass = Quantity("genbosonmass")
 genbosonpt = Quantity("genbosonpt")

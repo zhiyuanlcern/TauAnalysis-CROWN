@@ -32,6 +32,7 @@ JetPtCorrection_data = Producer(
         nanoAOD.Jet_phi,
         nanoAOD.Jet_area,
         nanoAOD.Jet_rawFactor,
+        nanoAOD.Jet_ID,
         nanoAOD.rho,
     ],
     output=[q.Jet_pt_corrected],
