@@ -156,7 +156,7 @@ def build_config(
             "max_muon_dxy": 0.045,
             "max_muon_dz": 0.2,
             "muon_id": "Muon_mediumId",
-            "muon_iso_cut": 0.3,
+            "muon_iso_cut": 0.5,
         },
     )
     # electron base selection:
@@ -167,7 +167,7 @@ def build_config(
             "max_ele_eta": 2.5,
             "max_ele_dxy": 0.045,
             "max_ele_dz": 0.2,
-            "max_ele_iso": 0.3,
+            "max_ele_iso": 0.5,
             "ele_id": EraModifier(
                 {
                     "2016preVFP":"Electron_mvaFall17V2noIso_WP90",
@@ -483,7 +483,7 @@ def build_config(
             "min_tau_pt": 30.0, # use AN definition
             "max_tau_eta": 2.3,
             "max_tau_dz": 0.2,
-            "vsjet_tau_id_bit": 5,#"VVVLoose": 1,"VVLoose": 2,"VLoose": 3,"Loose": 4,"Medium": 5,"Tight": 6,
+            "vsjet_tau_id_bit": 1,#"VVVLoose": 1,"VVLoose": 2,"VLoose": 3,"Loose": 4,"Medium": 5,"Tight": 6,
             "vsele_tau_id_bit": 2,# "VVLoose": 2,"VLoose": 3,"Loose": 4,"Medium": 5,"Tight": 6,
             "vsmu_tau_id_bit": 1, #"VLoose": 1,"Loose": 2,"Medium": 3,"Tight": 4,
         },
@@ -495,7 +495,7 @@ def build_config(
             "min_tau_pt": 35.0,
             "max_tau_eta": 2.3,
             "max_tau_dz": 0.2,
-            "vsjet_tau_id_bit": 5,
+            "vsjet_tau_id_bit": 1,
             "vsele_tau_id_bit": 2,
             "vsmu_tau_id_bit": 1,
         },
@@ -603,11 +603,11 @@ def build_config(
             "electron_index_in_pair": 0,
             "min_electron_pt": 15.0,
             "max_electron_eta": 2.4,
-            "electron_iso_cut": 0.15,
+            "electron_iso_cut": 0.5,
             "muon_index_in_pair": 1,
             "min_muon_pt": 15.0,
             "max_muon_eta": 2.4,
-            "muon_iso_cut": 0.2,
+            "muon_iso_cut": 0.5,
         },
     )
     configuration.add_config_parameters(
@@ -1457,6 +1457,19 @@ def build_config(
         ),
     )
     configuration.add_modification_rule(
+        ["mm"],
+        AppendProducer(
+            producers=[
+                scalefactors.MTGenerateSingleMuonTriggerSF_MC,
+            ],
+            samples=[
+                sample
+                for sample in available_sample_types
+                if sample not in ["data", "embedding", "embedding_mc"]
+            ],
+        ),
+    )
+    configuration.add_modification_rule(
         ["em"],
         AppendProducer(
             producers=[
@@ -1774,6 +1787,10 @@ def build_config(
             q.nmuons,
             nanoAOD.HLT_IsoMu24,
             triggers.MuMuGenerateSingleMuonTriggerFlags.output_group,
+            q.id_wgt_mu_1,
+            q.iso_wgt_mu_1,
+            q.id_wgt_mu_2,
+            q.iso_wgt_mu_2,
         ],
     )
 
