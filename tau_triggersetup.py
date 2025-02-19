@@ -103,7 +103,7 @@ def add_diTauTriggerSetup(configuration: Configuration):
                     ##  V14: 0 => TrkIsoVVL, 1 => Iso, 2 => OverlapFilter PFTau, 3 => 1mu, 4 => 2mu, 5 => 1mu-1e, 6 => 1mu-1tau, 7 => 3mu, 8 => 2mu-1e, 9 => 1mu-2e, 10 => 1mu (Mu50), 11 => 1mu (Mu100), 12 => 1mu-1photon, 13 => 1mu-1tau PNet for Muon;
                     "2023": [
                         {
-                            "flagname": "trg_single_mu24",
+                            "flagname": "trg_single_mu24_filterbit4",
                             "hlt_path": "HLT_IsoMu24",
                             "ptcut": 25,
                             "etacut": 2.5,
@@ -111,41 +111,6 @@ def add_diTauTriggerSetup(configuration: Configuration):
                             "trigger_particle_id": 13,
                             "max_deltaR_triggermatch": 0.4,
                         },
-                    ],
-                    "2023BPix": [
-                        {
-                            "flagname": "trg_single_mu24",
-                            "hlt_path": "HLT_IsoMu24",
-                            "ptcut": 25,
-                            "etacut": 2.5,
-                            "filterbit": 4,
-                            "trigger_particle_id": 13,
-                            "max_deltaR_triggermatch": 0.4,
-                        },
-                    ],
-                    "2022EE": [
-                        {
-                            "flagname": "trg_single_mu24",
-                            "hlt_path": "HLT_IsoMu24",
-                            "ptcut": 25,
-                            "etacut": 2.5,
-                            "filterbit": 4,
-                            "trigger_particle_id": 13,
-                            "max_deltaR_triggermatch": 0.4,
-                        },
-                    ],
-                    "2022postEE": [
-                        {
-                            "flagname": "trg_single_mu24",
-                            "hlt_path": "HLT_IsoMu24",
-                            "ptcut": 25,
-                            "etacut": 2.5,
-                            "filterbit": 4,
-                            "trigger_particle_id": 13,
-                            "max_deltaR_triggermatch": 0.4,
-                        },
-                    ],
-                    "2023": [
                         {
                             "flagname": "trg_single_mu24_filterbit3",
                             "hlt_path": "HLT_IsoMu24",
@@ -158,6 +123,15 @@ def add_diTauTriggerSetup(configuration: Configuration):
                     ],
                     "2023BPix": [
                         {
+                            "flagname": "trg_single_mu24_filterbit4",
+                            "hlt_path": "HLT_IsoMu24",
+                            "ptcut": 25,
+                            "etacut": 2.5,
+                            "filterbit": 4,
+                            "trigger_particle_id": 13,
+                            "max_deltaR_triggermatch": 0.4,
+                        },
+                        {
                             "flagname": "trg_single_mu24_filterbit3",
                             "hlt_path": "HLT_IsoMu24",
                             "ptcut": 25,
@@ -169,6 +143,15 @@ def add_diTauTriggerSetup(configuration: Configuration):
                     ],
                     "2022EE": [
                         {
+                            "flagname": "trg_single_mu24_filterbit4",
+                            "hlt_path": "HLT_IsoMu24",
+                            "ptcut": 25,
+                            "etacut": 2.5,
+                            "filterbit": 4,
+                            "trigger_particle_id": 13,
+                            "max_deltaR_triggermatch": 0.4,
+                        },
+                        {
                             "flagname": "trg_single_mu24_filterbit3",
                             "hlt_path": "HLT_IsoMu24",
                             "ptcut": 25,
@@ -179,6 +162,15 @@ def add_diTauTriggerSetup(configuration: Configuration):
                         },
                     ],
                     "2022postEE": [
+                        {
+                            "flagname": "trg_single_mu24_filterbit4",
+                            "hlt_path": "HLT_IsoMu24",
+                            "ptcut": 25,
+                            "etacut": 2.5,
+                            "filterbit": 4,
+                            "trigger_particle_id": 13,
+                            "max_deltaR_triggermatch": 0.4,
+                        },
                         {
                             "flagname": "trg_single_mu24_filterbit3",
                             "hlt_path": "HLT_IsoMu24",
