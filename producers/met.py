@@ -209,21 +209,22 @@ ApplyRecoilCorrections = Producer(
         q.met_p4_jetcorrected,
         q.recoil_genboson_p4_vec,
         q.Jet_pt_corrected,
+        nanoAOD.Jet_eta,
     ],
     output=[q.met_p4_recoilcorrected],
     scopes=["et", "mt", "tt", "em", "mm", "ee"],
 )
-ApplyRecoilCorrectionsPFMet = Producer(
-    name="ApplyRecoilCorrectionsPFMet",
-    call='met::applyRecoilCorrections({df}, {input}, {output}, "{recoil_corrections_file}", "{recoil_systematics_file}", {applyRecoilCorrections}, {apply_recoil_resolution_systematic}, {apply_recoil_response_systematic}, {recoil_systematic_shift_up}, {recoil_systematic_shift_down}, {is_wjets})',
-    input=[
-        q.pfmet_p4_jetcorrected,
-        q.recoil_genboson_p4_vec,
-        q.Jet_pt_corrected,
-    ],
-    output=[q.pfmet_p4_recoilcorrected],
-    scopes=["et", "mt", "tt", "em", "mm", "ee"],
-)
+# ApplyRecoilCorrectionsPFMet = Producer(
+#     name="ApplyRecoilCorrectionsPFMet",
+#     call='met::applyRecoilCorrections({df}, {input}, {output}, "{recoil_corrections_file}", "{recoil_systematics_file}", {applyRecoilCorrections}, {apply_recoil_resolution_systematic}, {apply_recoil_response_systematic}, {recoil_systematic_shift_up}, {recoil_systematic_shift_down}, {is_wjets})',
+#     input=[
+#         q.pfmet_p4_jetcorrected,
+#         q.recoil_genboson_p4_vec,
+#         q.Jet_pt_corrected,
+#     ],
+#     output=[q.pfmet_p4_recoilcorrected],
+#     scopes=["et", "mt", "tt", "em", "mm", "ee"],
+# )
 MetPt = Producer(
     name="MetPt",
     call="quantities::pt({df}, {output}, {input})",
@@ -266,17 +267,17 @@ MetCorrections = ProducerGroup(
         MetPhi,
     ],
 )
-PFMetCorrections = ProducerGroup(
-    name="PFMetCorrections",
-    call=None,
-    input=None,
-    output=None,
-    scopes=["et", "mt", "tt", "em", "mm", "ee"],
-    subproducers=[
-        PropagateLeptonsToPFMet,
-        PropagateJetsToPFMet,
-        ApplyRecoilCorrectionsPFMet,
-        PFMetPt,
-        PFMetPhi,
-    ],
-)
+# PFMetCorrections = ProducerGroup(
+#     name="PFMetCorrections",
+#     call=None,
+#     input=None,
+#     output=None,
+#     scopes=["et", "mt", "tt", "em", "mm", "ee"],
+#     subproducers=[
+#         PropagateLeptonsToPFMet,
+#         PropagateJetsToPFMet,
+#         ApplyRecoilCorrectionsPFMet,
+#         PFMetPt,
+#         PFMetPhi,
+#     ],
+# )
