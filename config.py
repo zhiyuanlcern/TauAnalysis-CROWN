@@ -713,14 +713,15 @@ def build_config(
                     "2016postVFP": "data/zpt/htt_scalefactors_legacy_2016.root",  # ToDO: Measured in legacy, therefore the same for pre- and postVFP for now
                     "2017": "data/zpt/htt_scalefactors_legacy_2017.root",
                     "2018": "data/zpt/htt_scalefactors_legacy_2018.root",
-                    "2022EE": "data/zpt/htt_scalefactors_legacy_2018.root",## This correction is also applied when we derived DY control region, so keep it
-                    "2022postEE": "data/zpt/htt_scalefactors_legacy_2018.root",
-                    "2023": "data/zpt/htt_scalefactors_legacy_2018.root", 
-                    "2023BPix": "data/zpt/htt_scalefactors_legacy_2018.root", 
+                    "2022EE": "data/jsonpog-integration/hleprare/DYweightCorrlib/DY_pTll_weights_2022preEE_v2.json.gz",## This correction is also applied when we derived DY control region, so keep it
+                    "2022postEE": "data/jsonpog-integration/hleprare/DYweightCorrlib/DY_pTll_weights_2022postEE_v2.json.gz",
+                    "2023": "data/jsonpog-integration/hleprare/DYweightCorrlib/DY_pTll_weights_2023preBPix_v2.json.gz", 
+                    "2023BPix": "data/jsonpog-integration/hleprare/DYweightCorrlib/DY_pTll_weights_2023postBPix_v2.json.gz", 
                 }
             ),
-            "zptmass_functor": "zptmass_weight_nom",
-            "zptmass_arguments": "z_gen_mass,z_gen_pt",
+            # "zptmass_functor": "zptmass_weight_nom",
+            # "zptmass_arguments": "z_gen_mass,z_gen_pt",
+            "DY_pTll_reweighting_syst" : "nom",
         },
     )
 
@@ -1981,6 +1982,31 @@ def build_config(
     #########################
     # MET Shifts
     #########################
+    
+    if "dyjets" in sample:
+        for n in range(1,11):
+            ## NLO contains 10 Uncs. 
+            configuration.add_shift(
+                SystematicShift(
+                    name="DY_pTll_reweightingup" + str(n),
+                    scopes=["global"],
+                    shift_config={
+                        ("global"): {"DY_pTll_reweighting_syst": "up" + str(n)},
+                    },
+                    producers={"global": [event.ZPtMassReweighting]},
+                )
+            )
+            configuration.add_shift(
+                SystematicShift(
+                    name="DY_pTll_reweightingdown" + str(n),
+                    scopes=["global"],
+                    shift_config={
+                        ("global"): {"DY_pTll_reweighting_syst": "down" + str(n)},
+                    },
+                    producers={"global": [event.ZPtMassReweighting]},
+                )
+            )
+   
     # configuration.add_shift(
     #     SystematicShiftByQuantity(
     #         name="metUnclusteredEnUp",

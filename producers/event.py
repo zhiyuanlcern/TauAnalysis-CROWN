@@ -211,7 +211,7 @@ PUweightsFromHistogram = Producer(
 
 ZPtMassReweighting = Producer(
     name="ZPtMassReweighting",
-    call='reweighting::zPtMassReweighting({df}, {output}, {input}, "{zptmass_file}", "{zptmass_functor}", "{zptmass_arguments}")',
+    call='reweighting::zPtMassReweighting({df}, {output}, {input}, "{zptmass_file}",  "{DY_pTll_reweighting_syst}")',
     input=[
         q.recoil_genboson_p4_vec,
     ],
