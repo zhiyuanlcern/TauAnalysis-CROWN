@@ -886,69 +886,47 @@ p4_fastmtt_em = Producer(
     output=[q.p4_fastmtt],
     scopes=["em"],
 )
-p4_fastmtt_mm = Producer(
-    name="p4_fastmtt_mm",
-    call='quantities::p4_fastmtt({df}, {output}, {input}, "mm")',
-    input=[
-        q.pt_1,
-        q.pt_2,
-        q.eta_1,
-        q.eta_2,
-        q.phi_1,
-        q.phi_2,
-        q.mass_1,
-        q.mass_2,
-        q.met,
-        q.metphi,
-        q.metcov00,
-        q.metcov01,
-        q.metcov11,
-        q.tau_decaymode_1,
-        q.tau_decaymode_2,
-    ],
-    output=[q.p4_fastmtt],
-    scopes=["mm"],
-)
+
 pt_fastmtt = Producer(
     name="pt_fastmtt",
     call="quantities::pt({df}, {output}, {input})",
     input=[q.p4_fastmtt],
     output=[q.pt_fastmtt],
-    scopes=["mt", "et", "tt", "em" ,"mm"],
+    scopes=["mt", "et", "tt", "em" ],
 )
 eta_fastmtt = Producer(
     name="eta_fastmtt",
     call="quantities::eta({df}, {output}, {input})",
     input=[q.p4_fastmtt],
     output=[q.eta_fastmtt],
-    scopes=["mt", "et", "tt", "em" ,"mm"],
+    scopes=["mt", "et", "tt", "em" ],
 )
 phi_fastmtt = Producer(
     name="phi_fastmtt",
     call="quantities::phi({df}, {output}, {input})",
     input=[q.p4_fastmtt],
     output=[q.phi_fastmtt],
-    scopes=["mt", "et", "tt", "em", "mm"],
+    scopes=["mt", "et", "tt", "em"],
 )
 m_fastmtt = Producer(
     name="m_fastmtt",
     call="quantities::mass({df}, {output}, {input})",
     input=[q.p4_fastmtt],
     output=[q.m_fastmtt],
-    scopes=["mt", "et", "tt", "em", "mm"],
+    scopes=["mt", "et", "tt", "em"],
 )
 FastMTTQuantities = ProducerGroup(
     name="FastMTTQuantities",
     call=None,
     input=None,
     output=None,
-    scopes=["mt", "et", "tt", "em", "mm"],
+    scopes=["mt", "et", "tt", "em"],
     subproducers={
         "mt": [p4_fastmtt_mt, pt_fastmtt, eta_fastmtt, phi_fastmtt, m_fastmtt],
         "et": [p4_fastmtt_et, pt_fastmtt, eta_fastmtt, phi_fastmtt, m_fastmtt],
         "tt": [p4_fastmtt_tt, pt_fastmtt, eta_fastmtt, phi_fastmtt, m_fastmtt],
         "em": [p4_fastmtt_em, pt_fastmtt, eta_fastmtt, phi_fastmtt, m_fastmtt],
-        "mm": [p4_fastmtt_mm, pt_fastmtt, eta_fastmtt, phi_fastmtt, m_fastmtt],
+        # "mm": [p4_fastmtt_mm, pt_fastmtt, eta_fastmtt, phi_fastmtt, m_fastmtt],
     },
 )
 
@@ -1008,7 +986,7 @@ costheta_1_LT = Producer(
 m_vis_square = Producer(
     name="m_vis_square",
     call="quantities::calculate_m_vis_square({df}, {output}, {input})",
-    input=[q.p4_1, q.p4_fastmtt],
+    input=[q.p4_1, q.p4_2],
     output=[q.m_vis_square],
     scopes=["mt", "et", "tt", "em", "mm"],
 )
@@ -1256,6 +1234,14 @@ deltaR_LT = Producer(
     scopes=["mt", "et", "tt", "em", "ee", "mm"],
 )
 
+Z_NN_LT = Producer(
+    name="Z_NN_LT",
+    call="quantities::calculate_z_NN({df}, {output}, {input})",
+    input=[q.pt_1_LT, q.pt_2_LT],
+    output=[q.Z_NN_LT],
+    scopes=["mt", "et", "tt", "em", "mm"],
+)
+
 DiTauPairboostQuantities = ProducerGroup(
     name="DiTauPairboostQuantities",
     call=None,
@@ -1283,6 +1269,7 @@ DiTauPairNNQuantities = ProducerGroup(
         m_vis_square,
         pt1_to_ptH,
         pt2_to_ptH,
+        pt1_LT_to_pt2_LT,
         costheta_1_LT,
         costheta_2_LT,
         costhstar_1_LT,
@@ -1312,6 +1299,7 @@ DiTauPairNNQuantities = ProducerGroup(
         dphi_MET_1_LT,
         dphi_MET_2_LT,
         deltaR_LT,
+        Z_NN_LT, 
     
     ],
 )

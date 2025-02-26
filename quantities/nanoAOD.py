@@ -3,6 +3,7 @@ from code_generation.quantity import NanoAODQuantity
 run = NanoAODQuantity("run")
 luminosityBlock = NanoAODQuantity("luminosityBlock")
 event = NanoAODQuantity("event")
+HLT_IsoMu24 = NanoAODQuantity("HLT_IsoMu24")
 LHE_Njets = NanoAODQuantity("LHE_Njets")
 prefireWeight = NanoAODQuantity("L1PreFiringWeight_Nom")
 LHEReweightingWeight =NanoAODQuantity("LHEReweightingWeight")

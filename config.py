@@ -156,7 +156,7 @@ def build_config(
             "max_muon_dxy": 0.045,
             "max_muon_dz": 0.2,
             "muon_id": "Muon_mediumId",
-            "muon_iso_cut": 0.3,
+            "muon_iso_cut": 0.5,
         },
     )
     # electron base selection:
@@ -167,7 +167,7 @@ def build_config(
             "max_ele_eta": 2.5,
             "max_ele_dxy": 0.045,
             "max_ele_dz": 0.2,
-            "max_ele_iso": 0.3,
+            "max_ele_iso": 0.5,
             "ele_id": EraModifier(
                 {
                     "2016preVFP":"Electron_mvaFall17V2noIso_WP90",
@@ -483,7 +483,7 @@ def build_config(
             "min_tau_pt": 30.0, # use AN definition
             "max_tau_eta": 2.3,
             "max_tau_dz": 0.2,
-            "vsjet_tau_id_bit": 5,#"VVVLoose": 1,"VVLoose": 2,"VLoose": 3,"Loose": 4,"Medium": 5,"Tight": 6,
+            "vsjet_tau_id_bit": 1,#"VVVLoose": 1,"VVLoose": 2,"VLoose": 3,"Loose": 4,"Medium": 5,"Tight": 6,
             "vsele_tau_id_bit": 2,# "VVLoose": 2,"VLoose": 3,"Loose": 4,"Medium": 5,"Tight": 6,
             "vsmu_tau_id_bit": 1, #"VLoose": 1,"Loose": 2,"Medium": 3,"Tight": 4,
         },
@@ -495,7 +495,7 @@ def build_config(
             "min_tau_pt": 35.0,
             "max_tau_eta": 2.3,
             "max_tau_dz": 0.2,
-            "vsjet_tau_id_bit": 5,
+            "vsjet_tau_id_bit": 1,
             "vsele_tau_id_bit": 2,
             "vsmu_tau_id_bit": 1,
         },
@@ -603,18 +603,18 @@ def build_config(
             "electron_index_in_pair": 0,
             "min_electron_pt": 15.0,
             "max_electron_eta": 2.4,
-            "electron_iso_cut": 0.15,
+            "electron_iso_cut": 0.5,
             "muon_index_in_pair": 1,
             "min_muon_pt": 15.0,
             "max_muon_eta": 2.4,
-            "muon_iso_cut": 0.2,
+            "muon_iso_cut": 0.5,
         },
     )
     configuration.add_config_parameters(
         ["mm"],
         {
-            "min_muon_pt": 15.0,
-            "max_muon_eta": 2.1,
+            "min_muon_pt": 10.0,
+            "max_muon_eta": 2.4,
             "muon_iso_cut": 0.15,
             "second_muon_index_in_pair": 1,
         },
@@ -713,14 +713,15 @@ def build_config(
                     "2016postVFP": "data/zpt/htt_scalefactors_legacy_2016.root",  # ToDO: Measured in legacy, therefore the same for pre- and postVFP for now
                     "2017": "data/zpt/htt_scalefactors_legacy_2017.root",
                     "2018": "data/zpt/htt_scalefactors_legacy_2018.root",
-                    "2022EE": "data/zpt/htt_scalefactors_legacy_2018.root",## This correction is also applied when we derived DY control region, so keep it
-                    "2022postEE": "data/zpt/htt_scalefactors_legacy_2018.root",
-                    "2023": "data/zpt/htt_scalefactors_legacy_2018.root", 
-                    "2023BPix": "data/zpt/htt_scalefactors_legacy_2018.root", 
+                    "2022EE": "data/jsonpog-integration/hleprare/DYweightCorrlib/DY_pTll_weights_2022preEE_v2.json.gz",## This correction is also applied when we derived DY control region, so keep it
+                    "2022postEE": "data/jsonpog-integration/hleprare/DYweightCorrlib/DY_pTll_weights_2022postEE_v2.json.gz",
+                    "2023": "data/jsonpog-integration/hleprare/DYweightCorrlib/DY_pTll_weights_2023preBPix_v2.json.gz", 
+                    "2023BPix": "data/jsonpog-integration/hleprare/DYweightCorrlib/DY_pTll_weights_2023postBPix_v2.json.gz", 
                 }
             ),
-            "zptmass_functor": "zptmass_weight_nom",
-            "zptmass_arguments": "z_gen_mass,z_gen_pt",
+            # "zptmass_functor": "zptmass_weight_nom",
+            # "zptmass_arguments": "z_gen_mass,z_gen_pt",
+            "DY_pTll_reweighting_syst" : "nom",
         },
     )
 
@@ -1051,9 +1052,9 @@ def build_config(
             scalefactors.btagging_SF,
             met.MetCorrections,
             met.PFMetCorrections,
+            # pairquantities.DiTauPairboostQuantities,  ## not working for mm + no need to run currently
+            # pairquantities.DiTauPairNNQuantities,    ## not working for mm + no need to run currently
             pairquantities.DiTauPairMETQuantities,
-            pairquantities.DiTauPairboostQuantities,
-            pairquantities.DiTauPairNNQuantities,
             genparticles.GenMatching,
         ],
     )
@@ -1072,7 +1073,7 @@ def build_config(
             pairselection.LVMu1Uncorrected,
             pairselection.LVMu2Uncorrected,
             pairquantities.MuMuPairQuantities,
-            pairquantities.FastMTTQuantities,
+            # pairquantities.FastMTTQuantities,
             genparticles.MuMuGenPairQuantities,
             scalefactors.MuonIso_SF,
             scalefactors.MuonID_SF,
@@ -1457,6 +1458,19 @@ def build_config(
         ),
     )
     configuration.add_modification_rule(
+        ["mm"],
+        AppendProducer(
+            producers=[
+                scalefactors.MTGenerateSingleMuonTriggerSF_MC,
+            ],
+            samples=[
+                sample
+                for sample in available_sample_types
+                if sample not in ["data", "embedding", "embedding_mc"]
+            ],
+        ),
+    )
+    configuration.add_modification_rule(
         ["em"],
         AppendProducer(
             producers=[
@@ -1603,42 +1617,47 @@ def build_config(
             # q.mt_tot_pf,
             q.pt_dijet,
             # q.jet_hemisphere,
-            q.pt_1_LT,                # add pt_1_LT by Leyan 2024/12/28
-            q.pt_2_LT,
-            q.eta_1_LT,
-            q.eta_2_LT,
-            q.phi_1_LT,
-            q.phi_2_LT,
-            q.m_vis_square,           # add m_vis_square by Leyan 2024/12/28
-            q.pt1_to_ptH,
-            q.pt2_to_ptH,
-            q.pt1_LT_to_ptH,
-            q.pt2_LT_to_ptH,
-            q.pt1_LT_to_mH,
-            q.pt2_LT_to_mH,
-            q.pt_vis_to_mH,
-            q.pt1_to_mH,
-            q.pt2_to_mH,
-            q.pt_tt_to_mH,
-            q.pt_fastmtt_to_mH,
-            q.costheta_1_LT,
-            q.costheta_2_LT,
-            q.costhstar_1_LT,
-            q.costhstar_2_LT,
-            q.kT,
-            q.antikT,
-            q.dphi_12,
-            q.dphi_H1,
-            q.dphi_H2,
-            q.dphi_H1_LT,
-            q.dphi_H2_LT,
-            q.dphi_MET_1,
-            q.dphi_MET_2,
-            q.dphi_MET_1_LT,
-            q.dphi_MET_2_LT,
-            q.deta_12,
-            q.deta_12_LT,
-            q.deltaR_LT,
+            # q.pt_1_LT,                # add pt_1_LT by Leyan 2024/12/28
+            # q.pt_2_LT,
+            # q.eta_1_LT,
+            # q.eta_2_LT,
+            # q.phi_1_LT,
+            # q.phi_2_LT,
+            # q.m_vis_square,           # add m_vis_square by Leyan 2024/12/28
+            # q.pt1_to_ptH,
+            # q.pt2_to_ptH,
+            # q.pt1_LT_to_ptH,
+            # q.pt2_LT_to_ptH,
+            # q.pt1_LT_to_pt2_LT,
+            # q.pt1_LT_to_mH,
+            # q.pt2_LT_to_mH,
+            # q.pt_vis_to_mH,
+            # q.pt1_to_mH,
+            # q.pt2_to_mH,
+            # q.pt_tt_to_mH,
+            # q.pt_fastmtt_to_mH,
+            # q.costheta_1_LT,
+            # q.costheta_2_LT,
+            # q.costhstar_1_LT,
+            # q.costhstar_2_LT,
+            # q.kT,
+            # q.antikT,
+            # q.kT_LT,
+            # q.antikT_LT,
+            # q.antikT,
+            # q.dphi_12,
+            # q.dphi_H1,
+            # q.dphi_H2,
+            # q.dphi_H1_LT,
+            # q.dphi_H2_LT,
+            # q.dphi_MET_1,
+            # q.dphi_MET_2,
+            # q.dphi_MET_1_LT,
+            # q.dphi_MET_2_LT,
+            # q.deta_12,
+            # q.deta_12_LT,
+            # q.deltaR_LT,
+            # q.Z_NN_LT, 
         ],
     )
     configuration.add_outputs(
@@ -1767,7 +1786,12 @@ def build_config(
         "mm",
         [
             q.nmuons,
+            nanoAOD.HLT_IsoMu24,
             triggers.MuMuGenerateSingleMuonTriggerFlags.output_group,
+            q.id_wgt_mu_1,
+            q.iso_wgt_mu_1,
+            q.id_wgt_mu_2,
+            q.iso_wgt_mu_2,
         ],
     )
 
@@ -1958,6 +1982,31 @@ def build_config(
     #########################
     # MET Shifts
     #########################
+    
+    if "dyjets" in sample:
+        for n in range(1,11):
+            ## NLO contains 10 Uncs. 
+            configuration.add_shift(
+                SystematicShift(
+                    name="DY_pTll_reweightingup" + str(n),
+                    scopes=["global"],
+                    shift_config={
+                        ("global"): {"DY_pTll_reweighting_syst": "up" + str(n)},
+                    },
+                    producers={"global": [event.ZPtMassReweighting]},
+                )
+            )
+            configuration.add_shift(
+                SystematicShift(
+                    name="DY_pTll_reweightingdown" + str(n),
+                    scopes=["global"],
+                    shift_config={
+                        ("global"): {"DY_pTll_reweighting_syst": "down" + str(n)},
+                    },
+                    producers={"global": [event.ZPtMassReweighting]},
+                )
+            )
+   
     # configuration.add_shift(
     #     SystematicShiftByQuantity(
     #         name="metUnclusteredEnUp",
