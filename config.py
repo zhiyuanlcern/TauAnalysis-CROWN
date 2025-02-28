@@ -647,9 +647,7 @@ def build_config(
                     "2017": "data/recoil_corrections/Type1_PuppiMET_2017.root",
                     "2018": "data/recoil_corrections/Type1_PuppiMET_2018.root",
                     "2022EE": "data/jsonpog-integration/hleprare/DYandRecoilCorrlib/DY_pTll_recoil_corrections_2022preEE_v2.json.gz", 
-                    # "2022postEE": "data/jsonpog-integration/hleprare/DYandRecoilCorrlib/DY_pTll_recoil_corrections_2022postEE_v2.json.gz",
-                    "2022postEE": "data/jsonpog-integration/hleprare/RecoilCorrlib/Recoil_corrections_2022postEE_v2.json.gz",
-
+                    "2022postEE": "data/jsonpog-integration/hleprare/DYandRecoilCorrlib/DY_pTll_recoil_corrections_2022postEE_v2.json.gz",
                     "2023": "data/jsonpog-integration/hleprare/DYandRecoilCorrlib/DY_pTll_recoil_corrections_2023preBPix_v2.json.gz", 
                     "2023BPix": "data/jsonpog-integration/hleprare/DYandRecoilCorrlib/DY_pTll_recoil_corrections_2023postBPix_v2.json.gz", 
                 }
@@ -682,21 +680,7 @@ def build_config(
             #     default=False,
             # ),
             ### no MET recoil recommendation for 2022 yet 
-            "applyRecoilCorrections": EraModifier(
-                {
-                    "2016preVFP": True,
-                    "2016postVFP": True,
-                    "2017": True,
-                    "2018": True,
-                    "2022EE": False,
-                    "2022postEE": True,
-                    "2023": False,
-                    "2023BPix": False,
-                    
-                },
-                default=False,
-            ),
-            
+            "applyRecoilCorrections": True,           
             "apply_recoil_resolution_systematic": False,
             "apply_recoil_response_systematic": False,
             "recoil_systematic_shift_up": False,
