@@ -175,7 +175,7 @@ PropagateJetsToMet = Producer(
         q.Jet_pt_corrected,
         nanoAOD.Jet_eta,
         nanoAOD.Jet_phi,
-        q.jet_overlap_veto_mask,
+        q.good_jets_mask,
         q.Jet_mass_corrected,
         nanoAOD.Jet_pt,
         nanoAOD.Jet_eta,
