@@ -357,9 +357,9 @@ def build_config(
                     # "VLoose": 3,
                     # "Loose": 4,
                     "Medium": 5,
-                    "Tight": 6,
-                    "VTight": 7,
-                    "VVTight": 8,
+                    # "Tight": 6,
+                    # "VTight": 7,
+                    # "VVTight": 8,
                 }.items()
             ],
             "vsjet_tau_id_sf": [
@@ -380,8 +380,8 @@ def build_config(
                 }
                 for wp, bit in {
                     "Medium": 5,
-                    "Tight": 6,
-                    "VTight": 7,
+                    # "Tight": 6,
+                    # "VTight": 7,
                     # "VVTight": 8,
                 }.items()
             ],
@@ -483,7 +483,7 @@ def build_config(
             "min_tau_pt": 30.0, # use AN definition
             "max_tau_eta": 2.5,
             "max_tau_dz": 0.2,
-            "vsjet_tau_id_bit": 1,#"VVVLoose": 1,"VVLoose": 2,"VLoose": 3,"Loose": 4,"Medium": 5,"Tight": 6,
+            "vsjet_tau_id_bit": 5,#"VVVLoose": 1,"VVLoose": 2,"VLoose": 3,"Loose": 4,"Medium": 5,"Tight": 6,
             "vsele_tau_id_bit": 2,# "VVLoose": 2,"VLoose": 3,"Loose": 4,"Medium": 5,"Tight": 6,
             "vsmu_tau_id_bit": 1, #"VLoose": 1,"Loose": 2,"Medium": 3,"Tight": 4,
         },
@@ -495,7 +495,7 @@ def build_config(
             "min_tau_pt": 35.0,
             "max_tau_eta": 2.5,
             "max_tau_dz": 0.2,
-            "vsjet_tau_id_bit": 1,
+            "vsjet_tau_id_bit": 5,
             "vsele_tau_id_bit": 2,
             "vsmu_tau_id_bit": 1,
         },
@@ -592,7 +592,7 @@ def build_config(
             "electron_index_in_pair": 0,
             "second_electron_index_in_pair": 0,
             "min_electron_pt": 25.0,
-            "max_electron_eta": 2.4,
+            "max_electron_eta": 2.1,
             "electron_iso_cut": 0.3,
         },
     )
@@ -608,6 +608,7 @@ def build_config(
             "min_muon_pt": 15.0,
             "max_muon_eta": 2.4,
             "muon_iso_cut": 0.5,
+            "min_dzeta_cut": -35,
         },
     )
     configuration.add_config_parameters(
@@ -1039,8 +1040,8 @@ def build_config(
             scalefactors.btagging_SF,
             met.MetCorrections,
             # met.PFMetCorrections,
-            pairquantities.DiTauPairboostQuantities,  
-            pairquantities.DiTauPairNNQuantities,    
+            pairquantities.DiTauPairboostQuantities,  ## not working for mm + no need to run currently
+            pairquantities.DiTauPairNNQuantities,    ## not working for mm + no need to run currently
             pairquantities.DiTauPairMETQuantities,
             genparticles.GenMatching,
         ],
@@ -1193,6 +1194,7 @@ def build_config(
             pairselection.LVMu2,
             pairselection.LVEl1Uncorrected,
             pairselection.LVMu2Uncorrected,
+            pairselection.DZetaFilter,
             pairquantities.EMDiTauPairQuantities,
             genparticles.EMGenDiTauPairQuantities,
             pairquantities.FastMTTQuantities,
@@ -1396,40 +1398,7 @@ def build_config(
         ),
     )
 
-    # configuration.add_modification_rule(
-    #     ["mm"],
-    #     AppendProducer(
-    #         producers=[
-    #             scalefactors.TauEmbeddingMuonIDSF_1_MC,
-    #             scalefactors.TauEmbeddingMuonIsoSF_1_MC,
-    #             scalefactors.TauEmbeddingMuonIDSF_2_MC,
-    #             scalefactors.TauEmbeddingMuonIsoSF_2_MC,
-    #             scalefactors.MTGenerateSingleMuonTriggerSF_MC,
-    #         ],
-    #         samples=[
-    #             sample
-    #             for sample in available_sample_types
-    #             if sample not in ["data", "embedding", "embedding_mc"]
-    #         ],
-    #     ),
-    # )
-    # configuration.add_modification_rule(
-    #     ["ee"],
-    #     AppendProducer(
-    #         producers=[
-    #             scalefactors.TauEmbeddingElectronIDSF_1_MC,
-    #             scalefactors.TauEmbeddingElectronIsoSF_1_MC,
-    #             scalefactors.TauEmbeddingElectronIDSF_2_MC,
-    #             scalefactors.TauEmbeddingElectronIsoSF_2_MC,
-    #             scalefactors.ETGenerateSingleElectronTriggerSF_MC,
-    #         ],
-    #         samples=[
-    #             sample
-    #             for sample in available_sample_types
-    #             if sample not in ["data", "embedding", "embedding_mc"]
-    #         ],
-    #     ),
-    # )
+   
     configuration.add_modification_rule(
         ["mt"],
         AppendProducer(
@@ -1525,25 +1494,25 @@ def build_config(
             q.phi_2,
             q.njets,
             q.nprebjets,
-            q.jpt_1,
-            q.jpt_2,
-            q.jeta_1,
-            q.jeta_2,
-            q.jphi_1,
-            q.jphi_2,
+            # q.jpt_1,
+            # q.jpt_2,
+            # q.jeta_1,
+            # q.jeta_2,
+            # q.jphi_1,
+            # q.jphi_2,
             # q.jtag_value_1,
             # q.jtag_value_2,
-            q.mjj,
+            # q.mjj,
             q.m_vis,
             q.deltaR_ditaupair,
             q.pt_vis,
             q.nbtag,
-            q.bpt_1,
-            q.bpt_2,
-            q.beta_1,
-            q.beta_2,
-            q.bphi_1,
-            q.bphi_2,
+            # q.bpt_1,
+            # q.bpt_2,
+            # q.beta_1,
+            # q.beta_2,
+            # q.bphi_1,
+            # q.bphi_2,
             # q.btag_value_1,
             # q.btag_value_2,
             q.btag_weight,
@@ -1557,30 +1526,16 @@ def build_config(
             q.q_2,
             q.iso_1,
             q.iso_2,
-            # q.gen_pt_1,
-            # q.gen_eta_1,
-            # q.gen_phi_1,
-            # q.gen_mass_1,
+            
             q.gen_pdgid_1,
-            # q.gen_pt_2,
-            # q.gen_eta_2,
-            # q.gen_phi_2,
-            # q.gen_mass_2,
+            
             q.gen_pdgid_2,
             # q.gen_m_vis,
             q.met,
             q.metphi,
-            # q.pfmet,
-            # q.pfmetphi,
-            # q.met_uncorrected,
-            # q.metphi_uncorrected,
-            # q.pfmet_uncorrected,
-            # q.pfmetphi_uncorrected,
+            
             q.metSumEt,
-            # q.metcov00,
-            # q.metcov01,
-            # q.metcov10,
-            # q.metcov11,
+         
             q.pzetamissvis,
             q.mTdileptonMET,
             q.mt_1,
@@ -1589,62 +1544,24 @@ def build_config(
             q.mass_tt,
             q.pt_ll,
             q.mass_ll,
-            q.pt_ttjj,
+            # q.pt_ttjj,
             q.mt_tot,
-            q.genbosonmass,
-            q.genbosonpt,
+            # q.genbosonmass,
+            # q.genbosonpt,
             q.gen_match_1,
             q.gen_match_2,
-            # q.pzetamissvis_pf,
-            # q.mTdileptonMET_pf,
-            # q.mt_1_pf,
-            # q.mt_2_pf,
-            # q.pt_tt_pf,
-            # q.pt_ttjj_pf,
-            # q.mt_tot_pf,
-            q.pt_dijet,
-            # q.jet_hemisphere,
-            # q.pt_1_LT,                # add pt_1_LT by Leyan 2024/12/28
-            # q.pt_2_LT,
-            # q.eta_1_LT,
-            # q.eta_2_LT,
-            # q.phi_1_LT,
-            # q.phi_2_LT,
-            # q.m_vis_square,           # add m_vis_square by Leyan 2024/12/28
-            # q.pt1_to_ptH,
-            # q.pt2_to_ptH,
+            # q.pt_dijet,
+
             q.pt1_LT_to_ptH,
             q.pt2_LT_to_ptH,
-            # q.pt1_LT_to_pt2_LT,
-            # q.pt1_LT_to_mH,
-            # q.pt2_LT_to_mH,
-            # q.pt_vis_to_mH,
-            q.pt1_to_mH,
-            q.pt2_to_mH,
-            # q.pt_tt_to_mH,
-            # q.pt_fastmtt_to_mH,
-            # q.costheta_1_LT,
-            # q.costheta_2_LT,
-            # q.costhstar_1_LT,
-            # q.costhstar_2_LT,
+
             q.kT,
             q.antikT,
-            # q.kT_LT,
-            # q.antikT_LT,
-            # q.antikT,
+
             q.dphi_12,
             q.dphi_H1,
             q.dphi_H2,
-            # q.dphi_H1_LT,
-            # q.dphi_H2_LT,
-            # q.dphi_MET_1,
-            # q.dphi_MET_2,
-            # q.dphi_MET_1_LT,
-            # q.dphi_MET_2_LT,
-            # q.deta_12,
-            # q.deta_12_LT,
-            # q.deltaR_LT,
-            # q.Z_NN_LT, 
+
         ],
     )
     configuration.add_outputs(
@@ -1782,39 +1699,28 @@ def build_config(
         ],
     )
 
-    configuration.add_outputs(
-        "ee",
-        [
-            q.nelectrons,
-            triggers.ElElGenerateSingleElectronTriggerFlags.output_group,
-            triggers.ElElGenerateDoubleMuonTriggerFlags.output_group,
-            q.dimuon_veto,
-            q.dielectron_veto,
-            q.electron_veto_flag,
-        ],
-    )
-    if "data" not in sample and "embedding" not in sample:
-        configuration.add_outputs(
-            scopes,
-            [
-                nanoAOD.HTXS_Higgs_pt,
-                nanoAOD.HTXS_Higgs_y,
-                nanoAOD.HTXS_njets30,
-                nanoAOD.HTXS_stage_0,
-                nanoAOD.HTXS_stage1_2_cat_pTjet30GeV,
-                nanoAOD.HTXS_stage1_2_fine_cat_pTjet30GeV,
-            ],
-        )
-    if "2HDM" in sample:
-        configuration.add_outputs(
-            scopes,
-            [
-                q.gen_higgs_pt,
-                q.gen_higgs_eta,
-                q.gen_higgs_phi,
-                q.gen_higgs_mass
-            ],
-        )
+    # if "data" not in sample and "embedding" not in sample:
+    #     configuration.add_outputs(
+    #         scopes,
+    #         [
+    #             nanoAOD.HTXS_Higgs_pt,
+    #             nanoAOD.HTXS_Higgs_y,
+    #             nanoAOD.HTXS_njets30,
+    #             nanoAOD.HTXS_stage_0,
+    #             nanoAOD.HTXS_stage1_2_cat_pTjet30GeV,
+    #             nanoAOD.HTXS_stage1_2_fine_cat_pTjet30GeV,
+    #         ],
+    #     )
+    # if "2HDM" in sample:
+    #     configuration.add_outputs(
+    #         scopes,
+    #         [
+    #             q.gen_higgs_pt,
+    #             q.gen_higgs_eta,
+    #             q.gen_higgs_phi,
+    #             q.gen_higgs_mass
+    #         ],
+    #     )
     #########################
     # LHE Scale Weight variations
     # up is muR=2.0, muF=2.0
@@ -2049,95 +1955,95 @@ def build_config(
     #########################
     # MET Recoil Shifts
     #########################
-    configuration.add_shift(
-        SystematicShift(
-            name="metRecoilResponseUp",
-            shift_config={
-                ("et", "mt", "tt", "em", "ee", "mm"): {
-                    "apply_recoil_resolution_systematic": False,
-                    "apply_recoil_response_systematic": True,
-                    "recoil_systematic_shift_up": True,
-                    "recoil_systematic_shift_down": False,
-                },
-            },
-            producers={
-                ("et", "mt", "tt", "em", "ee", "mm"): met.ApplyRecoilCorrections
-            },
-        ),
-        samples=[
-            sample
-            for sample in available_sample_types
-            if sample
-            not in [
-                "data",
-                "embedding",
-                "embedding_mc",
-            ]  # ToDo: Is this really necessary for all samples?
-        ],
-    )
-    configuration.add_shift(
-        SystematicShift(
-            name="metRecoilResponseDown",
-            shift_config={
-                ("et", "mt", "tt", "em", "ee", "mm"): {
-                    "apply_recoil_resolution_systematic": False,
-                    "apply_recoil_response_systematic": True,
-                    "recoil_systematic_shift_up": False,
-                    "recoil_systematic_shift_down": True,
-                },
-            },
-            producers={
-                ("et", "mt", "tt", "em", "ee", "mm"): met.ApplyRecoilCorrections
-            },
-        ),
-        samples=[
-            sample
-            for sample in available_sample_types
-            if sample not in ["data", "embedding", "embedding_mc"]
-        ],
-    )
-    configuration.add_shift(
-        SystematicShift(
-            name="metRecoilResolutionUp",
-            shift_config={
-                ("et", "mt", "tt", "em", "ee", "mm"): {
-                    "apply_recoil_resolution_systematic": True,
-                    "apply_recoil_response_systematic": False,
-                    "recoil_systematic_shift_up": True,
-                    "recoil_systematic_shift_down": False,
-                },
-            },
-            producers={
-                ("et", "mt", "tt", "em", "ee", "mm"): met.ApplyRecoilCorrections
-            },
-        ),
-        samples=[
-            sample
-            for sample in available_sample_types
-            if sample not in ["data", "embedding", "embedding_mc"]
-        ],
-    )
-    configuration.add_shift(
-        SystematicShift(
-            name="metRecoilResolutionDown",
-            shift_config={
-                ("et", "mt", "tt", "em", "ee", "mm"): {
-                    "apply_recoil_resolution_systematic": True,
-                    "apply_recoil_response_systematic": False,
-                    "recoil_systematic_shift_up": False,
-                    "recoil_systematic_shift_down": True,
-                },
-            },
-            producers={
-                ("et", "mt", "tt", "em", "ee", "mm"): met.ApplyRecoilCorrections
-            },
-        ),
-        samples=[
-            sample
-            for sample in available_sample_types
-            if sample not in ["data", "embedding", "embedding_mc"]
-        ],
-    )
+    # configuration.add_shift(
+    #     SystematicShift(
+    #         name="metRecoilResponseUp",
+    #         shift_config={
+    #             ("et", "mt", "tt", "em", "ee", "mm"): {
+    #                 "apply_recoil_resolution_systematic": False,
+    #                 "apply_recoil_response_systematic": True,
+    #                 "recoil_systematic_shift_up": True,
+    #                 "recoil_systematic_shift_down": False,
+    #             },
+    #         },
+    #         producers={
+    #             ("et", "mt", "tt", "em", "ee", "mm"): met.ApplyRecoilCorrections
+    #         },
+    #     ),
+    #     samples=[
+    #         sample
+    #         for sample in available_sample_types
+    #         if sample
+    #         not in [
+    #             "data",
+    #             "embedding",
+    #             "embedding_mc",
+    #         ]  # ToDo: Is this really necessary for all samples?
+    #     ],
+    # )
+    # configuration.add_shift(
+    #     SystematicShift(
+    #         name="metRecoilResponseDown",
+    #         shift_config={
+    #             ("et", "mt", "tt", "em", "ee", "mm"): {
+    #                 "apply_recoil_resolution_systematic": False,
+    #                 "apply_recoil_response_systematic": True,
+    #                 "recoil_systematic_shift_up": False,
+    #                 "recoil_systematic_shift_down": True,
+    #             },
+    #         },
+    #         producers={
+    #             ("et", "mt", "tt", "em", "ee", "mm"): met.ApplyRecoilCorrections
+    #         },
+    #     ),
+    #     samples=[
+    #         sample
+    #         for sample in available_sample_types
+    #         if sample not in ["data", "embedding", "embedding_mc"]
+    #     ],
+    # )
+    # configuration.add_shift(
+    #     SystematicShift(
+    #         name="metRecoilResolutionUp",
+    #         shift_config={
+    #             ("et", "mt", "tt", "em", "ee", "mm"): {
+    #                 "apply_recoil_resolution_systematic": True,
+    #                 "apply_recoil_response_systematic": False,
+    #                 "recoil_systematic_shift_up": True,
+    #                 "recoil_systematic_shift_down": False,
+    #             },
+    #         },
+    #         producers={
+    #             ("et", "mt", "tt", "em", "ee", "mm"): met.ApplyRecoilCorrections
+    #         },
+    #     ),
+    #     samples=[
+    #         sample
+    #         for sample in available_sample_types
+    #         if sample not in ["data", "embedding", "embedding_mc"]
+    #     ],
+    # )
+    # configuration.add_shift(
+    #     SystematicShift(
+    #         name="metRecoilResolutionDown",
+    #         shift_config={
+    #             ("et", "mt", "tt", "em", "ee", "mm"): {
+    #                 "apply_recoil_resolution_systematic": True,
+    #                 "apply_recoil_response_systematic": False,
+    #                 "recoil_systematic_shift_up": False,
+    #                 "recoil_systematic_shift_down": True,
+    #             },
+    #         },
+    #         producers={
+    #             ("et", "mt", "tt", "em", "ee", "mm"): met.ApplyRecoilCorrections
+    #         },
+    #     ),
+    #     samples=[
+    #         sample
+    #         for sample in available_sample_types
+    #         if sample not in ["data", "embedding", "embedding_mc"]
+    #     ],
+    # )
     #########################
     # Pileup Shifts
     #########################
@@ -2229,64 +2135,6 @@ def build_config(
                                     "mc_correctiontype": "sfup",
                                 },
                             ],
-                            "2018": [
-                                {
-                                    "flagname": "trg_wgt_single_ele32orele35",
-                                    "mc_trigger_sf": "Trg32_or_Trg35_Iso_pt_eta_bins",
-                                    "mc_electron_trg_extrapolation": 1.02,
-                                },
-                                {
-                                    "flagname": "trg_wgt_single_ele32",
-                                    "mc_trigger_sf": "Trg32_Iso_pt_eta_bins",
-                                    "mc_electron_trg_extrapolation": 1.02,
-                                },
-                                {
-                                    "flagname": "trg_wgt_single_ele35",
-                                    "mc_trigger_sf": "Trg35_Iso_pt_eta_bins",
-                                    "mc_electron_trg_extrapolation": 1.02,
-                                },
-                                {
-                                    "flagname": "trg_wgt_single_ele27orele32orele35",
-                                    "mc_trigger_sf": "Trg_Iso_pt_eta_bins",
-                                    "mc_electron_trg_extrapolation": 1.02,
-                                },
-                            ],
-                            "2017": [
-                                {
-                                    "flagname": "trg_wgt_single_ele32orele35",
-                                    "mc_trigger_sf": "Trg32_or_Trg35_Iso_pt_eta_bins",
-                                    "mc_electron_trg_extrapolation": 1.02,
-                                },
-                                {
-                                    "flagname": "trg_wgt_single_ele32",
-                                    "mc_trigger_sf": "Trg32_Iso_pt_eta_bins",
-                                    "mc_electron_trg_extrapolation": 1.02,
-                                },
-                                {
-                                    "flagname": "trg_wgt_single_ele35",
-                                    "mc_trigger_sf": "Trg35_Iso_pt_eta_bins",
-                                    "mc_electron_trg_extrapolation": 1.02,
-                                },
-                                {
-                                    "flagname": "trg_wgt_single_ele27orele32orele35",
-                                    "mc_trigger_sf": "Trg_Iso_pt_eta_bins",
-                                    "mc_electron_trg_extrapolation": 1.02,
-                                },
-                            ],
-                            "2016postVFP": [
-                                {
-                                    "flagname": "trg_wgt_single_ele25",
-                                    "mc_trigger_sf": "Trg25_Iso_pt_eta_bins",
-                                    "mc_electron_trg_extrapolation": 1.02,
-                                }
-                            ],
-                            "2016preVFP": [
-                                {
-                                    "flagname": "trg_wgt_single_ele25",
-                                    "mc_trigger_sf": "Trg25_Iso_pt_eta_bins",
-                                    "mc_electron_trg_extrapolation": 1.02,
-                                }
-                            ],
                         }
                     )
                 }
@@ -2342,64 +2190,6 @@ def build_config(
                                     "mc_correctiontype": "sfdown",
                                 },
                             ],
-                            "2018": [
-                                {
-                                    "flagname": "trg_wgt_single_ele32orele35",
-                                    "mc_trigger_sf": "Trg32_or_Trg35_Iso_pt_eta_bins",
-                                    "mc_electron_trg_extrapolation": 0.98,
-                                },
-                                {
-                                    "flagname": "trg_wgt_single_ele32",
-                                    "mc_trigger_sf": "Trg32_Iso_pt_eta_bins",
-                                    "mc_electron_trg_extrapolation": 0.98,
-                                },
-                                {
-                                    "flagname": "trg_wgt_single_ele35",
-                                    "mc_trigger_sf": "Trg35_Iso_pt_eta_bins",
-                                    "mc_electron_trg_extrapolation": 0.98,
-                                },
-                                {
-                                    "flagname": "trg_wgt_single_ele27orele32orele35",
-                                    "mc_trigger_sf": "Trg_Iso_pt_eta_bins",
-                                    "mc_electron_trg_extrapolation": 0.98,
-                                },
-                            ],
-                            "2017": [
-                                {
-                                    "flagname": "trg_wgt_single_ele32orele35",
-                                    "mc_trigger_sf": "Trg32_or_Trg35_Iso_pt_eta_bins",
-                                    "mc_electron_trg_extrapolation": 0.98,
-                                },
-                                {
-                                    "flagname": "trg_wgt_single_ele32",
-                                    "mc_trigger_sf": "Trg32_Iso_pt_eta_bins",
-                                    "mc_electron_trg_extrapolation": 0.98,
-                                },
-                                {
-                                    "flagname": "trg_wgt_single_ele35",
-                                    "mc_trigger_sf": "Trg35_Iso_pt_eta_bins",
-                                    "mc_electron_trg_extrapolation": 0.98,
-                                },
-                                {
-                                    "flagname": "trg_wgt_single_ele27orele32orele35",
-                                    "mc_trigger_sf": "Trg_Iso_pt_eta_bins",
-                                    "mc_electron_trg_extrapolation": 0.98,
-                                },
-                            ],
-                            "2016postVFP": [
-                                {
-                                    "flagname": "trg_wgt_single_ele25",
-                                    "mc_trigger_sf": "Trg25_Iso_pt_eta_bins",
-                                    "mc_electron_trg_extrapolation": 0.98,
-                                }
-                            ],
-                            "2016preVFP": [
-                                {
-                                    "flagname": "trg_wgt_single_ele25",
-                                    "mc_trigger_sf": "Trg25_Iso_pt_eta_bins",
-                                    "mc_electron_trg_extrapolation": 0.98,
-                                }
-                            ],
                         }
                     )
                 }
@@ -2453,54 +2243,6 @@ def build_config(
                                     "mc_muon_trg_extrapolation": 1,
                                 },
                             ],
-                            "2018": [
-                                {
-                                    "flagname": "trg_wgt_single_mu24",
-                                    "mc_trigger_sf": "Trg_IsoMu24_pt_eta_bins",
-                                    "mc_muon_trg_extrapolation": 1.02,
-                                },
-                                {
-                                    "flagname": "trg_wgt_single_mu27",
-                                    "mc_trigger_sf": "Trg_IsoMu27_pt_eta_bins",
-                                    "mc_muon_trg_extrapolation": 1.02,
-                                },
-                                {
-                                    "flagname": "trg_wgt_single_mu24ormu27",
-                                    "mc_trigger_sf": "Trg_IsoMu27_or_IsoMu24_pt_eta_bins",
-                                    "mc_muon_trg_extrapolation": 1.02,
-                                },
-                            ],
-                            "2017": [
-                                {
-                                    "flagname": "trg_wgt_single_mu24",
-                                    "mc_trigger_sf": "Trg_IsoMu24_pt_eta_bins",
-                                    "mc_muon_trg_extrapolation": 1.02,
-                                },
-                                {
-                                    "flagname": "trg_wgt_single_mu27",
-                                    "mc_trigger_sf": "Trg_IsoMu27_pt_eta_bins",
-                                    "mc_muon_trg_extrapolation": 1.02,
-                                },
-                                {
-                                    "flagname": "trg_wgt_single_mu24ormu27",
-                                    "mc_trigger_sf": "Trg_IsoMu27_or_IsoMu24_pt_eta_bins",
-                                    "mc_muon_trg_extrapolation": 1.02,
-                                },
-                            ],
-                            "2016postVFP": [
-                                {
-                                    "flagname": "trg_wgt_single_mu22",
-                                    "mc_trigger_sf": "Trg_pt_eta_bins",
-                                    "mc_muon_trg_extrapolation": 1.02,
-                                },
-                            ],
-                            "2016preVFP": [
-                                {
-                                    "flagname": "trg_wgt_single_mu22",
-                                    "mc_trigger_sf": "Trg_pt_eta_bins",
-                                    "mc_muon_trg_extrapolation": 1.02,
-                                },
-                            ],
                         }
                     )
                 }
@@ -2550,54 +2292,6 @@ def build_config(
                                     "mc_trigger_sf": "NUM_IsoMu24_DEN_CutBasedIdMedium_and_PFIsoMedium",
                                     "mc_muon_sf_correctiontype": "systdown",
                                     "mc_muon_trg_extrapolation": 1.,
-                                },
-                            ],
-                            "2018": [
-                                {
-                                    "flagname": "trg_wgt_single_mu24",
-                                    "mc_trigger_sf": "Trg_IsoMu24_pt_eta_bins",
-                                    "mc_muon_trg_extrapolation": 0.98,
-                                },
-                                {
-                                    "flagname": "trg_wgt_single_mu27",
-                                    "mc_trigger_sf": "Trg_IsoMu27_pt_eta_bins",
-                                    "mc_muon_trg_extrapolation": 0.98,
-                                },
-                                {
-                                    "flagname": "trg_wgt_single_mu24ormu27",
-                                    "mc_trigger_sf": "Trg_IsoMu27_or_IsoMu24_pt_eta_bins",
-                                    "mc_muon_trg_extrapolation": 0.98,
-                                },
-                            ],
-                            "2017": [
-                                {
-                                    "flagname": "trg_wgt_single_mu24",
-                                    "mc_trigger_sf": "Trg_IsoMu24_pt_eta_bins",
-                                    "mc_muon_trg_extrapolation": 0.98,
-                                },
-                                {
-                                    "flagname": "trg_wgt_single_mu27",
-                                    "mc_trigger_sf": "Trg_IsoMu27_pt_eta_bins",
-                                    "mc_muon_trg_extrapolation": 0.98,
-                                },
-                                {
-                                    "flagname": "trg_wgt_single_mu24ormu27",
-                                    "mc_trigger_sf": "Trg_IsoMu27_or_IsoMu24_pt_eta_bins",
-                                    "mc_muon_trg_extrapolation": 0.98,
-                                },
-                            ],
-                            "2016postVFP": [
-                                {
-                                    "flagname": "trg_wgt_single_mu22",
-                                    "mc_trigger_sf": "Trg_pt_eta_bins",
-                                    "mc_muon_trg_extrapolation": 0.98,
-                                },
-                            ],
-                            "2016preVFP": [
-                                {
-                                    "flagname": "trg_wgt_single_mu22",
-                                    "mc_trigger_sf": "Trg_pt_eta_bins",
-                                    "mc_muon_trg_extrapolation": 0.98,
                                 },
                             ],
                         }

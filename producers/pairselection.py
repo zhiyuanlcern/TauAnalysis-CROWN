@@ -397,3 +397,19 @@ LVTau2Uncorrected = Producer(
     output=[q.p4_2_uncorrected],
     scopes=["mt", "et", "tt"],
 )
+
+
+DzetaCutFlag = Producer(
+    name="DzetaCutFlag",
+    call="ditau_pairselection::flagCutMin({df}, {output}, {input}, {min_dzeta_cut})",
+    input=[q.pzetamissvis],
+    output=[],
+    scopes=["em"],
+)
+DZetaFilter = Filter(
+    name="DZetaFilter",
+    call='basefunctions::FilterFlagsAny({df}, "DzetaCut", {input})',
+    input=[],
+    scopes=["em"],
+    subproducers=[DzetaCutFlag]
+)
