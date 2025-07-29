@@ -20,15 +20,15 @@ def add_diTauTriggerSetup(configuration: Configuration):
                             "trigger_particle_id": 13,
                             "max_deltaR_triggermatch": 0.4,
                         },
-                        {
-                            "flagname": "trg_single_mu27",
-                            "hlt_path": "HLT_IsoMu27",
-                            "ptcut": 28,
-                            "etacut": 2.5,
-                            "filterbit": 3,
-                            "trigger_particle_id": 13,
-                            "max_deltaR_triggermatch": 0.4,
-                        },
+                        # {
+                        #     "flagname": "trg_single_mu27",
+                        #     "hlt_path": "HLT_IsoMu27",
+                        #     "ptcut": 28,
+                        #     "etacut": 2.5,
+                        #     "filterbit": 3,
+                        #     "trigger_particle_id": 13,
+                        #     "max_deltaR_triggermatch": 0.4,
+                        # },
                     ],
                     "2023BPix": [
                         {
@@ -40,15 +40,15 @@ def add_diTauTriggerSetup(configuration: Configuration):
                             "trigger_particle_id": 13,
                             "max_deltaR_triggermatch": 0.4,
                         },
-                        {
-                            "flagname": "trg_single_mu27",
-                            "hlt_path": "HLT_IsoMu27",
-                            "ptcut": 28,
-                            "etacut": 2.5,
-                            "filterbit": 3,
-                            "trigger_particle_id": 13,
-                            "max_deltaR_triggermatch": 0.4,
-                        },
+                        # {
+                        #     "flagname": "trg_single_mu27",
+                        #     "hlt_path": "HLT_IsoMu27",
+                        #     "ptcut": 28,
+                        #     "etacut": 2.5,
+                        #     "filterbit": 3,
+                        #     "trigger_particle_id": 13,
+                        #     "max_deltaR_triggermatch": 0.4,
+                        # },
                     ],
                     "2022EE": [
                         {
@@ -60,15 +60,15 @@ def add_diTauTriggerSetup(configuration: Configuration):
                             "trigger_particle_id": 13,
                             "max_deltaR_triggermatch": 0.4,
                         },
-                        {
-                            "flagname": "trg_single_mu27",
-                            "hlt_path": "HLT_IsoMu27",
-                            "ptcut": 28,
-                            "etacut": 2.5,
-                            "filterbit": 3,
-                            "trigger_particle_id": 13,
-                            "max_deltaR_triggermatch": 0.4,
-                        },
+                        # {
+                        #     "flagname": "trg_single_mu27",
+                        #     "hlt_path": "HLT_IsoMu27",
+                        #     "ptcut": 28,
+                        #     "etacut": 2.5,
+                        #     "filterbit": 3,
+                        #     "trigger_particle_id": 13,
+                        #     "max_deltaR_triggermatch": 0.4,
+                        # },
                     ],
                     "2022postEE": [
                         {
@@ -80,15 +80,15 @@ def add_diTauTriggerSetup(configuration: Configuration):
                             "trigger_particle_id": 13,
                             "max_deltaR_triggermatch": 0.4,
                         },
-                        {
-                            "flagname": "trg_single_mu27",
-                            "hlt_path": "HLT_IsoMu27",
-                            "ptcut": 28,
-                            "etacut": 2.5,
-                            "filterbit": 3,
-                            "trigger_particle_id": 13,
-                            "max_deltaR_triggermatch": 0.4,
-                        },
+                        # {
+                        #     "flagname": "trg_single_mu27",
+                        #     "hlt_path": "HLT_IsoMu27",
+                        #     "ptcut": 28,
+                        #     "etacut": 2.5,
+                        #     "filterbit": 3,
+                        #     "trigger_particle_id": 13,
+                        #     "max_deltaR_triggermatch": 0.4,
+                        # },
                     ],
                     
                 }
@@ -190,6 +190,9 @@ def add_diTauTriggerSetup(configuration: Configuration):
         {
             "mutau_cross_trigger": EraModifier(
                 {   ##  V12: 0 => TrkIsoVVL, 1 => Iso, 2 => OverlapFilter PFTau, 3 => 1mu, 4 => 2mu, 5 => 1mu-1e, 6 => 1mu-1tau, 7 => 3mu, 8 => 2mu-1e, 9 => 1mu-2e, 10 => 1mu (Mu50), 11 => 1mu (Mu100), 12 => 1mu-1photon for Muon;
+
+                    ##  V12: 0 => LooseChargedIso, 1 => MediumChargedIso, 2 => TightChargedIso, 3 => DeepTau, 4 => TightID OOSC photons, 5 => HPS, 6 => charged iso di-tau, 7 => deeptau di-tau, 8 => e-tau, 9 => mu-tau, 10 => single-tau/tau+MET, 11 => run 2 VBF+ditau, 12 => run 3 VBF+ditau, 13 => run 3 double PF jets + ditau, 14 => di-tau + PFJet, 15 => Displaced Tau, 16 => Monitoring, 17 => regional paths, 18 => L1 seeded paths, 19 => 1 prong tau paths for Tau; 
+
                     ##  V14: 0 => TrkIsoVVL, 1 => Iso, 2 => OverlapFilter PFTau, 3 => 1mu, 4 => 2mu, 5 => 1mu-1e, 6 => 1mu-1tau, 7 => 3mu, 8 => 2mu-1e, 9 => 1mu-2e, 10 => 1mu (Mu50), 11 => 1mu (Mu100), 12 => 1mu-1photon, 13 => 1mu-1tau PNet for Muon;
                     ##  V14: 0 => Loose, 1 => Medium, 2 => Tight, 3 => DeepTau no spec WP, 4 => PNet no specified WP, 5 => ChargedIso, 6 => Dxy, 7 => e-tau inside filter, 8 => mu-tau inside filter, 9 => Single Tau, 10 => VBF DiTau, 11 => di-tau, 12 => e-tau, 13 => mu-tau, 14 => di-tau + PFJet, 15 => e-tau displaced, 16 => mu-tau displaced, 17 => di-tau displaced, 18 => Monitoring, 19 => VBF SingleTau Monitoring, 20 => DiTau+Jet Monitoring, 21 => Monitoring muTau displaced, 22 => OneProng, 23 => DiTau Monitoring, 24 => OverlapFilter, 25 => VBF DiTau monitoring, 26 => SingleTau Monitoring, 27 => MatchL1HLT, 28 => HPS, 29 => single PF-tau inside filter, 30 => VBF SingleTau for Tau;
                     "2023": [
@@ -274,24 +277,24 @@ def add_diTauTriggerSetup(configuration: Configuration):
                             "trigger_particle_id": 11,
                             "max_deltaR_triggermatch": 0.4,
                         },
-                        {
-                            "flagname": "trg_single_ele32",
-                            "hlt_path": "HLT_Ele32_WPTight_Gsf",
-                            "ptcut": 33,
-                            "etacut": 2.1,
-                            "filterbit": 1,
-                            "trigger_particle_id": 11,
-                            "max_deltaR_triggermatch": 0.4,
-                        },
-                        {
-                            "flagname": "trg_single_ele35",
-                            "hlt_path": "HLT_Ele35_WPTight_Gsf",
-                            "ptcut": 36,
-                            "etacut": 2.1,
-                            "filterbit": 1,
-                            "trigger_particle_id": 11,
-                            "max_deltaR_triggermatch": 0.4,
-                        },
+                        # {
+                        #     "flagname": "trg_single_ele32",
+                        #     "hlt_path": "HLT_Ele32_WPTight_Gsf",
+                        #     "ptcut": 33,
+                        #     "etacut": 2.1,
+                        #     "filterbit": 1,
+                        #     "trigger_particle_id": 11,
+                        #     "max_deltaR_triggermatch": 0.4,
+                        # },
+                        # {
+                        #     "flagname": "trg_single_ele35",
+                        #     "hlt_path": "HLT_Ele35_WPTight_Gsf",
+                        #     "ptcut": 36,
+                        #     "etacut": 2.1,
+                        #     "filterbit": 1,
+                        #     "trigger_particle_id": 11,
+                        #     "max_deltaR_triggermatch": 0.4,
+                        # },
                     ],
                     "2023BPix": [
                         {
@@ -303,24 +306,24 @@ def add_diTauTriggerSetup(configuration: Configuration):
                             "trigger_particle_id": 11,
                             "max_deltaR_triggermatch": 0.4,
                         },
-                        {
-                            "flagname": "trg_single_ele32",
-                            "hlt_path": "HLT_Ele32_WPTight_Gsf",
-                            "ptcut": 33,
-                            "etacut": 2.1,
-                            "filterbit": 1,
-                            "trigger_particle_id": 11,
-                            "max_deltaR_triggermatch": 0.4,
-                        },
-                        {
-                            "flagname": "trg_single_ele35",
-                            "hlt_path": "HLT_Ele35_WPTight_Gsf",
-                            "ptcut": 36,
-                            "etacut": 2.1,
-                            "filterbit": 1,
-                            "trigger_particle_id": 11,
-                            "max_deltaR_triggermatch": 0.4,
-                        },
+                        # {
+                        #     "flagname": "trg_single_ele32",
+                        #     "hlt_path": "HLT_Ele32_WPTight_Gsf",
+                        #     "ptcut": 33,
+                        #     "etacut": 2.1,
+                        #     "filterbit": 1,
+                        #     "trigger_particle_id": 11,
+                        #     "max_deltaR_triggermatch": 0.4,
+                        # },
+                        # {
+                        #     "flagname": "trg_single_ele35",
+                        #     "hlt_path": "HLT_Ele35_WPTight_Gsf",
+                        #     "ptcut": 36,
+                        #     "etacut": 2.1,
+                        #     "filterbit": 1,
+                        #     "trigger_particle_id": 11,
+                        #     "max_deltaR_triggermatch": 0.4,
+                        # },
                     ],
                     "2022EE": [
                         {
@@ -332,24 +335,24 @@ def add_diTauTriggerSetup(configuration: Configuration):
                             "trigger_particle_id": 11,
                             "max_deltaR_triggermatch": 0.4,
                         },
-                        {
-                            "flagname": "trg_single_ele32",
-                            "hlt_path": "HLT_Ele32_WPTight_Gsf",
-                            "ptcut": 33,
-                            "etacut": 2.1,
-                            "filterbit": 1,
-                            "trigger_particle_id": 11,
-                            "max_deltaR_triggermatch": 0.4,
-                        },
-                        {
-                            "flagname": "trg_single_ele35",
-                            "hlt_path": "HLT_Ele35_WPTight_Gsf",
-                            "ptcut": 36,
-                            "etacut": 2.1,
-                            "filterbit": 1,
-                            "trigger_particle_id": 11,
-                            "max_deltaR_triggermatch": 0.4,
-                        },
+                        # {
+                        #     "flagname": "trg_single_ele32",
+                        #     "hlt_path": "HLT_Ele32_WPTight_Gsf",
+                        #     "ptcut": 33,
+                        #     "etacut": 2.1,
+                        #     "filterbit": 1,
+                        #     "trigger_particle_id": 11,
+                        #     "max_deltaR_triggermatch": 0.4,
+                        # },
+                        # {
+                        #     "flagname": "trg_single_ele35",
+                        #     "hlt_path": "HLT_Ele35_WPTight_Gsf",
+                        #     "ptcut": 36,
+                        #     "etacut": 2.1,
+                        #     "filterbit": 1,
+                        #     "trigger_particle_id": 11,
+                        #     "max_deltaR_triggermatch": 0.4,
+                        # },
                     ],
                     "2022postEE": [
                         {
@@ -361,24 +364,26 @@ def add_diTauTriggerSetup(configuration: Configuration):
                             "trigger_particle_id": 11,
                             "max_deltaR_triggermatch": 0.4,
                         },
-                        {
-                            "flagname": "trg_single_ele32",
-                            "hlt_path": "HLT_Ele32_WPTight_Gsf",
-                            "ptcut": 33,
-                            "etacut": 2.1,
-                            "filterbit": 1,
-                            "trigger_particle_id": 11,
-                            "max_deltaR_triggermatch": 0.4,
-                        },
-                        {
-                            "flagname": "trg_single_ele35",
-                            "hlt_path": "HLT_Ele35_WPTight_Gsf",
-                            "ptcut": 36,
-                            "etacut": 2.1,
-                            "filterbit": 1,
-                            "trigger_particle_id": 11,
-                            "max_deltaR_triggermatch": 0.4,
-                        },
+
+                        # {
+                        #     "flagname": "trg_single_ele32",
+                        #     "hlt_path": "HLT_Ele32_WPTight_Gsf",
+                        #     "ptcut": 33,
+                        #     "etacut": 2.1,
+                        #     "filterbit": 1,
+                        #     "trigger_particle_id": 11,
+                        #     "max_deltaR_triggermatch": 0.4,
+                        # },
+                        # {
+                        #     "flagname": "trg_single_ele35",
+                        #     "hlt_path": "HLT_Ele35_WPTight_Gsf",
+                        #     "ptcut": 36,
+                        #     "etacut": 2.1,
+                        #     "filterbit": 1,
+                        #     "trigger_particle_id": 11,
+                        #     "max_deltaR_triggermatch": 0.4,
+                        # },
+
                     ],
                     
                 }
@@ -452,7 +457,9 @@ def add_diTauTriggerSetup(configuration: Configuration):
                             "p2_etacut": 2.1,
                             "p1_filterbit": 1,
                             "p1_trigger_particle_id": 11,
+
                             "p2_filterbit": 12,  
+
                             "p2_trigger_particle_id": 15,
                             "max_deltaR_triggermatch": 0.4,
                         },
@@ -486,32 +493,34 @@ def add_diTauTriggerSetup(configuration: Configuration):
                             "max_deltaR_triggermatch": 0.4,
                         },
                         # the non HPS version exists for data only, but add it anyway to have the flag in the ntuple
-                        {
-                            "flagname": "trg_double_tau40_tightiso",
-                            "hlt_path": "HLT_DoubleTightChargedIsoPFTauHPS35_Trk1_eta2p1",
-                            "p1_ptcut": 40,
-                            "p2_ptcut": 40,
-                            "p1_etacut": 2.1,
-                            "p2_etacut": 2.1,
-                            "p1_filterbit": 11,  
-                            "p1_trigger_particle_id": 15,
-                            "p2_filterbit": 11,  
-                            "p2_trigger_particle_id": 15,
-                            "max_deltaR_triggermatch": 0.4,
-                        },
-                        {
-                            "flagname": "trg_double_tau40_mediumiso_tightid",
-                            "hlt_path": "HLT_DoubleMediumChargedIsoPFTauHPS40_Trk1_eta2p1",
-                            "p1_ptcut": 40,
-                            "p2_ptcut": 40,
-                            "p1_etacut": 2.1,
-                            "p2_etacut": 2.1,
-                            "p1_filterbit": 11, 
-                            "p1_trigger_particle_id": 15,
-                            "p2_filterbit": 11,  
-                            "p2_trigger_particle_id": 15,
-                            "max_deltaR_triggermatch": 0.4,
-                        },
+
+                        # {
+                        #     "flagname": "trg_double_tau40_tightiso",
+                        #     "hlt_path": "HLT_DoubleTightChargedIsoPFTauHPS35_Trk1_eta2p1",
+                        #     "p1_ptcut": 40,
+                        #     "p2_ptcut": 40,
+                        #     "p1_etacut": 2.1,
+                        #     "p2_etacut": 2.1,
+                        #     "p1_filterbit": 7,  
+                        #     "p1_trigger_particle_id": 15,
+                        #     "p2_filterbit": 7,  
+                        #     "p2_trigger_particle_id": 15,
+                        #     "max_deltaR_triggermatch": 0.4,
+                        # },
+                        # {
+                        #     "flagname": "trg_double_tau40_mediumiso_tightid",
+                        #     "hlt_path": "HLT_DoubleMediumChargedIsoPFTauHPS40_Trk1_eta2p1",
+                        #     "p1_ptcut": 40,
+                        #     "p2_ptcut": 40,
+                        #     "p1_etacut": 2.1,
+                        #     "p2_etacut": 2.1,
+                        #     "p1_filterbit": 7, 
+                        #     "p1_trigger_particle_id": 15,
+                        #     "p2_filterbit": 7,  
+                        #     "p2_trigger_particle_id": 15,
+                        #     "max_deltaR_triggermatch": 0.4,
+                        # },
+
                         {
                             "flagname": "trg_double_tau30_plusPFjet60",
                             "hlt_path": "HLT_DoubleMediumDeepTauPFTauHPS30_L2NN_eta2p1_PFJet60",
@@ -554,32 +563,34 @@ def add_diTauTriggerSetup(configuration: Configuration):
                             "max_deltaR_triggermatch": 0.4,
                         },
                         # the non HPS version exists for data only, but add it anyway to have the flag in the ntuple
-                        {
-                            "flagname": "trg_double_tau40_tightiso",
-                            "hlt_path": "HLT_DoubleTightChargedIsoPFTauHPS35_Trk1_eta2p1",
-                            "p1_ptcut": 40,
-                            "p2_ptcut": 40,
-                            "p1_etacut": 2.1,
-                            "p2_etacut": 2.1,
-                            "p1_filterbit": 11, 
-                            "p1_trigger_particle_id": 15,
-                            "p2_filterbit": 11,  
-                            "p2_trigger_particle_id": 15,
-                            "max_deltaR_triggermatch": 0.4,
-                        },
-                        {
-                            "flagname": "trg_double_tau40_mediumiso_tightid",
-                            "hlt_path": "HLT_DoubleMediumChargedIsoPFTauHPS40_Trk1_eta2p1",
-                            "p1_ptcut": 40,
-                            "p2_ptcut": 40,
-                            "p1_etacut": 2.1,
-                            "p2_etacut": 2.1,
-                            "p1_filterbit": 11, 
-                            "p1_trigger_particle_id": 15,
-                            "p2_filterbit": 11,  
-                            "p2_trigger_particle_id": 15,
-                            "max_deltaR_triggermatch": 0.4,
-                        },
+
+                        # {
+                        #     "flagname": "trg_double_tau40_tightiso",
+                        #     "hlt_path": "HLT_DoubleTightChargedIsoPFTauHPS35_Trk1_eta2p1",
+                        #     "p1_ptcut": 40,
+                        #     "p2_ptcut": 40,
+                        #     "p1_etacut": 2.1,
+                        #     "p2_etacut": 2.1,
+                        #     "p1_filterbit": 7, 
+                        #     "p1_trigger_particle_id": 15,
+                        #     "p2_filterbit": 7,  
+                        #     "p2_trigger_particle_id": 15,
+                        #     "max_deltaR_triggermatch": 0.4,
+                        # },
+                        # {
+                        #     "flagname": "trg_double_tau40_mediumiso_tightid",
+                        #     "hlt_path": "HLT_DoubleMediumChargedIsoPFTauHPS40_Trk1_eta2p1",
+                        #     "p1_ptcut": 40,
+                        #     "p2_ptcut": 40,
+                        #     "p1_etacut": 2.1,
+                        #     "p2_etacut": 2.1,
+                        #     "p1_filterbit": 7, 
+                        #     "p1_trigger_particle_id": 15,
+                        #     "p2_filterbit": 7,  
+                        #     "p2_trigger_particle_id": 15,
+                        #     "max_deltaR_triggermatch": 0.4,
+                        # },
+
                         {
                             "flagname": "trg_double_tau30_plusPFjet60",
                             "hlt_path": "HLT_DoubleMediumDeepTauPFTauHPS30_L2NN_eta2p1_PFJet60",
@@ -622,32 +633,34 @@ def add_diTauTriggerSetup(configuration: Configuration):
                             "max_deltaR_triggermatch": 0.4,
                         },
                         # the non HPS version exists for data only, but add it anyway to have the flag in the ntuple
-                        {
-                            "flagname": "trg_double_tau40_tightiso",
-                            "hlt_path": "HLT_DoubleTightChargedIsoPFTauHPS35_Trk1_eta2p1",
-                            "p1_ptcut": 40,
-                            "p2_ptcut": 40,
-                            "p1_etacut": 2.1,
-                            "p2_etacut": 2.1,
-                            "p1_filterbit": 11,  
-                            "p1_trigger_particle_id": 15,
-                            "p2_filterbit": 11,  
-                            "p2_trigger_particle_id": 15,
-                            "max_deltaR_triggermatch": 0.4,
-                        },
-                        {
-                            "flagname": "trg_double_tau40_mediumiso_tightid",
-                            "hlt_path": "HLT_DoubleMediumChargedIsoPFTauHPS40_Trk1_eta2p1",
-                            "p1_ptcut": 40,
-                            "p2_ptcut": 40,
-                            "p1_etacut": 2.1,
-                            "p2_etacut": 2.1,
-                            "p1_filterbit": 11, 
-                            "p1_trigger_particle_id": 15,
-                            "p2_filterbit": 11,  
-                            "p2_trigger_particle_id": 15,
-                            "max_deltaR_triggermatch": 0.4,
-                        },
+
+                        # {
+                        #     "flagname": "trg_double_tau40_tightiso",
+                        #     "hlt_path": "HLT_DoubleTightChargedIsoPFTauHPS35_Trk1_eta2p1",
+                        #     "p1_ptcut": 40,
+                        #     "p2_ptcut": 40,
+                        #     "p1_etacut": 2.1,
+                        #     "p2_etacut": 2.1,
+                        #     "p1_filterbit": 7,  
+                        #     "p1_trigger_particle_id": 15,
+                        #     "p2_filterbit": 7,  
+                        #     "p2_trigger_particle_id": 15,
+                        #     "max_deltaR_triggermatch": 0.4,
+                        # },
+                        # {
+                        #     "flagname": "trg_double_tau40_mediumiso_tightid",
+                        #     "hlt_path": "HLT_DoubleMediumChargedIsoPFTauHPS40_Trk1_eta2p1",
+                        #     "p1_ptcut": 40,
+                        #     "p2_ptcut": 40,
+                        #     "p1_etacut": 2.1,
+                        #     "p2_etacut": 2.1,
+                        #     "p1_filterbit": 7, 
+                        #     "p1_trigger_particle_id": 15,
+                        #     "p2_filterbit": 7,  
+                        #     "p2_trigger_particle_id": 15,
+                        #     "max_deltaR_triggermatch": 0.4,
+                        # },
+
                         {
                             "flagname": "trg_double_tau30_plusPFjet60",
                             "hlt_path": "HLT_DoubleMediumDeepTauPFTauHPS30_L2NN_eta2p1_PFJet60",
@@ -690,32 +703,34 @@ def add_diTauTriggerSetup(configuration: Configuration):
                             "max_deltaR_triggermatch": 0.4,
                         },
                         # the non HPS version exists for data only, but add it anyway to have the flag in the ntuple
-                        {
-                            "flagname": "trg_double_tau40_tightiso",
-                            "hlt_path": "HLT_DoubleTightChargedIsoPFTauHPS35_Trk1_eta2p1",
-                            "p1_ptcut": 40,
-                            "p2_ptcut": 40,
-                            "p1_etacut": 2.1,
-                            "p2_etacut": 2.1,
-                            "p1_filterbit": 11, 
-                            "p1_trigger_particle_id": 15,
-                            "p2_filterbit": 11,  
-                            "p2_trigger_particle_id": 15,
-                            "max_deltaR_triggermatch": 0.4,
-                        },
-                        {
-                            "flagname": "trg_double_tau40_mediumiso_tightid",
-                            "hlt_path": "HLT_DoubleMediumChargedIsoPFTauHPS40_Trk1_eta2p1",
-                            "p1_ptcut": 40,
-                            "p2_ptcut": 40,
-                            "p1_etacut": 2.1,
-                            "p2_etacut": 2.1,
-                            "p1_filterbit": 11, 
-                            "p1_trigger_particle_id": 15,
-                            "p2_filterbit": 11,  
-                            "p2_trigger_particle_id": 15,
-                            "max_deltaR_triggermatch": 0.4,
-                        },
+
+                        # {
+                        #     "flagname": "trg_double_tau40_tightiso",
+                        #     "hlt_path": "HLT_DoubleTightChargedIsoPFTauHPS35_Trk1_eta2p1",
+                        #     "p1_ptcut": 40,
+                        #     "p2_ptcut": 40,
+                        #     "p1_etacut": 2.1,
+                        #     "p2_etacut": 2.1,
+                        #     "p1_filterbit": 7, 
+                        #     "p1_trigger_particle_id": 15,
+                        #     "p2_filterbit": 7,  
+                        #     "p2_trigger_particle_id": 15,
+                        #     "max_deltaR_triggermatch": 0.4,
+                        # },
+                        # {
+                        #     "flagname": "trg_double_tau40_mediumiso_tightid",
+                        #     "hlt_path": "HLT_DoubleMediumChargedIsoPFTauHPS40_Trk1_eta2p1",
+                        #     "p1_ptcut": 40,
+                        #     "p2_ptcut": 40,
+                        #     "p1_etacut": 2.1,
+                        #     "p2_etacut": 2.1,
+                        #     "p1_filterbit": 7, 
+                        #     "p1_trigger_particle_id": 15,
+                        #     "p2_filterbit": 7,  
+                        #     "p2_trigger_particle_id": 15,
+                        #     "max_deltaR_triggermatch": 0.4,
+                        # },
+
                         {
                             "flagname": "trg_double_tau30_plusPFjet60",
                             "hlt_path": "HLT_DoubleMediumDeepTauPFTauHPS30_L2NN_eta2p1_PFJet60",
@@ -759,6 +774,7 @@ def add_diTauTriggerSetup(configuration: Configuration):
                     ##  V12: 0 => TrkIsoVVL, 1 => Iso, 2 => OverlapFilter PFTau, 3 => 1mu, 4 => 2mu, 5 => 1mu-1e, 6 => 1mu-1tau, 7 => 3mu, 8 => 2mu-1e, 9 => 1mu-2e, 10 => 1mu (Mu50), 11 => 1mu (Mu100), 12 => 1mu-1photon for Muon;
                     ##  V14: 0 => TrkIsoVVL, 1 => Iso, 2 => OverlapFilter PFTau, 3 => 1mu, 4 => 2mu, 5 => 1mu-1e, 6 => 1mu-1tau, 7 => 3mu, 8 => 2mu-1e, 9 => 1mu-2e, 10 => 1mu (Mu50), 11 => 1mu (Mu100), 12 => 1mu-1photon, 13 => 1mu-1tau PNet for Muon;
                     "2023": [
+
                         {
                             "flagname": "trg_cross_mu23ele12",
                             "hlt_path": "HLT_Mu23_TrkIsoVVL_Ele12_CaloIdL_TrackIdL_IsoVL_DZ",
@@ -787,6 +803,7 @@ def add_diTauTriggerSetup(configuration: Configuration):
                         },
                     ],
                     "2023BPix": [
+
                         {
                             "flagname": "trg_cross_mu23ele12",
                             "hlt_path": "HLT_Mu23_TrkIsoVVL_Ele12_CaloIdL_TrackIdL_IsoVL_DZ",
@@ -814,7 +831,9 @@ def add_diTauTriggerSetup(configuration: Configuration):
                             "max_deltaR_triggermatch": 0.4,
                         },
                     ],
+
                     "2022EE": [
+
                         {
                             "flagname": "trg_cross_mu23ele12",
                             "hlt_path": "HLT_Mu23_TrkIsoVVL_Ele12_CaloIdL_TrackIdL_IsoVL_DZ",
@@ -842,11 +861,14 @@ def add_diTauTriggerSetup(configuration: Configuration):
                             "max_deltaR_triggermatch": 0.4,
                         },
                     ],
+
                     "2022postEE": [
+
                         {
                             "flagname": "trg_cross_mu23ele12",
                             "hlt_path": "HLT_Mu23_TrkIsoVVL_Ele12_CaloIdL_TrackIdL_IsoVL_DZ",
                             "p1_ptcut": 12,
+
                             "p1_etacut": 2.1,
                             "p1_filterbit": 6,
                             "p1_trigger_particle_id": 11,
@@ -892,15 +914,15 @@ def add_diTauTriggerSetup(configuration: Configuration):
                             "trigger_particle_id": 15,
                             "max_deltaR_triggermatch": 0.4,
                         },
-                        {
-                            "flagname": "trg_single_deeptau180_1",
-                            "hlt_path": "HLT_LooseDeepTauPFTauHPS180_L2NN_eta2p1",
-                            "ptcut": 180,
-                            "etacut": 2.1,
-                            "filterbit": 3,
-                            "trigger_particle_id": 15,
-                            "max_deltaR_triggermatch": 0.4,
-                        }
+                        # {
+                        #     "flagname": "trg_single_deeptau180_1",
+                        #     "hlt_path": "HLT_LooseDeepTauPFTauHPS180_L2NN_eta2p1",
+                        #     "ptcut": 180,
+                        #     "etacut": 2.1,
+                        #     "filterbit": 3,
+                        #     "trigger_particle_id": 15,
+                        #     "max_deltaR_triggermatch": 0.4,
+                        # }
                         
                     ],
                     "2023BPix": [
@@ -913,15 +935,15 @@ def add_diTauTriggerSetup(configuration: Configuration):
                             "trigger_particle_id": 15,
                             "max_deltaR_triggermatch": 0.4,
                         },
-                        {
-                            "flagname": "trg_single_deeptau180_1",
-                            "hlt_path": "HLT_LooseDeepTauPFTauHPS180_L2NN_eta2p1",
-                            "ptcut": 180,
-                            "etacut": 2.1,
-                            "filterbit": 3,
-                            "trigger_particle_id": 15,
-                            "max_deltaR_triggermatch": 0.4,
-                        }
+                        # {
+                        #     "flagname": "trg_single_deeptau180_1",
+                        #     "hlt_path": "HLT_LooseDeepTauPFTauHPS180_L2NN_eta2p1",
+                        #     "ptcut": 180,
+                        #     "etacut": 2.1,
+                        #     "filterbit": 3,
+                        #     "trigger_particle_id": 15,
+                        #     "max_deltaR_triggermatch": 0.4,
+                        # }
                     ],
                     "2022EE": [
                         {
@@ -933,15 +955,15 @@ def add_diTauTriggerSetup(configuration: Configuration):
                             "trigger_particle_id": 15,
                             "max_deltaR_triggermatch": 0.4,
                         },
-                        {
-                            "flagname": "trg_single_deeptau180_1",
-                            "hlt_path": "HLT_LooseDeepTauPFTauHPS180_L2NN_eta2p1",
-                            "ptcut": 180,
-                            "etacut": 2.1,
-                            "filterbit": 3,
-                            "trigger_particle_id": 15,
-                            "max_deltaR_triggermatch": 0.4,
-                        }
+                        # {
+                        #     "flagname": "trg_single_deeptau180_1",
+                        #     "hlt_path": "HLT_LooseDeepTauPFTauHPS180_L2NN_eta2p1",
+                        #     "ptcut": 180,
+                        #     "etacut": 2.1,
+                        #     "filterbit": 3,
+                        #     "trigger_particle_id": 15,
+                        #     "max_deltaR_triggermatch": 0.4,
+                        # }
                         
                     ],
                     "2022postEE": [
@@ -954,6 +976,7 @@ def add_diTauTriggerSetup(configuration: Configuration):
                             "trigger_particle_id": 15,
                             "max_deltaR_triggermatch": 0.4,
                         },
+
                         {
                             "flagname": "trg_single_deeptau180_1",
                             "hlt_path": "HLT_LooseDeepTauPFTauHPS180_L2NN_eta2p1",
@@ -963,6 +986,7 @@ def add_diTauTriggerSetup(configuration: Configuration):
                             "trigger_particle_id": 15,
                             "max_deltaR_triggermatch": 0.4,
                         }
+
                     ],
                     
                 }
@@ -987,15 +1011,15 @@ def add_diTauTriggerSetup(configuration: Configuration):
                             "trigger_particle_id": 15,
                             "max_deltaR_triggermatch": 0.4,
                         },
-                        {
-                            "flagname": "trg_single_deeptau180_2",
-                            "hlt_path": "HLT_LooseDeepTauPFTauHPS180_L2NN_eta2p1",
-                            "ptcut": 180,
-                            "etacut": 2.1,
-                            "filterbit": 3,
-                            "trigger_particle_id": 15,
-                            "max_deltaR_triggermatch": 0.4,
-                        }
+                        # {
+                        #     "flagname": "trg_single_deeptau180_2",
+                        #     "hlt_path": "HLT_LooseDeepTauPFTauHPS180_L2NN_eta2p1",
+                        #     "ptcut": 180,
+                        #     "etacut": 2.1,
+                        #     "filterbit": 3,
+                        #     "trigger_particle_id": 15,
+                        #     "max_deltaR_triggermatch": 0.4,
+                        # }
                     ],
                     "2023BPix": [
                         {
@@ -1007,15 +1031,15 @@ def add_diTauTriggerSetup(configuration: Configuration):
                             "trigger_particle_id": 15,
                             "max_deltaR_triggermatch": 0.4,
                         },
-                        {
-                            "flagname": "trg_single_deeptau180_2",
-                            "hlt_path": "HLT_LooseDeepTauPFTauHPS180_L2NN_eta2p1",
-                            "ptcut": 180,
-                            "etacut": 2.1,
-                            "filterbit": 3,
-                            "trigger_particle_id": 15,
-                            "max_deltaR_triggermatch": 0.4,
-                        }
+                        # {
+                        #     "flagname": "trg_single_deeptau180_2",
+                        #     "hlt_path": "HLT_LooseDeepTauPFTauHPS180_L2NN_eta2p1",
+                        #     "ptcut": 180,
+                        #     "etacut": 2.1,
+                        #     "filterbit": 3,
+                        #     "trigger_particle_id": 15,
+                        #     "max_deltaR_triggermatch": 0.4,
+                        # }
                     ],
                     "2022EE": [
                         {
@@ -1027,15 +1051,15 @@ def add_diTauTriggerSetup(configuration: Configuration):
                             "trigger_particle_id": 15,
                             "max_deltaR_triggermatch": 0.4,
                         },
-                        {
-                            "flagname": "trg_single_deeptau180_2",
-                            "hlt_path": "HLT_LooseDeepTauPFTauHPS180_L2NN_eta2p1",
-                            "ptcut": 180,
-                            "etacut": 2.1,
-                            "filterbit": 3,
-                            "trigger_particle_id": 15,
-                            "max_deltaR_triggermatch": 0.4,
-                        }
+                        # {
+                        #     "flagname": "trg_single_deeptau180_2",
+                        #     "hlt_path": "HLT_LooseDeepTauPFTauHPS180_L2NN_eta2p1",
+                        #     "ptcut": 180,
+                        #     "etacut": 2.1,
+                        #     "filterbit": 3,
+                        #     "trigger_particle_id": 15,
+                        #     "max_deltaR_triggermatch": 0.4,
+                        # }
                     ],
                     "2022postEE": [
                         {
@@ -1047,6 +1071,7 @@ def add_diTauTriggerSetup(configuration: Configuration):
                             "trigger_particle_id": 15,
                             "max_deltaR_triggermatch": 0.4,
                         },
+
                         {
                             "flagname": "trg_single_deeptau180_2",
                             "hlt_path": "HLT_LooseDeepTauPFTauHPS180_L2NN_eta2p1",
@@ -1056,6 +1081,7 @@ def add_diTauTriggerSetup(configuration: Configuration):
                             "trigger_particle_id": 15,
                             "max_deltaR_triggermatch": 0.4,
                         }
+
                     ],
                     
                 }
