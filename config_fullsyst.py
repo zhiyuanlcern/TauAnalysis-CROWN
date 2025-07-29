@@ -483,7 +483,7 @@ def build_config(
             "min_tau_pt": 30.0, # use AN definition
             "max_tau_eta": 2.5,
             "max_tau_dz": 0.2,
-            "vsjet_tau_id_bit": 5,#"VVVLoose": 1,"VVLoose": 2,"VLoose": 3,"Loose": 4,"Medium": 5,"Tight": 6,
+            "vsjet_tau_id_bit": 1,#"VVVLoose": 1,"VVLoose": 2,"VLoose": 3,"Loose": 4,"Medium": 5,"Tight": 6,
             "vsele_tau_id_bit": 2,# "VVLoose": 2,"VLoose": 3,"Loose": 4,"Medium": 5,"Tight": 6,
             "vsmu_tau_id_bit": 1, #"VLoose": 1,"Loose": 2,"Medium": 3,"Tight": 4,
         },
@@ -647,10 +647,16 @@ def build_config(
                     "2016postVFP": "data/recoil_corrections/Type1_PuppiMET_2016.root",  # These are likely from Legacy data sets, therefore no difference in pre and postVFP
                     "2017": "data/recoil_corrections/Type1_PuppiMET_2017.root",
                     "2018": "data/recoil_corrections/Type1_PuppiMET_2018.root",
-                    "2022EE": "data/jsonpog-integration/hleprare/DYandRecoilCorrlib/DY_pTll_recoil_corrections_2022preEE_v2.json.gz", 
-                    "2022postEE": "data/jsonpog-integration/hleprare/DYandRecoilCorrlib/DY_pTll_recoil_corrections_2022postEE_v2.json.gz",
-                    "2023": "data/jsonpog-integration/hleprare/DYandRecoilCorrlib/DY_pTll_recoil_corrections_2023preBPix_v2.json.gz", 
-                    "2023BPix": "data/jsonpog-integration/hleprare/DYandRecoilCorrlib/DY_pTll_recoil_corrections_2023postBPix_v2.json.gz", 
+                    # "2022EE": "data/jsonpog-integration/hleprare/DYandRecoilCorrlib/DY_pTll_recoil_corrections_2022preEE_v2.json.gz", 
+                    # "2022postEE": "data/jsonpog-integration/hleprare/DYandRecoilCorrlib/DY_pTll_recoil_corrections_2022postEE_v2.json.gz",
+                    # "2022EE": "data/jsonpog-integration/hleprare/DYandRecoilCorrlib/DY_pTll_recoil_corrections_2022preEE_v2.json_tmp.gz", 
+                    # "2022postEE": "data/jsonpog-integration/hleprare/DYandRecoilCorrlib/DY_pTll_recoil_corrections_2022postEE_v2.json_tmp.gz",
+                    # "2023": "data/jsonpog-integration/hleprare/DYandRecoilCorrlib/DY_pTll_recoil_corrections_2023preBPix_v2.json_tmp.gz", 
+                    # "2023BPix": "data/jsonpog-integration/hleprare/DYandRecoilCorrlib/DY_pTll_recoil_corrections_2023postBPix_v2.json_tmp.gz", 
+                    "2022EE": "data/jsonpog-integration/hleprare/DYandRecoilCorrlib/DY_pTll_recoil_corrections_2022preEE_v3.json.gz", 
+                    "2022postEE": "data/jsonpog-integration/hleprare/DYandRecoilCorrlib/DY_pTll_recoil_corrections_2022postEE_v3.json.gz",
+                    "2023": "data/jsonpog-integration/hleprare/DYandRecoilCorrlib/DY_pTll_recoil_corrections_2023preBPix_v3.json.gz", 
+                    "2023BPix": "data/jsonpog-integration/hleprare/DYandRecoilCorrlib/DY_pTll_recoil_corrections_2023postBPix_v3.json.gz", 
                 }
             ),
             # not used at all 
@@ -681,7 +687,11 @@ def build_config(
             #     default=False,
             # ),
             ### no MET recoil recommendation for 2022 yet 
-            "applyRecoilCorrections": False,           
+            
+            "applyRecoilCorrections": SampleModifier(
+                {"data": False},
+                default=True,
+            ),     
             "apply_recoil_resolution_systematic": False,
             "apply_recoil_response_systematic": False,
             "recoil_systematic_shift_up": False,
@@ -1030,7 +1040,7 @@ def build_config(
         )
     # common
     configuration.add_producers(
-        scopes,
+        ["em",  "mm", "mt", "et", "tt"],
         [
             jets.JetCollection,
             jets.BasicJetQuantities,
@@ -1204,6 +1214,16 @@ def build_config(
             triggers.EMGenerateSingleMuonTriggerFlags,
             triggers.EMGenerateCrossTriggerFlags,
         ],
+    )
+    configuration.add_modification_rule(
+        ["mm"],
+        RemoveProducer(
+            producers=[
+                pairquantities.DiTauPairboostQuantities,  ## not working for mm + no need to run currently
+                pairquantities.DiTauPairNNQuantities,    ## not working for mm + no need to run currently
+            ],
+            samples=["data", "dyjets", "ttbar","diboson", "singletop", "wjets"],
+        ),
     )
     configuration.add_modification_rule(
         ["et", "mt"],
@@ -1494,12 +1514,12 @@ def build_config(
             q.phi_2,
             q.njets,
             q.nprebjets,
-            # q.jpt_1,
-            # q.jpt_2,
-            # q.jeta_1,
-            # q.jeta_2,
-            # q.jphi_1,
-            # q.jphi_2,
+            q.jpt_1,
+            q.jpt_2,
+            q.jeta_1,
+            q.jeta_2,
+            q.jphi_1,
+            q.jphi_2,
             # q.jtag_value_1,
             # q.jtag_value_2,
             # q.mjj,
@@ -1682,6 +1702,7 @@ def build_config(
             q.tau_decaymode_1,
             q.tau_decaymode_2,
             q.id_wgt_mu_2,
+            q.iso_wgt_mu_2,
             q.id_wgt_ele_wpTight,
         ],
     )
@@ -1955,95 +1976,95 @@ def build_config(
     #########################
     # MET Recoil Shifts
     #########################
-    # configuration.add_shift(
-    #     SystematicShift(
-    #         name="metRecoilResponseUp",
-    #         shift_config={
-    #             ("et", "mt", "tt", "em", "ee", "mm"): {
-    #                 "apply_recoil_resolution_systematic": False,
-    #                 "apply_recoil_response_systematic": True,
-    #                 "recoil_systematic_shift_up": True,
-    #                 "recoil_systematic_shift_down": False,
-    #             },
-    #         },
-    #         producers={
-    #             ("et", "mt", "tt", "em", "ee", "mm"): met.ApplyRecoilCorrections
-    #         },
-    #     ),
-    #     samples=[
-    #         sample
-    #         for sample in available_sample_types
-    #         if sample
-    #         not in [
-    #             "data",
-    #             "embedding",
-    #             "embedding_mc",
-    #         ]  # ToDo: Is this really necessary for all samples?
-    #     ],
-    # )
-    # configuration.add_shift(
-    #     SystematicShift(
-    #         name="metRecoilResponseDown",
-    #         shift_config={
-    #             ("et", "mt", "tt", "em", "ee", "mm"): {
-    #                 "apply_recoil_resolution_systematic": False,
-    #                 "apply_recoil_response_systematic": True,
-    #                 "recoil_systematic_shift_up": False,
-    #                 "recoil_systematic_shift_down": True,
-    #             },
-    #         },
-    #         producers={
-    #             ("et", "mt", "tt", "em", "ee", "mm"): met.ApplyRecoilCorrections
-    #         },
-    #     ),
-    #     samples=[
-    #         sample
-    #         for sample in available_sample_types
-    #         if sample not in ["data", "embedding", "embedding_mc"]
-    #     ],
-    # )
-    # configuration.add_shift(
-    #     SystematicShift(
-    #         name="metRecoilResolutionUp",
-    #         shift_config={
-    #             ("et", "mt", "tt", "em", "ee", "mm"): {
-    #                 "apply_recoil_resolution_systematic": True,
-    #                 "apply_recoil_response_systematic": False,
-    #                 "recoil_systematic_shift_up": True,
-    #                 "recoil_systematic_shift_down": False,
-    #             },
-    #         },
-    #         producers={
-    #             ("et", "mt", "tt", "em", "ee", "mm"): met.ApplyRecoilCorrections
-    #         },
-    #     ),
-    #     samples=[
-    #         sample
-    #         for sample in available_sample_types
-    #         if sample not in ["data", "embedding", "embedding_mc"]
-    #     ],
-    # )
-    # configuration.add_shift(
-    #     SystematicShift(
-    #         name="metRecoilResolutionDown",
-    #         shift_config={
-    #             ("et", "mt", "tt", "em", "ee", "mm"): {
-    #                 "apply_recoil_resolution_systematic": True,
-    #                 "apply_recoil_response_systematic": False,
-    #                 "recoil_systematic_shift_up": False,
-    #                 "recoil_systematic_shift_down": True,
-    #             },
-    #         },
-    #         producers={
-    #             ("et", "mt", "tt", "em", "ee", "mm"): met.ApplyRecoilCorrections
-    #         },
-    #     ),
-    #     samples=[
-    #         sample
-    #         for sample in available_sample_types
-    #         if sample not in ["data", "embedding", "embedding_mc"]
-    #     ],
-    # )
+    configuration.add_shift(
+        SystematicShift(
+            name="metRecoilResponseUp",
+            shift_config={
+                ("et", "mt", "tt", "em", "ee", "mm"): {
+                    "apply_recoil_resolution_systematic": False,
+                    "apply_recoil_response_systematic": True,
+                    "recoil_systematic_shift_up": True,
+                    "recoil_systematic_shift_down": False,
+                },
+            },
+            producers={
+                ("et", "mt", "tt", "em", "ee", "mm"): met.ApplyRecoilCorrections
+            },
+        ),
+        samples=[
+            sample
+            for sample in available_sample_types
+            if sample
+            not in [
+                "data",
+                "embedding",
+                "embedding_mc",
+            ]  # ToDo: Is this really necessary for all samples?
+        ],
+    )
+    configuration.add_shift(
+        SystematicShift(
+            name="metRecoilResponseDown",
+            shift_config={
+                ("et", "mt", "tt", "em", "ee", "mm"): {
+                    "apply_recoil_resolution_systematic": False,
+                    "apply_recoil_response_systematic": True,
+                    "recoil_systematic_shift_up": False,
+                    "recoil_systematic_shift_down": True,
+                },
+            },
+            producers={
+                ("et", "mt", "tt", "em", "ee", "mm"): met.ApplyRecoilCorrections
+            },
+        ),
+        samples=[
+            sample
+            for sample in available_sample_types
+            if sample not in ["data", "embedding", "embedding_mc"]
+        ],
+    )
+    configuration.add_shift(
+        SystematicShift(
+            name="metRecoilResolutionUp",
+            shift_config={
+                ("et", "mt", "tt", "em", "ee", "mm"): {
+                    "apply_recoil_resolution_systematic": True,
+                    "apply_recoil_response_systematic": False,
+                    "recoil_systematic_shift_up": True,
+                    "recoil_systematic_shift_down": False,
+                },
+            },
+            producers={
+                ("et", "mt", "tt", "em", "ee", "mm"): met.ApplyRecoilCorrections
+            },
+        ),
+        samples=[
+            sample
+            for sample in available_sample_types
+            if sample not in ["data", "embedding", "embedding_mc"]
+        ],
+    )
+    configuration.add_shift(
+        SystematicShift(
+            name="metRecoilResolutionDown",
+            shift_config={
+                ("et", "mt", "tt", "em", "ee", "mm"): {
+                    "apply_recoil_resolution_systematic": True,
+                    "apply_recoil_response_systematic": False,
+                    "recoil_systematic_shift_up": False,
+                    "recoil_systematic_shift_down": True,
+                },
+            },
+            producers={
+                ("et", "mt", "tt", "em", "ee", "mm"): met.ApplyRecoilCorrections
+            },
+        ),
+        samples=[
+            sample
+            for sample in available_sample_types
+            if sample not in ["data", "embedding", "embedding_mc"]
+        ],
+    )
     #########################
     # Pileup Shifts
     #########################

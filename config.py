@@ -483,7 +483,7 @@ def build_config(
             "min_tau_pt": 30.0, # use AN definition
             "max_tau_eta": 2.5,
             "max_tau_dz": 0.2,
-            "vsjet_tau_id_bit": 1,#"VVVLoose": 1,"VVLoose": 2,"VLoose": 3,"Loose": 4,"Medium": 5,"Tight": 6,
+            "vsjet_tau_id_bit": 5,#"VVVLoose": 1,"VVLoose": 2,"VLoose": 3,"Loose": 4,"Medium": 5,"Tight": 6,
             "vsele_tau_id_bit": 2,# "VVLoose": 2,"VLoose": 3,"Loose": 4,"Medium": 5,"Tight": 6,
             "vsmu_tau_id_bit": 1, #"VLoose": 1,"Loose": 2,"Medium": 3,"Tight": 4,
         },
@@ -495,7 +495,7 @@ def build_config(
             "min_tau_pt": 35.0,
             "max_tau_eta": 2.5,
             "max_tau_dz": 0.2,
-            "vsjet_tau_id_bit": 1,
+            "vsjet_tau_id_bit": 5,
             "vsele_tau_id_bit": 2,
             "vsmu_tau_id_bit": 1,
         },
@@ -646,10 +646,12 @@ def build_config(
                     "2016postVFP": "data/recoil_corrections/Type1_PuppiMET_2016.root",  # These are likely from Legacy data sets, therefore no difference in pre and postVFP
                     "2017": "data/recoil_corrections/Type1_PuppiMET_2017.root",
                     "2018": "data/recoil_corrections/Type1_PuppiMET_2018.root",
-                    "2022EE": "data/jsonpog-integration/hleprare/DYandRecoilCorrlib/DY_pTll_recoil_corrections_2022preEE_v2.json.gz", 
-                    "2022postEE": "data/jsonpog-integration/hleprare/DYandRecoilCorrlib/DY_pTll_recoil_corrections_2022postEE_v2.json.gz",
-                    "2023": "data/jsonpog-integration/hleprare/DYandRecoilCorrlib/DY_pTll_recoil_corrections_2023preBPix_v2.json.gz", 
-                    "2023BPix": "data/jsonpog-integration/hleprare/DYandRecoilCorrlib/DY_pTll_recoil_corrections_2023postBPix_v2.json.gz", 
+                    # "2022EE": "data/jsonpog-integration/hleprare/DYandRecoilCorrlib/DY_pTll_recoil_corrections_2022preEE_v2.json.gz", 
+                    # "2022postEE": "data/jsonpog-integration/hleprare/DYandRecoilCorrlib/DY_pTll_recoil_corrections_2022postEE_v2.json.gz",
+                    "2022EE": "data/jsonpog-integration/hleprare/DYandRecoilCorrlib/DY_pTll_recoil_corrections_2022preEE_v3.json.gz", 
+                    "2022postEE": "data/jsonpog-integration/hleprare/DYandRecoilCorrlib/DY_pTll_recoil_corrections_2022postEE_v3.json.gz",
+                    "2023": "data/jsonpog-integration/hleprare/DYandRecoilCorrlib/DY_pTll_recoil_corrections_2023preBPix_v3.json.gz", 
+                    "2023BPix": "data/jsonpog-integration/hleprare/DYandRecoilCorrlib/DY_pTll_recoil_corrections_2023postBPix_v3.json.gz", 
                 }
             ),
             # not used at all 
@@ -680,7 +682,7 @@ def build_config(
             #     default=False,
             # ),
             ### no MET recoil recommendation for 2022 yet 
-            "applyRecoilCorrections": False,           
+            "applyRecoilCorrections": True,           
             "apply_recoil_resolution_systematic": False,
             "apply_recoil_response_systematic": False,
             "recoil_systematic_shift_up": False,
