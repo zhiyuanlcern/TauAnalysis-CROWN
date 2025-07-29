@@ -108,18 +108,18 @@ LHEScaleWeight = NanoAODQuantity("LHEScaleWeight")
 
 ## MET quantities
 ## TODO Swich to Puppi versions for METCOV and Signifiance as soon as they are in the nanoAOD
-MET_covXX = NanoAODQuantity("MET_covXX")
-MET_covXY = NanoAODQuantity("MET_covXY")
-MET_covYY = NanoAODQuantity("MET_covYY")
-MET_significance = NanoAODQuantity("MET_significance")
+MET_covXX = NanoAODQuantity("PuppiMET_covXX")
+MET_covXY = NanoAODQuantity("PuppiMET_covXY")
+MET_covYY = NanoAODQuantity("PuppiMET_covYY")
+MET_significance = NanoAODQuantity("PuppiMET_significance")
 
 MET_phi = NanoAODQuantity("PuppiMET_phi")
 MET_pt = NanoAODQuantity("PuppiMET_pt")
 MET_sumEt = NanoAODQuantity("PuppiMET_sumEt")
 
-PFMET_phi = NanoAODQuantity("MET_phi")
-PFMET_pt = NanoAODQuantity("MET_pt")
-PFMET_sumEt = NanoAODQuantity("MET_sumEt")
+PFMET_phi = NanoAODQuantity("PFMET_phi")
+PFMET_pt = NanoAODQuantity("PFMET_pt")
+PFMET_sumEt = NanoAODQuantity("PFMET_sumEt")
 
 ## Embedding Quantities
 genWeight = NanoAODQuantity("genWeight")
