@@ -123,6 +123,19 @@ def build_config(
                     "2023BPix": "data/jsonpog-integration/POG/TAU/2023/tau_DeepTau2018v2p5_2023postBPix.json.gz", 
                 }
             ),
+            "tau_ES_sf_file":  ## tau ES corrections are in the same file as tau ID
+                EraModifier(
+                {
+                    "2016preVFP": "data/jsonpog-integration/POG/TAU/2016preVFP_UL/tau.json.gz",
+                    "2016postVFP": "data/jsonpog-integration/POG/TAU/2016postVFP_UL/tau.json.gz",
+                    "2017": "data/jsonpog-integration/POG/TAU/2017_UL/tau.json.gz",
+                    "2018": "data/jsonpog-integration/POG/TAU/2018_UL/tau.json.gz",
+                    "2022EE": "data/jsonpog-integration/POG/TAU/2022_preEE/tau_DeepTau2018v2p5_2022_preEE.json.gz",  ## source : https://gitlab.cern.ch/cms-tau-pog/jsonpog-integration/-/tree/TauPOG_v2_deepTauV2p5/POG/TAU?ref_type=heads
+                    "2022postEE": "data/jsonpog-integration/POG/TAU/2022_postEE/tau_DeepTau2018v2p5_2022_postEE.json.gz", ## October 17: Update to new 2022 Tau SF files, old ones are in /data/jsonpog-integration/POG/TAU/bkp
+                    "2023": "data/jsonpog-integration/POG/TAU/2023/tau_DeepTau2018v2p5_2023preBPix.json.gz",  
+                    "2023BPix": "data/jsonpog-integration/POG/TAU/2023/tau_DeepTau2018v2p5_2023postBPix.json.gz", 
+                }
+            ),
             "tau_trigger_sf_file":EraModifier(
                {
                 "2022EE": "data/jsonpog-integration/POG/TAU/output/tau_trigger_DeepTau2018v2p5_2022preEE.json.gz",  ## source : https://gitlab.cern.ch/cms-tau-pog/jsonpog-integration/-/tree/TauPOG_v2_deepTauV2p5/POG/TAU/output?ref_type=heads 
@@ -483,7 +496,7 @@ def build_config(
             "min_tau_pt": 30.0, # use AN definition
             "max_tau_eta": 2.5,
             "max_tau_dz": 0.2,
-            "vsjet_tau_id_bit": 1,#"VVVLoose": 1,"VVLoose": 2,"VLoose": 3,"Loose": 4,"Medium": 5,"Tight": 6,
+            "vsjet_tau_id_bit": 5,#"VVVLoose": 1,"VVLoose": 2,"VLoose": 3,"Loose": 4,"Medium": 5,"Tight": 6,
             "vsele_tau_id_bit": 2,# "VVLoose": 2,"VLoose": 3,"Loose": 4,"Medium": 5,"Tight": 6,
             "vsmu_tau_id_bit": 1, #"VLoose": 1,"Loose": 2,"Medium": 3,"Tight": 4,
         },
