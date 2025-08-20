@@ -112,15 +112,21 @@ def build_config(
         {
             "tau_dms": "0,1,10,11",
             "tau_sf_file": EraModifier(
-                {
-                    "2016preVFP": "data/jsonpog-integration/POG/TAU/2016preVFP_UL/tau.json.gz",
-                    "2016postVFP": "data/jsonpog-integration/POG/TAU/2016postVFP_UL/tau.json.gz",
-                    "2017": "data/jsonpog-integration/POG/TAU/2017_UL/tau.json.gz",
-                    "2018": "data/jsonpog-integration/POG/TAU/2018_UL/tau.json.gz",
-                    "2022EE": "data/jsonpog-integration/POG/TAU/2022_preEE/tau_DeepTau2018v2p5_2022_preEE.json.gz",  ## source : https://gitlab.cern.ch/cms-tau-pog/jsonpog-integration/-/tree/TauPOG_v2_deepTauV2p5/POG/TAU?ref_type=heads
-                    "2022postEE": "data/jsonpog-integration/POG/TAU/2022_postEE/tau_DeepTau2018v2p5_2022_postEE.json.gz", ## October 17: Update to new 2022 Tau SF files, old ones are in /data/jsonpog-integration/POG/TAU/bkp
-                    "2023": "data/jsonpog-integration/POG/TAU/2023/tau_DeepTau2018v2p5_2023preBPix.json.gz",  
-                    "2023BPix": "data/jsonpog-integration/POG/TAU/2023/tau_DeepTau2018v2p5_2023postBPix.json.gz", 
+                {   ## source : https://gitlab.cern.ch/cms-tau-pog/jsonpog-integration/-/tree/TauPOG_v2_deepTauV2p5/POG/TAU?ref_type=heads
+                    ## October 17: Update to new 2022 Tau SF files, old ones are in /data/jsonpog-integration/POG/TAU/bkp. Source: /eos/cms/store/group/phys_tau/lrussell/TAU_SFs_and_TES, obtained from Lucas Russel
+                    "2022EE": "data/jsonpog-integration/POG/TAU/Tau_Fix_Bug_new/tau_DeepTau2018v2p5_2022_preEE.json.gz",  
+                    "2022postEE": "data/jsonpog-integration/POG/TAU/Tau_Fix_Bug_new/tau_DeepTau2018v2p5_2022_postEE.json.gz", 
+                    "2023": "data/jsonpog-integration/POG/TAU/Tau_Fix_Bug_new/tau_DeepTau2018v2p5_2023_preBPix.json.gz",  
+                    "2023BPix": "data/jsonpog-integration/POG/TAU/Tau_Fix_Bug_new/tau_DeepTau2018v2p5_2023_postBPix.json.gz", 
+                }
+            ),
+            "tau_ES_sf_file": EraModifier(
+                {   ## source : https://gitlab.cern.ch/cms-tau-pog/jsonpog-integration/-/tree/TauPOG_v2_deepTauV2p5/POG/TAU?ref_type=heads
+                    ## October 17: Update to new 2022 Tau SF files, old ones are in /data/jsonpog-integration/POG/TAU/bkp. Source: /eos/cms/store/group/phys_tau/lrussell/TAU_SFs_and_TES, obtained from Lucas Russel
+                    "2022EE": "data/jsonpog-integration/POG/TAU/Tau_Fix_Bug_new/tau_DeepTau2018v2p5_2022_preEE.json.gz",  
+                    "2022postEE": "data/jsonpog-integration/POG/TAU/Tau_Fix_Bug_new/tau_DeepTau2018v2p5_2022_postEE.json.gz", 
+                    "2023": "data/jsonpog-integration/POG/TAU/Tau_Fix_Bug_new/tau_DeepTau2018v2p5_2023_preBPix.json.gz",  
+                    "2023BPix": "data/jsonpog-integration/POG/TAU/Tau_Fix_Bug_new/tau_DeepTau2018v2p5_2023_postBPix.json.gz", 
                 }
             ),
             "tau_trigger_sf_file":EraModifier(
