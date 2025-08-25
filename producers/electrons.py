@@ -17,6 +17,22 @@ ElectronPtCorrectionEmbedding = Producer(
     scopes=["global"],
 )
 
+ElectronPtCorrectionScaling = Producer(
+    name="ElectronPtCorrectionScaling",
+    call='physicsobject::electron::PtCorrection_scaling({df}, {output}, "{electron_SS_file}", "{electron_SS_scale_name}", {input})',
+    input=[
+        nanoAOD.run,
+        nanoAOD.Electron_deltaEtaSC,
+        nanoAOD.Electron_eta,
+        nanoAOD.Electron_r9,
+        nanoAOD.Electron_pt,
+        nanoAOD.Electron_seedGain,
+        
+    ],
+    output=[q.Electron_pt_corrected],
+    scopes=["global"],
+)
+
 RenameElectronPt = Producer(
     name="RenameElectronPt",
     call="basefunctions::rename<ROOT::RVec<float>>({df}, {input}, {output})",
