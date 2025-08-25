@@ -726,9 +726,29 @@ def build_config(
             # "zptmass_functor": "zptmass_weight_nom",
             # "zptmass_arguments": "z_gen_mass,z_gen_pt",
             "DY_pTll_reweighting_syst" : "nom",
+            
         },
     )
-
+    configuration.add_config_parameters(
+        "global",
+        {   "electron_SS_file" : EraModifier(
+                    {
+                        "2022EE": "data/jsonpog-integration/POG/EGM/2022_Summer22/electronSS_EtDependent.json.gz",
+                        "2022postEE": "data/jsonpog-integration/POG/EGM/2022_Summer22EE/electronSS_EtDependent.json.gz",
+                        "2023": "data/jsonpog-integration/POG/EGM/2023_Summer23/electronSS_EtDependent.json.gz",
+                        "2023BPix": "data/jsonpog-integration/POG/EGM/2023_Summer23BPix/electronSS_EtDependent.json.gz",
+                    }
+                ),
+                "electron_SS_scale_name": EraModifier(
+                {
+                    "2022EE": "EGMScale_Compound_Ele_2022preEE",
+                    "2022postEE": "EGMScale_Compound_Ele_2022postEE",
+                    "2023": "EGMScale_Compound_Ele_2023preBPIX",
+                    "2023": "EGMScale_Compound_Ele_2023postBPIX",
+                } 
+                ),
+            }
+    )
     # add muon scalefactors from embedding measurements
     configuration.add_config_parameters(
         ["mt", "mm", "em"],
@@ -1004,6 +1024,17 @@ def build_config(
             met.MetBasics,
         ],
     )
+    
+    ## for data, we use Scaling to correct electron pt
+    configuration.add_modification_rule(
+        "global",
+        ReplaceProducer(
+            producers=[electrons.RenameElectronPt, electrons.ElectronPtCorrectionScaling],
+            samples="data",
+        ),
+    )
+
+
     # Run3 uses Puppi jets, no need and cannot do JetPUIDCut, using run3 version of GoodJets
     if era == "2022EE" or era == "2022postEE" or era =="2023" or era == "2023BPix":
         configuration.add_producers(
