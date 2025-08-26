@@ -698,7 +698,15 @@ def build_config(
                     "2022postEE": "EGMScale_Compound_Ele_2022postEE",
                     "2023": "EGMScale_Compound_Ele_2023preBPIX",
                     "2023": "EGMScale_Compound_Ele_2023postBPIX",
-                } 
+                },
+                ),
+                "electron_SS_smear_name": EraModifier(
+                {
+                    "2022EE": "EGMSmearAndSyst_ElePTsplit_2022preEE",
+                    "2022postEE": "EGMSmearAndSyst_ElePTsplit_2022postEE",
+                    "2023": "EGMSmearAndSyst_ElePTsplit_2023preBPIX",
+                    "2023": "EGMSmearAndSyst_ElePTsplit_2023postBPIX",
+                },
                 ),
             }
     )
@@ -856,7 +864,7 @@ def build_config(
             event.PUweights,
             # event.LHE_Scale_weight,
             muons.BaseMuons,
-            electrons.RenameElectronPt,
+            electrons.ElectronPtCorrectionSmearing,
             electrons.BaseElectrons,
             jets.JetEnergyCorrection,
             event.DiLeptonVeto,
@@ -868,7 +876,7 @@ def build_config(
     configuration.add_modification_rule(
         "global",
         ReplaceProducer(
-            producers=[electrons.RenameElectronPt, electrons.ElectronPtCorrectionScaling],
+            producers=[electrons.ElectronPtCorrectionSmearing, electrons.ElectronPtCorrectionScaling],
             samples="data",
         ),
     )
