@@ -512,7 +512,7 @@ def build_config(
         ["mt", "mm"],
         {
             "muon_index_in_pair": 0,
-            "min_muon_pt": 23.0,
+            "min_muon_pt": 20.0,
             "max_muon_eta": 2.4,
             "muon_iso_cut": 0.3,
         },
@@ -586,7 +586,7 @@ def build_config(
         ["et"],
         {
             "electron_index_in_pair": 0,
-            "min_electron_pt": 25.0,
+            "min_electron_pt": 20.0,
             "max_electron_eta": 2.4,
             "electron_iso_cut": 0.5,
         },
@@ -607,11 +607,11 @@ def build_config(
         ["em"],
         {
             "electron_index_in_pair": 0,
-            "min_electron_pt": 15.0,
+            "min_electron_pt": 10.0,
             "max_electron_eta": 2.4,
             "electron_iso_cut": 0.5,
             "muon_index_in_pair": 1,
-            "min_muon_pt": 15.0,
+            "min_muon_pt": 10.0,
             "max_muon_eta": 2.4,
             "muon_iso_cut": 0.5,
             "min_dzeta_cut": -35,
@@ -731,7 +731,8 @@ def build_config(
     )
     configuration.add_config_parameters(
         "global",
-        {   "electron_SS_file" : EraModifier(
+        {   "Smear_variation": "smear",
+            "electron_SS_file" : EraModifier(
                     {
                         "2022EE": "data/jsonpog-integration/POG/EGM/2022_Summer22/electronSS_EtDependent.json.gz",
                         "2022postEE": "data/jsonpog-integration/POG/EGM/2022_Summer22EE/electronSS_EtDependent.json.gz",
@@ -754,6 +755,7 @@ def build_config(
                     "2023": "EGMSmearAndSyst_ElePTsplit_2023preBPIX",
                     "2023": "EGMSmearAndSyst_ElePTsplit_2023postBPIX",
                 },
+                
                 ),
             }
     )
@@ -2110,6 +2112,67 @@ def build_config(
             if sample not in ["data", "embedding", "embedding_mc"]
         ],
     )
+
+    ########################
+    # Electron pT shifts
+    ########################
+    configuration.add_shift(
+        SystematicShift(
+            name="Smear_Up",
+            scopes=["global"],
+            shift_config={
+                ("global"): {"Smear_variation": "esmearUp"},
+            },
+            producers={
+                "global": [
+                    electrons.ElectronPtCorrectionSmearing,
+                ],
+            },
+        ),
+    )
+    configuration.add_shift(
+        SystematicShift(
+            name="Smear_Down",
+            scopes=["global"],
+            shift_config={
+                ("global"): {"Smear_variation": "esmearDown"},
+            },
+            producers={
+                "global": [
+                    electrons.ElectronPtCorrectionSmearing,
+                ],
+            },
+        ),
+    )
+    configuration.add_shift(
+        SystematicShift(
+            name="Scale_Up",
+            scopes=["global"],
+            shift_config={
+                ("global"): {"Smear_variation": "escaleUp"},
+            },
+            producers={
+                "global": [
+                    electrons.ElectronPtCorrectionSmearing,
+                ],
+            },
+        ),
+    )
+    configuration.add_shift(
+        SystematicShift(
+            name="Scale_Down",
+            scopes=["global"],
+            shift_config={
+                ("global"): {"Smear_variation": "escaleDown"},
+            },
+            producers={
+                "global": [
+                    electrons.ElectronPtCorrectionSmearing,
+                ],
+            },
+        ),
+    )
+
     #########################
     # Pileup Shifts
     #########################
