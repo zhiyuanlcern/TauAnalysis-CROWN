@@ -286,3 +286,68 @@ btagging_SF = Producer(
     output=[q.btag_weight],
     scopes=["tt", "mt", "et", "mm", "em", "ee"],
 )
+
+
+btagging_SF_Fixed_WP_tt = Producer(
+    name="btagging_SF",
+    call='scalefactor::jet::btagSF_FixedWP({df}, {input}, "{btag_sf_variation}", {output}, "{btag_sf_file}", "{btag_eff_file}", "{era_name}", "tt", {btag_cut})',
+    input=[
+        q.Jet_pt_corrected,
+        nanoAOD.Jet_eta,
+        nanoAOD.BJet_discriminator,
+        nanoAOD.Jet_flavor,
+        q.good_jets_mask,
+        q.good_bjets_mask,
+        q.jet_overlap_veto_mask,
+    ],
+    output=[q.btag_weight],
+    scopes=["tt"],
+)
+
+btagging_SF_Fixed_WP_mt = Producer(
+    name="btagging_SF",
+    call='scalefactor::jet::btagSF_FixedWP({df}, {input}, "{btag_sf_variation}", {output}, "{btag_sf_file}", "{btag_eff_file}", "{era_name}", "mt", {btag_cut})',
+    input=[
+        q.Jet_pt_corrected,
+        nanoAOD.Jet_eta,
+        nanoAOD.BJet_discriminator,
+        nanoAOD.Jet_flavor,
+        q.good_jets_mask,
+        q.good_bjets_mask,
+        q.jet_overlap_veto_mask,
+    ],
+    output=[q.btag_weight],
+    scopes=["mt"],
+)
+
+btagging_SF_Fixed_WP_et = Producer(
+    name="btagging_SF",
+    call='scalefactor::jet::btagSF_FixedWP({df}, {input}, "{btag_sf_variation}", {output}, "{btag_sf_file}", "{btag_eff_file}", "{era_name}", "et", {btag_cut})',
+    input=[
+        q.Jet_pt_corrected,
+        nanoAOD.Jet_eta,
+        nanoAOD.BJet_discriminator,
+        nanoAOD.Jet_flavor,
+        q.good_jets_mask,
+        q.good_bjets_mask,
+        q.jet_overlap_veto_mask,
+    ],
+    output=[q.btag_weight],
+    scopes=["et"],
+)
+
+btagging_SF_Fixed_WP_em = Producer(
+    name="btagging_SF",
+    call='scalefactor::jet::btagSF_FixedWP({df}, {input}, "{btag_sf_variation}", {output}, "{btag_sf_file}", "{btag_eff_file}", "{era_name}", "em", {btag_cut})',
+    input=[
+        q.Jet_pt_corrected,
+        nanoAOD.Jet_eta,
+        nanoAOD.BJet_discriminator,
+        nanoAOD.Jet_flavor,
+        q.good_jets_mask,
+        q.good_bjets_mask,
+        q.jet_overlap_veto_mask,
+    ],
+    output=[q.btag_weight],
+    scopes=["em"],
+)

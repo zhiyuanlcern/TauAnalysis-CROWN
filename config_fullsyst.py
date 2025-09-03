@@ -112,28 +112,21 @@ def build_config(
         {
             "tau_dms": "0,1,10,11",
             "tau_sf_file": EraModifier(
-                {
-                    "2016preVFP": "data/jsonpog-integration/POG/TAU/2016preVFP_UL/tau.json.gz",
-                    "2016postVFP": "data/jsonpog-integration/POG/TAU/2016postVFP_UL/tau.json.gz",
-                    "2017": "data/jsonpog-integration/POG/TAU/2017_UL/tau.json.gz",
-                    "2018": "data/jsonpog-integration/POG/TAU/2018_UL/tau.json.gz",
-                    "2022EE": "data/jsonpog-integration/POG/TAU/2022_preEE/tau_DeepTau2018v2p5_2022_preEE.json.gz",  ## source : https://gitlab.cern.ch/cms-tau-pog/jsonpog-integration/-/tree/TauPOG_v2_deepTauV2p5/POG/TAU?ref_type=heads
-                    "2022postEE": "data/jsonpog-integration/POG/TAU/2022_postEE/tau_DeepTau2018v2p5_2022_postEE.json.gz", ## October 17: Update to new 2022 Tau SF files, old ones are in /data/jsonpog-integration/POG/TAU/bkp
-                    "2023": "data/jsonpog-integration/POG/TAU/2023/tau_DeepTau2018v2p5_2023preBPix.json.gz",  
-                    "2023BPix": "data/jsonpog-integration/POG/TAU/2023/tau_DeepTau2018v2p5_2023postBPix.json.gz", 
+                {   ## source : https://gitlab.cern.ch/cms-tau-pog/jsonpog-integration/-/tree/TauPOG_v2_deepTauV2p5/POG/TAU?ref_type=heads
+                    ## October 17: Update to new 2022 Tau SF files, old ones are in /data/jsonpog-integration/POG/TAU/bkp. Source: /eos/cms/store/group/phys_tau/lrussell/TAU_SFs_and_TES, obtained from Lucas Russel
+                    "2022EE": "data/jsonpog-integration/POG/TAU/Tau_Fix_Bug_new/tau_DeepTau2018v2p5_2022_preEE.json.gz",  
+                    "2022postEE": "data/jsonpog-integration/POG/TAU/Tau_Fix_Bug_new/tau_DeepTau2018v2p5_2022_postEE.json.gz", 
+                    "2023": "data/jsonpog-integration/POG/TAU/Tau_Fix_Bug_new/tau_DeepTau2018v2p5_2023_preBPix.json.gz",  
+                    "2023BPix": "data/jsonpog-integration/POG/TAU/Tau_Fix_Bug_new/tau_DeepTau2018v2p5_2023_postBPix.json.gz", 
                 }
             ),
-            "tau_ES_sf_file":  ## tau ES corrections are in the same file as tau ID
-                EraModifier(
-                {
-                    "2016preVFP": "data/jsonpog-integration/POG/TAU/2016preVFP_UL/tau.json.gz",
-                    "2016postVFP": "data/jsonpog-integration/POG/TAU/2016postVFP_UL/tau.json.gz",
-                    "2017": "data/jsonpog-integration/POG/TAU/2017_UL/tau.json.gz",
-                    "2018": "data/jsonpog-integration/POG/TAU/2018_UL/tau.json.gz",
-                    "2022EE": "data/jsonpog-integration/POG/TAU/2022_preEE/tau_DeepTau2018v2p5_2022_preEE.json.gz",  ## source : https://gitlab.cern.ch/cms-tau-pog/jsonpog-integration/-/tree/TauPOG_v2_deepTauV2p5/POG/TAU?ref_type=heads
-                    "2022postEE": "data/jsonpog-integration/POG/TAU/2022_postEE/tau_DeepTau2018v2p5_2022_postEE.json.gz", ## October 17: Update to new 2022 Tau SF files, old ones are in /data/jsonpog-integration/POG/TAU/bkp
-                    "2023": "data/jsonpog-integration/POG/TAU/2023/tau_DeepTau2018v2p5_2023preBPix.json.gz",  
-                    "2023BPix": "data/jsonpog-integration/POG/TAU/2023/tau_DeepTau2018v2p5_2023postBPix.json.gz", 
+            "tau_ES_sf_file": EraModifier(
+                {   ## source : https://gitlab.cern.ch/cms-tau-pog/jsonpog-integration/-/tree/TauPOG_v2_deepTauV2p5/POG/TAU?ref_type=heads
+                    ## October 17: Update to new 2022 Tau SF files, old ones are in /data/jsonpog-integration/POG/TAU/bkp. Source: /eos/cms/store/group/phys_tau/lrussell/TAU_SFs_and_TES, obtained from Lucas Russel
+                    "2022EE": "data/jsonpog-integration/POG/TAU/Tau_Fix_Bug_new/tau_DeepTau2018v2p5_2022_preEE.json.gz",  
+                    "2022postEE": "data/jsonpog-integration/POG/TAU/Tau_Fix_Bug_new/tau_DeepTau2018v2p5_2022_postEE.json.gz", 
+                    "2023": "data/jsonpog-integration/POG/TAU/Tau_Fix_Bug_new/tau_DeepTau2018v2p5_2023_preBPix.json.gz",  
+                    "2023BPix": "data/jsonpog-integration/POG/TAU/Tau_Fix_Bug_new/tau_DeepTau2018v2p5_2023_postBPix.json.gz", 
                 }
             ),
             "tau_trigger_sf_file":EraModifier(
@@ -266,10 +259,7 @@ def build_config(
             "jet_jes_tag_data": '""',
             "jet_jes_tag": EraModifier(
                 {
-                    "2016preVFP": '"Summer19UL16APV_V7_MC"',
-                    "2016postVFP": '"Summer19UL16_V7_MC"',
-                    "2017": '"Summer19UL17_V5_MC"',
-                    "2018": '"Summer19UL18_V5_MC"',
+                    
                     "2022EE": '"Summer22_22Sep2023_V2_MC"',
                     "2022postEE": '"Summer22EE_22Sep2023_V2_MC"',
                     "2023": '"Summer23Prompt23_V1_MC"', 
@@ -313,21 +303,48 @@ def build_config(
             ),
         },
     )
+
+    configuration.add_config_parameters(
+        scopes,
+        {
+            "btag_cut": EraModifier(  # medium
+                {
+                    "2016preVFP": 0.2598,  # taken from https://twiki.cern.ch/twiki/bin/view/CMS/BtagRecommendation106XUL16preVFP
+                    "2016postVFP": 0.2489,  # taken from https://twiki.cern.ch/twiki/bin/view/CMS/BtagRecommendation106XUL16postVFP
+                    "2017": 0.3040,
+                    "2018": 0.2783,
+                    "2022EE": 0.245,## from 2022, switching to ParticleNet b-tagging for better performance 
+                    "2022postEE": 0.2605, ##  taken from https://btv-wiki.docs.cern.ch/ScaleFactors/Run3Summer22/
+                    "2023": 0.1917, 
+                    "2023BPix": 0.1919, 
+                    
+                }
+            ),
+        },
+    )
     # bjet scale factors
     configuration.add_config_parameters(
         scopes,
         {
             "btag_sf_file": EraModifier(
                 {
-                    "2016preVFP": "data/jsonpog-integration/POG/BTV/2016preVFP_UL/btagging.json.gz",
-                    "2016postVFP": "data/jsonpog-integration/POG/BTV/2016postVFP_UL/btagging.json.gz",
-                    "2017": "data/jsonpog-integration/POG/BTV/2017_UL/btagging.json.gz",
-                    "2018": "data/jsonpog-integration/POG/BTV/2018_UL/btagging.json.gz",
+                    
                     "2022EE": "data/jsonpog-integration/POG/BTV/2022_Summer22/btagging.json.gz",
                     "2022postEE": "data/jsonpog-integration/POG/BTV/2022_Summer22EE/btagging.json.gz",
                     "2023": "data/jsonpog-integration/POG/BTV/2023_Summer23/btagging.json.gz", 
                     "2023BPix": "data/jsonpog-integration/POG/BTV/2023_Summer23BPix/btagging.json.gz", 
                 }
+            ),
+            "btag_eff_file": EraModifier(
+                {
+                    "2022EE": "data/jsonpog-integration/POG/BTV/btag_eff/2022EE/btagging_effciency.json",
+                    "2022postEE": "data/jsonpog-integration/POG/BTV/btag_eff/2022postEE/btagging_effciency.json",
+                    "2023": "data/jsonpog-integration/POG/BTV/btag_eff/2023preBPix/btagging_effciency.json", 
+                    "2023BPix": "data/jsonpog-integration/POG/BTV/btag_eff/2023BPix/btagging_effciency.json", 
+                }
+            ),
+            "era_name": EraModifier(
+                {"2022EE": "2022EE",  "2022postEE": "2022postEE", "2023": "2023preBPix", "2023BPix": "2023BPix"}
             ),
             "btag_sf_variation": "central",
             "btag_corr_algo": "particleNet_shape",
@@ -496,7 +513,7 @@ def build_config(
             "min_tau_pt": 30.0, # use AN definition
             "max_tau_eta": 2.5,
             "max_tau_dz": 0.2,
-            "vsjet_tau_id_bit": 5,#"VVVLoose": 1,"VVLoose": 2,"VLoose": 3,"Loose": 4,"Medium": 5,"Tight": 6,
+            "vsjet_tau_id_bit": 1,#"VVVLoose": 1,"VVLoose": 2,"VLoose": 3,"Loose": 4,"Medium": 5,"Tight": 6,
             "vsele_tau_id_bit": 2,# "VVLoose": 2,"VLoose": 3,"Loose": 4,"Medium": 5,"Tight": 6,
             "vsmu_tau_id_bit": 1, #"VLoose": 1,"Loose": 2,"Medium": 3,"Tight": 4,
         },
@@ -508,7 +525,7 @@ def build_config(
             "min_tau_pt": 35.0,
             "max_tau_eta": 2.5,
             "max_tau_dz": 0.2,
-            "vsjet_tau_id_bit": 5,
+            "vsjet_tau_id_bit": 1,
             "vsele_tau_id_bit": 2,
             "vsmu_tau_id_bit": 1,
         },
@@ -1060,7 +1077,7 @@ def build_config(
             jets.BJetCollection,
             jets.PreBJetCollection,
             jets.BasicBJetQuantities,
-            scalefactors.btagging_SF,
+            # scalefactors.btagging_SF,
             met.MetCorrections,
             # met.PFMetCorrections,
             pairquantities.DiTauPairboostQuantities,  ## not working for mm + no need to run currently
@@ -1438,6 +1455,7 @@ def build_config(
             producers=[
                 scalefactors.MTGenerateSingleMuonTriggerSF_MC,
                 scalefactors.MTGenerateDitauTriggerSF_2,
+                scalefactors.btagging_SF_Fixed_WP_mt,
             ],
             samples=[
                 sample
@@ -1465,6 +1483,7 @@ def build_config(
             producers=[
                 scalefactors.MTGenerateSingleMuonTriggerSF_MC,            
                 scalefactors.ETGenerateSingleElectronTriggerSF_MC,
+                scalefactors.btagging_SF_Fixed_WP_em,
                 ],
 
             samples=[
@@ -1480,6 +1499,7 @@ def build_config(
             producers=[
                 scalefactors.ETGenerateSingleElectronTriggerSF_MC,
                 scalefactors.ETGenerateDitauTriggerSF_2,
+                scalefactors.btagging_SF_Fixed_WP_et,
             ],
             samples=[
                 sample
@@ -1494,6 +1514,7 @@ def build_config(
             producers=[
                 scalefactors.TTGenerateDitauTriggerSF_1,
                 scalefactors.TTGenerateDitauTriggerSF_2,
+                scalefactors.btagging_SF_Fixed_WP_tt,
             ],
             samples=[
                 sample

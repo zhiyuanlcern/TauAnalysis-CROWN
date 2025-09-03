@@ -130,21 +130,6 @@ def add_tauVariations(configuration: Configuration, sample: str, era: str):
         )
     configuration.add_shift(
         SystematicShift(
-            name="vsjet_tauDM0_systup",
-            shift_config={("tt","et","mt"): {
-                "tau_sf_vsjet_tauDM0": "syst_alleras_up"
-                }},
-                producers={
-                    "tt": [
-                        scalefactors.Tau_1_VsJetTauID_SF,
-                        scalefactors.Tau_2_VsJetTauID_tt_SF,
-                    ],
-                    ("et", "mt"): scalefactors.Tau_2_VsJetTauID_lt_SF,
-                },
-            )
-        )
-    configuration.add_shift(
-        SystematicShift(
             name="vsjet_tauDM1_stat1up",
             shift_config={("tt","et","mt"): {
                 "tau_sf_vsjet_tauDM1": "stat1_dm1_up"
@@ -163,21 +148,6 @@ def add_tauVariations(configuration: Configuration, sample: str, era: str):
             name="vsjet_tauDM1_stat2up",
             shift_config={("tt","et","mt"): {
                 "tau_sf_vsjet_tauDM1": "stat2_dm1_up"
-                }},
-                producers={
-                    "tt": [
-                        scalefactors.Tau_1_VsJetTauID_SF,
-                        scalefactors.Tau_2_VsJetTauID_tt_SF,
-                    ],
-                    ("et", "mt"): scalefactors.Tau_2_VsJetTauID_lt_SF,
-                },
-            )
-        )
-    configuration.add_shift(
-        SystematicShift(
-            name="vsjet_tauDM1_systup",
-            shift_config={("tt","et","mt"): {
-                "tau_sf_vsjet_tauDM1": "syst_alleras_up"
                 }},
                 producers={
                     "tt": [
@@ -220,21 +190,6 @@ def add_tauVariations(configuration: Configuration, sample: str, era: str):
         )
     configuration.add_shift(
         SystematicShift(
-            name="vsjet_tauDM10_systup",
-            shift_config={("tt","et","mt"): {
-                "tau_sf_vsjet_tauDM10": "syst_alleras_up"
-                }},
-                producers={
-                    "tt": [
-                        scalefactors.Tau_1_VsJetTauID_SF,
-                        scalefactors.Tau_2_VsJetTauID_tt_SF,
-                    ],
-                    ("et", "mt"): scalefactors.Tau_2_VsJetTauID_lt_SF,
-                },
-            )
-        )
-    configuration.add_shift(
-        SystematicShift(
             name="vsjet_tauDM11_stat1up",
             shift_config={("tt","et","mt"): {
                 "tau_sf_vsjet_tauDM11": "stat1_dm11_up"
@@ -263,22 +218,7 @@ def add_tauVariations(configuration: Configuration, sample: str, era: str):
                 },
             )
         )
-    configuration.add_shift(
-        SystematicShift(
-            name="vsjet_tauDM11_systup",
-            shift_config={("tt","et","mt"): {
-                "tau_sf_vsjet_tauDM11": "syst_alleras_up"
-                }},
-                producers={
-                    "tt": [
-                        scalefactors.Tau_1_VsJetTauID_SF,
-                        scalefactors.Tau_2_VsJetTauID_tt_SF,
-                    ],
-                    ("et", "mt"): scalefactors.Tau_2_VsJetTauID_lt_SF,
-                },
-            )
-        )
-
+    
 
     configuration.add_shift(
         SystematicShift(
@@ -310,21 +250,7 @@ def add_tauVariations(configuration: Configuration, sample: str, era: str):
                 },
             )
         )
-    configuration.add_shift(
-        SystematicShift(
-            name="vsjet_tauDM0_systdown",
-            shift_config={("tt","et","mt"): {
-                "tau_sf_vsjet_tauDM0": "syst_alleras_down"
-                }},
-                producers={
-                    "tt": [
-                        scalefactors.Tau_1_VsJetTauID_SF,
-                        scalefactors.Tau_2_VsJetTauID_tt_SF,
-                    ],
-                    ("et", "mt"): scalefactors.Tau_2_VsJetTauID_lt_SF,
-                },
-            )
-        )
+    
     configuration.add_shift(
         SystematicShift(
             name="vsjet_tauDM1_stat1down",
@@ -345,21 +271,6 @@ def add_tauVariations(configuration: Configuration, sample: str, era: str):
             name="vsjet_tauDM1_stat2down",
             shift_config={("tt","et","mt"): {
                 "tau_sf_vsjet_tauDM1": "stat2_dm1_down"
-                }},
-                producers={
-                    "tt": [
-                        scalefactors.Tau_1_VsJetTauID_SF,
-                        scalefactors.Tau_2_VsJetTauID_tt_SF,
-                    ],
-                    ("et", "mt"): scalefactors.Tau_2_VsJetTauID_lt_SF,
-                },
-            )
-        )
-    configuration.add_shift(
-        SystematicShift(
-            name="vsjet_tauDM1_systdown",
-            shift_config={("tt","et","mt"): {
-                "tau_sf_vsjet_tauDM1": "syst_alleras_down"
                 }},
                 producers={
                     "tt": [
@@ -402,21 +313,6 @@ def add_tauVariations(configuration: Configuration, sample: str, era: str):
         )
     configuration.add_shift(
         SystematicShift(
-            name="vsjet_tauDM10_systdown",
-            shift_config={("tt","et","mt"): {
-                "tau_sf_vsjet_tauDM10": "syst_alleras_down"
-                }},
-                producers={
-                    "tt": [
-                        scalefactors.Tau_1_VsJetTauID_SF,
-                        scalefactors.Tau_2_VsJetTauID_tt_SF,
-                    ],
-                    ("et", "mt"): scalefactors.Tau_2_VsJetTauID_lt_SF,
-                },
-            )
-        )
-    configuration.add_shift(
-        SystematicShift(
             name="vsjet_tauDM11_stat1down",
             shift_config={("tt","et","mt"): {
                 "tau_sf_vsjet_tauDM11": "stat1_dm11_down"
@@ -447,9 +343,12 @@ def add_tauVariations(configuration: Configuration, sample: str, era: str):
         )
     configuration.add_shift(
         SystematicShift(
-            name="vsjet_tauDM11_systdown",
+            name="vsjet_syst_alleras_Up",
             shift_config={("tt","et","mt"): {
-                "tau_sf_vsjet_tauDM11": "syst_alleras_down"
+                "tau_sf_vsjet_tauDM0": "syst_alleras_up",
+                "tau_sf_vsjet_tauDM1": "syst_alleras_up",
+                "tau_sf_vsjet_tauDM10": "syst_alleras_up",
+                "tau_sf_vsjet_tauDM11": "syst_alleras_up"
                 }},
                 producers={
                     "tt": [
@@ -462,9 +361,33 @@ def add_tauVariations(configuration: Configuration, sample: str, era: str):
         )
     configuration.add_shift(
         SystematicShift(
+            name="vsjet_syst_alleras_Down",
+            shift_config={("tt","et","mt"): {
+                "tau_sf_vsjet_tauDM0": "syst_alleras_down",
+                "tau_sf_vsjet_tauDM1": "syst_alleras_down",
+                "tau_sf_vsjet_tauDM10": "syst_alleras_down",
+                "tau_sf_vsjet_tauDM11": "syst_alleras_down"
+                }},
+                producers={
+                    "tt": [
+                        scalefactors.Tau_1_VsJetTauID_SF,
+                        scalefactors.Tau_2_VsJetTauID_tt_SF,
+                    ],
+                    ("et", "mt"): scalefactors.Tau_2_VsJetTauID_lt_SF,
+                },
+            )
+        )
+    name_dict = {
+        "2022postEE": "2022_postEE",
+        "2022EE" : "2022_preEE",
+        "2023": "2023_preBPix",
+        "2023BPix": "2023_postBPix"
+    }
+    configuration.add_shift(
+        SystematicShift(
             name="vsjet_tauDM0_TES_up",
             shift_config={("tt","et","mt"): {
-                "tau_sf_vsjet_tauDM0": "syst_TES_2022_postEE_dm0_up" if era == "2022postEE" else "syst_TES_2022_preEE_dm0_up"
+                "tau_sf_vsjet_tauDM0": f"syst_TES_{name_dict[era]}_dm0_up"
                 }},
                 producers={
                     "tt": [
@@ -479,7 +402,7 @@ def add_tauVariations(configuration: Configuration, sample: str, era: str):
         SystematicShift(
             name="vsjet_tauDM0_TES_down",
             shift_config={("tt","et","mt"): {
-                "tau_sf_vsjet_tauDM0": "syst_TES_2022_postEE_dm0_down" if era == "2022postEE" else "syst_TES_2022_preEE_dm0_down"
+                "tau_sf_vsjet_tauDM0": f"syst_TES_{name_dict[era]}_dm0_down"
                 }},
                 producers={
                     "tt": [
@@ -494,7 +417,7 @@ def add_tauVariations(configuration: Configuration, sample: str, era: str):
         SystematicShift(
             name="vsjet_tauDM1_TES_up",
             shift_config={("tt","et","mt"): {
-                "tau_sf_vsjet_tauDM1": "syst_TES_2022_postEE_dm1_up" if era == "2022postEE" else "syst_TES_2022_preEE_dm1_up"
+                "tau_sf_vsjet_tauDM1": f"syst_TES_{name_dict[era]}_dm1_up"
                 }},
                 producers={
                     "tt": [
@@ -509,7 +432,7 @@ def add_tauVariations(configuration: Configuration, sample: str, era: str):
         SystematicShift(
             name="vsjet_tauDM10_TES_up",
             shift_config={("tt","et","mt"): {
-                "tau_sf_vsjet_tauDM10": "syst_TES_2022_postEE_dm10_up" if era == "2022postEE" else "syst_TES_2022_preEE_dm10_up"
+                "tau_sf_vsjet_tauDM10": f"syst_TES_{name_dict[era]}_dm10_up"
                 }},
                 producers={
                     "tt": [
@@ -524,7 +447,7 @@ def add_tauVariations(configuration: Configuration, sample: str, era: str):
         SystematicShift(
             name="vsjet_tauDM10_TES_down",
             shift_config={("tt","et","mt"): {
-                "tau_sf_vsjet_tauDM10": "syst_TES_2022_postEE_dm10_down" if era == "2022postEE" else "syst_TES_2022_preEE_dm10_down"
+                "tau_sf_vsjet_tauDM10": f"syst_TES_{name_dict[era]}_dm10_down"
                 }},
                 producers={
                     "tt": [
@@ -539,7 +462,7 @@ def add_tauVariations(configuration: Configuration, sample: str, era: str):
         SystematicShift(
             name="vsjet_tauDM1_TES_down",
             shift_config={("tt","et","mt"): {
-                "tau_sf_vsjet_tauDM1": "syst_TES_2022_postEE_dm1_down" if era == "2022postEE" else "syst_TES_2022_preEE_dm1_down"
+                "tau_sf_vsjet_tauDM1": f"syst_TES_{name_dict[era]}_dm1_down"
                 }},
                 producers={
                     "tt": [
@@ -554,7 +477,7 @@ def add_tauVariations(configuration: Configuration, sample: str, era: str):
         SystematicShift(
             name="vsjet_tauDM11_TES_up",
             shift_config={("tt","et","mt"): {
-                "tau_sf_vsjet_tauDM11": "syst_TES_2022_postEE_dm11_up" if era == "2022postEE" else "syst_TES_2022_preEE_dm11_up"
+                "tau_sf_vsjet_tauDM11": f"syst_TES_{name_dict[era]}_dm11_up"
                 }},
                 producers={
                     "tt": [
@@ -569,7 +492,7 @@ def add_tauVariations(configuration: Configuration, sample: str, era: str):
         SystematicShift(
             name="vsjet_tauDM11_TES_down",
             shift_config={("tt","et","mt"): {
-                "tau_sf_vsjet_tauDM11": "syst_TES_2022_postEE_dm11_down" if era == "2022postEE" else "syst_TES_2022_preEE_dm11_down"
+                "tau_sf_vsjet_tauDM11": f"syst_TES_{name_dict[era]}_dm11_down"
                 }},
                 producers={
                     "tt": [
