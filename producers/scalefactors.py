@@ -234,6 +234,15 @@ ETGenerateSingleElectronTriggerSF_MC = ExtendedVectorProducer(
     scope=["et", "ee", "em"],
     vec_config="singlelectron_trigger_sf_mc",
 )
+
+ETGenerateSingleElectronTriggerSF_MC_emuCross_lowpT = ExtendedVectorProducer(
+    name="ETGenerateSingleElectronTriggerSF_MC_emuCross_lowpT",
+    call='scalefactor::embedding::electron_sf({df}, {input}, {output}, "{mc_electron_sf_file_emuCross}", "{mc_correctiontype}", "{mc_trigger_sf}" , {mc_electron_trg_extrapolation},"{ele_sf_year_id_emuCross}","{mc_trigger_emuCross}")',
+    input=[q.pt_1, q.eta_1],
+    output="flagname",
+    scope=[ "em"],
+    vec_config="singlelectron12_trigger_sf_mc_emuCross",
+)
 ## ditau_trigger_sf can be applied to all cross-trigger, the structure is the same
 ETGenerateDitauTriggerSF_2 = ExtendedVectorProducer(
     name="ETGenerateDitauTriggerSF_2",
