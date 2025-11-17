@@ -698,7 +698,7 @@ def build_config(
                     "2022EE": "EGMScale_Compound_Ele_2022preEE",
                     "2022postEE": "EGMScale_Compound_Ele_2022postEE",
                     "2023": "EGMScale_Compound_Ele_2023preBPIX",
-                    "2023": "EGMScale_Compound_Ele_2023postBPIX",
+                    "2023BPix": "EGMScale_Compound_Ele_2023postBPIX",
                 },
                 ),
                 "electron_SS_smear_name": EraModifier(
@@ -706,7 +706,7 @@ def build_config(
                     "2022EE": "EGMSmearAndSyst_ElePTsplit_2022preEE",
                     "2022postEE": "EGMSmearAndSyst_ElePTsplit_2022postEE",
                     "2023": "EGMSmearAndSyst_ElePTsplit_2023preBPIX",
-                    "2023": "EGMSmearAndSyst_ElePTsplit_2023postBPIX",
+                    "2023BPix": "EGMSmearAndSyst_ElePTsplit_2023postBPIX",
                 },
                 
                 ),
@@ -1137,15 +1137,15 @@ def build_config(
             samples="data",
         ),
     )
-    configuration.add_modification_rule(
-        scopes,
-        RemoveProducer(
-            producers=[
-                scalefactors.btagging_SF,
-            ],
-            samples=["data", "embedding", "embedding_mc"],
-        ),
-    )
+    # configuration.add_modification_rule(
+    #     scopes,
+    #     RemoveProducer(
+    #         producers=[
+    #             scalefactors.btagging_SF,
+    #         ],
+    #         samples=["data", "embedding", "embedding_mc"],
+    #     ),
+    # )
     configuration.add_modification_rule(
         ["et", "mt", "tt"],
         ReplaceProducer(
@@ -1426,7 +1426,7 @@ def build_config(
             # q.bphi_2,
             # q.btag_value_1,
             # q.btag_value_2,
-            q.btag_weight,
+            
             q.mass_1,
             q.mass_2,
             q.dxy_1,
@@ -1488,7 +1488,10 @@ def build_config(
     if sample != "data":
         configuration.add_outputs(
             scopes,
-            nanoAOD.genWeight,
+            [
+                nanoAOD.genWeight,
+                q.btag_weight,
+            ]
         )
         if era != "2018" and era != "2022EE" and era != "2022postEE" and era != "2023" and era != "2023BPix":
             configuration.add_outputs(
