@@ -873,7 +873,14 @@ def build_config(
             met.MetBasics,
         ],
     )
-    
+    if "ggh" in sample or "qqh" in sample or "vbf_htautau" in sample:
+        configuration.add_producers(
+        "global",
+        [
+            event.LHE_Scale_weight,
+            
+        ],
+    )
     ## for data, we use Scaling to correct electron pt
     configuration.add_modification_rule(
         "global",
@@ -1475,6 +1482,14 @@ def build_config(
 
         ],
     )
+    if "ggh" in sample or "qqh" in sample or "vbf_htautau" in sample:
+        configuration.add_outputs(
+        scopes,
+        [
+            q.lhe_scale_weight,
+            
+        ],
+    )
     configuration.add_outputs(
         ["mt", "et", "tt", "em"],
         [
@@ -1626,47 +1641,118 @@ def build_config(
     #             nanoAOD.HTXS_stage1_2_fine_cat_pTjet30GeV,
     #         ],
     #     )
-    # if "2HDM" in sample:
-    #     configuration.add_outputs(
-    #         scopes,
-    #         [
-    #             q.gen_higgs_pt,
-    #             q.gen_higgs_eta,
-    #             q.gen_higgs_phi,
-    #             q.gen_higgs_mass
-    #         ],
-    #     )
+    if "ggh_htautau" in sample:
+        configuration.add_outputs(
+            scopes,
+            [
+                q.gen_higgs_pt,
+                q.gen_higgs_eta,
+                q.gen_higgs_phi,
+                q.gen_higgs_mass
+            ],
+        )
     #########################
     # LHE Scale Weight variations
     # up is muR=2.0, muF=2.0
     # down is muR=0.5, muF=0.5
     #########################
-    # if "ggh" in sample or "qqh" in sample:
-    #     configuration.add_shift(
-    #         SystematicShift(
-    #             "LHEScaleWeightUp",
-    #             shift_config={
-    #                 "global": {
-    #                     "muR": 2.0,
-    #                     "muF": 2.0,
-    #                 }
-    #             },
-    #             producers={"global": [event.LHE_Scale_weight]},
-    #         )
-    #     )
-    #     configuration.add_shift(
-    #         SystematicShift(
-    #             "LHEScaleWeightDown",
-    #             shift_config={
-    #                 "global": {
-    #                     "muR": 0.5,
-    #                     "muF": 0.5,
-    #                 }
-    #             },
-    #             producers={"global": [event.LHE_Scale_weight]},
-    #         )
-    #     )
-
+    if "ggh" in sample or "qqh" in sample or "vbf_htautau" in sample:
+        configuration.add_shift(
+            SystematicShift(
+                "LHEScaleWeightUp",
+                shift_config={
+                    "global": {
+                        "muR": 2.0,
+                        "muF": 2.0,
+                    }
+                },
+                producers={"global": [event.LHE_Scale_weight]},
+            )
+        )
+        configuration.add_shift(
+            SystematicShift(
+                "LHEScaleWeightDown",
+                shift_config={
+                    "global": {
+                        "muR": 0.5,
+                        "muF": 0.5,
+                    }
+                },
+                producers={"global": [event.LHE_Scale_weight]},
+            )
+        )
+        configuration.add_shift(
+            SystematicShift(
+                "LHEScaleWeight_1_0p5",
+                shift_config={
+                    "global": {
+                        "muF": 1.0,
+                        "muR": 0.5,
+                    }
+                },
+                producers={"global": [event.LHE_Scale_weight]},
+            )
+        )
+        configuration.add_shift(
+            SystematicShift(
+                "LHEScaleWeight_2_0p5",
+                shift_config={
+                    "global": {
+                        "muF": 2.0,
+                        "muR": 0.5,
+                    }
+                },
+                producers={"global": [event.LHE_Scale_weight]},
+            )
+        )
+    configuration.add_shift(
+            SystematicShift(
+                "LHEScaleWeight_0p5_1",
+                shift_config={
+                    "global": {
+                        "muF": 0.5,
+                        "muR": 1.0,
+                    }
+                },
+                producers={"global": [event.LHE_Scale_weight]},
+            )
+        )
+    configuration.add_shift(
+            SystematicShift(
+                "LHEScaleWeight_2_1",
+                shift_config={
+                    "global": {
+                        "muF": 2.0,
+                        "muR": 1.0,
+                    }
+                },
+                producers={"global": [event.LHE_Scale_weight]},
+            )
+        )
+    configuration.add_shift(
+            SystematicShift(
+                "LHEScaleWeight_0p5_2",
+                shift_config={
+                    "global": {
+                        "muF": 0.5,
+                        "muR": 2.0,
+                    }
+                },
+                producers={"global": [event.LHE_Scale_weight]},
+            )
+        )
+    configuration.add_shift(
+            SystematicShift(
+                "LHEScaleWeight_1_2",
+                shift_config={
+                    "global": {
+                        "muF": 1.0,
+                        "muR": 2.0,
+                    }
+                },
+                producers={"global": [event.LHE_Scale_weight]},
+            )
+        )
     #########################
     # Lepton to tau fakes energy scalefactor shifts  #
     #########################
