@@ -1040,9 +1040,10 @@ def build_config(
             jets.BasicBJetQuantities,
             scalefactors.btagging_SF,
             met.MetCorrections,
-            # met.PFMetCorrections,
+
             pairquantities.DiTauPairboostQuantities,  
             pairquantities.DiTauPairNNQuantities,    
+
             pairquantities.DiTauPairMETQuantities,
             genparticles.GenMatching,
         ],
@@ -1615,20 +1616,25 @@ def build_config(
             # q.m_vis_square,           # add m_vis_square by Leyan 2024/12/28
             # q.pt1_to_ptH,
             # q.pt2_to_ptH,
+
             q.pt1_LT_to_ptH,
             q.pt2_LT_to_ptH,
+
             # q.pt1_LT_to_pt2_LT,
             # q.pt1_LT_to_mH,
             # q.pt2_LT_to_mH,
             # q.pt_vis_to_mH,
+
             q.pt1_to_mH,
             q.pt2_to_mH,
+
             # q.pt_tt_to_mH,
             # q.pt_fastmtt_to_mH,
             # q.costheta_1_LT,
             # q.costheta_2_LT,
             # q.costhstar_1_LT,
             # q.costhstar_2_LT,
+
             q.kT,
             q.antikT,
             # q.kT_LT,
@@ -1637,6 +1643,7 @@ def build_config(
             q.dphi_12,
             q.dphi_H1,
             q.dphi_H2,
+
             # q.dphi_H1_LT,
             # q.dphi_H2_LT,
             # q.dphi_MET_1,
