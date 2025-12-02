@@ -234,6 +234,15 @@ ETGenerateSingleElectronTriggerSF_MC = ExtendedVectorProducer(
     scope=["et", "ee", "em"],
     vec_config="singlelectron_trigger_sf_mc",
 )
+
+ETGenerateSingleElectronTriggerSF_MC_emuCross_lowpT = ExtendedVectorProducer(
+    name="ETGenerateSingleElectronTriggerSF_MC_emuCross_lowpT",
+    call='scalefactor::embedding::electron_sf({df}, {input}, {output}, "{mc_electron_sf_file_emuCross}", "{mc_correctiontype}", "{mc_trigger_sf}" , {mc_electron_trg_extrapolation},"{ele_sf_year_id_emuCross}","{mc_trigger_emuCross}")',
+    input=[q.pt_1, q.eta_1],
+    output="flagname",
+    scope=[ "em"],
+    vec_config="singlelectron12_trigger_sf_mc_emuCross",
+)
 ## ditau_trigger_sf can be applied to all cross-trigger, the structure is the same
 ETGenerateDitauTriggerSF_2 = ExtendedVectorProducer(
     name="ETGenerateDitauTriggerSF_2",
@@ -285,4 +294,69 @@ btagging_SF = Producer(
     ],
     output=[q.btag_weight],
     scopes=["tt", "mt", "et", "mm", "em", "ee"],
+)
+
+
+btagging_SF_Fixed_WP_tt = Producer(
+    name="btagging_SF",
+    call='scalefactor::jet::btagSF_FixedWP({df}, {input}, "{btag_sf_variation}", {output}, "{btag_sf_file}", "{btag_eff_file}", "{era_name}", "tt", {btag_cut})',
+    input=[
+        q.Jet_pt_corrected,
+        nanoAOD.Jet_eta,
+        nanoAOD.BJet_discriminator,
+        nanoAOD.Jet_flavor,
+        q.good_jets_mask,
+        q.good_bjets_mask,
+        q.jet_overlap_veto_mask,
+    ],
+    output=[q.btag_weight],
+    scopes=["tt"],
+)
+
+btagging_SF_Fixed_WP_mt = Producer(
+    name="btagging_SF",
+    call='scalefactor::jet::btagSF_FixedWP({df}, {input}, "{btag_sf_variation}", {output}, "{btag_sf_file}", "{btag_eff_file}", "{era_name}", "mt", {btag_cut})',
+    input=[
+        q.Jet_pt_corrected,
+        nanoAOD.Jet_eta,
+        nanoAOD.BJet_discriminator,
+        nanoAOD.Jet_flavor,
+        q.good_jets_mask,
+        q.good_bjets_mask,
+        q.jet_overlap_veto_mask,
+    ],
+    output=[q.btag_weight],
+    scopes=["mt"],
+)
+
+btagging_SF_Fixed_WP_et = Producer(
+    name="btagging_SF",
+    call='scalefactor::jet::btagSF_FixedWP({df}, {input}, "{btag_sf_variation}", {output}, "{btag_sf_file}", "{btag_eff_file}", "{era_name}", "et", {btag_cut})',
+    input=[
+        q.Jet_pt_corrected,
+        nanoAOD.Jet_eta,
+        nanoAOD.BJet_discriminator,
+        nanoAOD.Jet_flavor,
+        q.good_jets_mask,
+        q.good_bjets_mask,
+        q.jet_overlap_veto_mask,
+    ],
+    output=[q.btag_weight],
+    scopes=["et"],
+)
+
+btagging_SF_Fixed_WP_em = Producer(
+    name="btagging_SF",
+    call='scalefactor::jet::btagSF_FixedWP({df}, {input}, "{btag_sf_variation}", {output}, "{btag_sf_file}", "{btag_eff_file}", "{era_name}", "em", {btag_cut})',
+    input=[
+        q.Jet_pt_corrected,
+        nanoAOD.Jet_eta,
+        nanoAOD.BJet_discriminator,
+        nanoAOD.Jet_flavor,
+        q.good_jets_mask,
+        q.good_bjets_mask,
+        q.jet_overlap_veto_mask,
+    ],
+    output=[q.btag_weight],
+    scopes=["em"],
 )

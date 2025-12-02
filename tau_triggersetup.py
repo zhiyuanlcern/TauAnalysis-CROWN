@@ -1011,15 +1011,6 @@ def add_diTauTriggerSetup(configuration: Configuration):
                             "trigger_particle_id": 15,
                             "max_deltaR_triggermatch": 0.4,
                         },
-                        # {
-                        #     "flagname": "trg_single_deeptau180_2",
-                        #     "hlt_path": "HLT_LooseDeepTauPFTauHPS180_L2NN_eta2p1",
-                        #     "ptcut": 180,
-                        #     "etacut": 2.1,
-                        #     "filterbit": 3,
-                        #     "trigger_particle_id": 15,
-                        #     "max_deltaR_triggermatch": 0.4,
-                        # }
                     ],
                     "2023BPix": [
                         {
@@ -1031,15 +1022,6 @@ def add_diTauTriggerSetup(configuration: Configuration):
                             "trigger_particle_id": 15,
                             "max_deltaR_triggermatch": 0.4,
                         },
-                        # {
-                        #     "flagname": "trg_single_deeptau180_2",
-                        #     "hlt_path": "HLT_LooseDeepTauPFTauHPS180_L2NN_eta2p1",
-                        #     "ptcut": 180,
-                        #     "etacut": 2.1,
-                        #     "filterbit": 3,
-                        #     "trigger_particle_id": 15,
-                        #     "max_deltaR_triggermatch": 0.4,
-                        # }
                     ],
                     "2022EE": [
                         {
@@ -1051,15 +1033,6 @@ def add_diTauTriggerSetup(configuration: Configuration):
                             "trigger_particle_id": 15,
                             "max_deltaR_triggermatch": 0.4,
                         },
-                        # {
-                        #     "flagname": "trg_single_deeptau180_2",
-                        #     "hlt_path": "HLT_LooseDeepTauPFTauHPS180_L2NN_eta2p1",
-                        #     "ptcut": 180,
-                        #     "etacut": 2.1,
-                        #     "filterbit": 3,
-                        #     "trigger_particle_id": 15,
-                        #     "max_deltaR_triggermatch": 0.4,
-                        # }
                     ],
                     "2022postEE": [
                         {
@@ -1071,17 +1044,6 @@ def add_diTauTriggerSetup(configuration: Configuration):
                             "trigger_particle_id": 15,
                             "max_deltaR_triggermatch": 0.4,
                         },
-
-                        {
-                            "flagname": "trg_single_deeptau180_2",
-                            "hlt_path": "HLT_LooseDeepTauPFTauHPS180_L2NN_eta2p1",
-                            "ptcut": 180,
-                            "etacut": 2.1,
-                            "filterbit": 3,
-                            "trigger_particle_id": 15,
-                            "max_deltaR_triggermatch": 0.4,
-                        }
-
                     ],
                     
                 }
