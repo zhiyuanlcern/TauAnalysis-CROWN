@@ -1248,8 +1248,8 @@ def build_config(
     configuration.add_modification_rule(
         ["tt", "mt", "et", "em"],
         AppendProducer(
-            producers=[event.ggH_ME_reweighting, genparticles.gen_higgs_p4, genparticles.gen_higgs_pt,genparticles.gen_higgs_eta,genparticles.gen_higgs_phi,genparticles.gen_higgs_mass], 
-            samples=["ggh_htautau_2HDM"]
+             producers=[ genparticles.gen_higgs_p4, genparticles.gen_higgs_pt,genparticles.gen_higgs_eta,genparticles.gen_higgs_phi,genparticles.gen_higgs_mass],  # event.ggH_ME_reweighting,
+             samples=["ggh_htautau"]
         )
     )
     # changes needed for data
