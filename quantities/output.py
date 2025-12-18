@@ -256,6 +256,7 @@ THU_qqH_JET01 = Quantity("THU_qqH_JET01")
 ## MET quantities
 met_p4 = Quantity("met_p4")
 met_p4_recoilcorrected_averageEta_met = Quantity("met_p4_recoilcorrected_averageEta_met")
+Flag_ecalBadCalibFilter_cuttomized = Quantity("Flag_ecalBadCalibFilter_cuttomized")
 
 ## average eta MET quantities
 

@@ -95,6 +95,13 @@ JetPtCut = Producer(
     output=[],
     scopes=["global"],
 )
+JetPtCut_Run3 = Producer(
+    name="JetPtCut_Run3",
+    call="physicsobject::CutPt_Run3({df}, {input}, {output}, {min_jet_pt})",
+    input=[q.Jet_pt_corrected, nanoAOD.Jet_eta],
+    output=[],
+    scopes=["global"],
+)
 BJetPtCut = Producer(
     name="BJetPtCut",
     call="physicsobject::CutPt({df}, {input}, {output}, {min_bjet_pt})",
@@ -153,7 +160,7 @@ GoodJets_2022 = ProducerGroup(
     input=[],
     output=[q.good_jets_mask],
     scopes=["global"],
-    subproducers=[JetPtCut, JetEtaCut, JetIDCut],
+    subproducers=[JetPtCut_Run3, JetEtaCut, JetIDCut],
 )
 
 PreBJetEtaCut = Producer(
@@ -519,4 +526,21 @@ BasicBJetQuantities = ProducerGroup(
         bphi_2,
         btag_value_2,
     ],
+)
+
+cutsomized_Flag_ecalBadCalibFilter = Producer(
+    name="cutsomized_Flag_ecalBadCalibFilter",
+    call="physicsobject::update_Flag_ecalBadCalibFilter({df}, {output}, {input})",
+    input=[
+        nanoAOD.Jet_pt,
+        nanoAOD.Jet_eta,
+        nanoAOD.Jet_phi,
+        nanoAOD.Jet_neEmEF,
+        nanoAOD.Jet_chEmEF,
+        nanoAOD.MET_pt,
+        nanoAOD.MET_phi,
+        nanoAOD.run,
+    ],
+    output=[q.Flag_ecalBadCalibFilter_cuttomized],
+    scopes=["global"],
 )
