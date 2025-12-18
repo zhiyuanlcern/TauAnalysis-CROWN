@@ -90,7 +90,7 @@ def build_config(
                         ## new filters for 2022/23
                         "Flag_BadPFMuonDzFilter",
                         "Flag_hfNoisyHitsFilter",
-                        "Flag_ecalBadCalibFilter",
+                        # "Flag_ecalBadCalibFilter",
 
                     ], 
         },
@@ -235,10 +235,10 @@ def build_config(
             "jet_jes_tag": EraModifier(
                 {
                     
-                    "2022EE": '"Summer22_22Sep2023_V2_MC"',
-                    "2022postEE": '"Summer22EE_22Sep2023_V2_MC"',
-                    "2023": '"Summer23Prompt23_V1_MC"', 
-                    "2023BPix": '"Summer23BPixPrompt23_V1_MC"', 
+                    "2022EE": '"Summer22_22Sep2023_V3_MC"',
+                    "2022postEE": '"Summer22EE_22Sep2023_V3_MC"',
+                    "2023": '"Summer23Prompt23_V2_MC"', 
+                    "2023BPix": '"Summer23BPixPrompt23_V3_MC"', 
 
 
                 }
@@ -1264,7 +1264,12 @@ def build_config(
     )
     configuration.add_modification_rule(
         "global",
-        AppendProducer(producers=event.JSONFilter, samples=["data", "embedding"]),
+        AppendProducer(producers=
+            [
+                event.JSONFilter,
+                jets.cutsomized_Flag_ecalBadCalibFilter
+            ], 
+            samples=["data", "embedding"]),
     )
 
     # scope specific
@@ -1482,6 +1487,11 @@ def build_config(
 
         ],
     )
+    if sample == "data":
+        configuration.add_outputs(
+            scopes,
+            q.Flag_ecalBadCalibFilter_cuttomized,
+        )
     if "ggh" in sample or "qqh" in sample or "vbf_htautau" in sample:
         configuration.add_outputs(
         scopes,

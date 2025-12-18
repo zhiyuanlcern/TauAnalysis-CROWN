@@ -77,7 +77,9 @@ Jet_ID = NanoAODQuantity("Jet_jetId")
 Jet_PUID = NanoAODQuantity("Jet_puId")
 Jet_associatedGenJet = NanoAODQuantity("Jet_genJetIdx")
 BJet_discriminator = NanoAODQuantity("Jet_btagPNetB")
-
+Jet_chEmEF = NanoAODQuantity("Jet_chEmEF") # charged Electromagnetic Energy Fraction
+Jet_neEmEF = NanoAODQuantity("Jet_neEmEF") # neutral Electromagnetic Energy Fraction
+Jet_neHEF = NanoAODQuantity("Jet_neHEF") # neutral Hadron Energy Fraction
 
 Pileup_nTrueInt = NanoAODQuantity("Pileup_nTrueInt")
 rho = NanoAODQuantity("Rho_fixedGridRhoFastjetAll")
