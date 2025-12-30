@@ -1249,7 +1249,7 @@ def build_config(
         ["tt", "mt", "et", "em"],
         AppendProducer(
              producers=[ genparticles.gen_higgs_p4, genparticles.gen_higgs_pt,genparticles.gen_higgs_eta,genparticles.gen_higgs_phi,genparticles.gen_higgs_mass],  # event.ggH_ME_reweighting,
-             samples=["ggh_htautau"]
+             samples=["ggh_htautau", "vbf_htautau"]
         )
     )
     # changes needed for data
@@ -1392,6 +1392,36 @@ def build_config(
             ],
         ),
     )
+
+    configuration.add_modification_rule(
+        "em",
+        ReplaceProducer(
+            producers=[scalefactors.btagging_SF_Fixed_WP_em, scalefactors.btagging_SF_Fixed_WP_signal],
+            samples=["vbf_htautau", "ggh_htautau"],
+        ),
+    )
+    configuration.add_modification_rule(
+        "tt",
+        ReplaceProducer(
+            producers=[scalefactors.btagging_SF_Fixed_WP_tt, scalefactors.btagging_SF_Fixed_WP_signal],
+            samples=["vbf_htautau", "ggh_htautau"],
+        ),
+    )
+    configuration.add_modification_rule(
+        "mt",
+        ReplaceProducer(
+            producers=[scalefactors.btagging_SF_Fixed_WP_mt, scalefactors.btagging_SF_Fixed_WP_signal],
+            samples=["vbf_htautau", "ggh_htautau"],
+        ),
+    )
+    configuration.add_modification_rule(
+        "et",
+        ReplaceProducer(
+            producers=[scalefactors.btagging_SF_Fixed_WP_et, scalefactors.btagging_SF_Fixed_WP_signal],
+            samples=["vbf_htautau", "ggh_htautau"],
+        ),
+    )
+    # scalefactors.btagging_SF_Fixed_WP_em,
     configuration.add_outputs(
         scopes,
         [
@@ -1430,14 +1460,14 @@ def build_config(
             q.deltaR_ditaupair,
             q.pt_vis,
             q.nbtag,
-            # q.bpt_1,
-            # q.bpt_2,
-            # q.beta_1,
-            # q.beta_2,
-            # q.bphi_1,
-            # q.bphi_2,
-            # q.btag_value_1,
-            # q.btag_value_2,
+            q.bpt_1,
+            q.bpt_2,
+            q.beta_1,
+            q.beta_2,
+            q.bphi_1,
+            q.bphi_2,
+            q.btag_value_1,
+            q.btag_value_2,
             
             q.mass_1,
             q.mass_2,

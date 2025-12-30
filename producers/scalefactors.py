@@ -297,6 +297,23 @@ btagging_SF = Producer(
 )
 
 
+btagging_SF_Fixed_WP_signal = Producer(
+    name="btagging_SF",
+    call='scalefactor::jet::btagSF_FixedWP_signal({df}, {input}, "{btag_sf_variation}", {output}, "{btag_sf_file}", "{btag_eff_file}", "{era_name}", {btag_cut})',
+    input=[
+        q.Jet_pt_corrected,
+        nanoAOD.Jet_eta,
+        nanoAOD.BJet_discriminator,
+        nanoAOD.Jet_flavor,
+        q.good_jets_mask,
+        q.good_bjets_mask,
+        q.jet_overlap_veto_mask,
+        q.gen_higgs_mass,
+    ],
+    output=[q.btag_weight],
+    scopes=["tt", "mt", "et", "em"],
+)
+
 btagging_SF_Fixed_WP_tt = Producer(
     name="btagging_SF",
     call='scalefactor::jet::btagSF_FixedWP({df}, {input}, "{btag_sf_variation}", {output}, "{btag_sf_file}", "{btag_eff_file}", "{era_name}", "tt", {btag_cut})',
