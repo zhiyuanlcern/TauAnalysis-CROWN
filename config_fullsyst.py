@@ -55,10 +55,6 @@ def build_config(
             "muF": 1.0,
             "PU_reweighting_file": EraModifier(
                 {
-                    "2016preVFP": "data/jsonpog-integration/POG/LUM/2016preVFP_UL/puWeights.json.gz",
-                    "2016postVFP": "data/jsonpog-integration/POG/LUM/2016postVFP_UL/puWeights.json.gz",
-                    "2017": "data/jsonpog-integration/POG/LUM/2017_UL/puWeights.json.gz",
-                    "2018": "data/jsonpog-integration/POG/LUM/2018_UL/puWeights.json.gz",
                     "2022EE": "data/jsonpog-integration/POG/LUM/2022_Summer22/puWeights.json.gz", 
                     "2022postEE": "data/jsonpog-integration/POG/LUM/2022_Summer22EE/puWeights.json.gz",
                     "2023": "data/jsonpog-integration/POG/LUM/2023_Summer23/puWeights.json.gz",  
@@ -67,10 +63,6 @@ def build_config(
             ),
             "PU_reweighting_era": EraModifier(
                 {
-                    "2016preVFP": "Collisions16_UltraLegacy_goldenJSON",
-                    "2016postVFP": "Collisions16_UltraLegacy_goldenJSON",
-                    "2017": "Collisions17_UltraLegacy_goldenJSON",
-                    "2018": "Collisions18_UltraLegacy_goldenJSON",
                     "2022EE": "Collisions2022_355100_357900_eraBCD_GoldenJson", 
                     "2022postEE": "Collisions2022_359022_362760_eraEFG_GoldenJson", 
                     "2023": "Collisions2023_366403_369802_eraBC_GoldenJson",  
@@ -80,10 +72,6 @@ def build_config(
             "PU_reweighting_variation": "nominal",
             "golden_json_file": EraModifier(
                 {
-                    "2016preVFP": "data/golden_json/Cert_271036-284044_13TeV_Legacy2016_Collisions16_JSON.txt",
-                    "2016postVFP": "data/golden_json/Cert_271036-284044_13TeV_Legacy2016_Collisions16_JSON.txt",
-                    "2017": "data/golden_json/Cert_294927-306462_13TeV_UL2017_Collisions17_GoldenJSON.txt",
-                    "2018": "data/golden_json/Cert_314472-325175_13TeV_Legacy2018_Collisions18_JSON.txt",
                     "2022EE": "data/golden_json/Cert_Collisions2022_355100_362760_Golden.json.txt",
                     "2022postEE": "data/golden_json/Cert_Collisions2022_355100_362760_Golden.json.txt",
                     "2023": "data/golden_json/Cert_Collisions2023_366442_370790_Golden.json",  # source https://twiki.cern.ch/twiki/bin/view/CMSPublic/SWGuideGoodLumiSectionsJSONFile
@@ -102,7 +90,7 @@ def build_config(
                         ## new filters for 2022/23
                         "Flag_BadPFMuonDzFilter",
                         "Flag_hfNoisyHitsFilter",
-                        "Flag_ecalBadCalibFilter",
+                        # "Flag_ecalBadCalibFilter",
 
                     ], 
         },
@@ -176,10 +164,7 @@ def build_config(
             "max_ele_iso": 0.5,
             "ele_id": EraModifier(
                 {
-                    "2016preVFP":"Electron_mvaFall17V2noIso_WP90",
-                    "2016postVFP":"Electron_mvaFall17V2noIso_WP90",
-                    "2017":"Electron_mvaFall17V2noIso_WP90",
-                    "2018":"Electron_mvaFall17V2noIso_WP90",
+                   
                     # "2022EE": "Electron_cutBased", 
                     # "2022postEE": "Electron_cutBased", 
                     "2022EE": "Electron_mvaIso_WP90", 
@@ -201,10 +186,7 @@ def build_config(
             "jet_id": 2,  # default: 2==pass tight ID and fail tightLepVeto
             "jet_puid": EraModifier(
                 {
-                    "2016preVFP": 1,  # 0==fail, 1==pass(loose), 3==pass(loose,medium), 7==pass(loose,medium,tight)
-                    "2016postVFP": 1,  # 0==fail, 1==pass(loose), 3==pass(loose,medium), 7==pass(loose,medium,tight)
-                    "2017": 4,  # 0==fail, 4==pass(loose), 6==pass(loose,medium), 7==pass(loose,medium,tight)
-                    "2018": 4,  # 0==fail, 4==pass(loose), 6==pass(loose,medium), 7==pass(loose,medium,tight)
+                   
                     "2022EE": 4, ## no need to do PU ID for puppi jets
                     "2022postEE": 4, 
                     "2023": 4, 
@@ -218,10 +200,7 @@ def build_config(
             "jet_jer_shift": '"nom"',  # or '"up"', '"down"'
             "jet_jec_file": EraModifier(
                 {
-                    "2016preVFP": '"data/jsonpog-integration/POG/JME/2016preVFP_UL/jet_jerc.json.gz"',
-                    "2016postVFP": '"data/jsonpog-integration/POG/JME/2016postVFP_UL/jet_jerc.json.gz"',
-                    "2017": '"data/jsonpog-integration/POG/JME/2017_UL/jet_jerc.json.gz"',
-                    "2018": '"data/jsonpog-integration/POG/JME/2018_UL/jet_jerc.json.gz"',
+                    
                     "2022EE": '"data/jsonpog-integration/POG/JME/2022_Summer22/jet_jerc.json.gz"', ## source: https://gitlab.cern.ch/zhiyuanl/jsonpog-integration/-/tree/master/POG/JME?ref_type=heads
                     "2022postEE": '"data/jsonpog-integration/POG/JME/2022_Summer22EE/jet_jerc.json.gz"', 
                     "2023": '"data/jsonpog-integration/POG/JME/2023_Summer23/jet_jerc.json.gz"', 
@@ -245,10 +224,6 @@ def build_config(
             ),
             "jet_jer_tag": EraModifier(
                 {
-                    "2016preVFP": '"Summer20UL16APV_JRV3_MC"',
-                    "2016postVFP": '"Summer20UL16_JRV3_MC"',
-                    "2017": '"Summer19UL17_JRV2_MC"',
-                    "2018": '"Summer19UL18_JRV2_MC"',
                     "2022EE": '"Summer22_22Sep2023_JRV1_MC"',
                     "2022postEE": '"Summer22EE_22Sep2023_JRV1_MC"',
                     "2023": '"Summer23Prompt23_RunCv123_JRV1_MC"', 
@@ -259,14 +234,11 @@ def build_config(
             "jet_jes_tag_data": '""',
             "jet_jes_tag": EraModifier(
                 {
-                    "2016preVFP": '"Summer19UL16APV_V7_MC"',
-                    "2016postVFP": '"Summer19UL16_V7_MC"',
-                    "2017": '"Summer19UL17_V5_MC"',
-                    "2018": '"Summer19UL18_V5_MC"',
-                    "2022EE": '"Summer22_22Sep2023_V2_MC"',
-                    "2022postEE": '"Summer22EE_22Sep2023_V2_MC"',
-                    "2023": '"Summer23Prompt23_V1_MC"', 
-                    "2023BPix": '"Summer23BPixPrompt23_V1_MC"', 
+                    
+                    "2022EE": '"Summer22_22Sep2023_V3_MC"',
+                    "2022postEE": '"Summer22EE_22Sep2023_V3_MC"',
+                    "2023": '"Summer23Prompt23_V2_MC"', 
+                    "2023BPix": '"Summer23BPixPrompt23_V3_MC"', 
 
 
                 }
@@ -281,10 +253,6 @@ def build_config(
             "min_bjet_pt": 20,
             "max_bjet_eta": EraModifier(
                 {
-                    "2016preVFP": 2.5,
-                    "2016postVFP": 2.5,
-                    "2017": 2.5,
-                    "2018": 2.5,
                     "2022EE": 2.5,
                     "2022postEE": 2.5,
                     "2023": 2.5, 
@@ -293,10 +261,21 @@ def build_config(
             ),
             "btag_cut": EraModifier(  # medium
                 {
-                    "2016preVFP": 0.2598,  # taken from https://twiki.cern.ch/twiki/bin/view/CMS/BtagRecommendation106XUL16preVFP
-                    "2016postVFP": 0.2489,  # taken from https://twiki.cern.ch/twiki/bin/view/CMS/BtagRecommendation106XUL16postVFP
-                    "2017": 0.3040,
-                    "2018": 0.2783,
+                    "2022EE": 0.245,## from 2022, switching to ParticleNet b-tagging for better performance 
+                    "2022postEE": 0.2605, ##  taken from https://btv-wiki.docs.cern.ch/ScaleFactors/Run3Summer22/
+                    "2023": 0.1917, 
+                    "2023BPix": 0.1919, 
+                    
+                }
+            ),
+        },
+    )
+
+    configuration.add_config_parameters(
+        scopes,
+        {
+            "btag_cut": EraModifier(  # medium
+                {
                     "2022EE": 0.245,## from 2022, switching to ParticleNet b-tagging for better performance 
                     "2022postEE": 0.2605, ##  taken from https://btv-wiki.docs.cern.ch/ScaleFactors/Run3Summer22/
                     "2023": 0.1917, 
@@ -312,17 +291,26 @@ def build_config(
         {
             "btag_sf_file": EraModifier(
                 {
-                    "2016preVFP": "data/jsonpog-integration/POG/BTV/2016preVFP_UL/btagging.json.gz",
-                    "2016postVFP": "data/jsonpog-integration/POG/BTV/2016postVFP_UL/btagging.json.gz",
-                    "2017": "data/jsonpog-integration/POG/BTV/2017_UL/btagging.json.gz",
-                    "2018": "data/jsonpog-integration/POG/BTV/2018_UL/btagging.json.gz",
+                    
                     "2022EE": "data/jsonpog-integration/POG/BTV/2022_Summer22/btagging.json.gz",
                     "2022postEE": "data/jsonpog-integration/POG/BTV/2022_Summer22EE/btagging.json.gz",
                     "2023": "data/jsonpog-integration/POG/BTV/2023_Summer23/btagging.json.gz", 
                     "2023BPix": "data/jsonpog-integration/POG/BTV/2023_Summer23BPix/btagging.json.gz", 
                 }
             ),
+            "btag_eff_file": EraModifier(
+                {
+                    "2022EE": "data/jsonpog-integration/POG/BTV/btag_eff/2022EE/btagging_effciency.json",
+                    "2022postEE": "data/jsonpog-integration/POG/BTV/btag_eff/2022postEE/btagging_effciency.json",
+                    "2023": "data/jsonpog-integration/POG/BTV/btag_eff/2023preBPix/btagging_effciency.json", 
+                    "2023BPix": "data/jsonpog-integration/POG/BTV/btag_eff/2023BPix/btagging_effciency.json", 
+                }
+            ),
+            "era_name": EraModifier(
+                {"2022EE": "2022EE",  "2022postEE": "2022postEE", "2023": "2023preBPix", "2023BPix": "2023BPix"}
+            ),
             "btag_sf_variation": "central",
+            'btag_sf_flavour': "nom",
             # "btag_corr_algo": "particleNet_shape",
         },
     )
@@ -489,7 +477,7 @@ def build_config(
             "min_tau_pt": 30.0, # use AN definition
             "max_tau_eta": 2.5,
             "max_tau_dz": 0.2,
-            "vsjet_tau_id_bit": 1,#"VVVLoose": 1,"VVLoose": 2,"VLoose": 3,"Loose": 4,"Medium": 5,"Tight": 6,
+            "vsjet_tau_id_bit": 5,#"VVVLoose": 1,"VVLoose": 2,"VLoose": 3,"Loose": 4,"Medium": 5,"Tight": 6,
             "vsele_tau_id_bit": 2,# "VVLoose": 2,"VLoose": 3,"Loose": 4,"Medium": 5,"Tight": 6,
             "vsmu_tau_id_bit": 1, #"VLoose": 1,"Loose": 2,"Medium": 3,"Tight": 4,
         },
@@ -523,10 +511,6 @@ def build_config(
         {
             "muon_sf_file": EraModifier(
                 {
-                    "2016preVFP": "data/jsonpog-integration/POG/MUO/2016preVFP_UL/muon_Z.json.gz",
-                    "2016postVFP": "data/jsonpog-integration/POG/MUO/2016postVFP_UL/muon_Z.json.gz",
-                    "2017": "data/jsonpog-integration/POG/MUO/2017_UL/muon_Z.json.gz",
-                    "2018": "data/jsonpog-integration/POG/MUO/2018_UL/muon_Z.json.gz",
                     "2022EE": "data/jsonpog-integration/POG/MUO/2022_Summer22/muon_Z.json.gz",
                     "2022postEE": "data/jsonpog-integration/POG/MUO/2022_Summer22EE/muon_Z.json.gz",
                     "2023": "data/jsonpog-integration/POG/MUO/2023_Summer23/muon_Z.json.gz", 
@@ -537,10 +521,6 @@ def build_config(
             "muon_iso_sf_name": "NUM_TightPFIso_DEN_MediumID",
             "muon_sf_year_id": EraModifier(
                 {
-                    "2016preVFP": "2016preVFP",
-                    "2016postVFP": "2016postVFP",
-                    "2017": "2017",
-                    "2018": "2018",
                     "2022EE": "2022EE", 
                     "2022postEE": "2022postEE",
                     "2023": "2023", 
@@ -555,10 +535,6 @@ def build_config(
         {
             "ele_sf_file": EraModifier(
                 {
-                    "2016preVFP": "data/jsonpog-integration/POG/EGM/2016preVFP_UL/electron.json.gz",
-                    "2016postVFP": "data/jsonpog-integration/POG/EGM/2016postVFP_UL/electron.json.gz",
-                    "2017": "data/jsonpog-integration/POG/EGM/2017_UL/electron.json.gz",
-                    "2018": "data/jsonpog-integration/POG/EGM/2018_UL/electron.json.gz",
                     "2022EE": "data/jsonpog-integration/POG/EGM/2022_Summer22/electron.json.gz", 
                     "2022postEE": "data/jsonpog-integration/POG/EGM/2022_Summer22EE/electron.json.gz", 
                     "2023": "data/jsonpog-integration/POG/EGM/2023_Summer23/electron.json.gz", 
@@ -568,10 +544,6 @@ def build_config(
             "ele_id_sf_name": "Electron-ID-SF",
             "ele_sf_year_id": EraModifier(
                 {
-                    "2016preVFP": "2016preVFP",
-                    "2016postVFP": "2016postVFP",
-                    "2017": "2017",
-                    "2018": "2018",
                     "2022EE": "2022Re-recoBCD",
                     "2022postEE": "2022Re-recoE+PromptFG",
                     "2023": "2023PromptC", 
@@ -649,16 +621,6 @@ def build_config(
             ),
             "recoil_corrections_file": EraModifier(
                 {
-                    "2016preVFP": "data/recoil_corrections/Type1_PuppiMET_2016.root",  # These are likely from Legacy data sets, therefore no difference in pre and postVFP
-                    "2016postVFP": "data/recoil_corrections/Type1_PuppiMET_2016.root",  # These are likely from Legacy data sets, therefore no difference in pre and postVFP
-                    "2017": "data/recoil_corrections/Type1_PuppiMET_2017.root",
-                    "2018": "data/recoil_corrections/Type1_PuppiMET_2018.root",
-                    # "2022EE": "data/jsonpog-integration/hleprare/DYandRecoilCorrlib/DY_pTll_recoil_corrections_2022preEE_v2.json.gz", 
-                    # "2022postEE": "data/jsonpog-integration/hleprare/DYandRecoilCorrlib/DY_pTll_recoil_corrections_2022postEE_v2.json.gz",
-                    # "2022EE": "data/jsonpog-integration/hleprare/DYandRecoilCorrlib/DY_pTll_recoil_corrections_2022preEE_v2.json_tmp.gz", 
-                    # "2022postEE": "data/jsonpog-integration/hleprare/DYandRecoilCorrlib/DY_pTll_recoil_corrections_2022postEE_v2.json_tmp.gz",
-                    # "2023": "data/jsonpog-integration/hleprare/DYandRecoilCorrlib/DY_pTll_recoil_corrections_2023preBPix_v2.json_tmp.gz", 
-                    # "2023BPix": "data/jsonpog-integration/hleprare/DYandRecoilCorrlib/DY_pTll_recoil_corrections_2023postBPix_v2.json_tmp.gz", 
                     "2022EE": "data/jsonpog-integration/hleprare/DYandRecoilCorrlib/DY_pTll_recoil_corrections_2022preEE_v3.json.gz", 
                     "2022postEE": "data/jsonpog-integration/hleprare/DYandRecoilCorrlib/DY_pTll_recoil_corrections_2022postEE_v3.json.gz",
                     "2023": "data/jsonpog-integration/hleprare/DYandRecoilCorrlib/DY_pTll_recoil_corrections_2023preBPix_v3.json.gz", 
@@ -668,10 +630,6 @@ def build_config(
             # not used at all 
             "recoil_systematics_file": EraModifier(
                 {
-                    "2016preVFP": "data/recoil_corrections/PuppiMETSys_2016.root",  # These are likely from Legacy data sets, therefore no difference in pre and postVFP
-                    "2016postVFP": "data/recoil_corrections/PuppiMETSys_2016.root",  # These are likely from Legacy data sets, therefore no difference in pre and postVFP
-                    "2017": "data/recoil_corrections/PuppiMETSys_2017.root",
-                    "2018": "data/recoil_corrections/PuppiMETSys_2018.root",
                     "2022EE": "data/recoil_corrections/PuppiMETSys_2018.root",## TODO: update to 2022 recommendation when available. These lines only for testing
                     "2022postEE": "data/recoil_corrections/PuppiMETSys_2018.root",## TODO: update to 2022 recommendation when available. These lines only for testing
                     "2023": "data/recoil_corrections/PuppiMETSys_2018.root", 
@@ -692,7 +650,7 @@ def build_config(
             #     },
             #     default=False,
             # ),
-            ### no MET recoil recommendation for 2022 yet 
+
             
             "applyRecoilCorrections": SampleModifier(
                 {"data": False},
@@ -713,10 +671,6 @@ def build_config(
             "ggH_generator": "powheg",
             "zptmass_file": EraModifier(
                 {
-                    "2016preVFP": "data/zpt/htt_scalefactors_legacy_2016.root",  # ToDO: Measured in legacy, therefore the same for pre- and postVFP for now
-                    "2016postVFP": "data/zpt/htt_scalefactors_legacy_2016.root",  # ToDO: Measured in legacy, therefore the same for pre- and postVFP for now
-                    "2017": "data/zpt/htt_scalefactors_legacy_2017.root",
-                    "2018": "data/zpt/htt_scalefactors_legacy_2018.root",
                     "2022EE": "data/jsonpog-integration/hleprare/DYweightCorrlib/DY_pTll_weights_2022preEE_v2.json.gz",## This correction is also applied when we derived DY control region, so keep it
                     "2022postEE": "data/jsonpog-integration/hleprare/DYweightCorrlib/DY_pTll_weights_2022postEE_v2.json.gz",
                     "2023": "data/jsonpog-integration/hleprare/DYweightCorrlib/DY_pTll_weights_2023preBPix_v2.json.gz", 
@@ -745,7 +699,7 @@ def build_config(
                     "2022EE": "EGMScale_Compound_Ele_2022preEE",
                     "2022postEE": "EGMScale_Compound_Ele_2022postEE",
                     "2023": "EGMScale_Compound_Ele_2023preBPIX",
-                    "2023": "EGMScale_Compound_Ele_2023postBPIX",
+                    "2023BPix": "EGMScale_Compound_Ele_2023postBPIX",
                 },
                 ),
                 "electron_SS_smear_name": EraModifier(
@@ -753,7 +707,7 @@ def build_config(
                     "2022EE": "EGMSmearAndSyst_ElePTsplit_2022preEE",
                     "2022postEE": "EGMSmearAndSyst_ElePTsplit_2022postEE",
                     "2023": "EGMSmearAndSyst_ElePTsplit_2023preBPIX",
-                    "2023": "EGMSmearAndSyst_ElePTsplit_2023postBPIX",
+                    "2023BPix": "EGMSmearAndSyst_ElePTsplit_2023postBPIX",
                 },
                 
                 ),
@@ -765,10 +719,6 @@ def build_config(
         {
             "mc_muon_sf_file": EraModifier(
                 {
-                    "2016preVFP": "data/embedding/muon_2016preVFPUL.json.gz",
-                    "2016postVFP": "data/embedding/muon_2016postVFPUL.json.gz",
-                    "2017": "data/embedding/muon_2017UL.json.gz",
-                    "2018": "data/embedding/muon_2018UL.json.gz",
                     "2022EE": "data/jsonpog-integration/POG/MUO/2022_Summer22/ScaleFactors_Muon_Z_HLT_2022_abseta_pt_schemaV2.json.gz", # source: https://gitlab.cern.ch/cms-muonPOG/muonefficiencies/-/tree/master/Run3?ref_type=heads
                     "2022postEE": "data/jsonpog-integration/POG/MUO/2022_Summer22EE/ScaleFactors_Muon_Z_HLT_2022_EE_abseta_pt_schemaV2.json.gz", #source: https://gitlab.cern.ch/cms-muonPOG/muonefficiencies/-/tree/master/Run3?ref_type=heads
                     "2023": "data/jsonpog-integration/POG/MUO/2023_Summer23/ScaleFactors_Muon_Z_HLT_2023_abseta_pt_schemaV2.json.gz", 
@@ -785,14 +735,26 @@ def build_config(
         {
             "mc_electron_sf_file": EraModifier(
                 {
-                    "2016preVFP": "data/embedding/electron_2016preVFPUL.json.gz",
-                    "2016postVFP": "data/embedding/electron_2016postVFPUL.json.gz",
-                    "2017": "data/embedding/electron_2017UL.json.gz",
-                    "2018": "data/embedding/electron_2018UL.json.gz",
                     "2022EE": "data/jsonpog-integration/POG/EGM/2022_Summer22/electronHlt.json.gz", 
                     "2022postEE": "data/jsonpog-integration/POG/EGM/2022_Summer22EE/electronHlt.json.gz",
                     "2023": "data/jsonpog-integration/POG/EGM/2023_Summer23/electronHlt.json.gz", 
                     "2023BPix": "data/jsonpog-integration/POG/EGM/2023_Summer23BPix/electronHlt.json.gz", 
+                }
+            ),
+            "mc_electron_sf_file_emuCross":EraModifier(
+                {
+                    "2022EE": "data/jsonpog-integration/POG/EGM/EleMuSF/2022preEE/electronHlt.json", 
+                    "2022postEE": "data/jsonpog-integration/POG/EGM/EleMuSF/2022postEE/electronHlt.json",
+                    "2023": "data/jsonpog-integration/POG/EGM/EleMuSF/2023preBPix/electronHlt.json", 
+                    "2023BPix": "data/jsonpog-integration/POG/EGM/EleMuSF/2023postBPix/electronHlt.json", 
+                }
+            ),
+            "ele_sf_year_id_emuCross": EraModifier(
+                {
+                    "2022EE": "2022preEE",
+                    "2022postEE": "2022postEE",
+                    "2023": "2023preBPix", 
+                    "2023BPix": "2023postBPix", 
                 }
             ),
             "mc_electron_id_extrapolation": 1.0,  # for nominal case
@@ -837,160 +799,38 @@ def build_config(
                             "mc_muon_trg_extrapolation": 1.0,  # for nominal case
                         },
                     ],
-                    "2018": [
-                        {
-                            "flagname": "trg_wgt_single_mu24",
-                            "mc_trigger_sf": "Trg_IsoMu24_pt_eta_bins",
-                            "mc_muon_trg_extrapolation": 1.0,  # for nominal case
-                        },
-                        {
-                            "flagname": "trg_wgt_single_mu27",
-                            "mc_trigger_sf": "Trg_IsoMu27_pt_eta_bins",
-                            "mc_muon_trg_extrapolation": 1.0,  # for nominal case
-                        },
-                        {
-                            "flagname": "trg_wgt_single_mu24ormu27",
-                            "mc_trigger_sf": "Trg_IsoMu27_or_IsoMu24_pt_eta_bins",
-                            "mc_muon_trg_extrapolation": 1.0,  # for nominal case
-                        },
-                    ],
-                    "2017": [
-                        {
-                            "flagname": "trg_wgt_single_mu24",
-                            "mc_trigger_sf": "Trg_IsoMu24_pt_eta_bins",
-                            "mc_muon_trg_extrapolation": 1.0,  # for nominal case
-                        },
-                        {
-                            "flagname": "trg_wgt_single_mu27",
-                            "mc_trigger_sf": "Trg_IsoMu27_pt_eta_bins",
-                            "mc_muon_trg_extrapolation": 1.0,  # for nominal case
-                        },
-                        {
-                            "flagname": "trg_wgt_single_mu24ormu27",
-                            "mc_trigger_sf": "Trg_IsoMu27_or_IsoMu24_pt_eta_bins",
-                            "mc_muon_trg_extrapolation": 1.0,  # for nominal case
-                        },
-                    ],
-                    "2016postVFP": [
-                        {
-                            "flagname": "trg_wgt_single_mu22",
-                            "mc_trigger_sf": "Trg_pt_eta_bins",
-                            "mc_muon_trg_extrapolation": 1.0,  # for nominal case
-                        },
-                    ],
-                    "2016preVFP": [
-                        {
-                            "flagname": "trg_wgt_single_mu22",
-                            "mc_trigger_sf": "Trg_pt_eta_bins",
-                            "mc_muon_trg_extrapolation": 1.0,  # for nominal case
-                        },
-                    ],
+              
                 }
             )
         },
     )
-    # electron trigger SF settings from embedding measurements
+    # electron trigger SF settings
     configuration.add_config_parameters(
         ["et", "ee", "em"],
         {  
-            "singlelectron_trigger_sf_mc": EraModifier(
-                {   
-                    "2023": [
-                        {
-                            "flagname": "trg_wgt_single_ele30",
-                            "mc_trigger_sf": "Electron-HLT-SF",
-                            "mc_electron_trg_extrapolation": 1.0,  # for nominal case
-                            "mc_trigger":"HLT_SF_Ele30_MVAiso90ID",
-                            "mc_correctiontype": "sf",
-                        },
-                    ],
-                    "2023BPix": [
-                        {
-                            "flagname": "trg_wgt_single_ele30",
-                            "mc_trigger_sf": "Electron-HLT-SF",
-                            "mc_electron_trg_extrapolation": 1.0,  # for nominal case
-                            "mc_trigger":"HLT_SF_Ele30_MVAiso90ID",
-                            "mc_correctiontype": "sf",
-                        },
-                    ],
-                    "2022EE": [
-                        {
-                            "flagname": "trg_wgt_single_ele30",
-                            "mc_trigger_sf": "Electron-HLT-SF",
-                            "mc_electron_trg_extrapolation": 1.0,  # for nominal case
-                            "mc_trigger":"HLT_SF_Ele30_MVAiso90ID",
-                            "mc_correctiontype": "sf",
-                        },
-                    ],
-                    "2022postEE": [
-                        {
-                            "flagname": "trg_wgt_single_ele30",
-                            "mc_trigger_sf": "Electron-HLT-SF",
-                            "mc_electron_trg_extrapolation": 1.0,  # for nominal case
-                            "mc_trigger":"HLT_SF_Ele30_MVAiso90ID",
-                            "mc_correctiontype": "sf",
-                        },
-                    ],
-                    "2018": [
-                        {
-                            "flagname": "trg_wgt_single_ele32",
-                            "mc_trigger_sf": "Trg32_Iso_pt_eta_bins",
-                            "mc_electron_trg_extrapolation": 1.0,  # for nominal case
-                        },
-                        {
-                            "flagname": "trg_wgt_single_ele35",
-                            "mc_trigger_sf": "Trg35_Iso_pt_eta_bins",
-                            "mc_electron_trg_extrapolation": 1.0,  # for nominal case
-                        },
-                        {
-                            "flagname": "trg_wgt_single_ele32orele35",
-                            "mc_trigger_sf": "Trg32_or_Trg35_Iso_pt_eta_bins",
-                            "mc_electron_trg_extrapolation": 1.0,  # for nominal case
-                        },
-                        {
-                            "flagname": "trg_wgt_single_ele27orele32orele35",
-                            "mc_trigger_sf": "Trg_Iso_pt_eta_bins",
-                            "mc_electron_trg_extrapolation": 1.0,  # for nominal case
-                        },
-                    ],
-                    "2017": [
-                        {
-                            "flagname": "trg_wgt_single_ele32",
-                            "mc_trigger_sf": "Trg32_Iso_pt_eta_bins",
-                            "mc_electron_trg_extrapolation": 1.0,  # for nominal case
-                        },
-                        {
-                            "flagname": "trg_wgt_single_ele35",
-                            "mc_trigger_sf": "Trg35_Iso_pt_eta_bins",
-                            "mc_electron_trg_extrapolation": 1.0,  # for nominal case
-                        },
-                        {
-                            "flagname": "trg_wgt_single_ele32orele35",
-                            "mc_trigger_sf": "Trg32_or_Trg35_Iso_pt_eta_bins",
-                            "mc_electron_trg_extrapolation": 1.0,  # for nominal case
-                        },
-                        {
-                            "flagname": "trg_wgt_single_ele27orele32orele35",
-                            "mc_trigger_sf": "Trg_Iso_pt_eta_bins",
-                            "mc_electron_trg_extrapolation": 1.0,  # for nominal case
-                        },
-                    ],
-                    "2016postVFP": [
-                        {
-                            "flagname": "trg_wgt_single_ele25",
-                            "mc_trigger_sf": "Trg25_Iso_pt_eta_bins",
-                            "mc_electron_trg_extrapolation": 1.0,  # for nominal case
-                        }
-                    ],
-                    "2016preVFP": [
-                        {
-                            "flagname": "trg_wgt_single_ele25",
-                            "mc_trigger_sf": "Trg25_Iso_pt_eta_bins",
-                            "mc_electron_trg_extrapolation": 1.0,  # for nominal case
-                        }
-                    ],
-                }
-            )
+            "singlelectron_trigger_sf_mc": [
+                {
+                    "flagname": "trg_wgt_single_ele30",
+                    "mc_trigger_sf": "Electron-HLT-SF",
+                    "mc_electron_trg_extrapolation": 1.0,  # for nominal case
+                    "mc_trigger":"HLT_SF_Ele30_MVAiso90ID",
+                    "mc_correctiontype": "sf",
+                },
+            ]
+        },
+    )
+    configuration.add_config_parameters(
+        ["em"],
+        {  
+            "singlelectron12_trigger_sf_mc_emuCross": [
+                {
+                    "flagname": "trg_wgt_cross_mu23ele12_ele",
+                    "mc_trigger_sf": "Electron-HLT-SF",
+                    "mc_electron_trg_extrapolation": 1.0,  # for nominal case
+                    "mc_trigger_emuCross":"HLT_Ele23_Ele12_CaloIdL_TrackIdL_IsoVL_Leg2",
+                    "mc_correctiontype": "sf",
+                },
+            ]
         },
     )
     configuration.add_config_parameters(
@@ -1034,7 +874,14 @@ def build_config(
             met.MetBasics,
         ],
     )
-    
+    if "ggh" in sample or "qqh" in sample or "vbf_htautau" in sample:
+        configuration.add_producers(
+        "global",
+        [
+            event.LHE_Scale_weight,
+            
+        ],
+    )
     ## for data, we use Scaling to correct electron pt
     configuration.add_modification_rule(
         "global",
@@ -1094,7 +941,7 @@ def build_config(
             jets.BJetCollection,
             jets.PreBJetCollection,
             jets.BasicBJetQuantities,
-            scalefactors.btagging_SF,
+            # scalefactors.btagging_SF,
             met.MetCorrections,
             # met.PFMetCorrections,
             pairquantities.DiTauPairboostQuantities,  ## not working for mm + no need to run currently
@@ -1298,15 +1145,15 @@ def build_config(
             samples="data",
         ),
     )
-    configuration.add_modification_rule(
-        scopes,
-        RemoveProducer(
-            producers=[
-                scalefactors.btagging_SF,
-            ],
-            samples=["data", "embedding", "embedding_mc"],
-        ),
-    )
+    # configuration.add_modification_rule(
+    #     scopes,
+    #     RemoveProducer(
+    #         producers=[
+    #             scalefactors.btagging_SF,
+    #         ],
+    #         samples=["data", "embedding", "embedding_mc"],
+    #     ),
+    # )
     configuration.add_modification_rule(
         ["et", "mt", "tt"],
         ReplaceProducer(
@@ -1402,8 +1249,8 @@ def build_config(
     configuration.add_modification_rule(
         ["tt", "mt", "et", "em"],
         AppendProducer(
-            producers=[event.ggH_ME_reweighting, genparticles.gen_higgs_p4, genparticles.gen_higgs_pt,genparticles.gen_higgs_eta,genparticles.gen_higgs_phi,genparticles.gen_higgs_mass], 
-            samples=["ggh_htautau_2HDM"]
+             producers=[ genparticles.gen_higgs_p4, genparticles.gen_higgs_pt,genparticles.gen_higgs_eta,genparticles.gen_higgs_phi,genparticles.gen_higgs_mass],  # event.ggH_ME_reweighting,
+             samples=["ggh_htautau", "vbf_htautau"]
         )
     )
     # changes needed for data
@@ -1418,7 +1265,12 @@ def build_config(
     )
     configuration.add_modification_rule(
         "global",
-        AppendProducer(producers=event.JSONFilter, samples=["data", "embedding"]),
+        AppendProducer(producers=
+            [
+                event.JSONFilter,
+                jets.cutsomized_Flag_ecalBadCalibFilter
+            ], 
+            samples=["data", "embedding"]),
     )
 
     # scope specific
@@ -1472,6 +1324,7 @@ def build_config(
             producers=[
                 scalefactors.MTGenerateSingleMuonTriggerSF_MC,
                 scalefactors.MTGenerateDitauTriggerSF_2,
+                scalefactors.btagging_SF_Fixed_WP_mt,
             ],
             samples=[
                 sample
@@ -1499,6 +1352,8 @@ def build_config(
             producers=[
                 scalefactors.MTGenerateSingleMuonTriggerSF_MC,            
                 scalefactors.ETGenerateSingleElectronTriggerSF_MC,
+                scalefactors.ETGenerateSingleElectronTriggerSF_MC_emuCross_lowpT,
+                scalefactors.btagging_SF_Fixed_WP_em,
                 ],
 
             samples=[
@@ -1514,6 +1369,7 @@ def build_config(
             producers=[
                 scalefactors.ETGenerateSingleElectronTriggerSF_MC,
                 scalefactors.ETGenerateDitauTriggerSF_2,
+                scalefactors.btagging_SF_Fixed_WP_et,
             ],
             samples=[
                 sample
@@ -1528,6 +1384,7 @@ def build_config(
             producers=[
                 scalefactors.TTGenerateDitauTriggerSF_1,
                 scalefactors.TTGenerateDitauTriggerSF_2,
+                scalefactors.btagging_SF_Fixed_WP_tt,
             ],
             samples=[
                 sample
@@ -1541,28 +1398,28 @@ def build_config(
         "em",
         ReplaceProducer(
             producers=[scalefactors.btagging_SF_Fixed_WP_em, scalefactors.btagging_SF_Fixed_WP_signal],
-            samples=["vbf_htautau", "ggh_htautau"],
+            samples=["vbf_htautau", ], #"ggh_htautau"
         ),
     )
     configuration.add_modification_rule(
         "tt",
         ReplaceProducer(
             producers=[scalefactors.btagging_SF_Fixed_WP_tt, scalefactors.btagging_SF_Fixed_WP_signal],
-            samples=["vbf_htautau", "ggh_htautau"],
+            samples=["vbf_htautau",],# "ggh_htautau"
         ),
     )
     configuration.add_modification_rule(
         "mt",
         ReplaceProducer(
             producers=[scalefactors.btagging_SF_Fixed_WP_mt, scalefactors.btagging_SF_Fixed_WP_signal],
-            samples=["vbf_htautau", "ggh_htautau"],
+            samples=["vbf_htautau", ],# "ggh_htautau"
         ),
     )
     configuration.add_modification_rule(
         "et",
         ReplaceProducer(
             producers=[scalefactors.btagging_SF_Fixed_WP_et, scalefactors.btagging_SF_Fixed_WP_signal],
-            samples=["vbf_htautau", "ggh_htautau"],
+            samples=["vbf_htautau", ],# "ggh_htautau"
         ),
     )
     # scalefactors.btagging_SF_Fixed_WP_em,
@@ -1604,15 +1461,15 @@ def build_config(
             q.deltaR_ditaupair,
             q.pt_vis,
             q.nbtag,
-            # q.bpt_1,
-            # q.bpt_2,
-            # q.beta_1,
-            # q.beta_2,
-            # q.bphi_1,
-            # q.bphi_2,
-            # q.btag_value_1,
-            # q.btag_value_2,
-            q.btag_weight,
+            q.bpt_1,
+            q.bpt_2,
+            q.beta_1,
+            q.beta_2,
+            q.bphi_1,
+            q.bphi_2,
+            q.btag_value_1,
+            q.btag_value_2,
+            
             q.mass_1,
             q.mass_2,
             q.dxy_1,
@@ -1661,6 +1518,19 @@ def build_config(
 
         ],
     )
+    if sample == "data":
+        configuration.add_outputs(
+            scopes,
+            q.Flag_ecalBadCalibFilter_cuttomized,
+        )
+    if "ggh" in sample or "qqh" in sample or "vbf_htautau" in sample:
+        configuration.add_outputs(
+        scopes,
+        [
+            q.lhe_scale_weight,
+            
+        ],
+    )
     configuration.add_outputs(
         ["mt", "et", "tt", "em"],
         [
@@ -1674,7 +1544,10 @@ def build_config(
     if sample != "data":
         configuration.add_outputs(
             scopes,
-            nanoAOD.genWeight,
+            [
+                nanoAOD.genWeight,
+                q.btag_weight,
+            ]
         )
         if era != "2018" and era != "2022EE" and era != "2022postEE" and era != "2023" and era != "2023BPix":
             configuration.add_outputs(
@@ -1809,47 +1682,118 @@ def build_config(
     #             nanoAOD.HTXS_stage1_2_fine_cat_pTjet30GeV,
     #         ],
     #     )
-    # if "2HDM" in sample:
-    #     configuration.add_outputs(
-    #         scopes,
-    #         [
-    #             q.gen_higgs_pt,
-    #             q.gen_higgs_eta,
-    #             q.gen_higgs_phi,
-    #             q.gen_higgs_mass
-    #         ],
-    #     )
+    if "ggh_htautau" in sample:
+        configuration.add_outputs(
+            scopes,
+            [
+                q.gen_higgs_pt,
+                q.gen_higgs_eta,
+                q.gen_higgs_phi,
+                q.gen_higgs_mass
+            ],
+        )
     #########################
     # LHE Scale Weight variations
     # up is muR=2.0, muF=2.0
     # down is muR=0.5, muF=0.5
     #########################
-    # if "ggh" in sample or "qqh" in sample:
-    #     configuration.add_shift(
-    #         SystematicShift(
-    #             "LHEScaleWeightUp",
-    #             shift_config={
-    #                 "global": {
-    #                     "muR": 2.0,
-    #                     "muF": 2.0,
-    #                 }
-    #             },
-    #             producers={"global": [event.LHE_Scale_weight]},
-    #         )
-    #     )
-    #     configuration.add_shift(
-    #         SystematicShift(
-    #             "LHEScaleWeightDown",
-    #             shift_config={
-    #                 "global": {
-    #                     "muR": 0.5,
-    #                     "muF": 0.5,
-    #                 }
-    #             },
-    #             producers={"global": [event.LHE_Scale_weight]},
-    #         )
-    #     )
-
+    if "ggh" in sample or "qqh" in sample or "vbf_htautau" in sample:
+        configuration.add_shift(
+            SystematicShift(
+                "LHEScaleWeightUp",
+                shift_config={
+                    "global": {
+                        "muR": 2.0,
+                        "muF": 2.0,
+                    }
+                },
+                producers={"global": [event.LHE_Scale_weight]},
+            )
+        )
+        configuration.add_shift(
+            SystematicShift(
+                "LHEScaleWeightDown",
+                shift_config={
+                    "global": {
+                        "muR": 0.5,
+                        "muF": 0.5,
+                    }
+                },
+                producers={"global": [event.LHE_Scale_weight]},
+            )
+        )
+        configuration.add_shift(
+            SystematicShift(
+                "LHEScaleWeight_1_0p5",
+                shift_config={
+                    "global": {
+                        "muF": 1.0,
+                        "muR": 0.5,
+                    }
+                },
+                producers={"global": [event.LHE_Scale_weight]},
+            )
+        )
+        configuration.add_shift(
+            SystematicShift(
+                "LHEScaleWeight_2_0p5",
+                shift_config={
+                    "global": {
+                        "muF": 2.0,
+                        "muR": 0.5,
+                    }
+                },
+                producers={"global": [event.LHE_Scale_weight]},
+            )
+        )
+    configuration.add_shift(
+            SystematicShift(
+                "LHEScaleWeight_0p5_1",
+                shift_config={
+                    "global": {
+                        "muF": 0.5,
+                        "muR": 1.0,
+                    }
+                },
+                producers={"global": [event.LHE_Scale_weight]},
+            )
+        )
+    configuration.add_shift(
+            SystematicShift(
+                "LHEScaleWeight_2_1",
+                shift_config={
+                    "global": {
+                        "muF": 2.0,
+                        "muR": 1.0,
+                    }
+                },
+                producers={"global": [event.LHE_Scale_weight]},
+            )
+        )
+    configuration.add_shift(
+            SystematicShift(
+                "LHEScaleWeight_0p5_2",
+                shift_config={
+                    "global": {
+                        "muF": 0.5,
+                        "muR": 2.0,
+                    }
+                },
+                producers={"global": [event.LHE_Scale_weight]},
+            )
+        )
+    configuration.add_shift(
+            SystematicShift(
+                "LHEScaleWeight_1_2",
+                shift_config={
+                    "global": {
+                        "muF": 1.0,
+                        "muR": 2.0,
+                    }
+                },
+                producers={"global": [event.LHE_Scale_weight]},
+            )
+        )
     #########################
     # Lepton to tau fakes energy scalefactor shifts  #
     #########################
@@ -2254,49 +2198,16 @@ def build_config(
             name="singleElectronTriggerSFUp",
             shift_config={
                 ("et", "em"): {
-                    "singlelectron_trigger_sf_mc": EraModifier(
-                        {   
-                            "2023": [
-                                {
-                                    "flagname": "trg_wgt_single_ele30",
-                                    "mc_trigger_sf": "Electron-HLT-SF",
-                                    "mc_electron_trg_extrapolation": 1.0,  # for nominal case
-                                    "mc_trigger":"HLT_SF_Ele30_MVAiso90ID",
-                                    "mc_correctiontype": "sfup",
-
-                                },
-                            ],
-                             "2023BPix": [
-                                {
-                                    "flagname": "trg_wgt_single_ele30",
-                                    "mc_trigger_sf": "Electron-HLT-SF",
-                                    "mc_electron_trg_extrapolation": 1.0,  # for nominal case
-                                    "mc_trigger":"HLT_SF_Ele30_MVAiso90ID",
-                                    "mc_correctiontype": "sfup",
-                                },
-                            ], 
-                             "2022EE": [
-                                {
-                                    "flagname": "trg_wgt_single_ele30",
-                                    "mc_trigger_sf": "Electron-HLT-SF",
-                                    "mc_electron_trg_extrapolation": 1.0,  # for nominal case
-                                    "mc_trigger":"HLT_SF_Ele30_MVAiso90ID",
-                                    "mc_correctiontype": "sfup",
-
-                                },
-                            ],
-                             "2022postEE": [
-                                {
-                                    "flagname": "trg_wgt_single_ele30",
-                                    "mc_trigger_sf": "Electron-HLT-SF",
-                                    "mc_electron_trg_extrapolation": 1.0,  # for nominal case
-                                    "mc_trigger":"HLT_SF_Ele30_MVAiso90ID",
-                                    "mc_correctiontype": "sfup",
-                                },
-                            ],
+                    "singlelectron_trigger_sf_mc": [
+                        {
+                            "flagname": "trg_wgt_single_ele30",
+                            "mc_trigger_sf": "Electron-HLT-SF",
+                            "mc_electron_trg_extrapolation": 1.0,  # for nominal case
+                            "mc_trigger":"HLT_SF_Ele30_MVAiso90ID",
+                            "mc_correctiontype": "sfup",
                         }
-                    )
-                }
+                    ]
+                }       
             },
             producers={("et", "em"): scalefactors.ETGenerateSingleElectronTriggerSF_MC},
         ),
@@ -2311,46 +2222,15 @@ def build_config(
             name="singleElectronTriggerSFDown",
             shift_config={
                 ("et", "em"): {
-                    "singlelectron_trigger_sf_mc": EraModifier(
-                        {   
-                            "2023": [
-                                {
-                                    "flagname": "trg_wgt_single_ele30",
-                                    "mc_trigger_sf": "Electron-HLT-SF",
-                                    "mc_electron_trg_extrapolation": 1.0,  # for nominal case
-                                    "mc_trigger":"HLT_SF_Ele30_MVAiso90ID",
-                                    "mc_correctiontype": "sfdown",
-                                },
-                            ],
-                            "2023BPix": [
-                                {
-                                    "flagname": "trg_wgt_single_ele30",
-                                    "mc_trigger_sf": "Electron-HLT-SF",
-                                    "mc_electron_trg_extrapolation": 1.0,  # for nominal case
-                                    "mc_trigger":"HLT_SF_Ele30_MVAiso90ID",
-                                    "mc_correctiontype": "sfdown",
-                                },
-                            ],
-                            "2022EE": [
-                                {
-                                    "flagname": "trg_wgt_single_ele30",
-                                    "mc_trigger_sf": "Electron-HLT-SF",
-                                    "mc_electron_trg_extrapolation": 1.0,  # for nominal case
-                                    "mc_trigger":"HLT_SF_Ele30_MVAiso90ID",
-                                    "mc_correctiontype": "sfdown",
-                                },
-                            ],
-                            "2022postEE": [
-                                {
-                                    "flagname": "trg_wgt_single_ele30",
-                                    "mc_trigger_sf": "Electron-HLT-SF",
-                                    "mc_electron_trg_extrapolation": 1.0,  # for nominal case
-                                    "mc_trigger":"HLT_SF_Ele30_MVAiso90ID",
-                                    "mc_correctiontype": "sfdown",
-                                },
-                            ],
-                        }
-                    )
+                    "singlelectron_trigger_sf_mc": [
+                        {
+                            "flagname": "trg_wgt_single_ele30",
+                            "mc_trigger_sf": "Electron-HLT-SF",
+                            "mc_electron_trg_extrapolation": 1.0,  # for nominal case
+                            "mc_trigger":"HLT_SF_Ele30_MVAiso90ID",
+                            "mc_correctiontype": "sfdown",
+                        },
+                    ],
                 }
             },
             producers={("et", "em"): scalefactors.ETGenerateSingleElectronTriggerSF_MC},
@@ -2364,46 +2244,67 @@ def build_config(
 
     configuration.add_shift(
         SystematicShift(
+            name="singleElectronTriggerSF_emuCross_lowpTUp",
+            shift_config={
+                ("em"): {
+                    "singlelectron12_trigger_sf_mc_emuCross": [
+                    {
+                        "flagname": "trg_wgt_cross_mu23ele12_ele",
+                        "mc_trigger_sf": "Electron-HLT-SF",
+                        "mc_electron_trg_extrapolation": 1.0,  # for nominal case
+                        "mc_trigger_emuCross":"HLT_Ele23_Ele12_CaloIdL_TrackIdL_IsoVL_Leg2",
+                        "mc_correctiontype": "sfup",
+                    },
+                    ]
+                    
+                }       
+            },
+            producers={("em"): scalefactors.ETGenerateSingleElectronTriggerSF_MC_emuCross_lowpT},
+        ),
+        samples=[
+            sample
+            for sample in available_sample_types
+            if sample not in ["data", "embedding", "embedding_mc"]
+        ],
+    )
+    configuration.add_shift(
+        SystematicShift(
+            name="singleElectronTriggerSF_emuCross_lowpTDown",
+            shift_config={
+                ("em"): {
+                    "singlelectron_trigger_sf_mc": [
+                    {
+                        "flagname": "trg_wgt_cross_mu23ele12_ele",
+                        "mc_trigger_sf": "Electron-HLT-SF",
+                        "mc_electron_trg_extrapolation": 1.0,  # for nominal case
+                        "mc_trigger_emuCross":"HLT_Ele23_Ele12_CaloIdL_TrackIdL_IsoVL_Leg2",
+                        "mc_correctiontype": "sfdown",
+                    },
+                    ],
+                }
+            },
+            producers={("em"): scalefactors.ETGenerateSingleElectronTriggerSF_MC_emuCross_lowpT},
+        ),
+        samples=[
+            sample
+            for sample in available_sample_types
+            if sample not in ["data", "embedding", "embedding_mc"]
+        ],
+    )
+
+    configuration.add_shift(
+        SystematicShift(
             name="singleMuonTriggerSFUp",
             shift_config={
                 ("mt", "em"): {
-                    "singlemuon_trigger_sf_mc": EraModifier(
-                        {   "2022EE": [
-                                {
-                                    "flagname": "trg_wgt_single_mu24",
-                                    "mc_trigger_sf": "NUM_IsoMu24_DEN_CutBasedIdMedium_and_PFIsoMedium",
-                                    "mc_muon_sf_correctiontype": "systup",
-                                    "mc_muon_trg_extrapolation": 1,
-                                },
-
-                            ],
-                             "2022postEE": [
-                                {
-                                    "flagname": "trg_wgt_single_mu24",
-                                    "mc_trigger_sf": "NUM_IsoMu24_DEN_CutBasedIdMedium_and_PFIsoMedium",
-                                    "mc_muon_sf_correctiontype": "systup",
-                                    "mc_muon_trg_extrapolation": 1,
-                                },
-                            ],
-                            "2023": [
-                                {
-                                    "flagname": "trg_wgt_single_mu24",
-                                    "mc_trigger_sf": "NUM_IsoMu24_DEN_CutBasedIdMedium_and_PFIsoMedium",
-                                    "mc_muon_sf_correctiontype": "systup",
-                                    "mc_muon_trg_extrapolation": 1,
-                                },
-
-                            ],
-                             "2023BPix": [
-                                {
-                                    "flagname": "trg_wgt_single_mu24",
-                                    "mc_trigger_sf": "NUM_IsoMu24_DEN_CutBasedIdMedium_and_PFIsoMedium",
-                                    "mc_muon_sf_correctiontype": "systup",
-                                    "mc_muon_trg_extrapolation": 1,
-                                },
-                            ],
-                        }
-                    )
+                    "singlemuon_trigger_sf_mc":  [
+                        {
+                            "flagname": "trg_wgt_single_mu24",
+                            "mc_trigger_sf": "NUM_IsoMu24_DEN_CutBasedIdMedium_and_PFIsoMedium",
+                            "mc_muon_sf_correctiontype": "systup",
+                            "mc_muon_trg_extrapolation": 1,
+                        },
+                    ],
                 }
             },
             producers={("mt", "em"): scalefactors.MTGenerateSingleMuonTriggerSF_MC},
@@ -2419,42 +2320,14 @@ def build_config(
             name="singleMuonTriggerSFDown",
             shift_config={
                 ("mt", "em"): {
-                    "singlemuon_trigger_sf_mc": EraModifier(
-                        {   
-                            "2023": [
-                                {
-                                    "flagname": "trg_wgt_single_mu24",
-                                    "mc_trigger_sf": "NUM_IsoMu24_DEN_CutBasedIdMedium_and_PFIsoMedium",
-                                    "mc_muon_sf_correctiontype": "systdown",
-                                    "mc_muon_trg_extrapolation": 1.,
-                                },
-                            ],
-                            "2023BPix": [
-                                {
-                                    "flagname": "trg_wgt_single_mu24",
-                                    "mc_trigger_sf": "NUM_IsoMu24_DEN_CutBasedIdMedium_and_PFIsoMedium",
-                                    "mc_muon_sf_correctiontype": "systdown",
-                                    "mc_muon_trg_extrapolation": 1.,
-                                },
-                            ],
-                            "2022EE": [
-                                {
-                                    "flagname": "trg_wgt_single_mu24",
-                                    "mc_trigger_sf": "NUM_IsoMu24_DEN_CutBasedIdMedium_and_PFIsoMedium",
-                                    "mc_muon_sf_correctiontype": "systdown",
-                                    "mc_muon_trg_extrapolation": 1.,
-                                },
-                            ],
-                            "2022postEE": [
-                                {
-                                    "flagname": "trg_wgt_single_mu24",
-                                    "mc_trigger_sf": "NUM_IsoMu24_DEN_CutBasedIdMedium_and_PFIsoMedium",
-                                    "mc_muon_sf_correctiontype": "systdown",
-                                    "mc_muon_trg_extrapolation": 1.,
-                                },
-                            ],
-                        }
-                    )
+                    "singlemuon_trigger_sf_mc": [
+                        {
+                            "flagname": "trg_wgt_single_mu24",
+                            "mc_trigger_sf": "NUM_IsoMu24_DEN_CutBasedIdMedium_and_PFIsoMedium",
+                            "mc_muon_sf_correctiontype": "systdown",
+                            "mc_muon_trg_extrapolation": 1.,
+                        },
+                    ],
                 }
             },
             producers={("mt", "em"): scalefactors.MTGenerateSingleMuonTriggerSF_MC},
