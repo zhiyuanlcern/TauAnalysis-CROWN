@@ -323,7 +323,7 @@ def build_config(
                 }
             ),
             "btag_sf_variation": "central",
-            "btag_corr_algo": "particleNet_shape",
+            # "btag_corr_algo": "particleNet_shape",
         },
     )
     # leptonveto base selection:
@@ -1536,6 +1536,36 @@ def build_config(
             ],
         ),
     )
+
+    configuration.add_modification_rule(
+        "em",
+        ReplaceProducer(
+            producers=[scalefactors.btagging_SF_Fixed_WP_em, scalefactors.btagging_SF_Fixed_WP_signal],
+            samples=["vbf_htautau", "ggh_htautau"],
+        ),
+    )
+    configuration.add_modification_rule(
+        "tt",
+        ReplaceProducer(
+            producers=[scalefactors.btagging_SF_Fixed_WP_tt, scalefactors.btagging_SF_Fixed_WP_signal],
+            samples=["vbf_htautau", "ggh_htautau"],
+        ),
+    )
+    configuration.add_modification_rule(
+        "mt",
+        ReplaceProducer(
+            producers=[scalefactors.btagging_SF_Fixed_WP_mt, scalefactors.btagging_SF_Fixed_WP_signal],
+            samples=["vbf_htautau", "ggh_htautau"],
+        ),
+    )
+    configuration.add_modification_rule(
+        "et",
+        ReplaceProducer(
+            producers=[scalefactors.btagging_SF_Fixed_WP_et, scalefactors.btagging_SF_Fixed_WP_signal],
+            samples=["vbf_htautau", "ggh_htautau"],
+        ),
+    )
+    # scalefactors.btagging_SF_Fixed_WP_em,
     configuration.add_outputs(
         scopes,
         [
