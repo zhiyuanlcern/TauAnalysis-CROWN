@@ -298,8 +298,8 @@ btagging_SF = Producer(
 
 
 btagging_SF_Fixed_WP_signal = Producer(
-    name="btagging_SF",
-    call='scalefactor::jet::btagSF_FixedWP_signal({df}, {input}, "{btag_sf_variation}", {output}, "{btag_sf_file}", "{btag_eff_file}", "{era_name}", {btag_cut})',
+    name="btagging_SF_Fixed_WP_signal",
+    call='scalefactor::jet::btagSF_FixedWP_signal({df}, {input}, "{btag_sf_variation}", {output}, "{btag_sf_file}", "{btag_eff_file}", "{era_name}", {btag_cut}, "{btag_sf_flavour}")',
     input=[
         q.Jet_pt_corrected,
         nanoAOD.Jet_eta,
@@ -315,8 +315,8 @@ btagging_SF_Fixed_WP_signal = Producer(
 )
 
 btagging_SF_Fixed_WP_tt = Producer(
-    name="btagging_SF",
-    call='scalefactor::jet::btagSF_FixedWP({df}, {input}, "{btag_sf_variation}", {output}, "{btag_sf_file}", "{btag_eff_file}", "{era_name}", "tt", {btag_cut})',
+    name="btagging_SF_Fixed_WP_tt",
+    call='scalefactor::jet::btagSF_FixedWP({df}, {input}, "{btag_sf_variation}", {output}, "{btag_sf_file}", "{btag_eff_file}", "{era_name}", "tt", {btag_cut}, "{btag_sf_flavour}")',
     input=[
         q.Jet_pt_corrected,
         nanoAOD.Jet_eta,
@@ -331,8 +331,8 @@ btagging_SF_Fixed_WP_tt = Producer(
 )
 
 btagging_SF_Fixed_WP_mt = Producer(
-    name="btagging_SF",
-    call='scalefactor::jet::btagSF_FixedWP({df}, {input}, "{btag_sf_variation}", {output}, "{btag_sf_file}", "{btag_eff_file}", "{era_name}", "mt", {btag_cut})',
+    name="btagging_SF_Fixed_WP_mt",
+    call='scalefactor::jet::btagSF_FixedWP({df}, {input}, "{btag_sf_variation}", {output}, "{btag_sf_file}", "{btag_eff_file}", "{era_name}", "mt", {btag_cut}, "{btag_sf_flavour}")',
     input=[
         q.Jet_pt_corrected,
         nanoAOD.Jet_eta,
@@ -347,8 +347,8 @@ btagging_SF_Fixed_WP_mt = Producer(
 )
 
 btagging_SF_Fixed_WP_et = Producer(
-    name="btagging_SF",
-    call='scalefactor::jet::btagSF_FixedWP({df}, {input}, "{btag_sf_variation}", {output}, "{btag_sf_file}", "{btag_eff_file}", "{era_name}", "et", {btag_cut})',
+    name="btagging_SF_Fixed_WP_et",
+    call='scalefactor::jet::btagSF_FixedWP({df}, {input}, "{btag_sf_variation}", {output}, "{btag_sf_file}", "{btag_eff_file}", "{era_name}", "et", {btag_cut}, "{btag_sf_flavour}")',
     input=[
         q.Jet_pt_corrected,
         nanoAOD.Jet_eta,
@@ -363,8 +363,8 @@ btagging_SF_Fixed_WP_et = Producer(
 )
 
 btagging_SF_Fixed_WP_em = Producer(
-    name="btagging_SF",
-    call='scalefactor::jet::btagSF_FixedWP({df}, {input}, "{btag_sf_variation}", {output}, "{btag_sf_file}", "{btag_eff_file}", "{era_name}", "em", {btag_cut})',
+    name="btagging_SF_Fixed_WP_em",
+    call='scalefactor::jet::btagSF_FixedWP({df}, {input}, "{btag_sf_variation}", {output}, "{btag_sf_file}", "{btag_eff_file}", "{era_name}", "em", {btag_cut}, "{btag_sf_flavour}")',
     input=[
         q.Jet_pt_corrected,
         nanoAOD.Jet_eta,

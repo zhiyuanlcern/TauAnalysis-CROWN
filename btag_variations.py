@@ -242,7 +242,7 @@ def add_btagVariations(configuration, available_sample_types):
         SystematicShift(
             name="btagUncbc_correlated_Down",
             shift_config={
-                ("mt", "et", "tt", "em"): {"btag_sf_variation": "down_correlated"},
+                ("mt", "et", "tt", "em"): {"btag_sf_variation": "down_correlated", "btag_sf_flavour": "bc" },
             },
             producers={("mt", "et", "tt", "em"): scalefactors.btagging_SF},
         ),
@@ -255,9 +255,9 @@ def add_btagVariations(configuration, available_sample_types):
 
     configuration.add_shift(
         SystematicShift(
-            name="btagUncbc_correlateD_Up",
+            name="btagUncbc_correlated_Up",
             shift_config={
-                ("mt", "et", "tt", "em"): {"btag_sf_variation": "up_correlated"},
+                ("mt", "et", "tt", "em"): {"btag_sf_variation": "up_correlated", "btag_sf_flavour": "bc"},
             },
             producers={("mt", "et", "tt", "em"): scalefactors.btagging_SF},
         ),
@@ -272,7 +272,7 @@ def add_btagVariations(configuration, available_sample_types):
         SystematicShift(
             name="btagUnclight_correlated_Down",
             shift_config={
-                ("mt", "et", "tt", "em"): {"btag_sf_variation": "down_correlated"},
+                ("mt", "et", "tt", "em"): {"btag_sf_variation": "down_correlated", "btag_sf_flavour": "light"},
             },
             producers={("mt", "et", "tt", "em"): scalefactors.btagging_SF},
         ),
@@ -284,9 +284,9 @@ def add_btagVariations(configuration, available_sample_types):
     )
     configuration.add_shift(
         SystematicShift(
-            name="btagUnclight_correlateD_Up",
+            name="btagUnclight_correlated_Up",
             shift_config={
-                ("mt", "et", "tt", "em"): {"btag_sf_variation": "up_correlated"},
+                ("mt", "et", "tt", "em"): {"btag_sf_variation": "up_correlated", "btag_sf_flavour": "light"},
             },
             producers={("mt", "et", "tt", "em"): scalefactors.btagging_SF},
         ),
@@ -300,7 +300,7 @@ def add_btagVariations(configuration, available_sample_types):
         SystematicShift(
             name="btagUncbc_Uncorrelated_Down",
             shift_config={
-                ("mt", "et", "tt", "em"): {"btag_sf_variation": "down_uncorrelated"},
+                ("mt", "et", "tt", "em"): {"btag_sf_variation": "down_uncorrelated", "btag_sf_flavour": "bc"},
             },
             producers={("mt", "et", "tt", "em"): scalefactors.btagging_SF},
         ),
@@ -313,9 +313,9 @@ def add_btagVariations(configuration, available_sample_types):
 
     configuration.add_shift(
         SystematicShift(
-            name="btagUncbc_uncorrelateD_Up",
+            name="btagUncbc_Uncorrelated_Up",
             shift_config={
-                ("mt", "et", "tt", "em"): {"btag_sf_variation": "up_uncorrelated"},
+                ("mt", "et", "tt", "em"): {"btag_sf_variation": "up_uncorrelated", "btag_sf_flavour": "bc"},
             },
             producers={("mt", "et", "tt", "em"): scalefactors.btagging_SF},
         ),
@@ -330,7 +330,7 @@ def add_btagVariations(configuration, available_sample_types):
         SystematicShift(
             name="btagUnclight_Uncorrelated_Down",
             shift_config={
-                ("mt", "et", "tt", "em"): {"btag_sf_variation": "down_uncorrelated"},
+                ("mt", "et", "tt", "em"): {"btag_sf_variation": "down_uncorrelated", "btag_sf_flavour": "light"},
             },
             producers={("mt", "et", "tt", "em"): scalefactors.btagging_SF},
         ),
@@ -342,9 +342,9 @@ def add_btagVariations(configuration, available_sample_types):
     )
     configuration.add_shift(
         SystematicShift(
-            name="btagUnclight_uncorrelateD_Up",
+            name="btagUnclight_Uncorrelated_Up",
             shift_config={
-                ("mt", "et", "tt", "em"): {"btag_sf_variation": "up_uncorrelated"},
+                ("mt", "et", "tt", "em"): {"btag_sf_variation": "up_uncorrelated", "btag_sf_flavour": "light"},
             },
             producers={("mt", "et", "tt", "em"): scalefactors.btagging_SF},
         ),

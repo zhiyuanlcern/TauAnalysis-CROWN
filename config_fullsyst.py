@@ -310,6 +310,7 @@ def build_config(
                 {"2022EE": "2022EE",  "2022postEE": "2022postEE", "2023": "2023preBPix", "2023BPix": "2023BPix"}
             ),
             "btag_sf_variation": "central",
+            'btag_sf_flavour': "nom",
             # "btag_corr_algo": "particleNet_shape",
         },
     )
@@ -1397,28 +1398,28 @@ def build_config(
         "em",
         ReplaceProducer(
             producers=[scalefactors.btagging_SF_Fixed_WP_em, scalefactors.btagging_SF_Fixed_WP_signal],
-            samples=["vbf_htautau", "ggh_htautau"],
+            samples=["vbf_htautau", ], #"ggh_htautau"
         ),
     )
     configuration.add_modification_rule(
         "tt",
         ReplaceProducer(
             producers=[scalefactors.btagging_SF_Fixed_WP_tt, scalefactors.btagging_SF_Fixed_WP_signal],
-            samples=["vbf_htautau", "ggh_htautau"],
+            samples=["vbf_htautau",],# "ggh_htautau"
         ),
     )
     configuration.add_modification_rule(
         "mt",
         ReplaceProducer(
             producers=[scalefactors.btagging_SF_Fixed_WP_mt, scalefactors.btagging_SF_Fixed_WP_signal],
-            samples=["vbf_htautau", "ggh_htautau"],
+            samples=["vbf_htautau", ],# "ggh_htautau"
         ),
     )
     configuration.add_modification_rule(
         "et",
         ReplaceProducer(
             producers=[scalefactors.btagging_SF_Fixed_WP_et, scalefactors.btagging_SF_Fixed_WP_signal],
-            samples=["vbf_htautau", "ggh_htautau"],
+            samples=["vbf_htautau", ],# "ggh_htautau"
         ),
     )
     # scalefactors.btagging_SF_Fixed_WP_em,
