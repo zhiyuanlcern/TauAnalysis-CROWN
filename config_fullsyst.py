@@ -474,10 +474,10 @@ def build_config(
     configuration.add_config_parameters(
         ["et", "mt"],
         {
-            "min_tau_pt": 30.0, # use AN definition
+            "min_tau_pt": 20.0, # use AN definition
             "max_tau_eta": 2.5,
             "max_tau_dz": 0.2,
-            "vsjet_tau_id_bit": 5,#"VVVLoose": 1,"VVLoose": 2,"VLoose": 3,"Loose": 4,"Medium": 5,"Tight": 6,
+            "vsjet_tau_id_bit": 1,#"VVVLoose": 1,"VVLoose": 2,"VLoose": 3,"Loose": 4,"Medium": 5,"Tight": 6,
             "vsele_tau_id_bit": 2,# "VVLoose": 2,"VLoose": 3,"Loose": 4,"Medium": 5,"Tight": 6,
             "vsmu_tau_id_bit": 1, #"VLoose": 1,"Loose": 2,"Medium": 3,"Tight": 4,
         },
@@ -486,10 +486,10 @@ def build_config(
     configuration.add_config_parameters(
         ["tt"],
         {
-            "min_tau_pt": 35.0,
+            "min_tau_pt": 30.0,
             "max_tau_eta": 2.5,
             "max_tau_dz": 0.2,
-            "vsjet_tau_id_bit": 5,
+            "vsjet_tau_id_bit": 1,
             "vsele_tau_id_bit": 2,
             "vsmu_tau_id_bit": 1,
         },
