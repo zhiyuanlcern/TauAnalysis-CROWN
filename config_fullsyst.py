@@ -102,29 +102,83 @@ def build_config(
             "tau_sf_file": EraModifier(
                 {   ## source : https://gitlab.cern.ch/cms-tau-pog/jsonpog-integration/-/tree/TauPOG_v2_deepTauV2p5/POG/TAU?ref_type=heads
                     ## October 17: Update to new 2022 Tau SF files, old ones are in /data/jsonpog-integration/POG/TAU/bkp. Source: /eos/cms/store/group/phys_tau/lrussell/TAU_SFs_and_TES, obtained from Lucas Russel
-                    "2022EE": "data/jsonpog-integration/POG/TAU/Tau_Fix_Bug_new/tau_DeepTau2018v2p5_2022_preEE.json.gz",  
-                    "2022postEE": "data/jsonpog-integration/POG/TAU/Tau_Fix_Bug_new/tau_DeepTau2018v2p5_2022_postEE.json.gz", 
-                    "2023": "data/jsonpog-integration/POG/TAU/Tau_Fix_Bug_new/tau_DeepTau2018v2p5_2023_preBPix.json.gz",  
-                    "2023BPix": "data/jsonpog-integration/POG/TAU/Tau_Fix_Bug_new/tau_DeepTau2018v2p5_2023_postBPix.json.gz", 
+                    # "2022EE": "data/jsonpog-integration/POG/TAU/Tau_Fix_Bug_new/tau_DeepTau2018v2p5_2022_preEE.json.gz",  
+                    # "2022postEE": "data/jsonpog-integration/POG/TAU/Tau_Fix_Bug_new/tau_DeepTau2018v2p5_2022_postEE.json.gz", 
+                    # "2023": "data/jsonpog-integration/POG/TAU/Tau_Fix_Bug_new/tau_DeepTau2018v2p5_2023_preBPix.json.gz",  
+                    # "2023BPix": "data/jsonpog-integration/POG/TAU/Tau_Fix_Bug_new/tau_DeepTau2018v2p5_2023_postBPix.json.gz", 
+                    "2022EE": "data/jsonpog-integration/POG/TAU/Run3-22CDSep23-Summer22-NanoAODv12_latest/tau_fixed.json",  
+                    "2022postEE": "data/jsonpog-integration/POG/TAU/Run3-22EFGSep23-Summer22EE-NanoAODv12_latest/tau_fixed.json", 
+                    "2023": "data/jsonpog-integration/POG/TAU/Run3-23CSep23-Summer23-NanoAODv12_latest/tau_fixed.json",  
+                    "2023BPix": "data/jsonpog-integration/POG/TAU/Run3-23DSep23-Summer23BPix-NanoAODv12_latest/tau_fixed.json", 
                 }
             ),
             "tau_ES_sf_file": EraModifier(
                 {   ## source : https://gitlab.cern.ch/cms-tau-pog/jsonpog-integration/-/tree/TauPOG_v2_deepTauV2p5/POG/TAU?ref_type=heads
                     ## October 17: Update to new 2022 Tau SF files, old ones are in /data/jsonpog-integration/POG/TAU/bkp. Source: /eos/cms/store/group/phys_tau/lrussell/TAU_SFs_and_TES, obtained from Lucas Russel
-                    "2022EE": "data/jsonpog-integration/POG/TAU/Tau_Fix_Bug_new/tau_DeepTau2018v2p5_2022_preEE.json.gz",  
-                    "2022postEE": "data/jsonpog-integration/POG/TAU/Tau_Fix_Bug_new/tau_DeepTau2018v2p5_2022_postEE.json.gz", 
-                    "2023": "data/jsonpog-integration/POG/TAU/Tau_Fix_Bug_new/tau_DeepTau2018v2p5_2023_preBPix.json.gz",  
-                    "2023BPix": "data/jsonpog-integration/POG/TAU/Tau_Fix_Bug_new/tau_DeepTau2018v2p5_2023_postBPix.json.gz", 
+                    "2022EE": "data/jsonpog-integration/POG/TAU/Run3-22CDSep23-Summer22-NanoAODv12_latest/tau_fixed.json",  
+                    "2022postEE": "data/jsonpog-integration/POG/TAU/Run3-22EFGSep23-Summer22EE-NanoAODv12_latest/tau_fixed.json", 
+                    "2023": "data/jsonpog-integration/POG/TAU/Run3-23CSep23-Summer23-NanoAODv12_latest/tau_fixed.json",  
+                    "2023BPix": "data/jsonpog-integration/POG/TAU/Run3-23DSep23-Summer23BPix-NanoAODv12_latest/tau_fixed.json", 
                 }
             ),
             "tau_trigger_sf_file":EraModifier(
                {
-                "2022EE": "data/jsonpog-integration/POG/TAU/output/tau_trigger_DeepTau2018v2p5_2022preEE.json.gz",  ## source : https://gitlab.cern.ch/cms-tau-pog/jsonpog-integration/-/tree/TauPOG_v2_deepTauV2p5/POG/TAU/output?ref_type=heads 
-                "2022postEE": "data/jsonpog-integration/POG/TAU/output/tau_trigger_DeepTau2018v2p5_2022postEE.json.gz",  ## mannually wrapped  in :   "schema_version": 2, "corrections": [ {}] to make it work in CROWN
-                "2023": "data/jsonpog-integration/POG/TAU/output/tau_trigger_DeepTau2018v2p5_2023preBPix.json.gz", 
-                "2023BPix": "data/jsonpog-integration/POG/TAU/output/tau_trigger_DeepTau2018v2p5_2023postBPix.json.gz", 
+                # "2022EE": "data/jsonpog-integration/POG/TAU/output/tau_trigger_DeepTau2018v2p5_2022preEE.json.gz",  ## source : https://gitlab.cern.ch/cms-tau-pog/jsonpog-integration/-/tree/TauPOG_v2_deepTauV2p5/POG/TAU/output?ref_type=heads 
+                # "2022postEE": "data/jsonpog-integration/POG/TAU/output/tau_trigger_DeepTau2018v2p5_2022postEE.json.gz",  ## mannually wrapped  in :   "schema_version": 2, "corrections": [ {}] to make it work in CROWN
+                # "2023": "data/jsonpog-integration/POG/TAU/output/tau_trigger_DeepTau2018v2p5_2023preBPix.json.gz", 
+                # "2023BPix": "data/jsonpog-integration/POG/TAU/output/tau_trigger_DeepTau2018v2p5_2023postBPix.json.gz", 
+                "2022EE": "data/jsonpog-integration/POG/TAU/Run3-22CDSep23-Summer22-NanoAODv12_latest/tau_fixed.json",   ## version:/cvmfs/cms-griddata.cern.ch/cat/metadata/TAU/Run3-22CDSep23-Summer22-NanoAODv12/2025-12-25
+                "2022postEE": "data/jsonpog-integration/POG/TAU/Run3-22EFGSep23-Summer22EE-NanoAODv12_latest/tau_fixed.json", 
+                "2023": "data/jsonpog-integration/POG/TAU/Run3-23CSep23-Summer23-NanoAODv12_latest/tau_fixed.json",  
+                "2023BPix": "data/jsonpog-integration/POG/TAU/Run3-23DSep23-Summer23BPix-NanoAODv12_latest/tau_fixed.json", 
                }
+            
             ),
+
+            "ele_leg_sf_file": EraModifier({
+                "2022EE": "data/jsonpog-integration/hleprare/TriggerScaleFactors/2022preEE/CrossEleTauHlt_EleLeg_v1.json",
+                "2022postEE": "data/jsonpog-integration/hleprare/TriggerScaleFactors/2022postEE/CrossEleTauHlt_EleLeg_v1.json",
+                "2023": "data/jsonpog-integration/hleprare/TriggerScaleFactors/2023preBPix/CrossEleTauHlt_EleLeg_v1.json",
+                "2023BPix": "data/jsonpog-integration/hleprare/TriggerScaleFactors/2023postBPix/CrossEleTauHlt_EleLeg_v1.json",
+            }),
+            "mu_leg_sf_file": EraModifier({
+                "2022EE": "data//jsonpog-integration/POG/TAU/hleprare/TriggerScaleFactors//2022preEE/CrossMuTauHlt_MuLeg_v1.json",
+                "2022postEE": "data//jsonpog-integration/POG/TAU/hleprare/TriggerScaleFactors//2022postEE/CrossMuTauHlt_MuLeg_v1.json",
+                "2023": "data//jsonpog-integration/POG/TAU/hleprare/TriggerScaleFactors//2023preBPix/CrossMuTauHlt_MuLeg_v1.json",
+                "2023BPix": "data//jsonpog-integration/POG/TAU/hleprare/TriggerScaleFactors//2023postBPix/CrossMuTauHlt_MuLeg_v1.json",
+
+            }),
+            "jet_leg_sf_file": EraModifier({
+                "2022EE": "data//jsonpog-integration/POG/TAU/hleprare/TriggerScaleFactors//2022preEE/DiTauJetHlt_JetLeg_v1.json",
+                "2022postEE": "data//jsonpog-integration/POG/TAU/hleprare/TriggerScaleFactors//2022postEE/DiTauJetHlt_JetLeg_v1.json",
+                "2023": "data//jsonpog-integration/POG/TAU/hleprare/TriggerScaleFactors//2023preBPix/DiTauJetHlt_JetLeg_v1.json",
+                "2023BPix": "data//jsonpog-integration/POG/TAU/hleprare/TriggerScaleFactors//2023postBPix/DiTauJetHlt_JetLeg_v1.json",
+
+            }),
+            "single_mu_eff_file": EraModifier({
+                "2022EE": "data/jsonpog-integration/POG/MUO/muonefficiencies/Run3/2022/2022_Z/HLT/json/ScaleFactors_Muon_Z_HLT_2022_eta_pt_schemaV2.json",
+                "2022postEE": "data/jsonpog-integration/POG/MUO/muonefficiencies/Run3/2022_EE/2022_Z/HLT/json/ScaleFactors_Muon_Z_HLT_2022_EE_eta_pt_schemaV2.json",
+                "2023": "data/jsonpog-integration/POG/MUO/muonefficiencies/Run3/2023/2023_Z/HLT/json/ScaleFactors_Muon_Z_HLT_2023_eta_pt_schemaV2.json",
+                "2023BPix": "data/jsonpog-integration/POG/MUO/muonefficiencies/Run3/2023_BPix/2023_Z/HLT/json/ScaleFactors_Muon_Z_HLT_2023_BPix_eta_pt_schemaV2.json",
+            }),
+            
+            "single_ele_eff_file": EraModifier(
+                {
+                    "2022EE": "data/jsonpog-integration/POG/EGM/2022_Summer22/electronHlt.json.gz", 
+                    "2022postEE": "data/jsonpog-integration/POG/EGM/2022_Summer22EE/electronHlt.json.gz",
+                    "2023": "data/jsonpog-integration/POG/EGM/2023_Summer23/electronHlt.json.gz", 
+                    "2023BPix": "data/jsonpog-integration/POG/EGM/2023_Summer23BPix/electronHlt.json.gz", 
+                }
+            ),
+            "tau_plus_jet_sf_file": EraModifier(
+                {
+                    "2022EE": "data/jsonpog-integration/POG/TAU/hleprare/TriggerScaleFactors/2022preEE/DiTauJetHlt_JetLeg_v1.json",
+                    "2022postEE": "data/jsonpog-integration/POG/TAU/hleprare/TriggerScaleFactors/2022postEE/DiTauJetHlt_JetLeg_v1.json",
+                    "2023": "data/jsonpog-integration/POG/TAU/hleprare/TriggerScaleFactors/2023preBPix/DiTauJetHlt_JetLeg_v1.json",
+                    "2023BPix": "data/jsonpog-integration/POG/TAU/hleprare/TriggerScaleFactors/2023postBPix/DiTauJetHlt_JetLeg_v1.json",
+                }
+            ),
+            
 
             "tau_ES_json_name": "tau_energy_scale",
             "tau_id_algorithm": "DeepTau2018v2p5",
@@ -298,16 +352,25 @@ def build_config(
                     "2023BPix": "data/jsonpog-integration/POG/BTV/2023_Summer23BPix/btagging.json.gz", 
                 }
             ),
+
             "btag_eff_file": EraModifier(
                 {
-                    "2022EE": "data/jsonpog-integration/POG/BTV/btag_eff/2022EE/btagging_effciency.json",
-                    "2022postEE": "data/jsonpog-integration/POG/BTV/btag_eff/2022postEE/btagging_effciency.json",
-                    "2023": "data/jsonpog-integration/POG/BTV/btag_eff/2023preBPix/btagging_effciency.json", 
-                    "2023BPix": "data/jsonpog-integration/POG/BTV/btag_eff/2023BPix/btagging_effciency.json", 
+                    "2022EE": "data/jsonpog-integration/POG/BTV/btag_eff/2022EE/",
+                    "2022postEE": "data/jsonpog-integration/POG/BTV/btag_eff/2022postEE/",
+                    "2023": "data/jsonpog-integration/POG/BTV/btag_eff/2023preBPix/", 
+                    "2023BPix": "data/jsonpog-integration/POG/BTV/btag_eff/2023BPix/", 
                 }
             ),
+
+            "btag_eff_type": SampleModifier(
+                {
+                    "ttbar": "ttbar",
+                    "singletop": "ttbar", 
+                },
+                default="DY",
+            ),
             "era_name": EraModifier(
-                {"2022EE": "2022EE",  "2022postEE": "2022postEE", "2023": "2023preBPix", "2023BPix": "2023BPix"}
+                {"2022EE": "2022preEE",  "2022postEE": "2022postEE", "2023": "2023preBPix", "2023BPix": "2023postBPix"}
             ),
             "btag_sf_variation": "central",
             'btag_sf_flavour': "nom",
@@ -621,10 +684,11 @@ def build_config(
             ),
             "recoil_corrections_file": EraModifier(
                 {
-                    "2022EE": "data/jsonpog-integration/hleprare/DYandRecoilCorrlib/DY_pTll_recoil_corrections_2022preEE_v3.json.gz", 
-                    "2022postEE": "data/jsonpog-integration/hleprare/DYandRecoilCorrlib/DY_pTll_recoil_corrections_2022postEE_v3.json.gz",
-                    "2023": "data/jsonpog-integration/hleprare/DYandRecoilCorrlib/DY_pTll_recoil_corrections_2023preBPix_v3.json.gz", 
-                    "2023BPix": "data/jsonpog-integration/hleprare/DYandRecoilCorrlib/DY_pTll_recoil_corrections_2023postBPix_v3.json.gz", 
+                    ## Update from v3 to v5                     
+                    "2022EE": "data/jsonpog-integration/POG/TAU/hleprare/DYandRecoilCorrlib/DY_pTll_recoil_corrections_2022preEE_v5.json.gz", 
+                    "2022postEE": "data/jsonpog-integration/POG/TAU/hleprare/DYandRecoilCorrlib/DY_pTll_recoil_corrections_2022postEE_v5.json.gz",
+                    "2023": "data/jsonpog-integration/POG/TAU/hleprare/DYandRecoilCorrlib/DY_pTll_recoil_corrections_2023preBPix_v5.json.gz", 
+                    "2023BPix": "data/jsonpog-integration/POG/TAU/hleprare/DYandRecoilCorrlib/DY_pTll_recoil_corrections_2023postBPix_v5.json.gz", 
                 }
             ),
             # not used at all 
@@ -671,10 +735,11 @@ def build_config(
             "ggH_generator": "powheg",
             "zptmass_file": EraModifier(
                 {
-                    "2022EE": "data/jsonpog-integration/hleprare/DYweightCorrlib/DY_pTll_weights_2022preEE_v2.json.gz",## This correction is also applied when we derived DY control region, so keep it
-                    "2022postEE": "data/jsonpog-integration/hleprare/DYweightCorrlib/DY_pTll_weights_2022postEE_v2.json.gz",
-                    "2023": "data/jsonpog-integration/hleprare/DYweightCorrlib/DY_pTll_weights_2023preBPix_v2.json.gz", 
-                    "2023BPix": "data/jsonpog-integration/hleprare/DYweightCorrlib/DY_pTll_weights_2023postBPix_v2.json.gz", 
+                    ## This correction is also applied when we derived DY control region, so keep it
+                    "2022EE": "data/jsonpog-integration/POG/TAU/hleprare/DYweightCorrlib/DY_pTll_weights_2022preEE_v5.json.gz",
+                    "2022postEE": "data/jsonpog-integration/POG/TAU/hleprare/DYweightCorrlib/DY_pTll_weights_2022postEE_v5.json.gz",
+                    "2023": "data/jsonpog-integration/POG/TAU/hleprare/DYweightCorrlib/DY_pTll_weights_2023preBPix_v5.json.gz",
+                    "2023BPix": "data/jsonpog-integration/POG/TAU/hleprare/DYweightCorrlib/DY_pTll_weights_2023postBPix_v5.json.gz",
                 }
             ),
             # "zptmass_functor": "zptmass_weight_nom",
@@ -1021,6 +1086,7 @@ def build_config(
             triggers.MTGenerateSingleMuonTriggerFlags,
             triggers.MTGenerateCrossTriggerFlags,
             triggers.GenerateSingleTrailingTauTriggerFlags,
+            scalefactors.MT_OrTrigger_SF,
         ],
     )
     configuration.add_producers(
@@ -1050,6 +1116,7 @@ def build_config(
             triggers.ETGenerateSingleElectronTriggerFlags,
             triggers.ETGenerateCrossTriggerFlags,
             triggers.GenerateSingleTrailingTauTriggerFlags,
+            scalefactors.ET_OrTrigger_SF,
         ],
     )
     configuration.add_producers(
@@ -1079,6 +1146,7 @@ def build_config(
             triggers.TTGenerateDoubleTriggerFlags,
             triggers.GenerateSingleTrailingTauTriggerFlags,
             triggers.GenerateSingleLeadingTauTriggerFlags,
+            scalefactors.TT_PlusJet_OrTrigger_SF,
         ],
     )
     configuration.add_producers(
@@ -1578,6 +1646,7 @@ def build_config(
             q.electron_veto_flag,
             q.id_wgt_mu_1,
             q.iso_wgt_mu_1,
+            q.mt_or_trigger_weight,
         ],
     )
     configuration.add_outputs(
@@ -1603,6 +1672,7 @@ def build_config(
             q.dimuon_veto,
             q.electron_veto_flag,
             q.id_wgt_ele_wpTight,
+            q.et_or_trigger_weight,
             # q.id_wgt_ele_wp80nonIso_1,
         ],
     )
@@ -1636,6 +1706,7 @@ def build_config(
             q.muon_veto_flag,
             q.dimuon_veto,
             q.electron_veto_flag,
+            q.tt_plus_jet_or_trigger_weight,
         ],
     )
     configuration.add_outputs(

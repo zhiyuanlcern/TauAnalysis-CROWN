@@ -316,7 +316,7 @@ btagging_SF_Fixed_WP_signal = Producer(
 
 btagging_SF_Fixed_WP_tt = Producer(
     name="btagging_SF_Fixed_WP_tt",
-    call='scalefactor::jet::btagSF_FixedWP({df}, {input}, "{btag_sf_variation}", {output}, "{btag_sf_file}", "{btag_eff_file}", "{era_name}", "tt", {btag_cut}, "{btag_sf_flavour}")',
+    call='scalefactor::jet::btagSF_FixedWP({df}, {input}, "{btag_sf_variation}", {output}, "{btag_sf_file}", "{btag_eff_file}", "{btag_eff_type}" , "{era_name}", "tt", {btag_cut}, "{btag_sf_flavour}")',
     input=[
         q.Jet_pt_corrected,
         nanoAOD.Jet_eta,
@@ -332,7 +332,7 @@ btagging_SF_Fixed_WP_tt = Producer(
 
 btagging_SF_Fixed_WP_mt = Producer(
     name="btagging_SF_Fixed_WP_mt",
-    call='scalefactor::jet::btagSF_FixedWP({df}, {input}, "{btag_sf_variation}", {output}, "{btag_sf_file}", "{btag_eff_file}", "{era_name}", "mt", {btag_cut}, "{btag_sf_flavour}")',
+    call='scalefactor::jet::btagSF_FixedWP({df}, {input}, "{btag_sf_variation}", {output}, "{btag_sf_file}", "{btag_eff_file}", "{btag_eff_type}" , "{era_name}", "mt", {btag_cut}, "{btag_sf_flavour}")',
     input=[
         q.Jet_pt_corrected,
         nanoAOD.Jet_eta,
@@ -348,7 +348,7 @@ btagging_SF_Fixed_WP_mt = Producer(
 
 btagging_SF_Fixed_WP_et = Producer(
     name="btagging_SF_Fixed_WP_et",
-    call='scalefactor::jet::btagSF_FixedWP({df}, {input}, "{btag_sf_variation}", {output}, "{btag_sf_file}", "{btag_eff_file}", "{era_name}", "et", {btag_cut}, "{btag_sf_flavour}")',
+    call='scalefactor::jet::btagSF_FixedWP({df}, {input}, "{btag_sf_variation}", {output}, "{btag_sf_file}", "{btag_eff_file}" , "{btag_eff_type}", "{era_name}", "et", {btag_cut}, "{btag_sf_flavour}")',
     input=[
         q.Jet_pt_corrected,
         nanoAOD.Jet_eta,
@@ -364,7 +364,7 @@ btagging_SF_Fixed_WP_et = Producer(
 
 btagging_SF_Fixed_WP_em = Producer(
     name="btagging_SF_Fixed_WP_em",
-    call='scalefactor::jet::btagSF_FixedWP({df}, {input}, "{btag_sf_variation}", {output}, "{btag_sf_file}", "{btag_eff_file}", "{era_name}", "em", {btag_cut}, "{btag_sf_flavour}")',
+    call='scalefactor::jet::btagSF_FixedWP({df}, {input}, "{btag_sf_variation}", {output}, "{btag_sf_file}", "{btag_eff_file}", "{btag_eff_type}" , "{era_name}", "em", {btag_cut}, "{btag_sf_flavour}")',
     input=[
         q.Jet_pt_corrected,
         nanoAOD.Jet_eta,
@@ -376,4 +376,65 @@ btagging_SF_Fixed_WP_em = Producer(
     ],
     output=[q.btag_weight],
     scopes=["em"],
+)
+
+#########################
+# e-tau OR Trigger SF
+#########################
+ET_OrTrigger_SF = Producer(
+    name="ET_OrTrigger_SF",
+    call='scalefactor::trigger::et_or_trigger_sf({df}, {input}, {output}, "{ele_sf_year_id}", "{ele_leg_sf_file}", "{tau_trigger_sf_file}", "{single_ele_eff_file}" , "Medium", "HLT_Ele30_WPTight_Gsf", "HLT_Ele24_eta2p1_WPTight_Gsf_LooseDeepTauPFTauHPS30_eta2p1_CrossL1")',
+    input=[
+        q.p4_1,
+        q.p4_2,
+        nanoAOD.TriggerObject_bit,
+        nanoAOD.TriggerObject_id,
+        nanoAOD.TriggerObject_pt,
+        nanoAOD.TriggerObject_eta,
+        nanoAOD.TriggerObject_phi,
+        q.tau_decaymode_2,
+    ],
+    output=[q.et_or_trigger_weight],
+    scopes=["et"],
+)
+#########################
+# mu-tau OR Trigger SF
+#########################
+MT_OrTrigger_SF = Producer(
+    name="MT_OrTrigger_SF",
+    call='scalefactor::trigger::mt_or_trigger_sf({df}, {input}, {output}, "{mu_leg_sf_file}", "{tau_trigger_sf_file}", "{single_mu_eff_file}" , "Medium", "HLT_IsoMu24", "HLT_IsoMu20_eta2p1_LooseDeepTauPFTauHPS27_eta2p1_CrossL1")',
+    input=[
+        q.p4_1,
+        q.p4_2,
+        nanoAOD.TriggerObject_bit,
+        nanoAOD.TriggerObject_id,
+        nanoAOD.TriggerObject_pt,
+        nanoAOD.TriggerObject_eta,
+        nanoAOD.TriggerObject_phi,
+        q.tau_decaymode_2,
+    ],
+    output=[q.mt_or_trigger_weight],
+    scopes=["mt"],
+)
+
+#########################
+# tau-tau OR Trigger SF
+#########################
+TT_PlusJet_OrTrigger_SF = Producer(
+    name="TT_PlusJet_OrTrigger_SF",
+    call='scalefactor::trigger::ditau_or_trigger_sf({df}, {input}, {output},  "{tau_trigger_sf_file}","{tau_plus_jet_sf_file}" , "Medium", "HLT_DoubleMediumDeepTauPFTauHPS35_L2NN_eta2p1", "HLT_DoubleMediumDeepTauPFTauHPS30_L2NN_eta2p1_PFJet60")',
+    input=[
+        q.p4_1,
+        q.p4_2,
+        q.jet_p4_1,
+        nanoAOD.TriggerObject_bit,
+        nanoAOD.TriggerObject_id,
+        nanoAOD.TriggerObject_pt,
+        nanoAOD.TriggerObject_eta,
+        nanoAOD.TriggerObject_phi,
+        q.tau_decaymode_1,
+        q.tau_decaymode_2,
+    ],
+    output=[q.tt_plus_jet_or_trigger_weight],
+    scopes=["tt"],
 )
