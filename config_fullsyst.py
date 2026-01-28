@@ -136,10 +136,10 @@ def build_config(
             ),
 
             "ele_leg_sf_file": EraModifier({
-                "2022EE": "data/jsonpog-integration/hleprare/TriggerScaleFactors/2022preEE/CrossEleTauHlt_EleLeg_v1.json",
-                "2022postEE": "data/jsonpog-integration/hleprare/TriggerScaleFactors/2022postEE/CrossEleTauHlt_EleLeg_v1.json",
-                "2023": "data/jsonpog-integration/hleprare/TriggerScaleFactors/2023preBPix/CrossEleTauHlt_EleLeg_v1.json",
-                "2023BPix": "data/jsonpog-integration/hleprare/TriggerScaleFactors/2023postBPix/CrossEleTauHlt_EleLeg_v1.json",
+                "2022EE": "data//jsonpog-integration/POG/TAU/hleprare/TriggerScaleFactors/2022preEE/CrossEleTauHlt_EleLeg_v1.json",
+                "2022postEE": "data//jsonpog-integration/POG/TAU/hleprare/TriggerScaleFactors/2022postEE/CrossEleTauHlt_EleLeg_v1.json",
+                "2023": "data//jsonpog-integration/POG/TAU/hleprare/TriggerScaleFactors/2023preBPix/CrossEleTauHlt_EleLeg_v1.json",
+                "2023BPix": "data//jsonpog-integration/POG/TAU/hleprare/TriggerScaleFactors/2023postBPix/CrossEleTauHlt_EleLeg_v1.json",
             }),
             "mu_leg_sf_file": EraModifier({
                 "2022EE": "data//jsonpog-integration/POG/TAU/hleprare/TriggerScaleFactors//2022preEE/CrossMuTauHlt_MuLeg_v1.json",
@@ -179,6 +179,9 @@ def build_config(
                 }
             ),
             
+            "et_or_trigger_sf_syst" : "nom",
+            "mt_or_trigger_sf_syst" : "nom",
+            "tt_plus_jet_or_trigger_sf_syst" : "nom",
 
             "tau_ES_json_name": "tau_energy_scale",
             "tau_id_algorithm": "DeepTau2018v2p5",
@@ -366,6 +369,8 @@ def build_config(
                 {
                     "ttbar": "ttbar",
                     "singletop": "ttbar", 
+                    "ggh_htautau": "ggh_htautau",
+                    "vbf_htautau": "vbf_htautau",
                 },
                 default="DY",
             ),
@@ -1087,6 +1092,7 @@ def build_config(
             triggers.MTGenerateCrossTriggerFlags,
             triggers.GenerateSingleTrailingTauTriggerFlags,
             scalefactors.MT_OrTrigger_SF,
+            scalefactors.btagging_SF_Fixed_WP_mt,
         ],
     )
     configuration.add_producers(
@@ -1117,6 +1123,7 @@ def build_config(
             triggers.ETGenerateCrossTriggerFlags,
             triggers.GenerateSingleTrailingTauTriggerFlags,
             scalefactors.ET_OrTrigger_SF,
+            scalefactors.btagging_SF_Fixed_WP_et,
         ],
     )
     configuration.add_producers(
@@ -1147,6 +1154,7 @@ def build_config(
             triggers.GenerateSingleTrailingTauTriggerFlags,
             triggers.GenerateSingleLeadingTauTriggerFlags,
             scalefactors.TT_PlusJet_OrTrigger_SF,
+            scalefactors.btagging_SF_Fixed_WP_tt,
         ],
     )
     configuration.add_producers(
@@ -1175,7 +1183,40 @@ def build_config(
             triggers.EMGenerateSingleElectronTriggerFlags,
             triggers.EMGenerateSingleMuonTriggerFlags,
             triggers.EMGenerateCrossTriggerFlags,
+            scalefactors.btagging_SF_Fixed_WP_em,
         ],
+    )
+
+    configuration.add_modification_rule(
+        ["mt"],
+        RemoveProducer(
+            producers=[scalefactors.btagging_SF_Fixed_WP_mt],
+            samples="data",
+        ),
+    )
+
+    configuration.add_modification_rule(
+        ["et"],
+        RemoveProducer(
+            producers=[scalefactors.btagging_SF_Fixed_WP_et],
+            samples="data",
+        ),
+    )
+
+    configuration.add_modification_rule(
+        ["tt"],
+        RemoveProducer(
+            producers=[scalefactors.btagging_SF_Fixed_WP_tt],
+            samples="data",
+        ),
+    )
+
+    configuration.add_modification_rule(
+        ["em"],
+        RemoveProducer(
+            producers=[scalefactors.btagging_SF_Fixed_WP_em],
+            samples="data",
+        ),
     )
     configuration.add_modification_rule(
         ["mm"],
@@ -1392,7 +1433,6 @@ def build_config(
             producers=[
                 scalefactors.MTGenerateSingleMuonTriggerSF_MC,
                 scalefactors.MTGenerateDitauTriggerSF_2,
-                scalefactors.btagging_SF_Fixed_WP_mt,
             ],
             samples=[
                 sample
@@ -1421,7 +1461,6 @@ def build_config(
                 scalefactors.MTGenerateSingleMuonTriggerSF_MC,            
                 scalefactors.ETGenerateSingleElectronTriggerSF_MC,
                 scalefactors.ETGenerateSingleElectronTriggerSF_MC_emuCross_lowpT,
-                scalefactors.btagging_SF_Fixed_WP_em,
                 ],
 
             samples=[
@@ -1437,7 +1476,6 @@ def build_config(
             producers=[
                 scalefactors.ETGenerateSingleElectronTriggerSF_MC,
                 scalefactors.ETGenerateDitauTriggerSF_2,
-                scalefactors.btagging_SF_Fixed_WP_et,
             ],
             samples=[
                 sample
@@ -1452,7 +1490,6 @@ def build_config(
             producers=[
                 scalefactors.TTGenerateDitauTriggerSF_1,
                 scalefactors.TTGenerateDitauTriggerSF_2,
-                scalefactors.btagging_SF_Fixed_WP_tt,
             ],
             samples=[
                 sample
@@ -1466,31 +1503,31 @@ def build_config(
         "em",
         ReplaceProducer(
             producers=[scalefactors.btagging_SF_Fixed_WP_em, scalefactors.btagging_SF_Fixed_WP_signal],
-            samples=["vbf_htautau", ], #"ggh_htautau"
+            samples=["vbf_htautau","ggh_htautau" ], #
         ),
     )
     configuration.add_modification_rule(
         "tt",
         ReplaceProducer(
             producers=[scalefactors.btagging_SF_Fixed_WP_tt, scalefactors.btagging_SF_Fixed_WP_signal],
-            samples=["vbf_htautau",],# "ggh_htautau"
+            samples=["vbf_htautau","ggh_htautau"],# 
         ),
     )
     configuration.add_modification_rule(
         "mt",
         ReplaceProducer(
             producers=[scalefactors.btagging_SF_Fixed_WP_mt, scalefactors.btagging_SF_Fixed_WP_signal],
-            samples=["vbf_htautau", ],# "ggh_htautau"
+            samples=["vbf_htautau","ggh_htautau" ],# 
         ),
     )
     configuration.add_modification_rule(
         "et",
         ReplaceProducer(
             producers=[scalefactors.btagging_SF_Fixed_WP_et, scalefactors.btagging_SF_Fixed_WP_signal],
-            samples=["vbf_htautau", ],# "ggh_htautau"
+            samples=["vbf_htautau","ggh_htautau" ],# 
         ),
     )
-    # scalefactors.btagging_SF_Fixed_WP_em,
+    
     configuration.add_outputs(
         scopes,
         [
@@ -2454,6 +2491,103 @@ def build_config(
                 producers={("mt", "em", "mm"): [scalefactors.MuonIso_SF]},
             )
         )
+    # OR trigger SF shifts for mt / et / tt (Up/Down)
+    configuration.add_shift(
+        SystematicShift(
+            name="mt_or_trigger_weightUp",
+            shift_config={
+                ("mt",): {
+                    "mt_or_trigger_sf_syst": "up",
+                }
+            },
+            producers={("mt",): [scalefactors.MT_OrTrigger_SF]},
+        ),
+        samples=[
+            sample
+            for sample in available_sample_types
+            if sample not in ["data", "embedding", "embedding_mc"]
+        ],
+    )
+    configuration.add_shift(
+        SystematicShift(
+            name="mt_or_trigger_weightDown",
+            shift_config={
+                ("mt",): {
+                    "mt_or_trigger_sf_syst": "down",
+                }
+            },
+            producers={("mt",): [scalefactors.MT_OrTrigger_SF]},
+        ),
+        samples=[
+            sample
+            for sample in available_sample_types
+            if sample not in ["data", "embedding", "embedding_mc"]
+        ],
+    )
+    configuration.add_shift(
+        SystematicShift(
+            name="et_or_trigger_weightUp",
+            shift_config={
+                ("et",): {
+                    "et_or_trigger_sf_syst": "up",
+                }
+            },
+            producers={("et",): [scalefactors.ET_OrTrigger_SF]},
+        ),
+        samples=[
+            sample
+            for sample in available_sample_types
+            if sample not in ["data", "embedding", "embedding_mc"]
+        ],
+    )
+    configuration.add_shift(
+        SystematicShift(
+            name="et_or_trigger_weightDown",
+            shift_config={
+                ("et",): {
+                    "et_or_trigger_sf_syst": "down",
+                }
+            },
+            producers={("et",): [scalefactors.ET_OrTrigger_SF]},
+        ),
+        samples=[
+            sample
+            for sample in available_sample_types
+            if sample not in ["data", "embedding", "embedding_mc"]
+        ],
+    )
+    configuration.add_shift(
+        SystematicShift(
+            name="tt_plus_jet_or_trigger_weightUp",
+            shift_config={
+                ("tt",): {
+                    "tt_plus_jet_or_trigger_sf_syst": "up",
+                }
+            },
+            producers={("tt",): [scalefactors.TT_PlusJet_OrTrigger_SF]},
+        ),
+        samples=[
+            sample
+            for sample in available_sample_types
+            if sample not in ["data", "embedding", "embedding_mc"]
+        ],
+    )
+    configuration.add_shift(
+        SystematicShift(
+            name="tt_plus_jet_or_trigger_weightDown",
+            shift_config={
+                ("tt",): {
+                    "tt_plus_jet_or_trigger_sf_syst": "down",
+                }
+            },
+            producers={("tt",): [scalefactors.TT_PlusJet_OrTrigger_SF]},
+        ),
+        samples=[
+            sample
+            for sample in available_sample_types
+            if sample not in ["data", "embedding", "embedding_mc"]
+        ],
+    )
     # configuration.add_shift(
     #         SystematicShift(
     #             name="muon_IDISO_tagIso",

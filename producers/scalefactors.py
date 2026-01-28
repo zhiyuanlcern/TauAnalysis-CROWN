@@ -299,7 +299,7 @@ btagging_SF = Producer(
 
 btagging_SF_Fixed_WP_signal = Producer(
     name="btagging_SF_Fixed_WP_signal",
-    call='scalefactor::jet::btagSF_FixedWP_signal({df}, {input}, "{btag_sf_variation}", {output}, "{btag_sf_file}", "{btag_eff_file}", "{era_name}", {btag_cut}, "{btag_sf_flavour}")',
+    call='scalefactor::jet::btagSF_FixedWP_signal({df}, {input}, "{btag_sf_variation}", {output}, "{btag_sf_file}", "{btag_eff_file}", "{era_name}", {btag_cut}, "{btag_sf_flavour}", "{btag_eff_type}")',
     input=[
         q.Jet_pt_corrected,
         nanoAOD.Jet_eta,
@@ -383,7 +383,7 @@ btagging_SF_Fixed_WP_em = Producer(
 #########################
 ET_OrTrigger_SF = Producer(
     name="ET_OrTrigger_SF",
-    call='scalefactor::trigger::et_or_trigger_sf({df}, {input}, {output}, "{ele_sf_year_id}", "{ele_leg_sf_file}", "{tau_trigger_sf_file}", "{single_ele_eff_file}" , "Medium", "HLT_Ele30_WPTight_Gsf", "HLT_Ele24_eta2p1_WPTight_Gsf_LooseDeepTauPFTauHPS30_eta2p1_CrossL1")',
+    call='scalefactor::trigger::et_or_trigger_sf({df}, {input}, {output}, "{ele_sf_year_id}", "{ele_leg_sf_file}", "{tau_trigger_sf_file}", "{single_ele_eff_file}" , "Medium", "HLT_Ele30_WPTight_Gsf", "HLT_Ele24_eta2p1_WPTight_Gsf_LooseDeepTauPFTauHPS30_eta2p1_CrossL1", "{et_or_trigger_sf_syst}")',
     input=[
         q.p4_1,
         q.p4_2,
@@ -402,7 +402,7 @@ ET_OrTrigger_SF = Producer(
 #########################
 MT_OrTrigger_SF = Producer(
     name="MT_OrTrigger_SF",
-    call='scalefactor::trigger::mt_or_trigger_sf({df}, {input}, {output}, "{mu_leg_sf_file}", "{tau_trigger_sf_file}", "{single_mu_eff_file}" , "Medium", "HLT_IsoMu24", "HLT_IsoMu20_eta2p1_LooseDeepTauPFTauHPS27_eta2p1_CrossL1")',
+    call='scalefactor::trigger::mt_or_trigger_sf({df}, {input}, {output}, "{mu_leg_sf_file}", "{tau_trigger_sf_file}", "{single_mu_eff_file}" , "Medium", "HLT_IsoMu24", "HLT_IsoMu20_eta2p1_LooseDeepTauPFTauHPS27_eta2p1_CrossL1", "{mt_or_trigger_sf_syst}")',
     input=[
         q.p4_1,
         q.p4_2,
@@ -422,11 +422,12 @@ MT_OrTrigger_SF = Producer(
 #########################
 TT_PlusJet_OrTrigger_SF = Producer(
     name="TT_PlusJet_OrTrigger_SF",
-    call='scalefactor::trigger::ditau_or_trigger_sf({df}, {input}, {output},  "{tau_trigger_sf_file}","{tau_plus_jet_sf_file}" , "Medium", "HLT_DoubleMediumDeepTauPFTauHPS35_L2NN_eta2p1", "HLT_DoubleMediumDeepTauPFTauHPS30_L2NN_eta2p1_PFJet60")',
+    call='scalefactor::trigger::ditau_or_trigger_sf({df}, {input}, {output},  "{tau_trigger_sf_file}","{tau_plus_jet_sf_file}" , "Medium", "HLT_DoubleMediumDeepTauPFTauHPS35_L2NN_eta2p1", "HLT_DoubleMediumDeepTauPFTauHPS30_L2NN_eta2p1_PFJet60", "{tt_plus_jet_or_trigger_sf_syst}")',
     input=[
         q.p4_1,
         q.p4_2,
         q.jet_p4_1,
+        q.good_jets_mask,
         nanoAOD.TriggerObject_bit,
         nanoAOD.TriggerObject_id,
         nanoAOD.TriggerObject_pt,
